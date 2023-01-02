@@ -1,0 +1,3 @@
+pip list
+
+mkdocs new .
