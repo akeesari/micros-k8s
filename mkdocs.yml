@@ -37,13 +37,21 @@ nav:
     - Contact Us: contact.md
 # Configuration
 theme:
-  name: material
+  name: material # readthedocs
+  custom_dir: overrides
+  # nav_style: dark
+  shortcuts:
+      help: 191    # ?
+      next: 78     # n
+      previous: 80 # p
+      search: 83   # s
   features:
   - content.code.annotate
   # - content.tabs.link
   # - header.autohide
   # - navigation.expand
   - navigation.indexes
+  - navigation.footer
   - content.tooltips
   - navigation.tabs
   # - navigation.tabs.sticky
@@ -87,21 +95,29 @@ theme:
   # - pymdownx.superfences
   # - pymdownx.mark
   
-  # extra
-  extra:
-  social:
-    - icon: fontawesome/brands/github-alt
-      link: https://github.com/c17hawke
-    - icon: fontawesome/brands/twitter
-      link: https://twitter.com/c17hawke
-    - icon: fontawesome/brands/linkedin
-      link: https://linkedin.com/in/c17hawke
-    - icon: fontawesome/brands/instagram
-      link: https://www.instagram.com/c17hawke/
+  extra_css:
+  - stylesheets/extra.css
+
+  extra_javascript:
+  - javascripts/extra.js
+
+  # extra:
+  #   social:
+  #     - icon: fontawesome/brands/github-alt
+  #       link: https://github.com/
+  #     - icon: fontawesome/brands/twitter
+  #       link: https://twitter.com/
+  #     - icon: fontawesome/brands/linkedin
+  #       link: https://linkedin.com/in/
+  #     - icon: fontawesome/brands/instagram
+  #       link: https://www.instagram.com/
   
 plugins:
   - search
   
+# hide:
+#   - footer
+
 # copyright   
 copyright: |
   Copyright &copy; 2023 <a href="akeesari.github.io/mkdocs"  target="_blank" rel="noopener">Anji Keesari</a>
