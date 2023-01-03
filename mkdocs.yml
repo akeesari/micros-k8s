@@ -26,7 +26,17 @@ nav:
   - Helm-Charts:
     - Helm Charts: helmcharts/helm-charts.md
   - Miscellaneous:
-    - mkdocs-samples: mkdocs-samples.md
+      - Index1: miscellaneous/index.md
+      - mkdocs-samples: miscellaneous/mkdocs-samples.md
+      - Section1:
+        - page-1 : miscellaneous/section1/page-1.md
+        - page-3 : miscellaneous/section1/page-2.md
+        - page-3 : miscellaneous/section1/page-3.md
+      - Section2:
+        - page-1 : miscellaneous/section2/page-1.md
+        - page-3 : miscellaneous/section2/page-2.md
+        - page-3 : miscellaneous/section2/page-3.md
+      
   - About:
     - About Us: aboutus.md
   - Contact:
@@ -57,11 +67,11 @@ theme:
   - content.tooltips
   - navigation.tabs
   # - navigation.tabs.sticky
-  - navigation.sections
-  - navigation.expand
+  # - navigation.sections
+  # - navigation.expand
   # - toc.integrate
   - navigation.top
-  # - navigation.instant
+  - navigation.instant
   - navigation.tracking
   - header.autohide
   - search.highlight
@@ -82,21 +92,6 @@ theme:
       toggle:
         icon: material/toggle-switch
         name: Switch to light mode
-
-
-  # markdown_extensions:
-  #   # - tables
-  #   - pymdownx.highlight:
-  #       anchor_linenums: true
-  #   - pymdownx.inlinehilite
-  #   - pymdownx.snippets
-  #   - admonition
-  #   - pymdownx.arithmatex:
-  #       generic: true
-  #   - footnotes
-  #   - pymdownx.details
-  #   - pymdownx.superfences
-  #   - pymdownx.mark
   
   extra_css:
   - stylesheets/extra.css
@@ -129,6 +124,8 @@ markdown_extensions:
   - def_list
   - pymdownx.tasklist:
       custom_checkbox: true
+  - tables
+
 extra:
   social:
     - icon: fontawesome/brands/github-alt
