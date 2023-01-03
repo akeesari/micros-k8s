@@ -7,20 +7,16 @@ site_description: >-
   Building and Managing Microservices with Kubernetes using Argocd & Helm
   Azure and Azure DevOps Pipelines.
 
-# # Repository details
-# repo_name: akeesari.github.io/mkdocs/
-# repo_url: https://akeesari.github.io/mkdocs/
-
 # Page tree
 nav:
   - Home:
     - Table of Contents: home/toc.md      
     - Introduction: home/introduction.md
   - Microservices:
-      Microservices: microservices/chapter-1.md
-      Chapters:
-        - chapter-1: microservices/chapters/chapter-1.1.md
-        - chapter-2: microservices/chapters/chapter-1.2.md
+      - Microservices: microservices/chapter-1.md
+      # Chapters:
+      - chapter-1: microservices/chapters/chapter-1.1.md
+      - chapter-2: microservices/chapters/chapter-1.2.md
   - Azure:
     - Infrastructure: azure/infrastructure.md
   - DevOps:
@@ -30,11 +26,16 @@ nav:
   - Helm-Charts:
     - Helm Charts: helmcharts/helm-charts.md
   - Miscellaneous:
-    - Helm Charts: Miscellaneous/helm-charts.md
+    - mkdocs-samples: mkdocs-samples.md
   - About:
     - About Us: aboutus.md
   - Contact:
     - Contact Us: contact.md
+
+# # Repository details
+# repo_name: akeesari.github.io/mkdocs/
+# repo_url: https://akeesari.github.io/mkdocs/
+
 # Configuration
 theme:
   name: material # readthedocs
@@ -46,6 +47,7 @@ theme:
       previous: 80 # p
       search: 83   # s
   features:
+  - content.code.copy
   - content.code.annotate
   # - content.tabs.link
   # - header.autohide
@@ -80,38 +82,64 @@ theme:
       toggle:
         icon: material/toggle-switch
         name: Switch to light mode
-  
-  markdown_extensions:
-    - tables
-  # - pymdownx.highlight:
-  #     anchor_linenums: true
-  # - pymdownx.inlinehilite
-  # - pymdownx.snippets
-  # - admonition
-  # - pymdownx.arithmatex:
-  #     generic: true
-  # - footnotes
-  # - pymdownx.details
-  # - pymdownx.superfences
-  # - pymdownx.mark
+
+
+  # markdown_extensions:
+  #   # - tables
+  #   - pymdownx.highlight:
+  #       anchor_linenums: true
+  #   - pymdownx.inlinehilite
+  #   - pymdownx.snippets
+  #   - admonition
+  #   - pymdownx.arithmatex:
+  #       generic: true
+  #   - footnotes
+  #   - pymdownx.details
+  #   - pymdownx.superfences
+  #   - pymdownx.mark
   
   extra_css:
   - stylesheets/extra.css
 
   extra_javascript:
   - javascripts/extra.js
+  - javascripts/mathjax.js
+  - https://polyfill.io/v3/polyfill.min.js #?features=es6
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
 
-  # extra:
-  #   social:
-  #     - icon: fontawesome/brands/github-alt
-  #       link: https://github.com/
-  #     - icon: fontawesome/brands/twitter
-  #       link: https://twitter.com/
-  #     - icon: fontawesome/brands/linkedin
-  #       link: https://linkedin.com/in/
-  #     - icon: fontawesome/brands/instagram
-  #       link: https://www.instagram.com/
-  
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - admonition
+  - pymdownx.arithmatex:
+      generic: true
+  - footnotes
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.mark
+  - pymdownx.critic
+  - pymdownx.caret
+  - pymdownx.keys
+  - pymdownx.mark
+  - pymdownx.tilde
+  - attr_list
+  - md_in_html
+  - def_list
+  - pymdownx.tasklist:
+      custom_checkbox: true
+extra:
+  social:
+    - icon: fontawesome/brands/github-alt
+      link: https://github.com
+    - icon: fontawesome/brands/twitter
+      link: https://twitter.com
+    - icon: fontawesome/brands/linkedin
+      link: https://linkedin.com/in
+    - icon: fontawesome/brands/instagram
+      link: https://www.instagram.com/
+
 plugins:
   - search
   
