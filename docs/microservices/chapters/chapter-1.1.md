@@ -431,26 +431,26 @@ az account set -s "dev foundation"
 
 # Log in to the container registry
 
-az acr login --name assetmarkdev
+az acr login --name keesarilabdev
 
 # To get the login server address
 az acr list --resource-group rg-ACR --query "[].{acrLoginServer:loginServer}" --output table
 
-assetmarkdev.azurecr.io
+keesarilabdev.azurecr.io
 
-# Now, tag your local tenant image with the acrLoginServer (amkewm3poc) address of the container registry
+# Now, tag your local tenant image with the acrLoginServer (keesarilabdev) address of the container registry
 
-docker tag ewm30/sample/aspnet-api:20220829.1 assetmarkdev.azurecr.io/ewm30/sample/aspnet-api:20220829.1
+docker tag ewm30/sample/aspnet-api:20220829.1 keesarilabdev.azurecr.io/ewm30/sample/aspnet-api:20220829.1
 
 # Push images to registry
 
-docker push assetmarkdev.azurecr.io/ewm30/sample/aspnet-api:20220829.1
+docker push keesarilabdev.azurecr.io/ewm30/sample/aspnet-api:20220829.1
 
 # List images in registry
-az acr repository list --name assetmarkdev --output table
+az acr repository list --name keesarilabdev --output table
 
 # show tags of a image in the acr
-az acr repository show-tags --name assetmarkdev --repository ewm30/sample/aspnet-api --output table
+az acr repository show-tags --name keesarilabdev --repository ewm30/sample/aspnet-api --output table
 ```
 
 

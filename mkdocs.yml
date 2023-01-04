@@ -10,8 +10,12 @@ site_description: >-
 # Page tree
 nav:
   - Home:
-    - Table of Contents: home/toc.md      
-    - Introduction: home/introduction.md
+    - Home: home/index.md      
+  - Getting started:
+    - Table of Contents: gettingstarted/toc.md      
+    - Introduction: gettingstarted/introduction.md    
+    - Workstation configuration: gettingstarted/workstation.md
+    - Download & Install software: gettingstarted/software.md
   - Microservices:
       - Microservices: microservices/chapter-1.md
       # Chapters:
