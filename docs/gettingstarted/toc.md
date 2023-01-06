@@ -1,10 +1,12 @@
 
-`Building and Managing Microservices with Kubernetes using Argocd & Helm`
+# Table of Contents
+
+**Building and Managing Microservices with Kubernetes using Argocd & Helm**
 
 **Introduction**
 
 - Workstation configuration
-- Download & Install software - workstation setup
+- Download & Install software (workstation setup)
 
 **Chapter-1: Getting started with Microservices**
 
@@ -22,9 +24,9 @@
 
 - Overview
 - Create Terraform Foundation 
-  - Part-1 – Azure environment setup
-  - Part-2 – Azure DevOps Project setup
-  - Part-3 – Automate terraform deployment
+    - Part-1 – Azure environment setup for terraform
+    - Part-2 – Azure DevOps Project setup for terraform
+    - Part-3 – Automate terraform deployment
 - Create Log Analytics Workspace using terraform
 - Create Virtual Network (vnet) using terraform
 - Create Azure Container Registry (ACR) using terraform

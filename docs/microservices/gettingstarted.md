@@ -1,5 +1,7 @@
 # Chapter-1: Getting started with Microservices
 
+## Introduction
+
 Microservices topic is very big and complex to understand, I am not going to talk much about the theory part of the Microservices instead focus on the planning and labs on Microservices architecture.
 
 I am assuming you've already done your homework on Microservices architecture before reading this. Let's quickly recap very hight level what is Microservice before start the labs.
@@ -15,7 +17,7 @@ I am assuming you've already done your homework on Microservices architecture be
 - Each service is a separate codebase, which can be managed by a small development team.
 - Services are responsible for persisting their own data or external state
 
-# Objective
+## Objective
 
 
 let's do some planning and preparation here for the microservices architecture so that in the future labs we can directly jump into the lab work.
@@ -60,22 +62,22 @@ for example:
 - Organization Name (Organization1/keesari)
   - Project Name (Project1)
     - Repo-1 (Domain1)
-      - APIs
-      - Websites
-      - Databses
+        - APIs
+        - Websites
+        - Databses
     - Repo-2 (Domain2)
-      - APIs
-      - Websites
-      - Databses
+        - APIs
+        - Websites
+        - Databses
     - Repo-3 (Domain3)
-      - APIs
-      - Websites
-      - Databses
+        - APIs
+        - Websites
+        - Databses
   - Project Name(Project2)
     - Repo-1 (Domain1)
-      - APIs
-      - Websites
-      - Databses
+        - APIs
+        - Websites
+        - Databses
 
 
 ## Task-3: Identity list of Applications needed
@@ -85,21 +87,21 @@ Use this task to identity list of applications needed for your projects.
 Here is the list of applications we will be creating to get the feeling of Microservices pattern. Here we purposely selected different technology stack and languages to cover all more learning scenarios.
 
 - Create the first microservice with .NET Core Web API (C#)
-    - aspnet-api / consumer-api
+    - `aspnet-api` or `consumer-api`
 - Create the second microservice with Node JS (Node)
-   - nodejs-api / producer-api
-- Create the third microservice with .NET Core 
-   - todo-api / process-api
+    - name of the app `nodejs-api` or `producer-api`
+- Create the third microservice with Java 
+    - `todo-api` or `process-api`
 - Create the first website with ASP.NET Core MVC (C#)
-   - aspnet-app
+    - `aspnet-app`
 - Create the second website with React JS (Node)
-   - reactjs-app
+    - `reactjs-app`
 - Create the third website with Blazor (C#)
-  - blazor-app
+    - `blazor-app`
 - Create first database with SQL server
-  - sqlserver-db
+    - `sqlserver-db`
 - Create second database with PostgreSQL
-  - postgresql-db
+    - `postgresql-db`
 
 
 ## Task-4: Create DevOps Organization
@@ -119,7 +121,7 @@ Here is the list of applications we will be creating to get the feeling of Micro
 - Visibility - `Private`
 - Create new project.
 
-# Refererences:
+## Refererences
 
 - https://microservices.io/patterns/microservices.html
 - https://learn.microsoft.com/en-us/azure/architecture/guide/architecture-styles/microservices

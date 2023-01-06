@@ -15,12 +15,19 @@ nav:
     - Table of Contents: gettingstarted/toc.md      
     - Introduction: gettingstarted/introduction.md    
     - Workstation configuration: gettingstarted/workstation.md
-    - Download & Install software: gettingstarted/software.md
+    - Download & Install software:
+       - Windows OS: gettingstarted/software/windows.md
+       - Mac OS: gettingstarted/software/mac.md
   - Microservices:
-      - Microservices: microservices/chapter-1.md
-      # Chapters:
-      - chapter-1: microservices/chapters/chapter-1.1.md
-      - chapter-2: microservices/chapters/chapter-1.2.md
+      - Getting started : microservices/gettingstarted.md
+      - Micrservice-1- .NET Core: microservices/aspnet-api.md
+      - Micrservice-2- Node JS: microservices/nodejs-api.md
+      - Micrservice-3- Java: microservices/java-api.md
+      - Website-1- ASP.NET MVC: microservices/aspnet-app.md
+      - Website-2- React JS: microservices/reactjs-app.md
+      - Website-3- Blazor : microservices/blazor-app.md
+      - Database-1- SQL : microservices/sqldb.md
+      - Database-2- PostgreSQL : microservices/psqldb.md
   - Azure:
     - Infrastructure: azure/infrastructure.md
   - DevOps:
@@ -72,7 +79,7 @@ theme:
   - navigation.tabs
   # - navigation.tabs.sticky
   # - navigation.sections
-  # - navigation.expand
+  - navigation.expand
   # - toc.integrate
   - navigation.top
   - navigation.instant
@@ -129,6 +136,8 @@ markdown_extensions:
   - pymdownx.tasklist:
       custom_checkbox: true
   - tables
+  - toc:                 
+      permalink: true
 
 extra:
   social:
@@ -143,7 +152,9 @@ extra:
 
 plugins:
   - search
-  
+     # Adding the pdf-export plugin
+  # - pdf-export:
+  #     combined: true
 # hide:
 #   - footer
 

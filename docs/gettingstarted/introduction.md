@@ -1,6 +1,4 @@
-## Building and Managing Microservices with Kubernetes using Argocd & Helm
-
-This is the step by step implementation guide on `Building and Managing Microservices with Kubernetes using Argocd & Helm`.
+This is the step by step implementation developer user guide on `Building and Managing Microservices with Kubernetes using Argocd & Helm`.
 
 you can consider this step by step implementation as your reference architecture for creating and managing your microservices archicture with Azure Kubernetes Services (AKS) using Argocd & Helm  CI/CD devops process.
 
@@ -8,19 +6,19 @@ This reference architecture shows how to create multple microservice application
 
 Without proper CI / CD process we will not be able to achive the faster microservice deployments, In this reference practical guide we will deploy microservice applications to AKS using Argocd and we will also use Helm Charts deployment for complex deployments.
 
-There are two approaches we will be using for deploying microservices to AKS.
+There are two approaches we will be using for deploying our microservices to AKS.
 
-Approach-1: Basic deployments to AKS
+Approach-1 is Argocd - Used for basic deployments to AKS
 
 Build CI/CD pipelines for these microservices and automate the deployment process to Kubernetes with Azure DevOps and ArgoCD
 
-Appraoch-2: Complex deployments to AKS 
+Appraoch-2 is Helm-Charts - used for complex deployments to AKS 
 
 Create CI/CD pipelines for the microservices and automate the deployment process to Kubernetes with Azure DevOps and Helm Charts
 
-This reference practical guild assumes that you've basic knowledge on Microservices architecture, Kubernetes, Azure DevOps, Argocd and Helm.
+This reference practical step by step guid assumes that you've basic knowledge on Microservices architecture, Kubernetes, Azure DevOps, Argocd and Helm.
 
-This reference practical guide covers only labs with step by step implementatiion and few basic definitions, it will not cover any in dept knoweledge of the topic, you will see some links end of each lab to understand theory and concepts of the topic.
+This reference practical guide covers only labs also called exercises with step by step implementatiion and few basic definitions, it will not cover any in dept knoweledge of the topic, you will see some links end of each lab to understand theory and concepts of the topic.
 
 ## Labs format
 
@@ -29,7 +27,7 @@ you will notice following sub-headings in each lab, let me explain purpose of ea
 
 **Introduction**
 
-This section covers very basic concepts and definitions of perticual lab, this will help you to quickly hook with the lab and ready for actions. if you need in dept knowledge then look into the links provided at the end of each lab.   
+This section covers very basic concepts and definitions of perticual lab, this will help you to quickly hook with the lab and get ready for actions. if you need any in dept knowledge of the topic then look into the links provided at the end of each lab.   
 
 **Technical Scenario**
 
@@ -63,8 +61,8 @@ Step by step implementation details will be covered in this section.
 for example:
 
 - Azure subscription
-- Install and configure Terraform
-- Install azure CLI
+- Download and Install Terraform
+- Download and Install azure CLI
 
 `login to Azure`
 
@@ -107,5 +105,5 @@ This section will cover list of all the references  for further reading and furt
 
 ## References
 
-- [reference-architectures/containers/aks-microservices](https://learn.microsoft.com/en-us/azure/architecture/reference-architectures/containers/aks-microservices/aks-microservices)
-- [building-and-managing microservices](https://www.oreilly.com/library/view/building-and-managing/9780137649686/)
+- [Reference-architectures/containers/aks-microservices](https://learn.microsoft.com/en-us/azure/architecture/reference-architectures/containers/aks-microservices/aks-microservices)
+- [Building-and-managing microservices](https://www.oreilly.com/library/view/building-and-managing/9780137649686/)

@@ -1,4 +1,4 @@
-# Chapter-1 Create first microservice with .NET Core
+# Chapter-1.1 Create first microservice with .NET Core
 
 ## Introduction
 
@@ -6,19 +6,19 @@ This is our first lab in the Microservices architecture series, here we are goin
 
 This sample demonstrates how to create restful service and build container images for ASP.NET Core Restful APIs. 
 
-**Definition** from MSDN
+Definition from MSDN
 
 API  = Application Programing Interface.
 
 `ASP.NET Web API` is a framework for building HTTP services that can be accessed from any client including browsers and mobile devices. It is an ideal platform for building RESTful applications on the . NET Framework.
 
-# Technical Scenario
+## Technical Scenario
 
 This lab will help you to understand how start your journey with Microservices Architecture, we will start with basics like creating repo, creating small project and finally containerize that small microservice we've created and push to the Azure container registry (ACR).
 
 we are basically preparing an application for the Kubernetes deployment. the microservice we are going to create here in this lab will be used in the subsequent labs like creating devops pipelines or deploying to Azure Kubernets services (AKS).
 
-# Objective
+## Objective
 
 In this exercise we will accomplish & learn how to implement following:
 
@@ -39,7 +39,7 @@ In this exercise we will accomplish & learn how to implement following:
    - Docker and the VS Code Docker extension must be installed
  
 
-## Step-1: Create a repo
+## Task-1: Create a repo
 
 Create a repo using the web portal
 
@@ -423,7 +423,7 @@ Update port number
 ![image.png](/.attachments/image-801c4b54-4050-402e-b546-6fa987dce9b5.png)
 
 
-## Task-8: Publish docker container image to ACR
+## Task-7: Publish docker container image to ACR
 
 ```
 az login
