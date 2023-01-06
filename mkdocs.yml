@@ -29,7 +29,12 @@ nav:
       - Database-1- SQL : microservices/sqldb.md
       - Database-2- PostgreSQL : microservices/psqldb.md
   - Azure:
-    - Infrastructure: azure/infrastructure.md
+    - Overview: azure/1-overview.md
+    - Azure Naming Conventions: azure/2-naming-conventions.md
+    - Azure Free Account: azure/3-azure-account.md
+    - Create new subscription: azure/4-azure-subscription.md
+    - Create Terraform Foundation: azure/5-tf-fundation.md
+    
   - DevOps:
     - Azure DevOps: devops/devops.md
   - ArgoCD:
