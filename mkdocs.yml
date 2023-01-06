@@ -15,6 +15,7 @@ nav:
     - Table of Contents: gettingstarted/toc.md      
     - Introduction: gettingstarted/introduction.md    
     - Workstation configuration: gettingstarted/workstation.md
+    - Technology Stack: gettingstarted/tech-stack.md
     - Download & Install software:
        - Windows OS: gettingstarted/software/windows.md
        - Mac OS: gettingstarted/software/mac.md
