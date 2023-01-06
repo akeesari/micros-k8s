@@ -1,19 +1,6 @@
 Download and install following software's as per the need, you can use either `choco` tool (recommended) or direct install 
 
-## Manual
-
-Download and Install following Manually
-
-- Visual studio code (recommended) - https://code.visualstudio.com/download/
-- Visual studio (optional) - https://visualstudio.microsoft.com/downloads/
-- SQL Server Management Studio (optional) - https://www.microsoft.com/en-us/sql-server/sql-server-downloads
-- Notepad++ - https://notepad-plus-plus.org/downloads/
-- Google Chrome – search in google for later versionf of Google Chrome and download & install it
-- Node JS - https://nodejs.org/en/download/
-- Git - https://git-scm.com/download/win
-- Docker desktop - https://docs.docker.com/desktop/install/windows-install/
-
-## Chocolatey
+## Install Chocolatey
 
 Download and Install using Chocolatey
 
@@ -26,20 +13,121 @@ Use the following link and click on search button and start typing required soft
 
  https://community.chocolatey.org/
 
-for example: 
+## Install VS code
 
-- choco install vscode
-- choco install sql-server-management-studio
-- choco install googlechrome
-- choco install nodejs
-- choco install git
-- choco install docker-desktop
-- choco install azure-cli
-- choco install kubernetes-cli  - Kubernetes Command Line Interface (CLI) 
-- choco install azure-kubelogin -  kubelogin is a command-line utility implementing azure authentication into your AKS clusters.
-- choco install kubernetes-helm 
-- choco install pgadmin4
+```
+choco install vscode
+```
 
+verify the installation
+```
+code --help
+```
+
+## Install SQL server
+
+```
+choco install sql-server-management-studio
+```
+
+## Install Chrome
+
+```
+choco install googlechrome
+```
+
+## Install Node JS
+
+```
+choco install nodejs
+```
+```
+node --version
+```
+
+## Install Git
+
+```
+choco install git
+```
+```
+git --version
+```
+
+## Install Docker
+
+```
+choco install docker-desktop
+```
+
+```
+docker --version
+```
+
+## Install Azure CLI
+used to create and manage Azure resources.
+
+```
+choco install azure-cli
+```
+
+```
+az --version
+```
+
+## Install Terraform
+used to create Azure resources for IaC.
+
+```
+choco install terraform
+```
+
+```
+terraform --version
+```
+
+## Install Kubernetes CLI
+used for interacting with kubernetes
+
+```
+choco install kubernetes-cli
+```
+
+## Install azure kubelogin
+
+used for interacting with AKS cluster 
+
+```
+choco install azure-kubelogin
+```
+
+## Install Helm
+used for interacting with kubernetes for helm
+
+```
+choco install kubernetes-helm
+```
+
+## Install pgadmin4
+used for managing PostgreSQL databases
+
+```
+choco install pgadmin4
+```
+
+## Install Python
+used for mkdocs
+
+```
+choco install python
+```
+
+## Install Pip
+used for installing and managing Python packages
+
+```
+choco install pip
+```
 
 After install VS code, install the following extensions in vs code as per the need:
 
@@ -86,6 +174,21 @@ Client:
 …
 
 ```
+
+## Manual Install
+
+Download and Install following Manually
+
+- Visual studio code (recommended) - https://code.visualstudio.com/download/
+- Visual studio (optional) - https://visualstudio.microsoft.com/downloads/
+- SQL Server Management Studio (optional) - https://www.microsoft.com/en-us/sql-server/sql-server-downloads
+- Notepad++ - https://notepad-plus-plus.org/downloads/
+- Google Chrome – search in google for later versionf of Google Chrome and download & install it
+- Node JS - https://nodejs.org/en/download/
+- Git - https://git-scm.com/download/win
+- Docker desktop - https://docs.docker.com/desktop/install/windows-install/
+
+
 ## Additional Software's
 
 You may need these additional softwar to perform daily activities.
