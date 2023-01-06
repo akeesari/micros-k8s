@@ -1,24 +1,6 @@
-Here is the list of technology stack recommended for completing the Labs, some of them are optional but good to learn as a full stack developer;
+Here is the list of technology stack recommended for completing the Labs, some of them are optional but good to learn as a Solution Architect or Full Stack Developer;
 
-## Blazor
-
-- Blazor Fundamentals
-- Hosting models
-- Project structure
-- Layout, Razor components
-- Blazor Form & Validation
-- Call REST API from Blazor
-- Security & Identity
-- Blazor CRUD, Pagination & Sorting
-- Event handling & Data binding
-- Routing, Dependency Injection
-- Lifecycle Methods
-- Invoke JavaScript Functions
-- Globalization and localization
-- File uploads
-- File downloads
-
-## .NET Core REST API, C-Sharp
+## .NET Core REST API, C\#
 
 - .NET Core Web API Scalable Project structure
 - Web API Clean Architecture
@@ -55,6 +37,7 @@ Here is the list of technology stack recommended for completing the Labs, some o
 - Validate and deploy ARM Templates
 - Git Clone, Code review with Pull request
 - Privat Agent configuration, Approvals, Artifact
+- Azure DevOps Pipelines with YAML
 - Continuous integration (CI)
 - Continuous Delivery (CD)
 - Release variables, Replace Tokens
@@ -133,8 +116,44 @@ Here is the list of technology stack recommended for completing the Labs, some o
     - Networking and AKS
     - Load balancing and Ingress: Setup
   
-## React JS
+## Terraform 
 
+- What is Infrastructure as Code?
+- What is Terraform?
+- What is HCL - Hashicorp Configuration Language?
+- The Benefits of Using Terraform
+- Terraform Features
+- Installation and Setup
+- Terraform Providers
+- Resources
+- Terraform CLI
+- Terraform Variables
+- State Management
+- Remote Backends
+- Update and Destroy Infrastructure in Terraform
+- Using Terraform Providers in Terraform
+- Multiple Providers in Terraform
+- Input Variables in Terraform
+- Using Variables in Terraform
+- Resource Attribute Reference in Terraform
+- Resource Dependencies in Terraform
+- Output Variables in Terraform
+- Purpose of State in Terraform
+- Terraform State Considerations
+- Terraform Commands
+- Mutable vs Immutable Infrastructure
+- Lifecycle Rules in Terraform
+- Data Sources in Terraform
+- Use of for_each meta arguments in Terraform
+- Version Constraints in Terraform
+
+## Argocd
+- pending
+
+## Helm
+- pending
+  
+## React JS
 - Fundamentals, Babel, Webpack
 - Scalable Project Setup
 - JSX, ES6, RxJS, Routing
@@ -184,3 +203,21 @@ Here is the list of technology stack recommended for completing the Labs, some o
 - Telnet - connection and communication with a remote or local host via the Telnet TCP/IP protocol.
 - Netstat - used to view of active ports on your machine and their status. This helps user to understand which ports are open, closed, or listening for incoming connections.
 
+
+## Blazor [optional]
+
+- Blazor Fundamentals
+- Hosting models
+- Project structure
+- Layout, Razor components
+- Blazor Form & Validation
+- Call REST API from Blazor
+- Security & Identity
+- Blazor CRUD, Pagination & Sorting
+- Event handling & Data binding
+- Routing, Dependency Injection
+- Lifecycle Methods
+- Invoke JavaScript Functions
+- Globalization and localization
+- File uploads
+- File downloads
