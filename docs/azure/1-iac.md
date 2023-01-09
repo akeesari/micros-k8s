@@ -1,5 +1,6 @@
 # Chapter 2: Infrastructure as Code (IaC)
 
+## Overview
 In this second chapter you will learn on how to create the infrastructure in azure cloud, the azure resources and azure infrastructure created as part of this chapter will be used for deploying your microservices architecture created in chapter-1.
 
 Creation of these Azure resources will be completely automated using Terraform configuration and azure pipelines; there are multiple ways to Create or automate the azure resources but here we've chosen Terraform configuration so that we can get all the benefits cloud agnostic.

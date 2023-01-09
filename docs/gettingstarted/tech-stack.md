@@ -2,7 +2,7 @@ Here is a list of technologies that are used in the development of Microservices
 
 Here you will also see table of contents of each technology so that you can learn them offline when needed.
 
-You may encounter some specific tools and technologies that are not listed here but you will the references end of each lab.
+You may encounter some specific tools and technologies that are not listed here but you will see the references end of each lab.
 
 ## .NET Core REST API, C\#
 

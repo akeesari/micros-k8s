@@ -239,7 +239,7 @@ List all Helm deployments in all namespaces by running:
 To remove an installed Helm deployment, run:
 
     helm uninstall <deployment name> --namespace <namespace_name>
-    helm uninstall ewm3-apps --namespace tenant1
+    helm uninstall sample-apps --namespace tenant1
 
 Alternatively, use the alias:
 

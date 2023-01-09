@@ -26,17 +26,17 @@ This module will teach you how many microservices we are going to create in subs
 
 In this exercise we will accomplish & learn on following:
 
-- Task-1: Identity list of business domains / microservices - Theory
-- Task-2: Identity list of git repos needed - Theory
-- Task-3: Identity list of applicatios needed - Theory
-- Task-4: Create DevOps Organization - Lab
-- Task-5: Create DevOps Project - Lab
+- **Task-1:** Identity list of business domains / microservices
+- **Task-2:** Identity list of git repos needed 
+- **Task-3:** Identity list of applicatios needed
+- **Task-4:** Create DevOps Organization - Lab
+- **Task-5:** Create DevOps Project - Lab
   
 ## Task-1: Identity list of business domains / microservices
 
-One of the complext part of the Microservices architecture is identifing the list of microservices needed.
+One of the complext part of the Microservices architecture is, identifing the list of microservices needed.
 
-use this link to understand and anlyse your business domains and define the bounded context for your Microservices architectrue etc..
+use the below link to understand and anlyse your business domains and define the bounded context for your Microservices architectrue etc..
 
 https://learn.microsoft.com/en-us/azure/architecture/microservices/model/domain-analysis
 
@@ -46,7 +46,6 @@ Since my focus here is not implementing any real world microservices scenarios t
 - Domain-2
 - Domain-3
 
-
 assuming you've finalized your business domains at this point so that the rest of the design and implementation will be will be easy.
 
 ## Task-2: Identity list of git repos needed
@@ -55,71 +54,83 @@ once you know the list of domains or microservices needed for your application t
 
 there are multiple ways to organize the source code and pipelines in the azure devops git. it is all depends on how you want to manage your source code and pipelines for your microservices architecture, how easy to maintain in the future.
 
-my preference is, create separate git repo for each domain.
+My preference here is to create separate git repo for each domain.
 
-for example:
+For example:
 
 - Organization Name (Organization1/keesari)
   - Project Name (Project1)
+    - Repo-1 (Domain1 specific)
+        - APIs - one or more APIs with separate folder
+        - Websites - one or more websites with separate folder
+        - Databses - one or more databases with separate folder
+    - Repo-2 (Domain2 specific)
+        - APIs
+        - Websites
+        - Databses
+    - Repo-3 (Domain3 specific)
+        - APIs
+        - Websites
+        - Databses
+  - Project Name(Project2 completely different project sources)
     - Repo-1 (Domain1)
         - APIs
         - Websites
         - Databses
-    - Repo-2 (Domain2)
-        - APIs
-        - Websites
-        - Databses
-    - Repo-3 (Domain3)
-        - APIs
-        - Websites
-        - Databses
-  - Project Name(Project2)
-    - Repo-1 (Domain1)
-        - APIs
-        - Websites
-        - Databses
-
 
 ## Task-3: Identity list of Applications needed
 
 Use this task to identity list of applications needed for your projects. 
 
-Here is the list of applications we will be creating to get the feeling of Microservices pattern. Here we purposely selected different technology stack and languages to cover all more learning scenarios.
+Here is the list of applications we will be creating to get the feeling of Microservices pattern. Here we purposely selected different technology stack and languages to cover more learning scenarios.
 
-- Create the first microservice with .NET Core Web API (C#)
-    - `aspnet-api` or `consumer-api`
+- Create the first microservice with .NET Core Web Rest API with C#
+    - name of the api is `aspnet-api`
 - Create the second microservice with Node JS (Node)
-    - name of the app `nodejs-api` or `producer-api`
+    - name of the api is `nodejs-api`
 - Create the third microservice with Java 
-    - `todo-api` or `process-api`
+    - name of the api is `java-api`
 - Create the first website with ASP.NET Core MVC (C#)
-    - `aspnet-app`
+    - name of the app is `aspnet-app`
 - Create the second website with React JS (Node)
-    - `reactjs-app`
+    - name of the app is `reactjs-app`
 - Create the third website with Blazor (C#)
-    - `blazor-app`
+    - name of the app is `blazor-app`
 - Create first database with SQL server
-    - `sqlserver-db`
+    - name of the database is `sqlserver-db`
 - Create second database with PostgreSQL
-    - `postgresql-db`
+    - name of the database is `postgresql-db`
 
 
-## Task-4: Create DevOps Organization
+## Task-4: Create new Azrue DevOps Organization
 
-- Sign in to Azure DevOps. - https://dev.azure.com/keesari
+To create a new Azure DevOps organization, follow these steps:
 
-- Click on `New organization` in the left nav.
-- Enter name of the Organization and create new organization.
+1. Sign in to Azure DevOps. - https://dev.azure.com/keesari
 
-## Task-4: Create DevOps Project
+2. Click on `New organization` in the left nav.
+3. Enter name of the Organization and create new organization.
 
-- Sign in to Azure DevOps. - https://dev.azure.com/keesari
+![select-new-organization.png](images/select-new-organization.png)
 
-- Click on `New project` 
-- Enter project name - `Project1`
-- Enter project Description - `This is the sample project used for demo purpose`
-- Visibility - `Private`
-- Create new project.
+Once you have completed these steps, you will have a new Azure DevOps organization that is ready for use. You can then invite members to join your organization and start working on projects.
+
+## Task-4: Create new Azure DevOps Project
+
+1. Sign in to the Azure DevOps website (https://dev.azure.com/) with your Azure DevOps account.
+
+2. Click on the "Create a project" button.
+
+3. Enter a name for your project and select a process template. The process template determines the default work item types, source control repository, and other settings for your project.
+
+4. Click the "Create project" button to create your new project.
+
+5. Follow the on-screen prompts to configure your project settings, including source control, work item types, and team members.
+
+6. When you are finished, click the "Finish" button to complete the project creation process.
+
+![create-new-project.png](images/create-new-project.png)
+
 
 ## Refererences
 

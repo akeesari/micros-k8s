@@ -20,17 +20,17 @@ nav:
        - Mac OS: gettingstarted/software/mac.md
     - Technology Stack: gettingstarted/tech-stack.md
   - Microservices:
-      - Getting started : microservices/gettingstarted.md
-      - Micrservice-1- .NET Core: microservices/aspnet-api.md
-      - Micrservice-2- Node JS: microservices/nodejs-api.md
-      - Micrservice-3- Java: microservices/java-api.md
-      - Website-1- ASP.NET MVC: microservices/aspnet-app.md
-      - Website-2- React JS: microservices/reactjs-app.md
-      - Website-3- Blazor : microservices/blazor-app.md
-      - Database-1- SQL : microservices/sqldb.md
-      - Database-2- PostgreSQL : microservices/psqldb.md
-  - Azure:
-    - Overview: azure/1-overview.md
+      - Getting started with Microservices : microservices/gettingstarted.md
+      - Create Micrservice-1 with .NET Core: microservices/aspnet-api.md
+      # - Create Micrservice-2 with Node JS: microservices/nodejs-api.md
+      # - Create Micrservice-3 with Java: microservices/java-api.md
+      # - Create Website-1 with ASP.NET MVC: microservices/aspnet-app.md
+      # - Create Website-2 with React JS: microservices/reactjs-app.md
+      # - Create Website-3 with Blazor : microservices/blazor-app.md
+      # - Create Database-1 with SQL : microservices/sqldb.md
+      # - Create Database-2 with PostgreSQL : microservices/psqldb.md
+  - Azure (IaC):
+    - Infrastructure as Code (IaC): azure/1-iac.md
     - Azure Naming Conventions: azure/2-naming-conventions.md
     - Azure Free Account: azure/3-azure-account.md
     - Create new subscription: azure/4-azure-subscription.md
@@ -42,20 +42,20 @@ nav:
     - Argo CD: argocd/argocd.md
   - Helm-Charts:
     - Helm Charts: helmcharts/helm-charts.md
-  - Miscellaneous:
-      - Index1: miscellaneous/index.md
-      - mkdocs-samples: miscellaneous/mkdocs-samples.md
-      - Section1:
-        - page-1 : miscellaneous/section1/page-1.md
-        - page-3 : miscellaneous/section1/page-2.md
-        - page-3 : miscellaneous/section1/page-3.md
-      - Section2:
-        - page-1 : miscellaneous/section2/page-1.md
-        - page-3 : miscellaneous/section2/page-2.md
-        - page-3 : miscellaneous/section2/page-3.md
+  # - Miscellaneous:
+  #     - Index1: miscellaneous/index.md
+  #     - mkdocs-samples: miscellaneous/mkdocs-samples.md
+  #     - Section1:
+  #       - page-1 : miscellaneous/section1/page-1.md
+  #       - page-3 : miscellaneous/section1/page-2.md
+  #       - page-3 : miscellaneous/section1/page-3.md
+  #     - Section2:
+  #       - page-1 : miscellaneous/section2/page-1.md
+  #       - page-3 : miscellaneous/section2/page-2.md
+  #       - page-3 : miscellaneous/section2/page-3.md
       
-  - About:
-    - About Us: aboutus.md
+  # - About:
+  #   - About Us: aboutus.md
   - Contact:
     - Contact Us: contact.md
 
