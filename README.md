@@ -1,8 +1,8 @@
 
 ## Introduction
-This repo contains documentation on **Building and Managing Microservices with Kubernetes using Argocd & Helm**, it is kind of ebook for developers who is working on Microservices Architecture and deploying in Azure Kubernetes services (AKS).
+This repository contains documentation on **Building and Managing Microservices with Kubernetes using Argocd & Helm**, this documentation will be helful for the developers who is working on Microservices Architecture and deploying in Azure Kubernetes services (AKS).
 
-This documentation is built using markdown language and mkdocs-material.
+This documentation is built using markdown language, MkDocs and mkdocs-material.
 
 ## Prerequisites
 
@@ -10,7 +10,10 @@ This documentation is built using markdown language and mkdocs-material.
 - Create new repo called `mkdocs` in GitHub
 - Clone the repo locally
 
+In order to run this project locally your need to install following:
+
 ## Download and install Python3
+
 ```
 brew install python3
 python3 --version
@@ -37,7 +40,7 @@ you can find more info here - https://squidfunk.github.io/mkdocs-material/gettin
    
 ## Project setup
 
-run following bash script to install required softwares before running the site.
+You need to run following bash script to install required software to run this project locally.
 
 ```
 bash ./init_setup.sh
@@ -45,11 +48,12 @@ bash ./init_setup.sh
 
 ## Running the site locally
 
-run following commands to run the site locally.
+Execute the following command to run the site locally with Localhost URL.
 
 ```
 mkdocs serve 
 ```
+
 output
 ```
 INFO     -  Building documentation...

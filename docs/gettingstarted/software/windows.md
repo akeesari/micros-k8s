@@ -1,17 +1,38 @@
-Download and install following software's as per the need, you can use either `choco` tool (recommended) or direct install 
+Download and install following software as per the need, you can use either `choco` tool (recommended) or direct install 
+
+Note: - Restart your computer when prompted or needed.
 
 ## Install Chocolatey
 
-Download and Install using Chocolatey
+We are going to use `choco` commands for isntalling all required software and developer tools. 
 
-`Chocolatey` has the largest online registry of Windows packages. Chocolatey packages encapsulate everything required to manage a particular piece of software into one deployment artifact by wrapping installers, executables, zips, and/or scripts into a compiled package file.
-I’d strongly recommend using choco commands by searching required softwares instead of manually trying to install using the above links. 
+**What is Chocolatey?**
 
-**Choco commands** 
+Chocolatey is a package manager for Windows that allows you to install, upgrade, and manage software packages from the command line. It is similar to package managers on Linux systems, such as apt or yum, and it can be used to install a wide range of software applications and libraries on Windows.
+
+it is strongly recommend using choco commands by searching required software instead of manually trying to install using the above links. 
+
+To use Chocolatey, you will need to have Windows PowerShell installed on your system. You can then install Chocolatey using a PowerShell command, and use it to install and manage packages from the command line.
+
+**Install Chocolatey**
+
+This is the first thing we need to install before installing anything in the Windows OS.
+
+To install Chocolatey on your Windows system, you will need to open a terminal window (such as PowerShell or Command Prompt) and run the following command:
+
+```
+Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
+
+```
+reference - https://docs.chocolatey.org/en-us/choco/setup
+
+Once the installation is finished, you can use the `choco` command to install, upgrade, and manage software packages using Chocolatey.
+
+**Search choco commands** 
 
 Use the following link and click on search button and start typing required software and copy the command into clipboard then open PowerShell window in admin mode to run the commands.
 
- https://community.chocolatey.org/
+ [https://community.chocolatey.org/](https://community.chocolatey.org/)
 
 ## Install VS code
 
@@ -128,6 +149,12 @@ used for installing and managing Python packages
 ```
 choco install pip
 ```
+## Install WSL
+Windows Subsystem for Linux (WSL) is a feature of Windows that allows developers to run a Linux environment without the need for a separate virtual machine or dual booting. 
+
+```
+choco install wsl
+```
 
 After install VS code, install the following extensions in vs code as per the need:
 
@@ -189,7 +216,7 @@ Download and Install following Manually
 - Docker desktop - https://docs.docker.com/desktop/install/windows-install/
 
 
-## Additional Software's
+## Additional Software
 
 You may need these additional softwar to perform daily activities.
 

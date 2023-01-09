@@ -1,8 +1,3 @@
-
-# Table of Contents
-
-**Building and Managing Microservices with Kubernetes using Argocd & Helm**
-
 **Introduction**
 
 - Workstation configuration

@@ -1,29 +1,23 @@
+
+**Building and Managing Microservices with Kubernetes using Argocd & Helm**
+
+## Overview
+
 This is the step by step implementation developer user guide on `Building and Managing Microservices with Kubernetes using Argocd & Helm`.
 
-you can consider this step by step implementation as your reference architecture for creating and managing your microservices archicture with Azure Kubernetes Services (AKS) using Argocd & Helm  CI/CD devops process.
+You can use this step by step implementation guide as your reference architecture for creating and managing your microservices archicture with Azure Kubernetes Services (AKS) using Argocd & Helm CI/CD devops process.
 
 This reference architecture shows how to create multple microservice applications with different technology stack using different programing languages, containerize these microservices and push to Azure Container Registry (ACR) and finally deployed microservices to Azure Kubernetes Service (AKS).
 
-Without proper CI / CD process we will not be able to achive the faster microservice deployments, In this reference practical guide we will deploy microservice applications to AKS using Argocd and we will also use Helm Charts deployment for complex deployments.
-
-There are two approaches we will be using for deploying our microservices to AKS.
-
-Approach-1 is Argocd - Used for basic deployments to AKS
-
-Build CI/CD pipelines for these microservices and automate the deployment process to Kubernetes with Azure DevOps and ArgoCD
-
-Appraoch-2 is Helm-Charts - used for complex deployments to AKS 
-
-Create CI/CD pipelines for the microservices and automate the deployment process to Kubernetes with Azure DevOps and Helm Charts
+You will learn and understand how to deploy microservice applications to AKS using Argocd and Helm Charts.
 
 This reference practical step by step guid assumes that you've basic knowledge on Microservices architecture, Kubernetes, Azure DevOps, Argocd and Helm.
 
-This reference practical guide covers only labs also called exercises with step by step implementatiion and few basic definitions, it will not cover any in dept knoweledge of the topic, you will see some links end of each lab to understand theory and concepts of the topic.
+This reference practical guide covers only labs also called exercises with step by step implementatiion and few basic definitions, it will not cover any in dept knoweledge of the topic, you will see some links end of each lab to understand concepts and indept knowledge of the topic.
 
 ## Labs format
 
-you will notice following sub-headings in each lab, let me explain purpose of each subheading here so that it will be easy to relate when you are actually doing things in each lab
-
+you will notice following sub-headings in each lab, let me first explain the purpose of each sub heading here so that it will be easy to relate when you are actually doing things in each lab
 
 **Introduction**
 
@@ -42,27 +36,29 @@ for example:
 In this exercise we will accomplish & learn how to implement following:
 
 
-- Task-1: Define and declare variables
-- Task-2: Create a Azure service using Terraform
-- Task-3: Initialize Terraform
-- Task-4: Create a Terraform execution plan
-- Task-4: Apply a Terraform execution plan
+- **Task-1:** Define and declare variables
+- **Task-2:** Create a Azure service using Terraform
+- **Task-3:** Initialize Terraform
+- **Task-4:** Create a Terraform execution plan
+- **Task-5:** Apply a Terraform execution plan
 
 **Architecture diagram [Optional]**
 
 In this section you will see the Architectrue diagram explaining about the scenario. This section is optional but will try to keep some picture, architecture diagrams are always helps to visualize the scenario and easy to understand how dots are connected. 
-  
-**Implementation details**
 
-Step by step implementation details will be covered in this section.
+**Prerequisites**
 
-`Prerequisites` - covers what is needed before start the lab
+This section covers list of tools or software or any Prerequisites that needs to be installed before start the lab so that you are not stuck in middle of the labs.
 
-for example:
+For example:
 
 - Azure subscription
 - Download and Install Terraform
 - Download and Install azure CLI
+
+**Implementation details**
+
+Here you will actually see actions, all step by step implementation details will be covered in this section.
 
 `login to Azure`
 
@@ -81,6 +77,7 @@ az account list
 # Sets Azure subscription to desired subscription using ID
 az account set <subscription_id>
 ```
+example of tasks:
 
 **Task-1: Define and declare variables**
 
@@ -100,8 +97,7 @@ source code or commands will be placed here
 
 **References**
 
-This section will cover list of all the references  for further reading and further actions.
-
+This section will cover list of all the references for further reading and further actions.
 
 ## References
 

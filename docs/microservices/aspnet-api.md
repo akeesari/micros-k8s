@@ -35,7 +35,7 @@ In this exercise we will accomplish & learn how to implement following:
 - An organization in Azure DevOps
 - A project in Azure DevOps
 - Create repository permission
-- Download and install software's for .NET development
+- Download and install software for .NET development
    - Docker and the VS Code Docker extension must be installed
  
 

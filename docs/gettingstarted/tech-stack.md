@@ -1,6 +1,16 @@
-Here is the list of technology stack recommended for completing the Labs, some of them are optional but good to learn as a Solution Architect or Full Stack Developer;
+Here is a list of technologies that are used in the development of Microservices develoment, deploy & run those applications  on Kubernetes cluster:
+
+Here you will also see table of contents of each technology so that you can learn them offline when needed.
+
+You may encounter some specific tools and technologies that are not listed here but you will the references end of each lab.
 
 ## .NET Core REST API, C\#
+
+Here is a list of technologies that are commonly used in the development of a .NET Core REST API:
+
+.NET Core: .NET Core is a cross-platform version of the .NET framework that is used to build web applications and APIs.
+
+This is just a sample of the technologies that may be used in a .NET Core REST API stack.
 
 - .NET Core Web API Scalable Project structure
 - Web API Clean Architecture
@@ -24,6 +34,8 @@ Here is the list of technology stack recommended for completing the Labs, some o
 
 ## Azure DevOps
 
+Azure DevOps is a set of development tools, services, and features that enable teams to plan, develop, deliver, and maintain software more efficiently. The technology stack for Azure DevOps includes:
+
 - Azure Boards
 - Azure Repos
 - Azure Pipelines
@@ -45,6 +57,8 @@ Here is the list of technology stack recommended for completing the Labs, some o
 
 ## Azure Cloud
 
+Azure is a cloud computing platform and infrastructure created by Microsoft that provides a range of cloud services, including computing, analytics, storage, and networking. The technology stack for Azure includes:
+
 - Azure Accounts, Subscriptions, and Billing
 - Manage access to Azure resources using RBAC
 - Create Resource Groups
@@ -65,37 +79,31 @@ Here is the list of technology stack recommended for completing the Labs, some o
 
 ## Azure Kubernetes Service (AKS)
 
-- Azure Kubernetes Service (AKS) – Introduction
-    - Overview
-    - Target Audience
-    - Prerequisites
+Azure Kubernetes Service (AKS) is a managed Kubernetes service that allows you to deploy and manage containerized applications on Azure. Here is the list of topics form AKS you may need to learn before begin the labs.
+
+
+  - Introduction to AKS
+    - What is AKS
+    - Benefits of using AKS
 - What Is Azure Kubernetes Service (AKS)?
     - Kubernetes ─ Master Machine Components
     - Kubernetes ─ Node Components
 - Kubernetes Architecture Components
     - Kubernetes ─ Master Machine Components
     - Kubernetes ─ Node Components
-- Installation and local Setup
-- Reference Architecture
-- AKS Running in Localhost
 - Creating AKS cluster
-    - Creating AKS cluster part 2
-    - Creating AKS cluster part 1
+    - Prerequisites
+    - Creating an AKS cluster using the Azure portal
+    - Creating an AKS cluster using the Azure CLI
     - Testing cluster connection & creating namespace
-- Deploying SQL Database using Helm
-    - Deploying SQL Database
-    - Wrapping DB connection string in a k8s secret
-- Deploying Applications & Microservices
-    - Create Azure Container Registry
-    - Push Container to registry
-    - Verify Container registry image
-    - Deploying the back-end API part 1
-    - Deploying the back-end API part 2
-    - Adding k8s service to the back-end
-    - Deploying the front-end
-    - Adding k8s service to the front-end
-    - Establish AKS specific credentials
-    - Launch an AKS cluster
+- Deploying applications to AKS
+  - Creating a container image
+  - Pushing the image to a container registry
+  - Deploying the application to AKS
+- Managing and scaling an AKS cluster
+  - Upgrading AKS clusters
+  - Scaling the number of nodes in an AKS cluster
+  - Monitoring and logging AKS clusters
 - Deploying k8s ingress controller
     - Deploying k8s ingress controller part 1
     - Deploying k8s ingress controller part 2
@@ -118,55 +126,125 @@ Here is the list of technology stack recommended for completing the Labs, some o
   
 ## Terraform 
 
-- What is Infrastructure as Code?
-- What is Terraform?
-- What is HCL - Hashicorp Configuration Language?
-- The Benefits of Using Terraform
-- Terraform Features
-- Installation and Setup
-- Terraform Providers
-- Resources
-- Terraform CLI
-- Terraform Variables
-- State Management
-- Remote Backends
-- Update and Destroy Infrastructure in Terraform
-- Using Terraform Providers in Terraform
-- Multiple Providers in Terraform
-- Input Variables in Terraform
-- Using Variables in Terraform
-- Resource Attribute Reference in Terraform
-- Resource Dependencies in Terraform
-- Output Variables in Terraform
-- Purpose of State in Terraform
-- Terraform State Considerations
-- Terraform Commands
-- Mutable vs Immutable Infrastructure
-- Lifecycle Rules in Terraform
-- Data Sources in Terraform
-- Use of for_each meta arguments in Terraform
-- Version Constraints in Terraform
+Terraform is a tool for building, changing, and versioning infrastructure safely and efficiently.
+
+- Introduction to Terraform
+  - What is Infrastructure as Code?
+  - What is Terraform
+  - What is HCL - Hashicorp Configuration Language?
+  - Benefits of using Terraform
+  - Terraform Features
+- Getting started with Terraform
+  - Installing Terraform
+  - Creating your first Terraform configuration
+  - Terraform CLI
+- Working with Terraform modules
+  - Creating and using modules
+  - Sharing modules with the Terraform Registry
+  - Terraform Variables
+  - State Management
+  - Remote Backends 
+- Managing infrastructure with Terraform
+  - Declaring resources in a configuration
+  - Applying changes to infrastructure
+  - Viewing and modifying infrastructure
+- Collaborating with Terraform
+  - Version control best practices for Terraform configurations
+  - Collaborating with team members using Terraform
+- Advanced Terraform features
+  - Using Terraform variables and outputs
+  - Using Terraform workspaces
+  - Terraform Cloud and Terraform Enterprise
+  - Mutable vs Immutable Infrastructure
+  - Lifecycle Rules in Terraform
+  - Data Sources in Terraform
+  - Use of for_each meta arguments in Terraform
+  - Version Constraints in Terraform
 
 ## Argocd
-- pending
 
-## Helm
-- pending
-  
+Argo CD is a continuous delivery tool that uses GitOps to deploy applications to Kubernetes. The technology stack for Argo CD includes:
+
+1. Introduction to Argo CD
+   - What is Argo CD
+   - Benefits of using Argo CD
+2. Setting up Argo CD
+   - Prerequisites
+   - Installing Argo CD using the Helm chart
+   - Accessing the Argo CD UI
+3. Creating and managing applications in Argo CD
+   - Defining an application in a Git repository
+   - Adding an application to Argo CD
+   - Updating and rolling back application deployments
+4.  Working with Argo CD configurations
+    -  Managing application configurations in Git
+    -  Using Git branches and tags in Argo CD
+    -  Handling conflicts and errors in configurations
+5.  Collaborating with Argo CD
+    -  Using Argo CD with Git hosting platforms
+    -  Setting up multi-user access to Argo CD
+6.  Advanced Argo CD features
+    -  Using Argo CD with GitOps workflows
+    -  Integrating Argo CD with CI/CD pipelines
+    -  Using Argo CD with GitLab CI/CD
+
+
+## Helm Chart
+
+Helm is a package manager for Kubernetes that allows you to easily install, upgrade, and manage applications on your Kubernetes cluster. A Helm chart is a package of pre-configured Kubernetes resources that defines the structure and dependencies of an application.
+
+1. Introduction to Helm
+     - What is Helm
+     - Benefits of using Helm
+2. Getting started with Helm
+     - Installing Helm
+     - Initializing Helm and installing Tiller
+3. Working with Helm charts
+     - Finding and downloading charts from the Helm chart repository
+     - Creating and deploying your own charts
+     - Upgrading and rolling back chart deployments
+4. Managing dependencies with Helm
+     - Using Helm to manage the dependencies of a chart
+     - Sharing charts and chart dependencies with the Helm chart repository
+5. Collaborating with Helm
+     - Using Helm with version control systems
+     - Collaborating with team members using Helm
+6. Advanced Helm features
+     - Using Helm with continuous delivery pipelines
+     - Customizing Helm behavior with hooks
+     - Extending Helm with plugins
+
 ## React JS
-- Fundamentals, Babel, Webpack
-- Scalable Project Setup
-- JSX, ES6, RxJS, Routing
-- React JS -with Redux
-- React JS- with TypeScript
-- Higher Order Components & Containers
-- Props, State & Lifecycle
-- Forms, Handling events with Validation
-- Bootstrap, CSS, Sass
-- Unite testing with Jest
-- NPM, Node.js, JavaScript
+
+React is a JavaScript library for building user interfaces. It was developed by Facebook, and is often used for building single-page applications and mobile applications.
+
+1. Introduction to React
+    - What is React
+    - Why use React
+2. Getting started with React
+    - Setting up a React development environment
+    - Creating a React application
+    - Understanding the structure of a React application
+3. Working with React components
+    - Defining and rendering components
+    - Props and state in components
+    - Lifecycle methods in components
+4. Building user interfaces with React
+    - Working with JSX
+    - Using React hooks
+    - Managing data with context
+5. Managing application state with Redux
+    - Introduction to Redux
+    - Setting up Redux in a React application
+    - Working with actions, reducers, and the store
+6. Routing in React applications
+    - Introduction to React Router
+    - Setting up routes and navigating between them
+    - Working with dynamic routes and parameters
 
 ## Development Tools
+
+There are many tools that are commonly used in the development of software applications. Some examples of development tools include:
 
 - Visual Studio 2022/2019
 - Visual Studio Code
@@ -206,18 +284,28 @@ Here is the list of technology stack recommended for completing the Labs, some o
 
 ## Blazor [optional]
 
-- Blazor Fundamentals
-- Hosting models
-- Project structure
-- Layout, Razor components
-- Blazor Form & Validation
-- Call REST API from Blazor
-- Security & Identity
-- Blazor CRUD, Pagination & Sorting
-- Event handling & Data binding
-- Routing, Dependency Injection
-- Lifecycle Methods
-- Invoke JavaScript Functions
-- Globalization and localization
-- File uploads
-- File downloads
+Blazor is a framework for building client-side web applications using C# and .NET. It uses WebAssembly, a standard for running compiled code in web browsers, to allow .NET code to run in the browser alongside HTML and JavaScript.
+
+1. Introduction to Blazor
+    - What is Blazor
+    - Benefits of using Blazor
+2. Getting started with Blazor
+    - Setting up a Blazor development environment
+    - Creating a Blazor application
+    - Understanding the structure of a Blazor application
+3. Building user interfaces with Blazor
+    - Defining and rendering components
+    - Working with JSX
+    - Using Blazor templates
+4. Managing application state with Blazor
+    - Introduction to component state and lifecycle
+    - Using component parameters and events
+    - Sharing state between components
+5. Data access in Blazor
+    - Introduction to Entity Framework and LINQ
+    - Querying and updating data with Entity Framework Core
+    - Using dependency injection to manage data access
+6. Routing in Blazor applications
+    - Introduction to Blazor routing
+    - Setting up routes and navigating between them
+    - Working with dynamic routes and parameters

@@ -1,18 +1,19 @@
-If you are a Mac developer, download and install following software's as per the need, open the terminal and install software's using Homebrew command.
+If you are a Mac developer, download and install following software as per the need, open the terminal and install software using Homebrew command.
 
 
-## Homebrew 
+## What is Homebrew?
 
 Homebrew is a free and open-source software package management system that simplifies the installation of software on Apple's operating system, macOS, as well as Linux. 
 
 ## Install homebrew
 
-This is the fist step you need to do.
-
-Install `homebrew` before installing anything, for more infor look into this - https://brew.sh/
+This is the fist software you may need to install before installing anything in Mac. for more infor look into this - https://brew.sh/
 
 homebrew is like a choco
+
 homebrew (for Mac users) = cocho (for Windows users)
+
+To use Homebrew, you will need to have a terminal window open and install Homebrew on your system. To install Homebrew, you can copy and paste the following command into the terminal:
 
 ```
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
@@ -30,6 +31,8 @@ upgrade brew
 ``` 
 brew upgrade 
 ```
+
+Once the installation is finished, you can use the `brew` command to install, upgrade, and manage software packages using Homebrew.
 
 ## install terminal 
 
@@ -119,7 +122,6 @@ brew install --cask zoom
 brew install --cask microsoft-teams
 
 # uninstall teams, it will ask the Mac login password for any software uninstall.
-
 brew uninstall microsoft-teams
 ```
 ## Install .NET 7 SDK for Mac
@@ -141,7 +143,7 @@ https://docs.docker.com/desktop/install/mac-install/
 brew install gh
 ```
 
-Here is the list of other software's you may need during the development.
+Here is the list of other software you may need during the development.
 
 ```
 1. Zsh 

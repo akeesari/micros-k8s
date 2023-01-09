@@ -10,15 +10,15 @@ site_description: >-
 # Page tree
 nav:
   - Home:
-    - Home: home/index.md      
+    - Home: index.md      
   - Getting started:
     - Table of Contents: gettingstarted/toc.md      
     - Introduction: gettingstarted/introduction.md    
-    - Workstation configuration: gettingstarted/workstation.md
-    - Technology Stack: gettingstarted/tech-stack.md
+    - Developer Workstation Configuration: gettingstarted/workstation.md    
     - Download & Install software:
        - Windows OS: gettingstarted/software/windows.md
        - Mac OS: gettingstarted/software/mac.md
+    - Technology Stack: gettingstarted/tech-stack.md
   - Microservices:
       - Getting started : microservices/gettingstarted.md
       - Micrservice-1- .NET Core: microservices/aspnet-api.md
@@ -156,13 +156,19 @@ extra:
     - icon: fontawesome/brands/instagram
       link: https://www.instagram.com/
 
+  footer: |
+      <style>
+        .md-footer {
+          display: none;
+        }
+      </style>
 plugins:
   - search
      # Adding the pdf-export plugin
   # - pdf-export:
   #     combined: true
-# hide:
-#   - footer
+hide:
+  - footer
 
 # copyright   
 copyright: |
