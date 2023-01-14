@@ -1,11 +1,145 @@
 # Project information
 site_name: Microservices with Kubernetes (Developer User Guide)
-site_url: https://akeesari.github.io/mkdocs/
+site_url: https://akeesari.github.io/microservices-with-k8s/
+# repo_url: https://github.com/akeesari/microservices-with-k8s
+edit_uri: edit/main/docs/
+
 # Author details
 site_author: Anji Keesari
 site_description: >-
   Building and Managing Microservices with Kubernetes using Argocd & Helm
   Azure and Azure DevOps Pipelines.
+
+# # Repository details
+# repo_name: akeesari.github.io/mkdocs/
+# repo_url: https://akeesari.github.io/mkdocs/
+
+# Configuration
+theme:
+  name: material # readthedocs
+  custom_dir: overrides
+  # nav_style: dark
+  shortcuts:
+      help: 191    # ?
+      next: 78     # n
+      previous: 80 # p
+      search: 83   # s
+  features:
+  - content.code.copy
+  - content.code.annotate
+  # - content.tabs.link
+  # - header.autohide
+  # - navigation.expand
+  - navigation.indexes
+  - navigation.footer
+  - content.tooltips
+  - navigation.tabs
+  # - navigation.tabs.sticky
+  - navigation.sections
+  - navigation.expand
+  # - toc.integrate
+  - navigation.top
+  - navigation.instant
+  - navigation.tracking
+  - header.autohide
+  - search.highlight
+  - search.share
+  - search.suggest
+  - toc.follow
+  
+  language: en
+  
+  palette: 
+    # Palette toggle for light mode
+    - scheme: default
+      toggle:
+        icon: material/toggle-switch-off-outline 
+        name: Switch to dark mode
+    # Palette toggle for dark mode
+    - scheme: slate
+      toggle:
+        icon: material/toggle-switch
+        name: Switch to light mode
+  
+  extra_css:
+  - stylesheets/extra.css
+
+  extra_javascript:
+  - javascripts/extra.js
+  - javascripts/mathjax.js
+  - https://polyfill.io/v3/polyfill.min.js #?features=es6
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets:
+      check_paths: true
+  - admonition
+  - abbr
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.betterem:
+      smart_enable: all
+  - footnotes
+  - pymdownx.details
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          # format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed
+  - pymdownx.mark
+  - pymdownx.critic
+  - pymdownx.caret
+  - pymdownx.keys
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.tilde
+  - attr_list
+  - md_in_html
+  - def_list
+  - meta
+  - md_in_html
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - tables
+  - toc:                 
+      permalink: true
+
+extra:
+  social:
+    - icon: fontawesome/brands/github-alt
+      link: https://github.com
+    - icon: fontawesome/brands/twitter
+      link: https://twitter.com
+    - icon: fontawesome/brands/linkedin
+      link: https://linkedin.com/in
+    - icon: fontawesome/brands/instagram
+      link: https://www.instagram.com/
+
+  footer: |
+      <style>
+        .md-footer {
+          display: none;
+        }
+      </style>
+plugins:
+  - search
+  # - awesome-pages
+     # Adding the pdf-export plugin
+  # - pdf-export:
+  #     combined: true
+hide:
+  - footer
+# google_analytics: ["UA-118407822-1", "kubernetes.github.io"]
+
+
+# copyright   
+copyright: |
+  Copyright &copy; 2023 <a href="akeesari.github.io/mkdocs"  target="_blank" rel="noopener">Anji Keesari</a>
+
 
 # Page tree
 nav:
@@ -58,118 +192,3 @@ nav:
   #   - About Us: aboutus.md
   - Contact:
     - Contact Us: contact.md
-
-# # Repository details
-# repo_name: akeesari.github.io/mkdocs/
-# repo_url: https://akeesari.github.io/mkdocs/
-
-# Configuration
-theme:
-  name: material # readthedocs
-  custom_dir: overrides
-  # nav_style: dark
-  shortcuts:
-      help: 191    # ?
-      next: 78     # n
-      previous: 80 # p
-      search: 83   # s
-  features:
-  - content.code.copy
-  - content.code.annotate
-  # - content.tabs.link
-  # - header.autohide
-  # - navigation.expand
-  - navigation.indexes
-  - navigation.footer
-  - content.tooltips
-  - navigation.tabs
-  # - navigation.tabs.sticky
-  # - navigation.sections
-  - navigation.expand
-  # - toc.integrate
-  - navigation.top
-  - navigation.instant
-  - navigation.tracking
-  - header.autohide
-  - search.highlight
-  - search.share
-  - search.suggest
-  - toc.follow
-  
-  language: en
-  
-  palette: 
-    # Palette toggle for light mode
-    - scheme: default
-      toggle:
-        icon: material/toggle-switch-off-outline 
-        name: Switch to dark mode
-    # Palette toggle for dark mode
-    - scheme: slate
-      toggle:
-        icon: material/toggle-switch
-        name: Switch to light mode
-  
-  extra_css:
-  - stylesheets/extra.css
-
-  extra_javascript:
-  - javascripts/extra.js
-  - javascripts/mathjax.js
-  - https://polyfill.io/v3/polyfill.min.js #?features=es6
-  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
-
-markdown_extensions:
-  - pymdownx.highlight:
-      anchor_linenums: true
-  - pymdownx.inlinehilite
-  - pymdownx.snippets
-  - admonition
-  - pymdownx.arithmatex:
-      generic: true
-  - footnotes
-  - pymdownx.details
-  - pymdownx.superfences
-  - pymdownx.mark
-  - pymdownx.critic
-  - pymdownx.caret
-  - pymdownx.keys
-  - pymdownx.mark
-  - pymdownx.tilde
-  - attr_list
-  - md_in_html
-  - def_list
-  - pymdownx.tasklist:
-      custom_checkbox: true
-  - tables
-  - toc:                 
-      permalink: true
-
-extra:
-  social:
-    - icon: fontawesome/brands/github-alt
-      link: https://github.com
-    - icon: fontawesome/brands/twitter
-      link: https://twitter.com
-    - icon: fontawesome/brands/linkedin
-      link: https://linkedin.com/in
-    - icon: fontawesome/brands/instagram
-      link: https://www.instagram.com/
-
-  footer: |
-      <style>
-        .md-footer {
-          display: none;
-        }
-      </style>
-plugins:
-  - search
-     # Adding the pdf-export plugin
-  # - pdf-export:
-  #     combined: true
-hide:
-  - footer
-
-# copyright   
-copyright: |
-  Copyright &copy; 2023 <a href="akeesari.github.io/mkdocs"  target="_blank" rel="noopener">Anji Keesari</a>

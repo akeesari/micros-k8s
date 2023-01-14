@@ -3,3 +3,13 @@
   --md-primary-fg-color--light: #ECB7B7;
   --md-primary-fg-color--dark:  #90030C;
 } */
+
+.md-typeset__table {
+	min-width: 100%;
+}
+
+@media only screen and (min-width: 768px) {
+	td:nth-child(1) {
+		white-space: nowrap;
+	}
+}

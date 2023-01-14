@@ -143,6 +143,12 @@ https://docs.docker.com/desktop/install/mac-install/
 brew install gh
 ```
 
+## install jq
+
+```
+brew install jq
+```
+
 Here is the list of other software you may need during the development.
 
 ```

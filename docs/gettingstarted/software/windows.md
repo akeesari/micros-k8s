@@ -156,6 +156,13 @@ Windows Subsystem for Linux (WSL) is a feature of Windows that allows developers
 choco install wsl
 ```
 
+## Install JQ
+ JSON processor.
+
+```
+choco install jq
+```
+
 After install VS code, install the following extensions in vs code as per the need:
 
 - Azure CLI Tools
