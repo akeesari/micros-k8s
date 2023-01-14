@@ -1,3 +1,5 @@
+# Developer Workstation Configuration
+
 Here are some general recommendations for a developer workstation; However, you can build on your own workstation if you are expert on computer hardware:
 
 - A fast processor with multiple cores (e.g. Intel Core i7 or AMD Ryzen)

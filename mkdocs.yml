@@ -1,6 +1,8 @@
+# Copyright (c) 2023 Anji Keesari <anjkeesari@gmail.com>
+
 # Project information
 site_name: Microservices with Kubernetes (Developer User Guide)
-site_url: https://akeesari.github.io/microservices-with-k8s/
+site_url: https://akeesari.github.io/micros-k8s/
 # repo_url: https://github.com/akeesari/microservices-with-k8s
 edit_uri: edit/main/docs/
 

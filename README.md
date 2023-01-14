@@ -73,4 +73,3 @@ http://127.0.0.1:8000/mkdocs/
 - https://squidfunk.github.io/mkdocs-material/ - Material for MkDocs
 - https://squidfunk.github.io/mkdocs-material/getting-started/ - getting-started, used for project setup
 - https://mermaid-js.github.io/mermaid/#/ - mermaid 
-- https://docs.github.com/en/repositories/- 
