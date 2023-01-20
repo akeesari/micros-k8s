@@ -190,7 +190,7 @@ nav:
   #       - page-3 : miscellaneous/section2/page-2.md
   #       - page-3 : miscellaneous/section2/page-3.md
       
-  # - About:
-  #   - About Us: aboutus.md
+  - About:
+    - About: aboutus.md
   - Contact:
-    - Contact Us: contact.md
+    - Contact: contact.md

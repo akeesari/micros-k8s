@@ -6,7 +6,7 @@ Note: - Restart your computer when prompted or needed.
 
 ## Install Chocolatey
 
-We are going to use `choco` commands for isntalling all required software and developer tools. 
+We are going to use `choco` commands for installing all required software and developer tools. 
 
 **What is Chocolatey?**
 
@@ -26,7 +26,7 @@ To install Chocolatey on your Windows system, you will need to open a terminal w
 Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
 
 ```
-reference - https://docs.chocolatey.org/en-us/choco/setup
+reference - [https://docs.chocolatey.org/en-us/choco/setup](https://docs.chocolatey.org/en-us/choco/setup){:target="_blank"}
 
 Once the installation is finished, you can use the `choco` command to install, upgrade, and manage software packages using Chocolatey.
 
@@ -34,7 +34,7 @@ Once the installation is finished, you can use the `choco` command to install, u
 
 Use the following link and click on search button and start typing required software and copy the command into clipboard then open PowerShell window in admin mode to run the commands.
 
- [https://community.chocolatey.org/](https://community.chocolatey.org/)
+ [https://community.chocolatey.org/](https://community.chocolatey.org/){:target="_blank"}
 
 ## Install VS code
 
