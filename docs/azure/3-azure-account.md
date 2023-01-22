@@ -1,12 +1,12 @@
-# Chapter 2.1: Create Azure Free Account
+<!-- # Chapter 2.1: Create Azure Free Account -->
 
 In this lab you will learn how to create new azure free account so that you can accomplish rest of the labs.
 
 ## Prerequisites
 
 - You need a Credit Card
-- valid email address
-- working phone number
+- Valid email address
+- Working phone number
 
 ## Create azure account
 
@@ -27,13 +27,13 @@ Follow these steps to create new free azure account:
 
 **Step-7:** Enter details in your profile screen 
 
-**Step-7:** Enter payment details 
-
+**Step-7:** Enter payment details
 
 **Step-8:** Check the Terms and Conditions and click Sign-up.
+
+Once your account is created, you will be taken to the Azure portal where you can start creating and managing resources.
 
 ## Reference
 
 - https://www.youtube.com/watch?v=cX0ikhVkCcY&t=35s
 - https://azure.microsoft.com/en-us/free/
-- https://k21academy.com/microsoft-azure/create-free-microsoft-azure-trial-account/

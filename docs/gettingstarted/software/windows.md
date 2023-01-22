@@ -109,11 +109,28 @@ choco install terraform
 terraform --version
 ```
 
-## Install Kubernetes CLI
+## Install Kubernetes CLI or kubectl CLI
 used for interacting with kubernetes
 
 ```
 choco install kubernetes-cli
+```
+look into this for more info - https://kubernetes.io/docs/tasks/tools/install-kubectl-windows/
+
+```
+# Test to ensure the version you installed is up-to-date:
+kubectl version
+kubectl version --client
+
+# use this for detailed view of version:
+kubectl version --client --output=yaml
+
+or 
+kubectl version --output=json
+
+#Verify kubectl configuration
+kubectl cluster-info
+
 ```
 
 ## Install azure kubelogin

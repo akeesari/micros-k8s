@@ -51,6 +51,8 @@ theme:
   
   language: en
   
+  # use_directory_urls: true
+
   palette: 
     # Palette toggle for light mode
     - scheme: default
@@ -167,10 +169,12 @@ nav:
       # - Create Database-2 with PostgreSQL : microservices/psqldb.md
   - Azure (IaC):
     - Infrastructure as Code (IaC): azure/1-iac.md
-    - Azure Naming Conventions: azure/2-naming-conventions.md
-    - Azure Free Account: azure/3-azure-account.md
+    - Azure Naming & Tagging Conventions: azure/2-naming-conventions.md
+    - Create Azure Free Account: azure/3-azure-account.md
     - Create new subscription: azure/4-azure-subscription.md
-    - Create Terraform Foundation: azure/5-tf-fundation.md
+    - Registered resource providers in azure subscription using PowerShell: azure/5-resource-providers.md
+    - Create Terraform Foundation Part-1: azure/6-tf-foundation-1.md
+    - Create Terraform Foundation Part-2: azure/6-tf-foundation-2.md
     
   - DevOps:
     - Azure DevOps: devops/devops.md
