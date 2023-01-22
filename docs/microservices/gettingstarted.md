@@ -50,33 +50,33 @@ assuming you've finalized your business domains at this point so that the rest o
 
 ## Task-2: Identity list of git repos needed
 
-once you know the list of domains or microservices needed for your application then, it is time to understand how many git repos you need for your application. 
+Once you know the list of domains or microservices needed for your application then, it is time to understand how many git repos you need for your application. 
 
-there are multiple ways to organize the source code and pipelines in the azure devops git. it is all depends on how you want to manage your source code and pipelines for your microservices architecture, how easy to maintain in the future.
+there are multiple ways to organize the source code and pipelines in the azure DevOps git. it is all depends on how you want to manage your source code and pipelines for your microservices architecture, how easy to maintain in the future.
 
 My preference here is to create separate git repo for each domain.
 
 For example:
 
-- Organization Name (Organization1/keesari)
+- Organization Name (Organization1)
   - Project Name (Project1)
     - Repo-1 (Domain1 specific)
-        - APIs - one or more APIs with separate folder
-        - Websites - one or more websites with separate folder
-        - Databses - one or more databases with separate folder
-    - Repo-2 (Domain2 specific)
-        - APIs
-        - Websites
-        - Databses
+        - APIs - create one or more APIs with separate folder
+        - Websites -create  one or more websites with separate folder
+        - Databases - create one or more databases with separate folder
+    - Repo-2 (Domain2 create specific)
+        - APIs - create one or more APIs with separate folder
+        - Websites - create one or more APIs with separate folder
+        - Databases - create one or more APIs with separate folder
     - Repo-3 (Domain3 specific)
-        - APIs
-        - Websites
-        - Databses
+        - APIs - create one or more APIs with separate folder
+        - Websites - create one or more APIs with separate folder
+        - Databases - create one or more APIs with separate folder
   - Project Name(Project2 completely different project sources)
     - Repo-1 (Domain1)
-        - APIs
-        - Websites
-        - Databses
+        - APIs - create one or more APIs with separate folder
+        - Websites - create one or more APIs with separate folder
+        - Databases - create one or more APIs with separate folder
 
 ## Task-3: Identity list of Applications needed
 
@@ -84,11 +84,11 @@ Use this task to identity list of applications needed for your projects.
 
 Here is the list of applications we will be creating to get the feeling of Microservices pattern. Here we purposely selected different technology stack and languages to cover more learning scenarios.
 
-- Create the first microservice with .NET Core Web Rest API with C#
+- Create the first Microservice with .NET Core Web Rest API with C#
     - name of the api is `aspnet-api`
-- Create the second microservice with Node JS (Node)
+- Create the second Microservice with Node JS (Node)
     - name of the api is `nodejs-api`
-- Create the third microservice with Java 
+- Create the third Microservice with Java 
     - name of the api is `java-api`
 - Create the first website with ASP.NET Core MVC (C#)
     - name of the app is `aspnet-app`
@@ -102,7 +102,7 @@ Here is the list of applications we will be creating to get the feeling of Micro
     - name of the database is `postgresql-db`
 
 
-## Task-4: Create new Azrue DevOps Organization
+## Task-4: Create new Azure DevOps Organization
 
 To create a new Azure DevOps organization, follow these steps:
 
@@ -119,15 +119,15 @@ Once you have completed these steps, you will have a new Azure DevOps organizati
 
 1. Sign in to the Azure DevOps website (https://dev.azure.com/) with your Azure DevOps account.
 
-2. Click on the "Create a project" button.
+2. Click on the `Create a project` button.
 
 3. Enter a name for your project and select a process template. The process template determines the default work item types, source control repository, and other settings for your project.
 
-4. Click the "Create project" button to create your new project.
+4. Click the `Create project` button to create your new project.
 
 5. Follow the on-screen prompts to configure your project settings, including source control, work item types, and team members.
 
-6. When you are finished, click the "Finish" button to complete the project creation process.
+6. When you are finished, click the `Finish` button to complete the project creation process.
 
 ![create-new-project.png](images/create-new-project.png)
 

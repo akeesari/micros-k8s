@@ -1,4 +1,4 @@
-# Chapter-1.1 Create first microservice with .NET Core
+# Chapter-1.1 Create first Microservice with .NET Core
 
 ## Introduction
 
@@ -13,15 +13,15 @@ ASP.NET Core is a modern, cross-platform framework for building web applications
 
 ## Technical Scenario
 
-This lab will help you to understand how start your journey with Microservices Architecture, we will start with basics like creating repo, creating small project and finally containerize that small microservice we've created and push to the Azure container registry (ACR).
+This lab will help you to understand how start your journey with Microservices Architecture, we will start with basics like creating repo, creating small project and finally containerize that small Microservice we've created and push to the Azure container registry (ACR).
 
-we are basically preparing an application for the Kubernetes deployment. the microservice we are going to create here in this lab will be used in the subsequent labs like creating devops pipelines or deploying to Azure Kubernets services (AKS).
+we are basically preparing an application for the Kubernetes deployment. the Microservices we are going to create here in this lab will be used in the subsequent labs like creating DevOps pipelines or deploying to Azure Kubernetes services (AKS).
 
 ## Objective
 
 In this exercise we will accomplish & learn how to implement following:
 
-- Task-1: Create a new repo in azure devops
+- Task-1: Create a new repo in azure DevOps
 - Task-2: Clone the repo
 - Task-3: Create a new Web API project
 - Task-4: Test Web API project
@@ -38,11 +38,11 @@ In this exercise we will accomplish & learn how to implement following:
 - Docker and the VS Code Docker extension must be installed
  
 
-## Task-1: Create a new repo in azure devops
+## Task-1: Create a new repo in azure DevOps
 
 To create a new repository in Azure DevOps, follow these steps:
 
-1. Login into azure devops -  https://dev.azure.com/keesari
+1. Login into azure DevOps -  https://dev.azure.com
 2. Select the project where we want to create the repo
 3. Click on `Repos` left nav link
 4. From the repo drop-down, select `New repository`
@@ -55,7 +55,7 @@ For example:
 
 ![image.png](/.attachments/image-1980253c-d30e-4d72-885e-879f1a7cae3e.png)
 
-## Task-2: Clone the repo from azure devops
+## Task-2: Clone the repo from azure DevOps
 
 **Option-1:** 
 
@@ -142,41 +142,59 @@ Once you have the .NET Core SDK installed, follow these steps to create a new .N
 2. Run the following command to create a new .NET Core Web API project:
 3. Navigate to the project directory by running the following command:
 
+use this command to get list of commands
+
+```
+dotnet --help
+```
+
+use this command to get list of available templates
+```
+dotnet new list
+```
+
+use these commands to create new project
 ```
 dotnet new webapi -o aspnetapi
-or dotnet new webapi -o aspnetapi --no-https -f net7.0
-cd todoapi
+
+or 
+dotnet new webapi -o aspnetapi --no-https -f net7.0
+
+cd aspnetapi
+
 code . 
+
 or 
 code -r ../aspnetapi
 ```
 
-Note: 
+Notes: 
 
 - `-o` parameter creates a directory
 - `--no-https` flag creates an app that will run without an HTTPS certificate
 - `-f` parameter indicates creation
 
 
-for example:
+Output
+
 ```
 C:\WINDOWS\system32>cd C:\Source\Repos
 
-C:\Source\Repos>dotnet new webapi -o todoapi
+C:\Source\Repos>dotnet new webapi -o aspnetapi
 The template "ASP.NET Core Web API" was created successfully.
 
 Processing post-creation actions...
-Running 'dotnet restore' on C:\Source\Repos\todoapi\todoapi.csproj...
+Running 'dotnet restore' on C:\Source\Repos\aspnetapi\aspnetapi.csproj...
   Determining projects to restore...
-  Restored C:\Source\Repos\todoapi\todoapi.csproj (in 247 ms).
+  Restored C:\Source\Repos\aspnetapi\aspnetapi.csproj (in 247 ms).
 Restore succeeded.
 
 C:\Source\Repos>cd aspnetapi
 
-C:\Source\Repos\todoapi>code .
+C:\Source\Repos\aspnetapi>code .
 ```
 
-exampel of Adding a package 
+In case if you need example of Adding a package 
 
 ```
 dotnet add package Microsoft.EntityFrameworkCore.InMemory
@@ -248,13 +266,13 @@ https://localhost:7157/swagger/index.html
 for example:
 
 ```
-C:\Source\Repos\todoapi>dotnet build
+C:\Source\Repos\aspnetapi>dotnet build
 Microsoft (R) Build Engine version 17.0.0+c9eb9dd64 for .NET
 Copyright (C) Microsoft Corporation. All rights reserved.
 
   Determining projects to restore...
   All projects are up-to-date for restore.
-  todoapi -> C:\Source\Repos\todoapi\bin\Debug\net6.0\todoapi.dll
+  aspnetapi -> C:\Source\Repos\aspnetapi\bin\Debug\net6.0\aspnetapi.dll
 
 Build succeeded.
     0 Warning(s)
@@ -262,7 +280,7 @@ Build succeeded.
 
 Time Elapsed 00:00:03.84
 
-C:\Source\Repos\todoapi>dotnet run
+C:\Source\Repos\aspnetapi>dotnet run
 Building...
 info: Microsoft.Hosting.Lifetime[14]
       Now listening on: https://localhost:7227
@@ -273,7 +291,7 @@ info: Microsoft.Hosting.Lifetime[0]
 info: Microsoft.Hosting.Lifetime[0]
       Hosting environment: Development
 info: Microsoft.Hosting.Lifetime[0]
-      Content root path: C:\Source\Repos\todoapi\
+      Content root path: C:\Source\Repos\aspnetapi\
 ```
 
 If you are able to see this swagger URL in your browser then everything is created and setup as expected.
@@ -303,7 +321,7 @@ git push
 
 To add Dockerfiles to a .NET Core Web API project, follow these steps:
 
-option-1:
+**Option-1:**
 
 1. Make sure that you have Docker installed on your machine. You can download Docker from the Docker website (https://www.docker.com/get-started).
 
@@ -329,7 +347,7 @@ COPY --from=build /app/out ./
 ENTRYPOINT ["dotnet", "MyProject.dll"]
 ```
 
-Option-2:
+**Option-2:**
 
 
 1. Open the project folder in VS Code.
