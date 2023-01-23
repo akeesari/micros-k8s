@@ -176,8 +176,8 @@ nav:
     - Create Terraform Foundation Part-1: azure/6-tf-foundation-1.md
     - Create Terraform Foundation Part-2: azure/6-tf-foundation-2.md
     
-  - DevOps:
-    - Azure DevOps: devops/devops.md
+  - DevOps Pipelines:
+    - Azure DevOps Pipelines (CI & CD): devops/devops.md
   - ArgoCD:
     - Argo CD: argocd/argocd.md
   - Helm-Charts:

@@ -460,6 +460,12 @@ Finally commit terraform source code to git repo before start next module.
 
 ![image.jpg](images/image-5.jpg)
 
+```
+git add .
+git commit -am "initial setup"
+git push --set-upstream origin develop
+```
+
 ## Reference
 
 - https://learn.microsoft.com/en-us/azure/developer/terraform/create-resource-group?source=recommendations&tabs=azure-cli

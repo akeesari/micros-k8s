@@ -1,4 +1,51 @@
+One of my goal is to simplify the development, deployment, and scaling of complex applications and to bring the full power of Kubernetes to all projects. DevOps Pipeline provides a platform which allows all projects to develop, deploy and scale container-based applications, highly productive, yet flexible environment for developers; One of the key tools we use from the Kubernetes ecosystem is Helm.
 
+Helm is the package manager for Azure Kubernetes Cluster (AKS) deployments. Helm uses a packaging format called charts. A chart is a collection of manifest files that describe a related set of AKS Cluster Kubernetes resources.
+
+
+Helm charts deployment make perfect sense for the complex workload deployments.
+
+## key features
+
+- ​Templates: - allows easily customize deployments for different environments.​
+
+- Dependencies: making it easy to manage and deploy complex, multi-tier applications​
+
+- Versioning: makes it easy to roll back to a previous version.​
+
+- Declarative Deployments: define the desired state of a deployment.​
+
+- Rollbacks: allow to rollback deployments to the previous version.​
+
+- Namespaces: enables easy manage resource allocation and security within the cluster. This is very helpful for multitenant systems ​
+
+## How it works?
+
+![image.png](images/image-1.png)
+
+A chart is organized as a collection of files inside of a directory called `Helm-Charts`.  Created separate folder for each deployment or application in side the templates folder and organized files for each resource separately.
+
+A chart typically includes the following files:
+
+- Chart.yaml: contains metadata about the chart, such as its name, version, and description.
+- values.yaml: contains default configuration values for the chart.
+- templates directory: contains Kubernetes manifests (in YAML format) for the resources that the chart will create.
+- charts directory: contains any dependent charts that the chart requires.
+
+When you run the `helm install` command, it installs the chart in the Kubernetes cluster by creating resources defined in the templates, based on the configuration values specified in the `values.yaml` file. You can also pass additional values to the command line, which will override the defaults from the `values.yaml` file.
+
+For example:
+
+- application
+    - deployment.yaml
+    - service.yaml
+    - kustomization.yaml
+    - secretes.yaml
+    - ingress.yaml
+    - configmap.yaml
+
+
+<!-- 
 ## Install helm 
 
 Pick the command as per your os version:
@@ -328,4 +375,4 @@ Deploying Helm Charts with Azure DevOps
 - https://www.youtube.com/watch?v=1bC-fZEFodU
 
 Replace Helm Chart Variables in your CI/CD Pipeline with Tokenizer
-- https://www.programmingwithwolfgang.com/replace-helm-variables-tokenizer/
+- https://www.programmingwithwolfgang.com/replace-helm-variables-tokenizer/ -->
