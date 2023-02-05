@@ -176,14 +176,17 @@ nav:
     - Create Terraform Foundation Part-1: azure/6-tf-foundation-1.md
     - Create Terraform Foundation Part-2: azure/6-tf-foundation-2.md
     
-  - DevOps Pipelines:
+  - Azure DevOps:
     - Azure DevOps Pipelines (CI & CD): devops/devops.md
-  - ArgoCD:
-    - Argo CD: argocd/argocd.md
-  - Helm-Charts:
-    - Helm Charts: helmcharts/helm-charts.md
-  # - Miscellaneous:
-  #     - Index1: miscellaneous/index.md
+    - ArgoCD: devops/argocd/argocd.md
+    - Helm-Charts: devops/helmcharts/helm-charts.md
+  # - ArgoCD:
+  #   - Argo CD: argocd/argocd.md
+  # - Helm-Charts:
+  #   - Helm Charts: helmcharts/helm-charts.md
+  - Miscellaneous:
+  # - Misc:
+      - Kubectl Cheat Sheet: miscellaneous/kubectl-cheat-sheet.md
   #     - mkdocs-samples: miscellaneous/mkdocs-samples.md
   #     - Section1:
   #       - page-1 : miscellaneous/section1/page-1.md
@@ -195,6 +198,6 @@ nav:
   #       - page-3 : miscellaneous/section2/page-3.md
       
   - About:
-    - About: aboutus.md
+    - About: about.md
   - Contact:
     - Contact: contact.md
