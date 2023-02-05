@@ -1,6 +1,6 @@
 
 ## Introduction
-This repository contains documentation on **Building and Managing Microservices with Kubernetes using Argocd & Helm**, this documentation will be helful for the developers who is working on Microservices Architecture and deploying in Azure Kubernetes services (AKS).
+This repository contains documentation on **Building and Managing Microservices with Kubernetes using Argocd & Helm**, this documentation will be helpful for the developers who is working on Microservices Architecture and deploying in Azure Kubernetes services (AKS).
 
 This documentation is built using markdown language, MkDocs and mkdocs-material.
 
@@ -73,3 +73,4 @@ http://127.0.0.1:8000/mkdocs/
 - https://squidfunk.github.io/mkdocs-material/ - Material for MkDocs
 - https://squidfunk.github.io/mkdocs-material/getting-started/ - getting-started, used for project setup
 - https://mermaid-js.github.io/mermaid/#/ - mermaid 
+- https://daringfireball.net/projects/markdown/syntax#autolink

@@ -6,7 +6,7 @@ A resource provider in Azure is a service that supplies a specific type of resou
 
 To view the registered resource providers for an Azure subscription, you can follow these steps:
 
-1. Sign in to the Azure portal (https://portal.azure.com/) with your Azure account.
+1. Sign in to the Azure portal (<https://portal.azure.com/>) with your Azure account.
 
 1. In the top-left corner of the Azure portal, click on the "Subscriptions" link.
 

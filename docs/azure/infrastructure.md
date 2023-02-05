@@ -6,14 +6,14 @@ In this second chapter you will learn on how to create the infrastructure in azu
 Here is the list of labs covered in this chapter:
 
 **1. Introduction**
-   - Undestand Naming Conventions 
+   - Understand Naming Conventions 
    - Create new azure account
    - Create new subscription
 
 **2. Terraform Foundation Part-1 – Azure setup**
 
    - Azure DevOps setup
-     - Create devops project & git repo
+     - Create DevOps project & git repo
      - Clone the repo 
      - Add terraform ignore file
    - Terraform Management setup – manual 

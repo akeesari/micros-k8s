@@ -2,15 +2,15 @@
 
 **Introduction**
 
-- Workstation configuration
+- Developer Workstation Configuration
 - Download & Install software (workstation setup)
 
 **Chapter-1: Getting started with Microservices**
 
 - Overview
-- Create first microservice with .NET Core
-- Create second microservice with Node JS
-- Create third microservice with Java
+- Create first Microservice with .NET Core
+- Create second Microservice with Node JS
+- Create third Microservice with Java
 - Create first website using ASP.NET Core MVC
 - Create second website using React JS
 - Create third website using Blazor
@@ -68,7 +68,7 @@
   
 **Chapter 5: Helm-Charts - Deployments to Kubernetes**
 
-- Install Cert-Manager & Let's Encrypt helm charts on Kubernets
+- Install Cert-Manager & Let's Encrypt helm charts on Kubernetes
 - Install argocd helm chart using terraform
 - Install pgadmin4 helm chart using terraform
 - Install minio helm chart using terraform

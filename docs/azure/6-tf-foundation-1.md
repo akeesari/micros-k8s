@@ -37,7 +37,7 @@ Project Name - `IaC`
 
 Project Description - This project contains the source code related to Infrastructure as code (IaC), IaC is a method of provisioning and managing infrastructure using code and automation rather than manual configuration.
 
-follow these steps for creating a new project in azure devops.
+follow these steps for creating a new project in azure DevOps.
 
 1. Sign in to your organization in Azure DevOps
 1. Select New project.
@@ -55,7 +55,7 @@ Once the project is created then you can add following repos for managing all yo
 
 You can use Azure DevOps to create a new Git repository to store and manage terraform configuration source code. Here are the steps to create a new Git repository in Azure DevOps:
 
-- Login into azure devops -  https://dev.azure.com/
+- Login into azure DevOps -  <https://dev.azure.com/>
 - Select the project where we want to create the repo
 - Click on `Repos` left nav link
 - From the repo drop-down, select `New repository`
@@ -145,6 +145,6 @@ terraform.rc
 ## References
 
 
-- https://learn.microsoft.com/en-us/azure/devops/organizations/projects/create-project?view=azure-devops&tabs=browser
-- https://learn.microsoft.com/en-us/azure/devops/repos/git/create-new-repo?view=azure-devops
-- https://learn.microsoft.com/en-us/power-apps/developer/data-platform/walkthrough-register-app-azure-active-directory
+- <https://learn.microsoft.com/en-us/azure/devops/organizations/projects/create-project?view=azure-devops&tabs=browser>
+- <https://learn.microsoft.com/en-us/azure/devops/repos/git/create-new-repo?view=azure-devops>
+- <https://learn.microsoft.com/en-us/power-apps/developer/data-platform/walkthrough-register-app-azure-active-directory>

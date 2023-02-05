@@ -42,7 +42,7 @@ In this exercise we will accomplish & learn how to implement following:
 
 To create a new repository in Azure DevOps, follow these steps:
 
-1. Login into azure DevOps -  https://dev.azure.com
+1. Login into azure DevOps -  <https://dev.azure.com>
 2. Select the project where we want to create the repo
 3. Click on `Repos` left nav link
 4. From the repo drop-down, select `New repository`
@@ -132,7 +132,7 @@ git push -f origin master
 
 Most of the labs we will be using VS Code instead of Visual Studio to make things faster and easy and save time.
 
-**Best Practice** - try to use VS code isntead of visual studio 2022 (or Latest version)
+**Best Practice** - try to use VS code instead of visual studio 2022 (or Latest version)
 
 To create a new .NET Core Web API project, you will need to have the .NET Core SDK installed on your machine. You can download the .NET Core SDK from the .NET website (https://dotnet.microsoft.com/download).
 
@@ -209,7 +209,7 @@ dotnet restore
 
 If you're on a Mac with an Apple M1 chip, you need to install the Arm64 version of the SDK.
 
-https://dotnet.microsoft.com/en-us/download/dotnet/7.0
+<https://dotnet.microsoft.com/en-us/download/dotnet/7.0>
 
 Check the install typing following in terminal
 
@@ -251,16 +251,16 @@ dotnet run
 
 VS code will automatically launch with following URL, port # here is randomly generated.  
 
-https://localhost:7157
+<https://localhost:7157>
 
-http://localhost:5136/WeatherForecast
+<http://localhost:5136/WeatherForecast>
 
 or 
 
 open the above URL in any of your browsers and you will get a `404 error. `
 Don’t worry. Just type swagger at the end of the URL and press enter and you will get the following webpage.
 
-https://localhost:7157/swagger/index.html
+<https://localhost:7157/swagger/index.html>
 
 
 for example:
@@ -304,7 +304,7 @@ Stoping the application in VS Code
 ctrl + c
 ```
 
-It is time to push your basic project tempalte source into Azure DevOps Git repo.
+It is time to push your basic project template source into Azure DevOps Git repo.
 
 
 **Best Practice:**  It is always recommended to push source code changes into git repo before starting the new task.
@@ -385,7 +385,7 @@ EXPOSE 5257
 ENV ASPNETCORE_URLS=http://+:5257
 
 # Creates a non-root user with an explicit UID and adds permission to access the /app folder
-# For more info, please refer to https://aka.ms/vscode-docker-dotnet-configure-containers
+# For more info, please refer to <https://aka.ms/vscode-docker-dotnet-configure-containers>
 RUN adduser -u 5678 --disabled-password --gecos "" appuser && chown -R appuser /app
 USER appuser
 
@@ -473,7 +473,7 @@ info: Microsoft.Hosting.Lifetime[0]
 
 Verify the new container
 
-Open the docker desktop to see the newely created container.
+Open the docker desktop to see the newly created container.
 
 ![image.png](/.attachments/image-541292db-40a6-442c-87fd-0429b4c73b8d.png)
 
@@ -492,9 +492,9 @@ use these commands in case if you need to clean-up the containers or images
 
 use these links for testing when you run docker command from vs code
 
-http://localhost:8080/swagger/index.html
-http://localhost:8080/api/aspnetapi/v1/heartbeat/ping
-http://localhost:8080/api/aspnetapi/v1/weatherforecast
+<http://localhost:8080/swagger/index.html>
+<http://localhost:8080/api/aspnetapi/v1/heartbeat/ping>
+<http://localhost:8080/api/aspnetapi/v1/weatherforecast>
 
 Trouble Shooting 
 
@@ -570,12 +570,12 @@ az acr repository show-tags --name keesarilabdev --repository project1/sample/as
 
 ## Reference:
 
-- https://learn.microsoft.com/en-us/aspnet/core/tutorials/first-web-api?view=aspnetcore-7.0&tabs=visual-studio-code
-- https://github.com/dotnet/dotnet-docker/blob/main/samples/aspnetapp/README.md
-- https://code.visualstudio.com/docs/containers/overview
-- https://code.visualstudio.com/docs/containers/quickstart-aspnet-core
-- https://code.visualstudio.com/docs/containers/quickstart-node
-- https://dotnet.microsoft.com/en-us/learn/aspnet/microservice-tutorial/intro
-- https://learn.microsoft.com/en-us/training/modules/microservices-aspnet-core/?WT.mc_id=dotnet-35129-website
+- <https://learn.microsoft.com/en-us/aspnet/core/tutorials/first-web-api?view=aspnetcore-7.0&tabs=visual-studio-code>
+- <https://github.com/dotnet/dotnet-docker/blob/main/samples/aspnetapp/README.md>
+- <https://code.visualstudio.com/docs/containers/overview>
+- <https://code.visualstudio.com/docs/containers/quickstart-aspnet-core>
+- <https://code.visualstudio.com/docs/containers/quickstart-node>
+- <https://dotnet.microsoft.com/en-us/learn/aspnet/microservice-tutorial/intro>
+- <https://learn.microsoft.com/en-us/training/modules/microservices-aspnet-core/?WT.mc_id=dotnet-35129-website>
 
 

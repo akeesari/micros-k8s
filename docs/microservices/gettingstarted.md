@@ -132,9 +132,9 @@ Once you have completed these steps, you will have a new Azure DevOps organizati
 ![create-new-project.png](images/create-new-project.png)
 
 
-## Refererences
+## References
 
-- https://microservices.io/patterns/microservices.html
-- https://learn.microsoft.com/en-us/azure/architecture/guide/architecture-styles/microservices
-- https://learn.microsoft.com/en-us/azure/devops/organizations/accounts/create-organization?view=azure-devops
-- https://learn.microsoft.com/en-us/azure/devops/organizations/projects/create-project?view=azure-devops&tabs=browser
+- <https://microservices.io/patterns/microservices.html>
+- <https://learn.microsoft.com/en-us/azure/architecture/guide/architecture-styles/microservices>
+- <https://learn.microsoft.com/en-us/azure/devops/organizations/accounts/create-organization?view=azure-devops>
+- <https://learn.microsoft.com/en-us/azure/devops/organizations/projects/create-project?view=azure-devops&tabs=browser>

@@ -25,4 +25,4 @@ The following diagram shows the end-to-end CI/CD process
 
 ## Reference
 
-- https://learn.microsoft.com/en-us/azure/architecture/microservices/ci-cd-kubernetes - Build a CI/CD pipeline for microservices on Kubernetes with Azure DevOps and Helm
+- <https://learn.microsoft.com/en-us/azure/architecture/microservices/ci-cd-kubernetes> - Build a CI/CD pipeline for microservices on Kubernetes with Azure DevOps and Helm

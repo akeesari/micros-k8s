@@ -11,13 +11,13 @@ There are different subscription types available in Azure, creating new subscrip
 
 read the information from following Microsoft documentation before creating any new subscription to make sure that you select the right one.
 
-- https://learn.microsoft.com/en-us/azure/cost-management-billing/manage/create-subscription#create-a-subscription
-- https://learn.microsoft.com/en-us/azure/cost-management-billing/manage/create-enterprise-subscription
-- https://learn.microsoft.com/en-us/azure/cost-management-billing/manage/create-customer-subscription
+- <https://learn.microsoft.com/en-us/azure/cost-management-billing/manage/create-subscription#create-a-subscription>
+- <https://learn.microsoft.com/en-us/azure/cost-management-billing/manage/create-enterprise-subscription>
+- <https://learn.microsoft.com/en-us/azure/cost-management-billing/manage/create-customer-subscription>
 
 To create a new Azure subscription, you can follow these steps:
 
-**Step-1:** Login into Azure portal - https://portal.azure.com/
+**Step-1:** Login into Azure portal - <https://portal.azure.com/>
 
 **Step-2:** Click on Subscriptions in the left nav and click Add button
 
@@ -33,5 +33,5 @@ After a few minutes, your new subscription will be created and will be listed on
 
 ## Reference
 
-- https://learn.microsoft.com/en-us/azure/cost-management-billing/manage/direct-ea-administration?WT.mc_id=Portal-Microsoft_Azure_Ea#create-a-subscription
+- <https://learn.microsoft.com/en-us/azure/cost-management-billing/manage/direct-ea-administration?WT.mc_id=Portal-Microsoft_Azure_Ea#create-a-subscription>
 

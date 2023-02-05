@@ -115,7 +115,7 @@ used for interacting with kubernetes
 ```
 choco install kubernetes-cli
 ```
-look into this for more info - https://kubernetes.io/docs/tasks/tools/install-kubectl-windows/
+look into this for more info - <https://kubernetes.io/docs/tasks/tools/install-kubectl-windows/>
 
 ```
 # Test to ensure the version you installed is up-to-date:
@@ -142,7 +142,7 @@ choco install azure-kubelogin
 ```
 
 ## Install Helm
-used for interacting with kubernetes for helm
+used for interacting with Kubernetes for helm
 
 ```
 choco install kubernetes-helm
@@ -232,28 +232,28 @@ Client:
 
 Download and Install following Manually
 
-- Visual studio code (recommended) - https://code.visualstudio.com/download/
-- Visual studio (optional) - https://visualstudio.microsoft.com/downloads/
-- SQL Server Management Studio (optional) - https://www.microsoft.com/en-us/sql-server/sql-server-downloads
-- Notepad++ - https://notepad-plus-plus.org/downloads/
-- Google Chrome – search in google for later versionf of Google Chrome and download & install it
-- Node JS - https://nodejs.org/en/download/
-- Git - https://git-scm.com/download/win
-- Docker desktop - https://docs.docker.com/desktop/install/windows-install/
+- Visual studio code (recommended) - <https://code.visualstudio.com/download/>
+- Visual studio (optional) - <https://visualstudio.microsoft.com/downloads/>
+- SQL Server Management Studio (optional) - <https://www.microsoft.com/en-us/sql-server/sql-server-downloads>
+- Notepad++ - <https://notepad-plus-plus.org/downloads/>
+- Google Chrome – search in google for later version of Google Chrome and download & install it
+- Node JS - <https://nodejs.org/en/download/>
+- Git - <https://git-scm.com/download/win>
+- Docker desktop - <https://docs.docker.com/desktop/install/windows-install/>
 
 
 ## Additional Software
 
-You may need these additional softwar to perform daily activities.
+You may need these additional software to perform daily activities.
 
-- Zoom - https://zoom.us/download
-- Teams - https://www.microsoft.com/en-us/microsoft-teams/download-app
-- WhatsApp - https://www.whatsapp.com/download
-- SQL Search - https://www.red-gate.com/products/sql-development/sql-search/
-- JSON viewer online - https://codebeautify.org/jsonviewer
-- regexr validator - https://regexr.com/
+- Zoom - <https://zoom.us/download>
+- Teams - <https://www.microsoft.com/en-us/microsoft-teams/download-app>
+- WhatsApp - <https://www.whatsapp.com/download>
+- SQL Search - <https://www.red-gate.com/products/sql-development/sql-search/>
+- JSON viewer online - <https://codebeautify.org/jsonviewer>
+- regexr validator - <https://regexr.com/>
 - SAML Tracer [Browser extention](https://chrome.google.com/webstore/detail/saml-tracer/mpdajninpobndbfcldcmbpnnbhibjmch?hl=en)
-- WSL - https://learn.microsoft.com/en-us/windows/wsl/install
+- WSL - https://learn.microsoft.com/en-us/windows/wsl/install>
 - [Azure storage-explorer](https://azure.microsoft.com/en-us/products/storage/storage-explorer/)
-- RDC - https://learn.microsoft.com/en-us/sysinternals/downloads/rdcman
-- base64encode - https://www.base64encode.org/
+- RDC - <https://learn.microsoft.com/en-us/sysinternals/downloads/rdcman>
+- base64encode - <https://www.base64encode.org/>

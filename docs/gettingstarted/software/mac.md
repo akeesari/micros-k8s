@@ -66,7 +66,7 @@ brew install azure-cli
 
 ## install kubectl cli 
 
-look into this for more info - https://kubernetes.io/docs/tasks/tools/install-kubectl-macos/
+look into this for more info - <https://kubernetes.io/docs/tasks/tools/install-kubectl-macos/>
 
 ```
 brew install kubectl
@@ -130,14 +130,14 @@ brew uninstall microsoft-teams
 
 use the following linlk for download and install it manually.
 
-https://dotnet.microsoft.com/en-us/download/dotnet/thank-you/sdk-7.0.100-macos-x64-installer?journey=vs-code
+<https://dotnet.microsoft.com/en-us/download/dotnet/thank-you/sdk-7.0.100-macos-x64-installer?journey=vs-code>
 
 ## install-docker
 
 follow the instruction to install docker.
 
-https://dotnet.microsoft.com/en-us/learn/aspnet/microservice-tutorial/install-docker
-https://docs.docker.com/desktop/install/mac-install/
+<https://dotnet.microsoft.com/en-us/learn/aspnet/microservice-tutorial/install-docker>
+<https://docs.docker.com/desktop/install/mac-install/>
 
 ## install github
 
@@ -174,4 +174,4 @@ Here is the list of other software you may need during the development.
 
 ## Reference
 
-- https://www.youtube.com/watch?v=0MiGnwPdNGE - How I setup the Terminal on my M1 Max MacBook Pro
+- <https://www.youtube.com/watch?v=0MiGnwPdNGE> - How I setup the Terminal on my M1 Max MacBook Pro

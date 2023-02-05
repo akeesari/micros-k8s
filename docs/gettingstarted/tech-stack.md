@@ -1,4 +1,4 @@
-Here is a list of technologies that are used in the development of Microservices develoment, deploy & run those applications  on Kubernetes cluster:
+Here is a list of technologies that are used in the development of Microservices development, deploy & run those applications  on Kubernetes cluster:
 
 Here you will also see table of contents of each technology so that you can learn them offline when needed.
 
@@ -52,7 +52,7 @@ You may encounter some specific tools and technologies that are not listed here 
     - Build & deploy Azure SQL database using [DACPAC]
     - Validate and deploy ARM Templates
     - Git Clone, Code review with Pull request
-    - Privat Agent configuration, Approvals, Artifact
+    - Private Agent configuration, Approvals, Artifact
     - Azure DevOps Pipelines with YAML
     - Continuous integration (CI)
     - Continuous Delivery (CD)

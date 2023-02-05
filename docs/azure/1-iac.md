@@ -65,7 +65,7 @@ Without Ingress we can't expose any our URLs, Ingress is created using YAML file
 
 **Azure Security & Governance**
 
-Apart from above services we wil also focus on following services:
+Apart from above services we will also focus on following services:
 
 - `Azure Policy`: a service that allows us to create, assign, and manage policies for our Azure resources, ensuring that they comply with organizational standards and regulatory requirements.
 
@@ -75,4 +75,4 @@ Apart from above services we wil also focus on following services:
 
 ## Reference
 
-https://learn.microsoft.com/en-us/azure/architecture/reference-architectures/containers/aks-microservices/aks-microservices
+<https://learn.microsoft.com/en-us/azure/architecture/reference-architectures/containers/aks-microservices/aks-microservices>

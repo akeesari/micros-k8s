@@ -50,7 +50,7 @@ Argo CD follows the GitOps pattern of using Git repositories as the source of tr
 
 - If any changes are detected, then Argo CD applies those changes automatically to the cluster. 
 
-- Now `developers` can commit code in azure devops git repos, which will automatically build a new image, push it to the azure container registry (docker repo), and then finally update the Kubernetes manifest file that will be automatically pulled by Argo CD, ultimately saving manual work, reducing the initial setup configuration, and eliminating security risks.
+- Now `developers` can commit code in azure DevOps git repos, which will automatically build a new image, push it to the azure container registry (docker repo), and then finally update the Kubernetes manifest file that will be automatically pulled by Argo CD, ultimately saving manual work, reducing the initial setup configuration, and eliminating security risks.
 
 - But what about `DevOps teams` making other changes to the application configuration? Whatever manifest files connected to the Git repo will be tracked and synced by Argo CD and pulled into the Kubernetes cluster, providing a single flexible deployment tool for developers and DevOps.
 
@@ -108,6 +108,6 @@ ArgoCD is an easy-to-use tool that allows development teams to deploy and manage
 ![image.png](/.attachments/image-48645e55-40cf-4177-a0f9-6dd32538ca11.png) -->
 
 # References
-- https://www.youtube.com/watch?v=aWDIQMbp1cc&t=64s
-- https://mohitgoyal.co/2021/04/30/declarative-gitops-continuous-deployment-for-application-with-kubernetes-argo-cd-helm-kustomize-and-kind-index/ - excellent
-- https://github.com/goyalmohit/argocd-example-apps/tree/master/apps - Good examples
+- <https://www.youtube.com/watch?v=aWDIQMbp1cc&t=64s>
+- <https://mohitgoyal.co/2021/04/30/>declarative-gitops-continuous-deployment-for-application-with-kubernetes-argo-cd-helm-kustomize-and-kind-index/> - excellent
+- <https://github.com/goyalmohit/argocd-example-apps/tree/master/apps> - Good examples

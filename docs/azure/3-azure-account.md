@@ -13,7 +13,7 @@ In this lab you will learn how to create new azure free account so that you can 
 Follow these steps to create new free azure account:
 
 
-**Step-1:** Go to the following URL - https://azure.microsoft.com/en-us/free/
+**Step-1:** Go to the following URL - <https://azure.microsoft.com/en-us/free/>
 
 **Step-2:** Click on start Free.
 
@@ -35,5 +35,5 @@ Once your account is created, you will be taken to the Azure portal where you ca
 
 ## Reference
 
-- https://www.youtube.com/watch?v=cX0ikhVkCcY&t=35s
-- https://azure.microsoft.com/en-us/free/
+- <https://www.youtube.com/watch?v=cX0ikhVkCcY&t=35s>
+- <https://azure.microsoft.com/en-us/free/>
