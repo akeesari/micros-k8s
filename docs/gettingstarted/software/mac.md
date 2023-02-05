@@ -70,6 +70,9 @@ look into this for more info - <https://kubernetes.io/docs/tasks/tools/install-k
 
 ```
 brew install kubectl
+
+# verify the installation
+kubectl version 
 ```
 
 ## install dotnet
@@ -99,9 +102,11 @@ git --version
 ## install docker
 
 ```
+brew install docker --cask
 docker --version
-brew install nvm   
-nvm install 16
+
+# outpu
+Docker version 20.10.21, build baeda1f
 ```
 ## install node
 

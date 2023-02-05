@@ -187,6 +187,7 @@ nav:
   - Miscellaneous:
   # - Misc:
       - Kubectl Cheat Sheet: miscellaneous/kubectl-cheat-sheet.md
+      - az acr Cheat Sheet: miscellaneous/az-acr-cheat-sheet.md
   #     - mkdocs-samples: miscellaneous/mkdocs-samples.md
   #     - Section1:
   #       - page-1 : miscellaneous/section1/page-1.md

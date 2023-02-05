@@ -25,7 +25,7 @@ or
 az account show --output table
 ```
 
-## Connect to aks
+## Connect to Cluster
 ```
 ## Azure Kubernetes Service Cluster User Role
 az aks get-credentials -g "rg-rgname-dev" -n "aks-clustername-dev"
@@ -36,7 +36,7 @@ az aks get-credentials -g "rg-rgname-dev" -n "aks-clustername-dev" --admin
 
 az aks show -g "rg-rgname-dev" -n "aks-clustername-dev"
 ```
-more infor <https://learn.microsoft.com/en-us/azure/aks/control-kubeconfig-access#available-cluster-roles-permissions>
+<!-- more info <https://learn.microsoft.com/en-us/azure/aks/control-kubeconfig-access#available-cluster-roles-permissions> -->
 
 ## Cluster Management
 
@@ -72,8 +72,6 @@ kubectl config current-context                       # display the current-conte
 kubectl config use-context my-cluster-name           # set the default context to my-cluster-name
 kubectl config set-cluster my-cluster-name           # set a cluster entry in the kubeconfig
 ```
-reference: <https://kubernetes.io/docs/reference/kubectl/cheatsheet/>
-
 
 ## Creating objects
 
@@ -233,6 +231,16 @@ kubectl api-resources --verbs=list,get       # All resources that support the "l
 kubectl api-resources --api-group=extensions # All resources in the "extensions" API group
 ```
 
+## Command invoke
+
+Use command invoke to access a private Azure Kubernetes Service (AKS) cluster, reference - <https://learn.microsoft.com/en-us/azure/aks/command-invoke>
+
+
+```
+  az aks command invoke --resource-group 'rg-rgname-dev' --name 'aks-aksname-dev' --command "kubectl get namespaces"
+  az aks command invoke --resource-group 'rg-rgname-dev' --name 'aks-aksname-dev' --command "kubectl create namespace test"
+```
+
 ## Short Names
 
 Here is the full list of kubectl short names:
@@ -262,3 +270,16 @@ quota	    resourcequotas
 sa	        serviceaccounts
 svc	        services
 ```
+
+## References
+- <https://kubernetes.io/docs/reference/kubectl/cheatsheet/>
+<!-- - <https://youtu.be/feLpGydQVio> - video
+- <https://www.youtube.com/watch?v=Si6og3Wa2Hg> - Visual Studio Code and Kubernetes plugin for beginners
+- https://www.bluematador.com/learn/kubectl-cheatsheet
+- https://spacelift.io/blog/kubernetes-cheat-sheet
+- https://gist.github.com/pydevops/0efd399befd960b5eb18d40adb68ef83
+- https://kubernetes.io/docs/reference/kubectl/cheatsheet/
+- https://docs.microsoft.com/en-us/cli/azure/aks?view=azure-cli-latest - Manage Azure Kubernetes Services. commands
+- https://www.bluematador.com/learn/kubectl-cheatsheet
+- https://phoenixnap.com/kb/kubectl-commands-cheat-sheet
+- https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands##logs -->
