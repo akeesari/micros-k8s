@@ -2,9 +2,9 @@
 
 ## Introduction:
 
-One of my goals is to simplify the development, deployment, and scaling of complex applications and to bring the full power of Kubernetes to all projects. Organization’s devops pipeline provides a platform which allows all projects to develop, deploy and scale container-based applications, highly productive, yet flexible environment for developers.
+One of my goals is to simplify the development, deployment, and scaling of complex applications and to bring the full power of Kubernetes to all projects. DevOps pipeline provides a platform which allows all projects to develop, deploy and scale container-based applications, highly productive, yet flexible environment for developers.
 
-Azure DevOps Pipelines is a cloud-based continuous integration and continuous delivery (CI/CD) service that allows you to automate the building, testing, and deployment of your code. It is a part of Azure DevOps, a set of tools for software development teams to plan, collaborate, and ship code.
+`Azure DevOps Pipelines` is a cloud-based continuous integration and continuous delivery (CI/CD) service that allows you to automate the building, testing, and deployment of your code. It is a part of Azure DevOps, a set of tools for software development teams to plan, collaborate, and ship code.
 
 The tools we introduced to meet the goals:
 

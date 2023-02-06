@@ -1,11 +1,45 @@
-One of my goal is to simplify the development, deployment, and scaling of complex applications and to bring the full power of Kubernetes to all projects. DevOps Pipeline provides a platform which allows all projects to develop, deploy and scale container-based applications, highly productive, yet flexible environment for developers; One of the key tools we use from the Kubernetes ecosystem is Helm.
+One of my goal is to simplify the development, deployment, and scaling of complex applications and to bring the full power of Kubernetes to all projects. 
 
-Helm is the package manager for Azure Kubernetes Cluster (AKS) deployments. Helm uses a packaging format called charts. A chart is a collection of manifest files that describe a related set of AKS Cluster Kubernetes resources.
+One of the key tools we use from the Kubernetes ecosystem is `Helm.`
+
+`Helm` is the package manager for Azure Kubernetes Cluster (AKS) deployments. Helm uses a packaging format called charts. A `chart` is a collection of manifest files that describe a related set of AKS Cluster Kubernetes resources.
 
 
 Helm charts deployment make perfect sense for the complex workload deployments.
 
-## key features
+
+## Objective
+
+In this exercise we will accomplish & learn following:
+
+- What is Helm Chart?
+- How helm chart works?
+- When do we need to use helm chart?
+- Key Features of Helm
+- Explain Helm Architecture
+
+## What is Helm Chart?
+
+Helm is a package manager for Kubernetes that allows you to manage and install software in your cluster. A Helm chart is a package that contains all of the necessary configuration files and resources to deploy an application in a Kubernetes cluster.
+
+A Helm chart includes information such as the resources to be deployed (e.g., pods, services, and ingress), the container images to be used, and the configuration values for the deployment. Charts can be stored in a central repository, making it easy to share and reuse applications and components across multiple clusters and teams.
+
+Using Helm, you can install and manage complex applications with a single command, simplifying the process of deploying and managing applications in your cluster. Helm charts also make it easier to manage versioning and upgrades of your applications, as well as rollback to previous versions if necessary.
+
+## When do we need to use helm chart?
+
+You might need to use Helm charts when deploying and managing applications in a Kubernetes cluster. Some of the key reasons to use Helm charts include:
+
+1. `Simplified application deployment:` Helm charts make it easier to deploy and manage complex applications, as you can define the resources and configuration in a single package, and then deploy and upgrade the application with a single command.
+1. `Reusable components:` Helm charts can be stored in a central repository, making it easy to share and reuse components across multiple clusters and teams.
+1. `Versioning and upgrades:` Helm charts provide versioning and upgrade capabilities, making it easier to manage the lifecycle of your applications and rollback to previous versions if necessary.
+1. `Customization:` Helm charts provide a flexible and customizable way to manage deployments, as you can define variables and configuration values that can be modified during installation.
+1. `Dependency management:` Helm charts can manage dependencies between different components, making it easier to deploy and manage complex applications that consist of multiple components.
+1. `Scalability:` Helm charts are designed to be scalable, making it easy to manage deployments across multiple clusters and teams.
+
+Overall, Helm charts are a powerful tool for automating and simplifying the process of deploying and managing applications in a Kubernetes cluster. If you need to deploy and manage applications in a large-scale or complex environment, using Helm charts might be a good option to consider.
+
+## key features of Helm
 
 - ​Templates: - allows easily customize deployments for different environments.​
 
@@ -34,276 +68,32 @@ A chart typically includes the following files:
 
 When you run the `helm install` command, it installs the chart in the Kubernetes cluster by creating resources defined in the templates, based on the configuration values specified in the `values.yaml` file. You can also pass additional values to the command line, which will override the defaults from the `values.yaml` file.
 
-For example:
 
-- application
-    - deployment.yaml
-    - service.yaml
-    - kustomization.yaml
-    - secretes.yaml
-    - ingress.yaml
-    - configmap.yaml
+Once the application is deployed, Helm monitors the state of the resources and can perform updates or rollbacks if necessary. You can also use the Helm CLI to upgrade or delete the application, as well as manage the dependencies between different charts.
 
+In this way, Helm charts provide a flexible and scalable way to manage and deploy applications in your Kubernetes cluster, making it easier to automate and simplify the process of application management.
 
-<!-- 
-## Install helm 
+##  Explain Helm Architecture
 
-Pick the command as per your os version:
+The architecture of Helm consists of the following components:
 
-more information - https://helm.sh/docs/intro/install/
+1. `Helm CLI:` The Helm CLI is a command-line tool that allows you to manage and install Helm charts. The Helm CLI communicates with the Helm Tiller server to deploy charts in your cluster.
 
-    # https://community.chocolatey.org/packages?q=helm
+1. `Helm Tiller server:` The Helm Tiller server is a component that runs in your Kubernetes cluster and is responsible for managing the installation and lifecycle of Helm charts. The Tiller server receives requests from the Helm CLI and communicates with the Kubernetes API to create, update, and manage the resources defined in the chart.
 
-    choco install kubernetes-helm
+1. `Chart repository:` The chart repository is a centralized storage location for Helm charts. It can be a local or remote repository, and it provides a way to share and distribute charts across multiple teams and clusters.
 
-## Verify the Installation
+1. `Chart:` A Helm chart is a package that contains all of the necessary configuration files and resources to deploy an application in a Kubernetes cluster. Charts can be stored in a chart repository and can be installed in your cluster using the Helm CLI.
 
-    helm version
+1. `Template:` The templates in a Helm chart are written in YAML format and use the Go Templating Language (Golang) to define variables and control structures. When you install a chart, the Helm Tiller server evaluates the templates and generates the necessary Kubernetes resources based on the configuration values defined in the chart.
 
-Start with basic concepts from the first few vides from References:
+The architecture of Helm provides a simple and flexible way to manage and deploy applications in your Kubernetes cluster, making it easier to automate and simplify the process of application management. The Helm CLI provides a user-friendly interface for interacting with the Tiller server, while the Tiller server communicates with the Kubernetes API to manage the resources in the cluster. The chart repository provides a centralized storage location for charts, making it easy to share and distribute applications across multiple teams and clusters.
 
-artifacthub.io - use this website for required charts
 
-https://artifacthub.io/packages/search?kind=0
+## References
+- <https://helm.sh/docs/topics/charts/>
 
-## Update list of Helm charts from repositories
-
-    helm repo update
-    
-## Searching Helm Charts
-List all installed charts
-
-    helm search
-
-Search for a chart
-
-    helm search foo
-
-## Showing Installed Helm Charts
-List all installed Helm charts
-
-    helm ls
-
-List all deleted Helm charts
-
-    helm ls --deleted
-
-List installed and deleted Helm charts
-
-    helm ls --all
-
-## Installing/Deleting Helm charts
-Inspect the variables in a chart
-
-    helm inspect values stable/mysql
-
-Install a Helm chart
-
-To install a new package, use the helm install command. At its simplest, it takes two arguments: 
-A release name that you pick, 
-and the name of the chart you want to install.
-
-    helm install happy-panda bitnami/wordpress
-
-    helm install --name foo stable/mysql
-    helm install --name path/to/foo
-    helm install --name foo bar-1.2.3.tgz
-    helm install --name foo https://example.com/charts/bar-1.2.3.tgz
-
-Install a Helm chart and override variables
-
-    helm install --name foo --values config.yaml --timeout 300 --wait stable/mysql
-
-Show status of Helm chart being installed
-
-    helm status foo
-
-## Delete a Helm chart
-
-helm delete --purge foo
-## Upgrading Helm Charts
-Return the variables for a release
-
-    helm get values foo
-
-Upgrade the chart or variables in a release
-
-    helm upgrade --values config.yaml foo stable/mysql
-
-List release numbers
-
-    helm history foo
-
-Rollback to a previous release number
-
-    helm rollback foo 1
-
-## Creating Helm Charts
-Create a blank chart
-
-    helm create foo
-
-Lint the chart
-
-    helm lint foo
-
-Package the chart into foo.tgz
-
-    helm package foo
-
-Install chart dependencies
-
-    helm dependency update
-
-## Release:
-Uninstall a release
-
-    helm uninstall [release]
- 
- upgrade
- 
-    helm upgrade [release] [chart]
-
-nstruct Helm to rollback changes if the upgrade fails:
-
-    helm upgrade [release] [chart] --atomic
-
-Upgrade a release. If it does not exist on the system, install it:
-
-    helm upgrade [release] [chart] --install
-
-Upgrade to a specified version:
-
-    helm upgrade [release] [chart] --version [version-number]
-
-Roll back a release:
-
-    helm rollback [release] [revision]
-
-Download Release Information
-The helm get command lets you download information about a release.
-
-## Download all the release information:
-
-    helm get all [release]
-
-Download all hooks:
-
-    helm get hooks [release]
-
-Download the manifest:
-
-    helm get manifest [release]
-
-Download the notes:
-
-    helm get notes [release]
-
-Download the values file:
-
-    helm get values [release]
-
-Fetch release history:
-
-    helm history [release] 
-
-## List and Search Repositories
-Use the helm repo and helm search commands to list and search Helm repositories. helm search also enables you to find apps and repositories in Helm Hub.
-
-List chart repositories:
-
-    helm repo list
-
-Generate an index file containing charts found in the current directory:
-
-    helm repo index
-
-Search charts for a keyword:
-
-    helm search [keyword]
-
-Search repositories for a keyword:
-
-    helm search repo [keyword]
-
-Search Helm Hub:
-
-    helm search hub [keyword]
-
-## Release Monitoring
-The helm list command enables listing releases in a Kubernetes cluster according to several criteria, including using regular (Pearl compatible) expressions to filter results. Commands such as helm status and helm history provide more details about releases.
-
-List all available releases in the current namespace:
-
-    helm list
-
-List all available releases across all namespaces:
-
-    helm list --all-namespaces
-
-List all releases in a specific namespace:
-
-    helm list --namespace [namespace]
-
-List all releases in a specific output format:
-
-    helm list --output [format]
-
-Apply a filter to the list of releases using regular expressions:
-
-    helm list --filter '[expression]'
-
-See the status of a specific release:
-
-    helm status [release]
-
-Display the release history:
-
-    helm history [release]
-
-See information about the Helm client environment:
-
-    helm env
-
-## Delete Helm Deployment
-Deleting a Helm deployment removes the components without deleting the namespace.
-reference: https://phoenixnap.com/kb/helm-delete-deployment-namespace
-
-## List Helm Deployments
-List Helm deployments in the current namespace with:
-
-    helm list
-
-To list deployments in a specific namespace, use:
-
-    helm list --namespace <namespace_name>
-
-List all Helm deployments in all namespaces by running:
-
-    helm list --all-namespaces
-
-## Delete Helm Deployment
-To remove an installed Helm deployment, run:
-
-    helm uninstall <deployment name> --namespace <namespace_name>
-    helm uninstall sample-apps --namespace tenant1
-
-Alternatively, use the alias:
-
-    helm delete <deployment name> --namespace <namespace_name>
-
-The terminal outputs a confirmation of removal. For example, the command below removes a deployment named phoenix-chart on the namespace other:
-
-    helm uninstall phoenix-chart --namespace other
-
-
-
-## To uninstall a release, use:
-
-    helm uninstall <release-name> -n <namespace>
-    You can also use --no-hooks to skip running hooks for the command:
-    $ helm uninstall <release-name> -n <namespace> --no-hooks
-   
+<!--
 # Reference
 
 

@@ -1,6 +1,8 @@
 ## Introduction
 
-One of my goals is to simplify the development, deployment, and scaling of complex applications and to bring the full power of Kubernetes to all projects. DevOps pipeline provides a platform which allows all projects to develop, deploy and scale container-based applications, highly productive, yet flexible environment for developers. `Argo CD` is one of the tools introduced to reach the goals.
+One of my goals is to simplify the development, deployment, and scaling of complex applications and to bring the full power of Kubernetes to all projects. 
+
+`Argo CD` is one of the tools introduced to reach the goals.
 
 With Argo CD, developers can create application manifests and store them in a Git repository. They can then use Argo CD to deploy those manifests to a Kubernetes cluster, and it will continuously monitor and reconcile the live environment with the desired state defined in Git.
 
@@ -28,8 +30,7 @@ In this exercise we will accomplish & learn following:
 
 ## What is Argo CD?
 
-Argo CD is a declarative, GitOps continuous delivery tool for Azure Kubernetes Cluster deployments.
-
+Argo CD is a GitOps-based continuous delivery tool for Kubernetes applications. It helps to manage and synchronize application deployments with the desired state specified in the Git repository. Argo CD allows developers to version control their application configuration and use Git as a single source of truth for deployments, ensuring that the desired state of the applications in the cluster always matches the desired state defined in Git.
 
 ## How it works?
 
@@ -43,60 +44,68 @@ Argo CD follows the GitOps pattern of using Git repositories as the source of tr
 ![image.jpg](images/image-1.png)
 <!-- ![image.png](/.attachments/image-abc39e0e-6ef7-4d7b-b6b9-f45e8cb3238b.png) -->
 
+Argo CD works by continuously monitoring the desired state of applications defined in Git, and comparing that to the actual state of the applications in a target Kubernetes cluster. It uses this comparison to perform automated sync operations that bring the live cluster into the desired state.
 
-- It solves the deployment problems in the CD process by being a more integral part of the Kubernetes cluster. Instead of pushing changes to the Kubernetes cluster, Argo CD pulls Kubernetes manifest changes and applies them to the cluster. 
+Here is a high-level overview of the steps involved in using Argo CD:
 
-- Once you set up Argo CD inside of your Kubernetes cluster, you configure Argo CD to connect and track your Git repo changes.
+1. Define the desired state of your applications in a Git repository.
+1. Connect Argo CD to the Git repository and target Kubernetes cluster.
+1. Create applications in Argo CD, which are a mapping between the desired state in Git and the target cluster.
+1. Argo CD continuously monitors the state of the applications and compares it to the desired state in Git.
+1. When a difference is detected, Argo CD performs a sync operation, which updates the target cluster to match the desired state in Git.
+1. Argo CD provides a user interface that allows you to view the current state of your applications, perform manual sync operations, and track changes over time.
 
-- If any changes are detected, then Argo CD applies those changes automatically to the cluster. 
+This GitOps-based approach provides a reliable and consistent way to manage and deploy applications to a Kubernetes cluster, helping to eliminate inconsistencies and minimize errors.
 
-- Now `developers` can commit code in azure DevOps git repos, which will automatically build a new image, push it to the azure container registry (docker repo), and then finally update the Kubernetes manifest file that will be automatically pulled by Argo CD, ultimately saving manual work, reducing the initial setup configuration, and eliminating security risks.
-
-- But what about `DevOps teams` making other changes to the application configuration? Whatever manifest files connected to the Git repo will be tracked and synced by Argo CD and pulled into the Kubernetes cluster, providing a single flexible deployment tool for developers and DevOps.
-
-- Argo CD watches the changes in the cluster as well, which becomes important if someone updates the cluster manually. 
-
-- Argo CD will detect the divergence of states between the cluster and Git repo. Argo CD compares desired configuration in the Git repo with the actual state in the Kubernetes cluster and syncs what is defined in the Git repo to the cluster, overriding whatever update was done manually—guaranteeing that the Git repo remains the single source of truth. But, of course, Argo CD is flexible enough to be configured to not automatically override manual updates if a quick update needs to happen directly to the cluster and an alert be sent instead.
 
 ## Why do we need to use Argo CD?
 
-ArgoCD is an easy-to-use tool that allows development teams to deploy and manage applications without having to learn a lot about Kubernetes, and without needing full access to the Kubernetes system
+Here are several reasons why one might choose to use Argo CD:
+
+1. `Consistency and reliability:` Argo CD provides a single source of truth for your application deployments, ensuring that the desired state of your applications in the cluster always matches the desired state defined in Git.
+1. `Automation:` Argo CD automates the process of deploying and updating applications, reducing the chance of human error and freeing up time for developers to focus on other tasks.
+1. `Version control:` Argo CD integrates with Git, allowing you to version control your application configurations and track changes over time.
+1. `Collaboration:` Argo CD makes it easier for teams to collaborate on application deployments by providing a common, shared repository for defining the desired state of applications.
+1. `Rollback:` Argo CD provides a way to quickly revert to previous versions of an application if something goes wrong during an update.
+1. `Scalability:` Argo CD can scale to manage multiple applications and multiple clusters, making it easier to manage large-scale deployments.
+
+By using Argo CD, organizations can ensure consistent, reliable, and automated deployments of their applications to a Kubernetes cluster.
 
 <!-- **Scenarios to use Argo CD**
 
 - Scenario-1
 - Scenario-2 -->
 
-## Key Features
+## Key Features of argocd
 
-- Automated deployment of applications to specified target environments
+Argo CD is a continuous delivery tool for Kubernetes applications that offers several key features:
 
-- Support for multiple config management/templating tools (Kustomize, Helm, plain-YAML)
+1. `GitOps:` Argo CD uses Git as the single source of truth for your application deployments, ensuring that the desired state of your applications in the cluster always matches the desired state defined in Git.
+1. `Continuous monitoring and synchronization:` Argo CD continuously monitors the state of your applications and compares it to the desired state in Git. When a difference is detected, Argo CD performs a sync operation to bring the live cluster into the desired state.
+1. `User interface:` Argo CD provides a user interface that allows you to view the current state of your applications, perform manual sync operations, and track changes over time.
+1. `Role-based access control:` Argo CD allows you to control who can access and make changes to your applications, making it easier to manage deployments in large organizations.
+1. `Rollback:` Argo CD provides a way to quickly revert to previous versions of an application if something goes wrong during an update.
+Custom resource validation: Argo CD can validate the custom resource definitions used in your applications, ensuring that your applications are deployed according to your desired state.
 
-- Ability to manage and deploy to multiple clusters
+1. `Multi-cluster support:` Argo CD can manage applications across multiple Kubernetes clusters, making it easier to manage large-scale deployments.
 
-- SSO Integration ( OAuth2, LDAP, SAML 2.0, Microsoft)
+These features make Argo CD a powerful tool for managing and deploying applications in a Kubernetes cluster in a GitOps-based manner.
 
-- Multi-tenancy and RBAC policies for authorization
+## Argo CD architecture
 
-- Rollback/Roll-anywhere to any application configuration committed in Git repository
+Argo CD architecture consists of the following components:
 
-- Health status analysis of application resources
+1. `Git repository:` The Git repository contains the desired state of your applications, which is used as the source of truth for deployments.
+1. `Argo CD server:` The Argo CD server is the main component that connects to the Git repository and target Kubernetes cluster. It performs continuous monitoring and synchronization of applications, and provides a user interface for managing deployments.
+1. `Kubernetes cluster:` The target Kubernetes cluster is where your applications are deployed and run. The Argo CD server continuously compares the state of your applications in the cluster to the desired state defined in Git.
+1. `Argo CD CLI:` The Argo CD CLI is a command-line interface for interacting with the Argo CD server, allowing you to perform manual sync operations and manage applications from the command line.
+1. `Argo CD API:` The Argo CD API provides a REST API for programmatically interacting with the Argo CD server, allowing you to automate tasks and integrate Argo CD into your existing DevOps workflow.
 
-- Automated configuration drift detection and visualization
+The Argo CD server and the target Kubernetes cluster communicate using the Kubernetes API, allowing Argo CD to manage and deploy applications in the cluster. The Argo CD server runs as a set of Kubernetes resources in the target cluster,
 
-- Automated or manual syncing of applications to its desired state
+providing a scalable and highly available solution for managing deployments.
 
-- Web UI which provides real-time view of application activity
-
-- CLI for automation and CI integration
-
-- Webhook integration with Azure DevOps
-
-- Access tokens for automation
-
-- PreSync, Sync, PostSync hooks to support complex application rollouts (e.g.blue/green & canary upgrades)
-
+The architecture of Argo CD is designed to provide a reliable and consistent way to manage and deploy applications to a Kubernetes cluster, while allowing for flexible integration into existing DevOps workflows and tools.
 
 <!-- # Architecture diagram
 
@@ -107,7 +116,8 @@ ArgoCD is an easy-to-use tool that allows development teams to deploy and manage
 
 ![image.png](/.attachments/image-48645e55-40cf-4177-a0f9-6dd32538ca11.png) -->
 
-# References
-- <https://www.youtube.com/watch?v=aWDIQMbp1cc&t=64s>
+## References
+- <https://argo-cd.readthedocs.io/en/stable/>
+<!-- - <https://www.youtube.com/watch?v=aWDIQMbp1cc&t=64s>
 - <https://mohitgoyal.co/2021/04/30/>declarative-gitops-continuous-deployment-for-application-with-kubernetes-argo-cd-helm-kustomize-and-kind-index/> - excellent
-- <https://github.com/goyalmohit/argocd-example-apps/tree/master/apps> - Good examples
+- <https://github.com/goyalmohit/argocd-example-apps/tree/master/apps> - Good examples -->
