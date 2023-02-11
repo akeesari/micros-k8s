@@ -1,4 +1,4 @@
-# Chapter-1.1 Create first Microservice with .NET Core
+#  Create first Microservice with .NET Core
 
 ## Introduction
 
@@ -6,13 +6,15 @@ This is our first lab in the Microservices architecture series, here we are goin
 
 This sample demonstrates how to create restful service and build container images using ASP.NET Core Restful APIs. 
 
-API stands for Application Programing Interface.
+<!-- API stands for Application Programing Interface. -->
 
-ASP.NET Core is a modern, cross-platform framework for building web applications and APIs. It is a lightweight, high-performance framework that is designed to be modular and flexible, allowing developers to build web applications and APIs that can be easily scaled and modified over time.
+`ASP.NET Core` is a modern, cross-platform framework for building web applications and APIs. It is a lightweight, high-performance framework that is designed to be modular and flexible, allowing developers to build web applications and APIs that can be easily scaled and modified over time.
 
 
 ## Technical Scenario
 
+As a Backend developer you've been asked to create a Restful service using .NET core Web API.
+ 
 This lab will help you to understand how start your journey with Microservices Architecture, we will start with basics like creating repo, creating small project and finally containerize that small Microservice we've created and push to the Azure container registry (ACR).
 
 we are basically preparing an application for the Kubernetes deployment. the Microservices we are going to create here in this lab will be used in the subsequent labs like creating DevOps pipelines or deploying to Azure Kubernetes services (AKS).

@@ -176,7 +176,7 @@ Here is the list of other software you may need during the development.
 11. Loom 
 12. Virtual Desktop 13. Spectical
 ```
-
+<!-- 
 ## Reference
 
-- <https://www.youtube.com/watch?v=0MiGnwPdNGE> - How I setup the Terminal on my M1 Max MacBook Pro
+- <https://www.youtube.com/watch?v=0MiGnwPdNGE> - How I setup the Terminal on my M1 Max MacBook Pro -->
