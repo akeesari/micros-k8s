@@ -137,6 +137,27 @@ git branch --delete <branch-name>
 git branch
 ```
 
+
+## Branch from a previous commit
+
+Create the branch using a commit hash:
+
+
+```
+git branch branch_name <commit-hash>
+# step-1
+
+git branch new_branch 07615d50afde24d21e2180b90d3a0a58ec131980
+
+this will create the local branch
+
+# step-2 commit the branch 
+
+git commit -am “(message)” 
+
+
+```
+
 ## How to set global git config settings?
 
 There are a number of ways to edit the global git config file. One way is to add properties through the command line. The global git config email and username properties are often set in the following way:
