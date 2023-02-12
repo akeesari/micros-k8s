@@ -155,8 +155,43 @@ this will create the local branch
 
 git commit -am “(message)” 
 
-
 ```
+## How to resolve merge conflicts using git commands
+
+Resolving merge conflicts in Git involves editing the conflicted files to choose which changes to keep and which to discard, and then committing the resolved changes. Here's a step-by-step guide:
+
+1. Check the status of your repository to see if there are any merge conflicts:
+
+    ```
+    git status
+    ```
+    If there are merge conflicts, you will see a message indicating which files have conflicts.
+
+1. Open the conflicted files in a text editor and look for the conflict markers. The markers will look something like this:
+
+    ```
+    <<<<<<< HEAD
+    This is the content from the current branch.
+    =======
+    This is the content from the branch you are merging.
+    >>>>>>> <branch-name>
+
+    ```
+1. Decide what changes you want to keep and remove the conflict markers and any unnecessary content. The final content should only include the changes you want to keep.
+
+1. Stage the changes using git add:
+    ```
+    git add <file-name>
+    ```
+1. Commit the changes to the repository:
+    ```
+    git commit -m "Resolved merge conflicts"
+
+    ```
+1. Push the changes to the remote repository if necessary:
+    ```
+    git push origin <branch-name>
+    ```
 
 ## How to set global git config settings?
 
