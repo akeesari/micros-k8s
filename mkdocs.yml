@@ -175,7 +175,8 @@ nav:
     - Registered resource providers in azure subscription using PowerShell: azure/5-resource-providers.md
     - Create Terraform Foundation Part-1: azure/6-tf-foundation-1.md
     - Create Terraform Foundation Part-2: azure/6-tf-foundation-2.md
-    
+  - Kubernetes:
+    - Pod troubleshooting : kubernetes/pod-troubleshooting.md
   - Azure DevOps:
     - Azure DevOps Pipelines (CI & CD): devops/devops.md
     - ArgoCD: devops/argocd/argocd.md
@@ -189,7 +190,7 @@ nav:
       - Kubectl Cheat Sheet: miscellaneous/kubectl-cheat-sheet.md
       - Helm Cheat Sheet: miscellaneous/helm-cheat-sheet.md
       - az acr Cheat Sheet: miscellaneous/az-acr-cheat-sheet.md
-  #     - mkdocs-samples: miscellaneous/mkdocs-samples.md
+      - Git Cheat Sheet: miscellaneous/git-cheat-sheet.md
   #     - Section1:
   #       - page-1 : miscellaneous/section1/page-1.md
   #       - page-3 : miscellaneous/section1/page-2.md

@@ -13,7 +13,7 @@ This sample demonstrates how to create restful service and build container image
 
 ## Technical Scenario
 
-As a Backend developer you've been asked to create a Restful service using .NET core Web API.
+As a Backend developer you've been asked to create a Restful service using .NET core Web API which is one of the service in the microservices list.
  
 This lab will help you to understand how start your journey with Microservices Architecture, we will start with basics like creating repo, creating small project and finally containerize that small Microservice we've created and push to the Azure container registry (ACR).
 
@@ -112,6 +112,7 @@ git pull
 git push
 ```
 
+<!-- 
 **Option-2:** 
 
 use these commands to add code to remote repository
@@ -128,15 +129,17 @@ git remote add origin https://dev.azure.com/keesari/project1/_git/aspnetapi
 git remote -v
 
 git push -f origin master
-```
+
+``` 
+-->
 
 ## Task-3: Create a new .NET Core Web API project
 
-Most of the labs we will be using VS Code instead of Visual Studio to make things faster and easy and save time.
+We will be using Visual Studio Code instead of Visual Studio to make things faster and easy and save time and money.
 
-**Best Practice** - try to use VS code instead of visual studio 2022 (or Latest version)
+**Best Practice** - try to use Visual Studio code instead of visual studio.
 
-To create a new .NET Core Web API project, you will need to have the .NET Core SDK installed on your machine. You can download the .NET Core SDK from the .NET website (https://dotnet.microsoft.com/download).
+To create a new .NET Core Web API project, you will need to have the .NET Core SDK installed on your machine. You can download the .NET Core SDK from the .NET website <https://dotnet.microsoft.com/download>.
 
 Once you have the .NET Core SDK installed, follow these steps to create a new .NET Core Web API project:
 
@@ -325,7 +328,7 @@ To add Dockerfiles to a .NET Core Web API project, follow these steps:
 
 **Option-1:**
 
-1. Make sure that you have Docker installed on your machine. You can download Docker from the Docker website (https://www.docker.com/get-started).
+1. Make sure that you have Docker installed on your machine. You can download Docker from the Docker website <https://www.docker.com/get-started>.
 
 2. In your .NET Core Web API project, create a new file named "Dockerfile" at the root of the project.
 
@@ -424,7 +427,7 @@ Once you have Docker installed, follow these steps to build and publish a contai
 Run docker build command to build the source code
 
 ```
-docker build -t projectname/domainname/todo-api:20221127.1 .
+docker build -t projectname/domainname/aspnet-api:20221127.1 .
 ```
 
 **Best Practice:**
@@ -436,7 +439,7 @@ use this docker build pattern.
 
 output
 ```
-C:\Source\Repos\todoapi>docker build -t projectname/domainname/todo-api:20221127.1 .
+C:\Source\Repos\todoapi>docker build -t projectname/domainname/aspnet-api:20221127.1 .
 [+] Building 9.5s (19/19) FINISHED
  => [internal] load build definition from Dockerfile                                                                                                          0.0s 
  => => transferring dockerfile: 878B                                                                                                                          0.0s 
@@ -457,11 +460,11 @@ if you open the docker desktop you should be able to see the newely created imag
 Run the following command to start a container based on the image:
 
 ```
-docker run --rm -p 8080:80 projectname/domainname/todo-api:20221127.1
+docker run --rm -p 8080:80 projectname/domainname/aspnet-api:20221127.1
 ```
 output
 ```
-C:\Source\Repos\todoapi>docker run --rm -p 8080:80 projectname/domainname/todo-api:20221127.1
+C:\Source\Repos\todoapi>docker run --rm -p 8080:80 projectname/domainname/aspnet-api:20221127.1
 info: Microsoft.Hosting.Lifetime[14]
       Now listening on: http://[::]:5257
 info: Microsoft.Hosting.Lifetime[0]
@@ -497,8 +500,8 @@ use these links for testing when you run docker command from vs code
 <http://localhost:8080/swagger/index.html>
 <http://localhost:8080/api/aspnetapi/v1/heartbeat/ping>
 <http://localhost:8080/api/aspnetapi/v1/weatherforecast>
-
-Trouble Shooting 
+<!-- 
+TroubleShooting 
 
 Check the following setting
 
@@ -507,7 +510,7 @@ Check the following setting
 Update port number
 
 ![image.png](/.attachments/image-801c4b54-4050-402e-b546-6fa987dce9b5.png)
-
+ -->
 
 ## Task-7: Publish docker container image to ACR
 
