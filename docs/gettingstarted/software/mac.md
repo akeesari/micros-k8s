@@ -9,7 +9,7 @@ Homebrew is a free and open-source software package management system that simpl
 
 ## Install homebrew
 
-This is the fist software you may need to install before installing anything in Mac. for more infor look into this - https://brew.sh/
+This is the fist software you may need to install before installing anything in Mac. for more infor look into this - <https://brew.sh/>
 
 homebrew is like a choco
 
@@ -95,10 +95,10 @@ brew install iterm2
 ```
 
 ## install git
-
+```
 brew install git  
 git --version    
-
+```
 ## install docker
 
 ```
@@ -179,4 +179,7 @@ Here is the list of other software you may need during the development.
 <!-- 
 ## Reference
 
-- <https://www.youtube.com/watch?v=0MiGnwPdNGE> - How I setup the Terminal on my M1 Max MacBook Pro -->
+- <https://www.youtube.com/watch?v=0MiGnwPdNGE> - How I setup the Terminal on my M1 Max MacBook Pro 
+- https://www.robinwieruch.de/mac-setup-web-development/
+- https://www.robinwieruch.de/mac-setup-web-development/
+-->

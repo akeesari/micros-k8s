@@ -13,6 +13,14 @@ In this exercise we will accomplish & learn following:
     - Task-2: Create a new Azure DevOps Repo for terraform
     - Task-3: Clone a new git repo
     - Task-4: Add .gitignore file in the git repo for terraform
+- **Terraform Management setup**
+    - Task-5: Create new resource group
+    - Task-6: Create new storage account & container
+    - Task-7: Create new Key vault 
+    - Task-8: Create Service Principle 
+    - Task-9: Create secrets in Key Vault 
+    - Task-10: Setup Access Policy in Key Vault 
+    - Task-11: Configure Service Principal Role Assignment 
 
 ## Prerequisites
   - Download & Install Terraform
@@ -140,6 +148,79 @@ override.tf.json
 .terraformrc
 terraform.rc
 ```
+
+**Terraform Management Setup** 
+
+By following these steps, you can set up a Terraform management environment for running Azure resources. It's important to keep your configuration files and state file in a secure location, and to follow best practices for managing infrastructure as code.
+
+since these steps are part of terraform setup itself therefore we can't create following resources using terraform, here we can use either az cli or PowerShell script to create following resources. Here we are going use PowerShell script
+
+## Task-5: Create new resource group
+
+We are going to create separate resource group for managing terraform management specific azure resource like azure storage account and azure key vault.
+
+Resource Group Name - `rg-tfmgmt-dev` 
+
+```
+```
+
+## Task-6: Create new storage account & container
+
+We are going to use the azure storage account for storing the terraform remote state. This allows you to store the state file remotely and access it from anywhere, and also provides additional features like versioning, locking, and auditing.
+
+Terraform remote state is a way to store and manage Terraform's state files remotely. By default, Terraform stores the state file on the local file system, but this can cause problems when working in a team or when scaling up infrastructure. Remote state storage provides a centralized location for storing state files, which makes it easier to manage state across teams and across environments.
+
+ Create new storage account
+
+```
+```
+create new container
+
+```
+```
+
+## Task-7: Create new Key vault 
+
+This Key Vault will be used for storing all kind of secrets related terraform management. it is very critical securing secrets like terraform service principle because these are actually used to authenticate Terraform to Azure and create azure resources in the Azure Portal.
+
+```
+
+```
+
+## Task-8: Create Terraform Service Principle Credentials
+
+In Terraform, a service principal is used to authenticate with Azure in order to manage resources. A service principal is like a user account that is used to access Azure resources programmatically, rather than interactively through the Azure portal.
+
+To use a service principal with Terraform, you'll need to provide the client ID and client secret, which are used to authenticate with Azure. Here are the steps to create a service principal and retrieve its credentials:
+
+1. Create a new Azure Active Directory (AD) application: Use the Azure portal or Azure CLI to create a new AD application. This will create a new service principal for you.
+
+1. Assign a role to the service principal: Use the Azure portal or Azure CLI to assign a role to the service principal. This will determine the level of access that the service principal has to Azure resources.
+
+1. Retrieve the client ID and client secret: Use the Azure portal or Azure CLI to retrieve the client ID and client secret for the service principal. The client ID is a unique identifier for the service principal, and the client secret is a password that is used to authenticate with Azure.
+
+
+```
+
+```
+##  Task-9: Create secrets in Key Vault 
+
+Terraform management secrets will be protected by storing in the azure key vault.
+
+```
+```
+
+## Task-10: Setup Access Policy in Key Vault 
+Terraform management service principle need access to azure key to retrieve the secrets stored in Azure Key Vault. 
+
+##  Task-11: Configure Service Principal Role Assignment
+
+The new Service principle needs at least contributor access at subscription level where azure resources will be created, 
+if you want avoid unnecessary issues during resources creation or azure DevOps terraform automation you can even provide owner role at subscription level so that we don't run any issues while creating azure resource from terraform configuration.
+
+```
+```
+
 
 
 ## References

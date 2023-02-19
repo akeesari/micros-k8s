@@ -8,7 +8,7 @@ az login
 
 ## Set subscription
 ```
-az account set -s "ewm3 test"
+az account set -s "anji.keesari"
 ```
 ## Connect to k8s cluster
 
@@ -42,11 +42,11 @@ kubectl logs pod/aspnet-api-576c6988f-jcq42 -n sample
 This command allows you to execute a command in a container in a pod.
 
 ```
-kubectl exec -n tenant1 -it nginx-6595874d85-r6zpn -- bash
+kubectl exec -n sample -it nginx-6595874d85-r6zpn -- bash
 # or
-kubectl exec -n tenant1 -it nginx-6595874d85-r6zpn -- /bin/sh
+kubectl exec -n sample -it nginx-6595874d85-r6zpn -- /bin/sh
 # or
-kubectl exec -n tenant1 -it nginx-6595874d85-r6zpn -- sh
+kubectl exec -n sample -it nginx-6595874d85-r6zpn -- sh
 ```
 ## install curl
 
