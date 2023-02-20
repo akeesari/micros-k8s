@@ -93,8 +93,7 @@ variable "solution_plan_map" {
   description = "Specifies solutions to deploy to log analytics workspace"
   type        = map(any)
   default = {
-    ContainerInsights = {
-      product   = "OMSGallery/ContainerInsights"
+    ContainerInsight   product   = "OMSGallery/ContainerInsights"
       publisher = "Microsoft"
     }
   }
@@ -111,7 +110,8 @@ variable "log_analytics_tags" {
   type        = map(any)
   default     = {}
 }
-
+s = {
+   
 ```
 
 #### declare variables

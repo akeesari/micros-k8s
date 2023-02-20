@@ -9,22 +9,26 @@ There are multiple ways to Create or automate the azure resources but here we've
  
 Here is the list of high level azure resources used for running Microservices architecture; since these labs cover only implementation details it is always recommended to read the relevant documentation on particular service before start any labs so that is supper easy for work on these labs. you will see the links end of each lab for reference.
 
-**Azure Kubernetes Service (AKS)** 
+**Log Analytics workspace** 
 
-AKS is a managed Kubernetes cluster hosted in the Azure cloud. AKS is used for deploying all our microservices.
+A Log Analytics workspace allows you to log data from Azure Monitor and other Azure services.
 
-**Azure Container Registry(ACR)** 
-
-Used Container Registry to store all our private Docker images, which are deployed to the cluster. AKS can authenticate with Container Registry using its Azure AD identity. 
 
 **Virtual network.** 
 
 All the services created in our labs will be completely secured using private Virtual Network. will show you Hub & Spoke vnet model in the lab.
 
+**Azure Container Registry(ACR)** 
+
+Used Container Registry to store all our private Docker images, which are deployed to the cluster. AKS can authenticate with Container Registry using its Azure AD identity. 
+
 **Application Gateway**
 
 This is our entry point to from public DNS, Application Gateway route client requests to the right backend services. This routing provides a single endpoint for clients, and helps to decouple clients from services. reverse proxy, load balancer, SSL / TLS termination, Listeners, backend pools will be configured in this resource.
 
+**Azure Kubernetes Service (AKS)** 
+
+AKS is a managed Kubernetes cluster hosted in the Azure cloud. AKS is used for deploying all our microservices.
 
 **Azure Database** 
 
