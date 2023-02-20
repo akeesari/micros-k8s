@@ -13,3 +13,9 @@
 		white-space: nowrap;
 	}
 }
+
+h1 {
+	color: red;
+	font-size: 0.9em;
+  }
+

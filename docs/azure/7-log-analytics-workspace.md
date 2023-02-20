@@ -1,0 +1,364 @@
+### Introduction
+
+A Log Analytics workspace allows you to log data from Azure Monitor and other Azure services.
+
+### Technical Scenario
+
+As a cloud engineer, you have been asked to collect all the monitoring data, azure resources logs from azure services for your organization so that you can use the log queries to retrieve and analyze data from a Log Analytics workspace.
+
+### Prerequisites
+  - Download & Install Terraform
+  - Download & Install Azure CLI
+  - Azure subscription
+  - Visual studio code
+  - Azure DevOps Project & repo
+- Terraform Foundation Setup
+
+
+### Architecture diagram
+
+<IMG  src="https://learn.microsoft.com/en-us/azure/azure-monitor/logs/media/data-platform-logs/logs-structure.png"  alt="Diagram that shows the Azure Monitor Logs structure." width=700px; height=300/>
+
+
+### Implementation Details
+
+In this exercise we will accomplish & learn following:
+
+- Task-1: Configure terraform variables for Log Analytics workspace 
+- Task-2: Create new resource group for Log Analytics workspace
+- Task-3: Create Log Analytics workspace using terraform
+- Task-4: Validate Log Analytics workspace in the portal
+- Task-5: Lock the Log Analytics workspace resource group
+
+Open the terraform folder in VS core and start creating new files or update existing files for Log Analytics specific resources to provision in azure cloud.
+
+### Task-1: Configure terraform variables for Log Analytics workspace 
+
+
+#### define variables
+
+Here is the list of variable used in log analytics workspace creation; wea are going to update existing `variable.tf` file with following variables.
+
+``` tf title="variable.tf" linenums="1"
+
+variable "log_analytics_workspace_rg_name" {
+  description = "Specifies the resource group name of the log analytics workspace"
+  type        = string
+  default     = "rg-workspace-dev"
+}
+
+variable "log_analytics_workspace_name" {
+  description = "Specifies the name of the log analytics workspace"
+  type        = string
+  default     = "workspace-workspace1-dev"
+}
+
+variable "log_analytics_workspace_location" {
+  description = "(Required) Specifies the location of the log analytics workspace"
+  type        = string
+  default     = "East US"
+}
+
+variable "log_analytics_workspace_sku" {
+  description = "(Optional) Specifies the sku of the log analytics workspace"
+  type        = string
+  default     = "PerGB2018"
+
+  validation {
+    condition     = contains(["Free", "Standalone", "PerNode", "PerGB2018"], var.log_analytics_workspace_sku)
+    error_message = "The log analytics sku is incorrect."
+  }
+}
+
+variable "solution_plan_map" {
+  description = "Specifies solutions to deploy to log analytics workspace"
+  type        = map(any)
+  default = {
+    ContainerInsights = {
+      product   = "OMSGallery/ContainerInsights"
+      publisher = "Microsoft"
+    }
+  }
+}
+
+variable "log_analytics_retention_days" {
+  description = " (Optional) Specifies the workspace data retention in days. Possible values are either 7 (Free Tier only) or range between 30 and 730."
+  type        = number
+  default     = 30
+}
+
+variable "log_analytics_tags" {
+  description = "(Optional) Specifies the tags of the log analytics"
+  type        = map(any)
+  default     = {}
+}
+
+```
+
+#### declare variables
+
+update existing `dev-variable.tfvar` file for the list of variable different for each environment.
+
+``` tf title="dev-variable.tfvar"
+log_analytics_workspace_rg_name     = "workspace"
+log_analytics_workspace_name        = "workspace1"
+```
+
+Let's create a new file `log_analytics.tf` for log analytics workspace specific azure resources. 
+
+### Task-2: Create new resource group for Log Analytics workspace
+
+We will be maintaining separate resource group for Log analytics workspace related resources.
+
+``` tf title="log_analytics.tf"
+# Create the resource group
+resource "azurerm_resource_group" "workspace" {
+  name     = lower("${var.rg_prefix}-${var.log_analytics_workspace_rg_name}-${local.environment}")
+  location = var.log_analytics_workspace_location
+  tags     = merge(local.default_tags, var.log_analytics_tags)
+  lifecycle {
+    ignore_changes = [
+      tags
+    ]
+  }
+}
+```
+`Notes:`
+
+-  `var.rg_prefix` - this variable is coming from `naming_conventions.tf` file. all the azure resource prefix naming conventions are listed in this file, keep this in mind for rest of the labs too.
+
+- `local.environment` - this is coming from local.tf file, terraform workspace value is nothing but environment value like dev, test, prod.
+
+``` tf title="locals.tf"
+locals {
+  environment   = terraform.workspace != "default" ? terraform.workspace : ""
+}
+```
+
+run terraform plan & apply and create new resource group.
+
+```
+terraform plan -out=dev-plan -var-file="./environments/dev-variables.tfvars"
+terraform apply dev-plan
+```
+
+### Task-3: Create Log Analytics workspace using terraform
+
+Use the above resource group and create a new log analytics workspace using following terraform configuration. 
+
+
+```  tf title="variables_prefix.tf"
+variable "log_analytics_workspace_prefix" {
+  type        = string
+  default     = "workspace"
+  description = "Prefix of the log analytics workspace prefix resource."
+}
+```
+
+```  tf title="log_analytics.tf"
+# Create Log Analytics Workspace 
+resource "azurerm_log_analytics_workspace" "workspace" {
+  name                = lower("${var.log_analytics_workspace_prefix}-${var.log_analytics_workspace_name}-${local.environment}")
+  resource_group_name = azurerm_resource_group.workspace.name
+  location            = var.log_analytics_workspace_location
+  sku                 = var.log_analytics_workspace_sku
+  retention_in_days   = var.log_analytics_retention_days != "" ? var.log_analytics_retention_days : null
+  tags                = merge(local.default_tags, var.log_analytics_tags)
+  lifecycle {
+    ignore_changes = [
+      tags
+    ]
+  }
+  depends_on = [
+    azurerm_resource_group.workspace,
+  ]
+}
+
+# Create log analytics workspace solution
+resource "azurerm_log_analytics_solution" "workspace_solution" {
+  for_each              = var.solution_plan_map
+  solution_name         = each.key
+  resource_group_name   = azurerm_resource_group.workspace.name
+  location              = var.log_analytics_workspace_location
+  workspace_resource_id = azurerm_log_analytics_workspace.workspace.id
+  workspace_name        = azurerm_log_analytics_workspace.workspace.name
+  plan {
+    product   = each.value.product
+    publisher = each.value.publisher
+  }
+  tags = merge(local.default_tags, var.log_analytics_tags)
+  lifecycle {
+    ignore_changes = [
+      tags
+    ]
+  }
+  depends_on = [
+    azurerm_log_analytics_workspace.workspace,
+  ]
+}
+```
+
+#### Terraform validate
+
+```
+terraform validate
+```
+output
+
+```
+Success! The configuration is valid.
+```
+
+run terraform plan & apply again here.
+
+
+#### Terraform plan 
+
+```
+terraform plan -out=dev-plan -var-file="./environments/dev-variables.tfvars"
+```
+
+``` tf
+azurerm_resource_group.rg: Refreshing state... [id=/subscriptions/b635d52c-5170-4366-b262-cc12cba2d9be/resourceGroups/rg-resourcegroup1-dev]
+
+Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the following symbols:
+  + create
+
+Terraform will perform the following actions:
+
+  # azurerm_log_analytics_solution.workspace_solution["ContainerInsights"] will be created
+  + resource "azurerm_log_analytics_solution" "workspace_solution" {
+      + id                    = (known after apply)
+      + location              = "eastus"
+      + resource_group_name   = "rg-workspace-dev"
+      + solution_name         = "ContainerInsights"
+      + tags                  = {
+          + "CreatedBy"   = "Anji.Keesari"
+          + "Environment" = "dev"
+          + "Owner"       = "Anji.Keesari"
+          + "Project"     = "Project-1"
+        }
+      + workspace_name        = "workspace-workspace1-dev"
+      + workspace_resource_id = (known after apply)
+
+      + plan {
+          + name      = (known after apply)
+          + product   = "OMSGallery/ContainerInsights"
+          + publisher = "Microsoft"
+        }
+    }
+
+  # azurerm_log_analytics_workspace.workspace will be created
+  + resource "azurerm_log_analytics_workspace" "workspace" {
+      + daily_quota_gb                     = -1
+      + id                                 = (known after apply)
+      + internet_ingestion_enabled         = true
+      + internet_query_enabled             = true
+      + location                           = "eastus"
+      + name                               = "workspace-workspace1-dev"
+      + primary_shared_key                 = (sensitive value)
+      + reservation_capacity_in_gb_per_day = (known after apply)
+      + resource_group_name                = "rg-workspace-dev"
+      + retention_in_days                  = 30
+      + secondary_shared_key               = (sensitive value)
+      + sku                                = "PerGB2018"
+      + tags                               = {
+          + "CreatedBy"   = "Anji.Keesari"
+          + "Environment" = "dev"
+          + "Owner"       = "Anji.Keesari"
+          + "Project"     = "Project-1"
+        }
+      + workspace_id                       = (known after apply)
+    }
+
+  # azurerm_resource_group.workspace will be created
+  + resource "azurerm_resource_group" "workspace" {
+      + id       = (known after apply)
+      + location = "eastus"
+      + name     = "rg-workspace-dev"
+      + tags     = {
+          + "CreatedBy"   = "Anji.Keesari"
+          + "Environment" = "dev"
+          + "Owner"       = "Anji.Keesari"
+          + "Project"     = "Project-1"
+        }
+    }
+
+Plan: 3 to add, 0 to change, 0 to destroy.
+
+Changes to Outputs:
+  + log_analytics_workspace_id                  = (known after apply)
+  + log_analytics_workspace_location            = "eastus"
+  + log_analytics_workspace_name                = "workspace-workspace1-dev"
+  + log_analytics_workspace_primary_shared_key  = (sensitive value)
+  + log_analytics_workspace_resource_group_name = "rg-workspace-dev"
+  + log_analytics_workspace_workspace_id        = (known after apply)
+
+```
+
+#### terraform apply
+
+```
+terraform apply dev-plan
+```
+
+output
+
+```
+azurerm_resource_group.workspace: Creating...
+azurerm_resource_group.workspace: Creation complete after 1s [id=/subscriptions/b635d52c-5170-4366-b262-cc12cba2d9be/resourceGroups/rg-workspace-dev]
+azurerm_log_analytics_workspace.workspace: Creating...
+azurerm_log_analytics_workspace.workspace: Still creating... [10s elapsed]
+azurerm_log_analytics_workspace.workspace: Still creating... [20s elapsed]
+azurerm_log_analytics_workspace.workspace: Still creating... [30s elapsed]
+azurerm_log_analytics_workspace.workspace: Creation complete after 37s [id=/subscriptions/b635d52c-5170-4366-b262-cc12cba2d9be/resourceGroups/rg-workspace-dev/providers/Microsoft.OperationalInsights/workspaces/workspace-workspace1-dev]
+azurerm_log_analytics_solution.workspace_solution["ContainerInsights"]: Creating...
+azurerm_log_analytics_solution.workspace_solution["ContainerInsights"]: Creation complete after 4s [id=/subscriptions/b635d52c-5170-4366-b262-cc12cba2d9be/resourceGroups/rg-workspace-dev/providers/Microsoft.OperationsManagement/solutions/ContainerInsights(workspace-workspace1-dev)]
+
+Apply complete! Resources: 3 added, 0 changed, 0 destroyed.
+
+Outputs:
+
+log_analytics_workspace_id = "/subscriptions/b635d52c-5170-4366-b262-cc12cba2d9be/resourceGroups/rg-workspace-dev/providers/Microsoft.OperationalInsights/workspaces/workspace-workspace1-dev"
+log_analytics_workspace_location = "eastus"
+log_analytics_workspace_name = "workspace-workspace1-dev"
+log_analytics_workspace_primary_shared_key = <sensitive>
+log_analytics_workspace_resource_group_name = "rg-workspace-dev"
+log_analytics_workspace_workspace_id = "d66de214-064b-4745-abcf-e8a8060fce1f"
+resource_group_name = "rg-resourcegroup1-dev"
+```
+
+### Task-4: Validate Log Analytics workspace in the Azure portal
+
+Once azure resources are created, login into azure portal and validate new those new resources.
+
+
+![image.jpg](images/image-16.jpg)
+
+### Task-5: Lock the resource group
+
+Locking the resource group is the final steps once all the resources are created. this will prevent unexpected resource deletions by any kind of manual or automation script.
+
+
+``` tf title="log_analytics.tf"
+
+# Lock the resource group
+resource "azurerm_management_lock" "rg_workspace_lock" {
+  name       = "CanNotDelete"
+  scope      = azurerm_resource_group.workspace.id
+  lock_level = "CanNotDelete"
+  notes      = "This resource group can not be deleted - lock set by Terraform"
+  depends_on = [
+    azurerm_resource_group.workspace,
+    azurerm_log_analytics_workspace.workspace,
+    azurerm_log_analytics_solution.workspace_solution,
+  ]
+}
+```
+
+run terraform plan & apply again here.
+
+### Reference
+
+- <https://learn.microsoft.com/en-us/azure/azure-monitor/logs/log-analytics-workspace-overview> - Log Analytics workspace overview
+<!-- - https://learn.microsoft.com/en-us/cli/azure/acr?view=azure-cli-latest -->

@@ -176,7 +176,7 @@ variable "rg_name" {
 variable "location" {
   description = "Specifies the location for the resource group and all the resources"
   type        = string
-  default     = "North Central US"
+  default     = "East US"
 }
 
 variable "default_tags" {
@@ -441,6 +441,11 @@ Run `terraform apply` to apply the execution plan to your cloud infrastructure.
 **Terraform apply**
 
 ```
+terraform apply dev-plan
+```
+
+output
+```
 azurerm_resource_group.rg: Creating...
 azurerm_resource_group.rg: Creation complete after 2s [id=/subscriptions/test-5170-4366-b262-test/resourceGroups/rg-resourcegroup1-dev]
 
@@ -465,6 +470,12 @@ git add .
 git commit -am "initial setup"
 git push --set-upstream origin develop
 ```
+
+## Task-13: Verify terraform state file.
+
+Azure storage account container should have two files created and stored the terraform state file in JSON format.
+
+![image.jpg](images/image-15.jpg)
 
 ## Reference
 
