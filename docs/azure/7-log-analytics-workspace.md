@@ -32,6 +32,25 @@ In this exercise we will accomplish & learn following:
 
 Open the terraform folder in VS core and start creating new files or update existing files for Log Analytics specific resources to provision in azure cloud.
 
+
+**login to Azure**
+
+Verify that you are logged into the right Azure subscription before start anything in visual studio code
+
+``` sh
+# Login to Azure
+az login 
+
+# Shows current Azure subscription
+az account show
+
+# Lists all available Azure subscriptions
+az account list
+
+# Sets Azure subscription to desired subscription using ID
+az account set -s "anji.keesari"
+```
+
 ### Task-1: Configure terraform variables for Log Analytics workspace 
 
 
@@ -198,6 +217,38 @@ resource "azurerm_log_analytics_solution" "workspace_solution" {
 }
 ```
 
+``` tf title="output.tf"
+output "log_analytics_workspace_id" {
+  value       = azurerm_log_analytics_workspace.workspace.id
+  description = "Specifies the resource id of the log analytics workspace"
+}
+
+output "log_analytics_workspace_location" {
+  value       = azurerm_log_analytics_workspace.workspace.location
+  description = "Specifies the location of the log analytics workspace"
+}
+
+output "log_analytics_workspace_name" {
+  value       = azurerm_log_analytics_workspace.workspace.name
+  description = "Specifies the name of the log analytics workspace"
+}
+
+output "log_analytics_workspace_resource_group_name" {
+  value       = azurerm_log_analytics_workspace.workspace.resource_group_name
+  description = "Specifies the name of the resource group that contains the log analytics workspace"
+}
+
+output "log_analytics_workspace_workspace_id" {
+  value       = azurerm_log_analytics_workspace.workspace.workspace_id
+  description = "Specifies the workspace id of the log analytics workspace"
+}
+
+output "log_analytics_workspace_primary_shared_key" {
+  value       = azurerm_log_analytics_workspace.workspace.primary_shared_key
+  description = "Specifies the workspace key of the log analytics workspace"
+  sensitive   = true
+}
+```
 #### Terraform validate
 
 ```
@@ -356,7 +407,20 @@ resource "azurerm_management_lock" "rg_workspace_lock" {
 }
 ```
 
-run terraform plan & apply again here.
+run terraform validate & format
+
+```
+terraform validate
+terraform fmt
+```
+
+run terraform plan & apply
+
+```
+terraform plan -out=dev-plan -var-file="./environments/dev-variables.tfvars"
+terraform apply dev-plan
+```
+
 
 ### Reference
 
