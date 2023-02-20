@@ -179,6 +179,7 @@ nav:
     - Create Terraform Foundation Part-2: azure/6-tf-foundation-2.md
     - Create Log Analytics Workspace using terraform: azure/7-log-analytics-workspace.md
     -  Create Virtual Network using terraform: azure/8-vnet.md
+    -  Create Azure Container Registry (ACR) using terraform: azure/9-acr.md
   - Kubernetes:
     - Pod troubleshooting : kubernetes/pod-troubleshooting.md
   - Azure DevOps:
