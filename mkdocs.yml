@@ -180,6 +180,7 @@ nav:
     - Create Log Analytics Workspace using terraform: azure/7-log-analytics-workspace.md
     -  Create Virtual Network using terraform: azure/8-vnet.md
     -  Create Azure Container Registry (ACR) using terraform: azure/9-acr.md
+    -  Create Azure Kubernetes Service (AKS) using terraform: azure/10-aks.md
   - Kubernetes:
     - Pod troubleshooting : kubernetes/pod-troubleshooting.md
   - Azure DevOps:

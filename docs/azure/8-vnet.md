@@ -36,6 +36,7 @@ working on it...
   - Azure subscription
   - Visual studio code
   - Azure DevOps Project & repo
+  - Terraform Foundation
   - Log Analytics workspace
 
 ## Implementation details

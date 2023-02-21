@@ -1,6 +1,20 @@
 ## Introduction
 
-An `Azure container registry` stores and manages private container images and other artifacts, similar to the way `Docker Hub` stores public Docker container images.
+Azure Container Registry (ACR) is a managed Docker registry service provided by Microsoft Azure. It allows you to store and manage container images for your applications in a secure and private environment.
+
+ACR provides a number of benefits, including:
+
+- **Private repository:** ACR provides a private Docker registry, which means that you can store your Docker images securely and privately, and only authorized users or services can access them.
+
+- **High availability:** ACR is built on Azure, so it benefits from Azure's global network and high availability features. This means that your container images are always available, and you can easily replicate them across regions for disaster recovery.
+
+- **Integration with Azure services:** ACR integrates seamlessly with other Azure services, such as Azure Kubernetes Service (AKS), Azure Web Apps, and Azure DevOps, making it easy to incorporate ACR into your existing workflows.
+
+- **Security and compliance:** ACR provides built-in security features, such as role-based access control, network security, and encryption at rest, to help you meet your security and compliance requirements.
+
+- **Geo-replication:** ACR allows you to replicate your container images across multiple regions for improved performance and disaster recovery.
+
+To get started with ACR, we are going to use terraform to create a new Azure Container Registry. Once you have a registry, you can push your Docker images to it using the Docker CLI, Azure CLI, or other tools, and manage your images using the Azure portal or a variety of third-party tools.
 
 ## Technical Scenario
 
@@ -37,6 +51,7 @@ reference- <https://learn.microsoft.com/en-us/azure/container-registry/container
   - Azure subscription
   - Visual studio code
   - Azure DevOps Project & repo
+  - Terraform Foundation
   - Log Analytics workspace
 
 ## Implementation details
@@ -228,7 +243,7 @@ terraform apply dev-plan
 
 ## Task-3: Create ACR user assigned identity
 
-Use the following terraform configuration for creating assigned identity which is going be used in ACR
+Use the following terraform configuration for creating user assigned identity which is going be used in ACR
 
 User assigned managed identities enable Azure resources to authenticate to cloud services (e.g. Azure Key Vault) without storing credentials in code. 
 
