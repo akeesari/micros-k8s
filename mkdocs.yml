@@ -184,7 +184,8 @@ nav:
   - Kubernetes:
     - Prepare an application for Azure Kubernetes Service (AKS): kubernetes/1-prepare-app.md
     - Deploying an application to Azure Kubernetes Service (AKS): kubernetes/2-deploy-app.md
-    - Pod troubleshooting : kubernetes/pod-troubleshooting.md
+    - Working with AKS cluster using kubectl : kubernetes/3-working-with-aks.md
+    - Kubernetes Pod troubleshooting : kubernetes/pod-troubleshooting.md    
   - Azure DevOps:
     - Azure DevOps Pipelines (CI & CD): devops/devops.md
     - ArgoCD: devops/argocd/argocd.md
