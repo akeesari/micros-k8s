@@ -185,6 +185,7 @@ nav:
     - Prepare an application for Azure Kubernetes Service (AKS): kubernetes/1-prepare-app.md
     - Deploying an application to Azure Kubernetes Service (AKS): kubernetes/2-deploy-app.md
     - Working with AKS cluster using kubectl : kubernetes/3-working-with-aks.md
+    - Setup NGINX ingress controller in Kubernetes cluster : kubernetes/4-ingress-controller.md
     - Kubernetes Pod troubleshooting : kubernetes/pod-troubleshooting.md    
   - Azure DevOps:
     - Azure DevOps Pipelines (CI & CD): devops/devops.md

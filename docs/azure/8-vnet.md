@@ -307,14 +307,14 @@ resource "azurerm_resource_group" "vnet" {
 ```
 run terraform validate & format
 
-```
+``` sh
 terraform validate
 terraform fmt
 ```
 
 run terraform plan & apply
 
-```
+``` sh
 terraform plan -out=dev-plan -var-file="./environments/dev-variables.tfvars"
 terraform apply dev-plan
 ```
@@ -405,14 +405,14 @@ resource "azurerm_subnet" "firewall" {
 
 run terraform validate & format
 
-```
+``` sh
 terraform validate
 terraform fmt
 ```
 
 run terraform plan & apply
 
-```
+``` sh
 terraform plan -out=dev-plan -var-file="./environments/dev-variables.tfvars"
 terraform apply dev-plan
 ```
@@ -530,14 +530,14 @@ resource "azurerm_subnet" "jumpbox" {
 
 run terraform validate & format
 
-```
+``` sh
 terraform validate
 terraform fmt
 ```
 
 run terraform plan & apply
 
-```
+``` sh
 terraform plan -out=dev-plan -var-file="./environments/dev-variables.tfvars"
 terraform apply dev-plan
 ```
@@ -586,14 +586,14 @@ resource "azurerm_monitor_diagnostic_setting" "diag_vnet" {
 ```
 run terraform validate & format
 
-```
+``` sh
 terraform validate
 terraform fmt
 ```
 
 run terraform plan & apply
 
-```
+``` sh
 terraform plan -out=dev-plan -var-file="./environments/dev-variables.tfvars"
 terraform apply dev-plan
 ```
@@ -619,14 +619,14 @@ resource "azurerm_management_lock" "vnet" {
 ```
 run terraform validate & format
 
-```
+``` sh
 terraform validate
 terraform fmt
 ```
 
 run terraform plan & apply
 
-```
+``` sh
 terraform plan -out=dev-plan -var-file="./environments/dev-variables.tfvars"
 terraform apply dev-plan
 ```

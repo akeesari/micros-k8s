@@ -478,14 +478,14 @@ resource "azurerm_resource_group" "aks" {
 ```
 run terraform validate & format
 
-```
+``` sh
 terraform validate
 terraform fmt
 ```
 
 run terraform plan & apply
 
-```
+``` sh
 terraform plan -out=dev-plan -var-file="./environments/dev-variables.tfvars"
 terraform apply dev-plan
 ```
@@ -647,14 +647,14 @@ resource "azurerm_kubernetes_cluster" "aks" {
 
 run terraform validate & format
 
-```
+``` sh
 terraform validate
 terraform fmt
 ```
 
 run terraform plan & apply
 
-```
+``` sh
 terraform plan -out=dev-plan -var-file="./environments/dev-variables.tfvars"
 terraform apply dev-plan
 ```
@@ -792,14 +792,14 @@ resource "azurerm_monitor_diagnostic_setting" "diag_aks" {
 ```
 run terraform validate & format
 
-```
+``` sh
 terraform validate
 terraform fmt
 ```
 
 run terraform plan & apply
 
-```
+``` sh
 terraform plan -out=dev-plan -var-file="./environments/dev-variables.tfvars"
 terraform apply dev-plan
 ```
@@ -885,14 +885,14 @@ resource "azurerm_management_lock" "aks" {
 ```
 run terraform validate & format
 
-```
+``` sh
 terraform validate
 terraform fmt
 ```
 
 run terraform plan & apply
 
-```
+``` sh
 terraform plan -out=dev-plan -var-file="./environments/dev-variables.tfvars"
 terraform apply dev-plan
 ```
