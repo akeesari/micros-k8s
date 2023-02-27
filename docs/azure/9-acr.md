@@ -56,7 +56,7 @@ reference- <https://learn.microsoft.com/en-us/azure/container-registry/container
 
 ## Implementation details
 
-Open the terraform project folder in Visual Studio core and creating new file named `acr.tf` for Azure container registry specific azure resources;
+Open the terraform project folder in Visual Studio code and creating new file named `acr.tf` for Azure container registry specific azure resources;
 
 
 **login to Azure**

@@ -2,7 +2,9 @@
 
 ## Introduction
 
-Microservices topic is very big and complex to understand, I am not going to talk much about the theory part of the Microservices instead focus on the planning and labs on Microservices architecture.
+Getting started with microservices requires a solid understanding of the architecture and the technology stack, as well as careful planning and implementation of the individual services. With the right approach, however, microservices can help you build flexible, scalable, and maintainable applications.
+
+In general building true microservices architecture needs good understand and theoretical and practical knowledge, I am not going to talk much about the theory part of the Microservices her instead I'll focus on how to plan and create on sample Microservices.
 
 I am assuming you've already done your homework on Microservices architecture before reading this. Let's quickly recap very hight level what is Microservice before start the labs.
  
@@ -28,17 +30,17 @@ In this exercise we will accomplish & learn on following:
 
 - **Task-1:** Identity list of business domains / microservices
 - **Task-2:** Identity list of git repos needed 
-- **Task-3:** Identity list of applicatios needed
+- **Task-3:** Identity list of applications needed
 - **Task-4:** Create DevOps Organization - Lab
 - **Task-5:** Create DevOps Project - Lab
   
 ## Task-1: Identity list of business domains / microservices
 
-One of the complext part of the Microservices architecture is, identifing the list of microservices needed.
+One of the complex part of the Microservices architecture is, identifying the list of microservices needed. Services should be organized around business capabilities, and each service should have a clear and well-defined responsibility.
 
-use the below link to understand and anlyse your business domains and define the bounded context for your Microservices architectrue etc..
+use the below link to understand and analyze your business domains and define the bounded context for your Microservices architecture etc..
 
-https://learn.microsoft.com/en-us/azure/architecture/microservices/model/domain-analysis
+<https://learn.microsoft.com/en-us/azure/architecture/microservices/model/domain-analysis>
 
 Since my focus here is not implementing any real world microservices scenarios therefore I'll just use domain names like below: 
 
@@ -80,9 +82,15 @@ For example:
 
 ## Task-3: Identity list of Applications needed
 
-Use this task to identity list of applications needed for your projects. 
+Use this task to identity list of microservices applications needed for your projects. 
+
+`Choose your technology stack:`
+
+Microservices can be built using a variety of technology stacks. Some popular choices include .NET Core, Node.js, Java, and Python etc..
+
 
 Here is the list of applications we will be creating to get the feeling of Microservices pattern. Here we purposely selected different technology stack and languages to cover more learning scenarios.
+
 
 - Create the first Microservice with .NET Core Web Rest API with C#
     - name of the api is `aspnet-api`
@@ -106,18 +114,17 @@ Here is the list of applications we will be creating to get the feeling of Micro
 
 To create a new Azure DevOps organization, follow these steps:
 
-1. Sign in to Azure DevOps. - https://dev.azure.com/keesari
-
+1. Sign in to Azure DevOps. - <https://dev.azure.com>
 2. Click on `New organization` in the left nav.
+![image.jpg](images/image-8.jpg)
 3. Enter name of the Organization and create new organization.
-
-![select-new-organization.png](images/select-new-organization.png)
+![image.jpg](images/image-9.jpg)
 
 Once you have completed these steps, you will have a new Azure DevOps organization that is ready for use. You can then invite members to join your organization and start working on projects.
 
-## Task-4: Create new Azure DevOps Project
+## Task-5: Create new Azure DevOps Project
 
-1. Sign in to the Azure DevOps website (https://dev.azure.com/) with your Azure DevOps account.
+1. Sign in to the Azure DevOps website <https://dev.azure.com/> with your Azure DevOps account.
 
 2. Click on the `Create a project` button.
 
@@ -129,7 +136,10 @@ Once you have completed these steps, you will have a new Azure DevOps organizati
 
 6. When you are finished, click the `Finish` button to complete the project creation process.
 
-![create-new-project.png](images/create-new-project.png)
+Project Name - `Microservices`
+Description - `Microservices project will be used to roll out sample microservices applications for demonstrating microservices architecture.`
+
+![image.jpg](images/image-10.jpg)
 
 
 ## References

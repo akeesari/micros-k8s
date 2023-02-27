@@ -36,7 +36,8 @@ In this exercise we will accomplish & learn how to implement following:
 - Task-5: Create diagnostics settings for AKS
 - Task-6: Review AKS Cluster resource in the portal
 - Task-7: Validate AKS cluster running Kubectl
-- Task-8: Lock AKS cluster resource group
+- Task-8: Allow AKS Cluster access to Azure Container
+- Task-9: Lock AKS cluster resource group
 
 ## Architecture diagram
 
@@ -57,7 +58,7 @@ working on it...
   
 ## Implementation details
 
-Open the terraform project folder in Visual Studio core and creating new file named `aks.tf` for Azure Kubernetes services (AKS) specific azure resources;
+Open the terraform project folder in Visual Studio code and creating new file named `aks.tf` for Azure Kubernetes services (AKS) specific azure resources;
 
 
 **login to Azure**
@@ -813,10 +814,59 @@ list of resources in this AKS resource group
 
 ##  Task-7: Validate AKS cluster running Kubectl
 
+
+``` sh
+# Azure Kubernetes Service Cluster User Role
+az aks get-credentials -g "rg-aks-dev" -n "aks-cluster1-dev"
+
+# Azure Kubernetes Service Cluster Admin Role
+az aks get-credentials -g "rg-aks-dev" -n "aks-cluster1-dev" --admin
 ```
+get nodes
+
+```
+kubectl get no
+```
+output
+```
+NAME                                STATUS   ROLES   AGE     VERSION
+aks-agentpool-25316841-vmss000000   Ready    agent   5d20h   v1.23.12
+aks-agentpool-25316841-vmss000001   Ready    agent   5d20h   v1.23.12
+```
+get namespaces
+```
+ kubectl get namespace -A
+```
+output
+```
+NAME                STATUS   AGE
+default             Active   5d20h
+gatekeeper-system   Active   5d20h
+kube-node-lease     Active   5d20h
+kube-public         Active   5d20h
+kube-system         Active   5d20h
 ```
 
-## Task-8: Lock the resource group
+##  Task-8: Allow AKS Cluster access to Azure Container
+
+AKS cluster needs access to the ACR to pull images from the ACR.  you can allow an AKS cluster access to an Azure Container Registry (ACR) using role assignment. Here is the terraform configuration for this creating role assignment.
+
+``` tf
+# Allow AKS Cluster access to Azure Container Registry
+resource "azurerm_role_assignment" "role_acrpull" {
+  principal_id                     = azurerm_kubernetes_cluster.aks.kubelet_identity[0].object_id
+  role_definition_name             = "AcrPull"
+  scope                            = azurerm_container_registry.acr.id
+  skip_service_principal_aad_check = true
+  depends_on = [
+    azurerm_container_registry.acr,
+    azurerm_kubernetes_cluster.aks
+  ]
+}
+```
+![image.jpg](images/image-32.jpg)
+
+## Task-9: Lock the resource group
 
 Finally, it is time to lock the resource group created part of this exercise, so that we can avoid the accidental deletion of the azure resources created here.
 

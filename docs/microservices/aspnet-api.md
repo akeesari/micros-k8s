@@ -36,6 +36,7 @@ In this exercise we will accomplish & learn how to implement following:
 - An organization in Azure DevOps
 - A project in Azure DevOps
 - Create repository permission
+- Git client
 - Download and install software for .NET development 
 - Docker and the VS Code Docker extension must be installed
  
@@ -55,15 +56,13 @@ To create a new repository in Azure DevOps, follow these steps:
 
 For example: 
 
-![image.png](/.attachments/image-1980253c-d30e-4d72-885e-879f1a7cae3e.png)
+![image.jpg](images/image-11.jpg)
 
 ## Task-2: Clone the repo from azure DevOps
 
-**Option-1:** 
+To clone a repository from Azure DevOps, you will need to have the Git client installed on your local machine. follow these steps to clone the source code locally:
 
-To clone a repository from Azure DevOps, you will need to have the Git client installed on your local machine. Then, follow these steps:
-
-1. Sign in to the Azure DevOps website (https://dev.azure.com/) with your Azure DevOps account.
+1. Sign in to the Azure DevOps website <https://dev.azure.com/> with your Azure DevOps account.
 
 2. Navigate to the project that contains the repository you want to clone.
 
@@ -75,7 +74,9 @@ To clone a repository from Azure DevOps, you will need to have the Git client in
 
 6. Open a terminal window or command prompt on your local machine, and navigate to the directory where you want to clone the repository.
 
-7. Run the following command to clone the repository:
+or 
+
+Run the following command to clone the repository:
 
 ```
 git clone <repository URL>
@@ -89,15 +90,15 @@ Examples:
 
 ```
 C:\Users\anji.keesari>cd C:\Source\Repos
-C:\Source\Repos>git clone https://dev.azure.com/keesari/project1/_git/aspnetapi
+C:\Source\Repos>git clone https://keesari.visualstudio.com/Microservices/_git/aspnetapi
 
 or
 
 # cloning from main branch for the first time
-git clone https://dev.azure.com/keesari/project1/_git/aspnetapi  -b main C:\Source\Repos\aspnetapi
+git clone git clone https://keesari.visualstudio.com/Microservices/_git/aspnetapi  -b main C:\Source\Repos\Microservices\aspnetapi
 
 # cloning from feature branches
-git clone https://dev.azure.com/keesari/project1/_git/aspnetapi  -b develop C:\Source\Repos\aspnetapi
+git clone https://keesari.visualstudio.com/Microservices/_git/aspnetapi  -b develop C:\Source\Repos\Microservices\aspnetapi
 
 ```
 
@@ -107,6 +108,7 @@ regularly used git commands.
 git init
 got add .
 git commit -a -m "My fist commit."
+git push --set-upstream origin main
 git status
 git pull
 git push
@@ -245,65 +247,66 @@ path-to-application:
 
 1.  Run the following command to build the project:
 
+ `dotnet build` command will look for the project or solution file in the current directory and compile the code in it. It will also restore any dependencies required by the project and create the output files in the bin directory.
+
 ```
 dotnet build
 ```
-2.  Run the following command to start the development server:
 
+output
 ```
-dotnet run
-```
-
-VS code will automatically launch with following URL, port # here is randomly generated.  
-
-<https://localhost:7157>
-
-<http://localhost:5136/WeatherForecast>
-
-or 
-
-open the above URL in any of your browsers and you will get a `404 error. `
-Don’t worry. Just type swagger at the end of the URL and press enter and you will get the following webpage.
-
-<https://localhost:7157/swagger/index.html>
-
-
-for example:
-
-```
-C:\Source\Repos\aspnetapi>dotnet build
-Microsoft (R) Build Engine version 17.0.0+c9eb9dd64 for .NET
+Microsoft (R) Build Engine version 17.0.1+b177f8fa7 for .NET
 Copyright (C) Microsoft Corporation. All rights reserved.
 
   Determining projects to restore...
   All projects are up-to-date for restore.
-  aspnetapi -> C:\Source\Repos\aspnetapi\bin\Debug\net6.0\aspnetapi.dll
+  AspNetApi -> C:\Source\Repos\AspNetApi\aspnet-api\bin\Debug\net6.0\AspNetApi.dll
 
 Build succeeded.
     0 Warning(s)
     0 Error(s)
 
-Time Elapsed 00:00:03.84
+Time Elapsed 00:00:01.51
+```
+2.  Run the following command to start the development server:
 
-C:\Source\Repos\aspnetapi>dotnet run
+ `dotnet run` command will look for the project or solution file in the current directory and compile the code in it. After compiling, it will run the application and any output will be displayed in the console.
+
+```
+dotnet run
+```
+
+output
+
+```
 Building...
 info: Microsoft.Hosting.Lifetime[14]
-      Now listening on: https://localhost:7227
+      Now listening on: https://localhost:7136
 info: Microsoft.Hosting.Lifetime[14]
-      Now listening on: http://localhost:5257
+      Now listening on: http://localhost:5136
 info: Microsoft.Hosting.Lifetime[0]
       Application started. Press Ctrl+C to shut down.
 info: Microsoft.Hosting.Lifetime[0]
       Hosting environment: Development
 info: Microsoft.Hosting.Lifetime[0]
-      Content root path: C:\Source\Repos\aspnetapi\
+      Content root path: C:\Source\Repos\AspNetApi\aspnet-api\
 ```
+you will notice the URL in the output, copy the URL and paste it in your favorite browser. you will get a `404 error. ` don’t worry. Just type swagger at the end of the URL and press enter and you will get the following webpage.
+
+![image.jpg](images/image-1.jpg)
+
+<https://localhost:7136>
+
+<https://localhost:7136/swagger/index.html> - Swagger URL
+
+<https://localhost:7136/api/aspnetapi/v1/weatherforecast> - API endpoint URL
+
 
 If you are able to see this swagger URL in your browser then everything is created and setup as expected.
 
-![image.png](/.attachments/image-0dc56065-d4a1-4de0-8564-ce1489b97718.png)
+![image.jpg](images/image-2.jpg)
 
-Stoping the application in VS Code
+use the following command to stop the application in VS Code
 
 ```
 ctrl + c
@@ -324,94 +327,51 @@ git push
 
 ## Task-5: Add Docker files to the API project
 
-To add Dockerfiles to a .NET Core Web API project, follow these steps:
+THere are multiple way to create Dockerfile depending on your code editor. 
+Here are the step-by-step instructions for creating a Dockerfile in a .NET Core Web API project:
 
-**Option-1:**
+1. First, open your .NET Core Web API project in Visual Studio code or your favorite code editor.
 
-1. Make sure that you have Docker installed on your machine. You can download Docker from the Docker website <https://www.docker.com/get-started>.
+1. Next, create a new file in the root directory of your project and name it Dockerfile (with no file extension).
 
-2. In your .NET Core Web API project, create a new file named "Dockerfile" at the root of the project.
+1. Open the Dockerfile and add the following code to the file:
 
-3. Add the following lines to the Dockerfile:
+``` Dockerfile
+#See https://aka.ms/containerfastmode to understand how Visual Studio uses this Dockerfile to build your images for faster debugging.
 
-``` Docker
-FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
-WORKDIR /app
-
-# copy csproj and restore as distinct layers
-COPY *.csproj .
-RUN dotnet restore
-
-# copy and build everything else
-COPY . .
-RUN dotnet publish -c Release -o out
-
-FROM mcr.microsoft.com/dotnet/aspnet:5.0 AS runtime
-WORKDIR /app
-COPY --from=build /app/out ./
-ENTRYPOINT ["dotnet", "MyProject.dll"]
-```
-
-**Option-2:**
-
-
-1. Open the project folder in VS Code.
-2. Open Command Palette (`Ctrl+Shift+P`) and issue Docker Images: Build Image... command.
-3. Click Yes
-
-![image.png](/.attachments/image-ba1c74e0-9357-444c-a313-8abad0c64137.png)
-
-4. Select ASP.NET Core
-
-![image.png](/.attachments/image-dfcdd208-6fc9-4c28-be25-cafca17068e2.png)
-
-5. Select Linux (recommended)
-6. Change the port for application endpoint to `5000`
-
-![image.png](/.attachments/image-23817eed-0ac6-4586-8b59-b1a46c77e2da.png)
-
-7. Dockerfile and .dockerignore files are added to the workspace.
-
-Code will start building at this stage.
-
-for example:
-
-![image.png](/.attachments/image-be6bb7c9-eb9a-40ca-b066-c80026bd6f7c.png)
-
-**Docker file contents**
-
-Here is the Docker file contents, use these commands in case if you need to create the docker file manually instead of automatically creating using VS Code or Visual Studio.
-
-``` Docker
 FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS base
 WORKDIR /app
-EXPOSE 5257
-
-ENV ASPNETCORE_URLS=http://+:5257
-
-# Creates a non-root user with an explicit UID and adds permission to access the /app folder
-# For more info, please refer to <https://aka.ms/vscode-docker-dotnet-configure-containers>
-RUN adduser -u 5678 --disabled-password --gecos "" appuser && chown -R appuser /app
-USER appuser
+EXPOSE 80
+EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
-COPY ["todoapi.csproj", "./"]
-RUN dotnet restore "todoapi.csproj"
+COPY ["AspNetApi.csproj", "."]
+RUN dotnet restore "./AspNetApi.csproj"
 COPY . .
 WORKDIR "/src/."
-RUN dotnet build "todoapi.csproj" -c Release -o /app/build
+RUN dotnet build "AspNetApi.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "todoapi.csproj" -c Release -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "AspNetApi.csproj" -c Release -o /app/publish
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "todoapi.dll"]
-
+ENTRYPOINT ["dotnet", "AspNetApi.dll"]
 ```
-## Task-6: Build & publish container image
+
+This code defines a Docker image that is based on the aspnet:6.0 image from Microsoft's container registry. The image is divided into four stages:
+
+   - `base:` sets up the working directory and exposes port 80.
+   - `build:` restores the project dependencies, builds the project in Release mode, and copies the build output to the /app/build directory.
+   - `publish:` publishes the project in Release mode and copies the published output to the /app/publish directory.
+   - `final:` sets the working directory to `/app` and copies the published output from the `publish` stage to the current directory. It also specifies the entry point for the container, which is the `dotnet` command with the name of your project's DLL file.
+
+
+## Task-6: Docker Build & Run
+
+Docker Build is a command that allows you to build a Docker image from a Dockerfile. The Dockerfile is a text file that contains instructions for Docker to build the image, including the base image to use, the files to include, the commands to run, and the ports to expose.
 
 To build and publish a container image for a .NET Core Web API project, you will need to have Docker installed on your machine. You can download Docker from the Docker website (https://www.docker.com/get-started).
 
@@ -427,10 +387,10 @@ Once you have Docker installed, follow these steps to build and publish a contai
 Run docker build command to build the source code
 
 ```
-docker build -t projectname/domainname/aspnet-api:20221127.1 .
+docker build -t sample/aspnet-api:20230226.1 .
 ```
 
-**Best Practice:**
+`Best Practice:`
 
 use this docker build pattern.
 
@@ -439,51 +399,66 @@ use this docker build pattern.
 
 output
 ```
-C:\Source\Repos\todoapi>docker build -t projectname/domainname/aspnet-api:20221127.1 .
+
 [+] Building 9.5s (19/19) FINISHED
  => [internal] load build definition from Dockerfile                                                                                                          0.0s 
  => => transferring dockerfile: 878B                                                                                                                          0.0s 
  => [internal] load .dockerignore                                                                                                                             0.0s 
  => => transferring context: 374B  
-            
-...
-                                                                                                               
+..            
+..
+..
+
+ => => naming to docker.io/sample/aspnet-api:20230226.1                                                                                                             
 ```
 Verify the new image
 
-if you open the docker desktop you should be able to see the newely created image there.
+if you open the docker desktop you should be able to see the newly created image there.
 
-![image.png](/.attachments/image-a7743901-4b2d-4e9c-b046-5cbe854297c6.png)
+![image.jpg](images/image-3.jpg)
 
 **docker run**
 
 Run the following command to start a container based on the image:
 
 ```
-docker run --rm -p 8080:80 projectname/domainname/aspnet-api:20221127.1
+docker run --rm -p 8080:80 sample/aspnet-api:20230226.1
 ```
 output
 ```
-C:\Source\Repos\todoapi>docker run --rm -p 8080:80 projectname/domainname/aspnet-api:20221127.1
-info: Microsoft.Hosting.Lifetime[14]
-      Now listening on: http://[::]:5257
+info: Microsoft.Hosting.Lifetime[14]  
+      Now listening on: http://[::]:80
 info: Microsoft.Hosting.Lifetime[0]
       Application started. Press Ctrl+C to shut down.
 info: Microsoft.Hosting.Lifetime[0]
       Hosting environment: Production
 info: Microsoft.Hosting.Lifetime[0]
       Content root path: /app/
-
 ```
+Wait for the container to start. You should see output in the terminal indicating that the container is listening on port 80.
 
-Verify the new container
+Open the docker desktop to see the newly created container in the docker desktop app
 
-Open the docker desktop to see the newly created container.
+![image.jpg](images/image-4.jpg)
 
-![image.png](/.attachments/image-541292db-40a6-442c-87fd-0429b4c73b8d.png)
 
-**delete all containers & images** [optional]
+Open a web browser and navigate to http://localhost:8080/api/values (or whatever URL corresponds to your Web API endpoint) to confirm that the Web API is running inside the Docker container.
 
+use these links for testing when you run docker command from vs code
+
+<http://localhost:8080/swagger/index.html>
+<http://localhost:8080/api/aspnetapi/v1/heartbeat/ping>
+<http://localhost:8080/api/aspnetapi/v1/weatherforecast>
+
+![image.jpg](images/image-5.jpg)
+
+
+That's it! You've successfully created a Dockerfile and built a Docker image for your .NET Core Web API project. You can now distribute the Docker image to other machines or deploy it to a cloud service like Azure or AWS.
+
+
+`tip:`
+
+delete all containers & images
 
 use these commands in case if you need to clean-up the containers or images
 
@@ -495,11 +470,7 @@ use these commands in case if you need to clean-up the containers or images
 #     docker rmi -f $(docker images -aq)
 ```
 
-use these links for testing when you run docker command from vs code
 
-<http://localhost:8080/swagger/index.html>
-<http://localhost:8080/api/aspnetapi/v1/heartbeat/ping>
-<http://localhost:8080/api/aspnetapi/v1/weatherforecast>
 <!-- 
 TroubleShooting 
 
@@ -512,65 +483,127 @@ Update port number
 ![image.png](/.attachments/image-801c4b54-4050-402e-b546-6fa987dce9b5.png)
  -->
 
-## Task-7: Publish docker container image to ACR
+## Task-7: Push docker container image to ACR
 
 To publish a Docker container image to Azure Container Registry (ACR), you will need to have the following:
 
-1. Open a terminal window and navigate to the root of the project.
-
-2. Run the following command to build the Docker image:
-
-```
-docker build -t myproject .
-```
-3. Run the following command to tag the image with the ACR login server:
-```
-docker tag myproject myacrlogin.azurecr.io/myproject:1.0.0
-```
-4. Run the following command to log in to ACR:
-```
-az acr login --name myacrlogin
-```
-5. Run the following command to push the image to ACR:
-```
-docker push myacrlogin.azurecr.io/myproject:1.0.0
-```
-6. Run the following command to pull the image from ACR:
-```
-docker pull myacrlogin.azurecr.io/myproject:1.0.0
-```
-7. Run the following command to start a container based on the image:
-```
-docker run -p 5000:80 --rm myacrlogin.azurecr.io/myproject:1.0.0
-```
-
-```
+1. Create an Azure Container Registry. If you don't have one, you can create one by following the instructions in the Azure Portal or using Azure CLI.
+1. Log in to your Azure Container Registry using the Docker command-line interface. You can do this by running the following command:
+``` sh
+# azure Login
 az login
-az account set -s "subscription name"
+az account set -s "anji.keesari"
 
 # Log in to the container registry
-
-az acr login --name keesarilabdev
-
+az acr login --name acr1dev
+# Login Succeeded
 # To get the login server address
-az acr list --resource-group rg-ACR --query "[].{acrLoginServer:loginServer}" --output table
+az acr list --resource-group rg-acr-dev --query "[].{acrLoginServer:loginServer}" --output table
 
-keesarilabdev.azurecr.io
-
-# Now, tag your local tenant image with the acrLoginServer (keesarilabdev) address of the container registry
-
-docker tag project1/sample/aspnet-api:20220829.1 keesarilabdev.azurecr.io/project1/sample/aspnet-api:20220829.1
-
-# Push images to registry
-
-docker push keesarilabdev.azurecr.io/project1/sample/aspnet-api:20220829.1
-
-# List images in registry
-az acr repository list --name keesarilabdev --output table
-
-# show tags of a image in the acr
-az acr repository show-tags --name keesarilabdev --repository project1/sample/aspnet-api --output table
+# AcrLoginServer    
+# ------------------
+# acr1dev.azurecr.io
 ```
+1. `Tag` your Docker container image with the full name of your Azure Container Registry, including the repository name and the version tag. You can do this by running the following command:
+```
+docker tag sample/aspnet-api:20230226.1 acr1dev.azurecr.io/sample/aspnet-api:20230226.1
+```
+To see a list of your current local images
+```
+docker images
+```
+output
+```
+REPOSITORY                             TAG          IMAGE ID       CREATED         SIZE
+acr1dev.azurecr.io/sample/aspnet-api   20230226.1   1bab8ba123ca   2 hours ago     213MB
+```
+1. Push your Docker container image to your Azure Container Registry using the Docker command-line interface. You can do this by running the following command:
+```
+docker push acr1dev.azurecr.io/sample/aspnet-api:20230226.1
+```
+output
+```
+The push refers to repository [acr1dev.azurecr.io/sample/aspnet-api]
+a592c2e20b23: Pushed
+5f70bf18a086: Layer already exists
+d57ad0aaee3b: Layer already exists
+aff5d88d936a: Layer already exists
+b3b2bd456a19: Layer already exists
+2540ef4bc011: Layer already exists
+94100d1041b6: Layer already exists
+bd2fe8b74db6: Layer already exists
+20230226.1: digest: sha256:026ec79d24fca0f30bcd90c7fa17e82a2347cf7bc5ac5d762a630277086ed0d1 size: 1995
+```
+5. Wait for the push to complete. Depending on the size of your Docker container image and the speed of your internet connection, this may take a few minutes.
+5. Verify the newly pushed image to ACR.
+``` sh
+# List images in registry
+az acr repository list --name acr1dev --output table
+```
+output
+```
+Result
+-------------------------------
+mcr.microsoft.com/dotnet/aspnet
+mcr.microsoft.com/dotnet/sdk
+sample/aspnet-api
+```
+6. Show the new tags of a image in the acr
+``` sh
+az acr repository show-tags --name acr1dev --repository sample/aspnet-api --output table
+```
+output
+```
+Result
+----------
+20230220.1
+20230226.1
+```
+
+That's it! You've successfully pushed your Docker container image to Azure Container Registry. You can now use the Azure Portal or Azure CLI to manage your container images and deploy them to Azure services like Azure Kubernetes Service (AKS).
+
+## Task-8: Pull docker container image from ACR
+
+To pull a Docker container image from Azure Container Registry (ACR), you need to perform the following steps:
+
+
+1. Log in to your Azure Container Registry using the Docker command-line interface. You can do this by running the following command:
+``` sh
+# Log in to the container registry
+az acr login --name acr1dev
+```
+1. Pull your Docker container image from your Azure Container Registry using the Docker command-line interface. You can do this by running the following command:
+``` sh
+docker pull acr1dev.azurecr.io/sample/aspnet-api:20230226.1
+```
+output
+``` 
+20230226.1: Pulling from sample/aspnet-api
+01b5b2efb836: Already exists
+c4c81489d24d: Already exists
+95b82a084bc9: Already exists
+bb369c4b0f26: Already exists 
+c888ac593815: Already exists
+14ce87409b2e: Already exists
+4f4fb700ef54: Already exists
+d15d1be868b7: Already exists
+Digest: sha256:026ec79d24fca0f30bcd90c7fa17e82a2347cf7bc5ac5d762a630277086ed0d1
+Status: Downloaded newer image for acr1dev.azurecr.io/sample/aspnet-api:20230226.1
+acr1dev.azurecr.io/sample/aspnet-api:20230226.1
+```
+1. Wait for the pull to complete. Depending on the size of your Docker container image and the speed of your internet connection, this may take a few minutes.
+![image.jpg](images/image-6.jpg)
+1. verify the recently pulled container image from ACR to make sure it running as expected
+``` sh
+docker run --rm -p 8080:80 acr1dev.azurecr.io/sample/aspnet-api:20230226.1
+```
+Test the container image running following URL
+
+![image.jpg](images/image-7.jpg)
+
+<http://localhost:8080/swagger/index.html>
+
+That's it! You've successfully pulled your Docker container image from Azure Container Registry. You can now use the Docker command-line interface to manage your container images and run them locally or deploy them to other environments.
 
 
 ## Reference:

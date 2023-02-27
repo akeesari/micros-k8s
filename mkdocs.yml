@@ -182,6 +182,8 @@ nav:
     -  Create Azure Container Registry (ACR) using terraform: azure/9-acr.md
     -  Create Azure Kubernetes Service (AKS) using terraform: azure/10-aks.md
   - Kubernetes:
+    - Prepare an application for Azure Kubernetes Service (AKS): kubernetes/1-prepare-app.md
+    - Deploying an application to Azure Kubernetes Service (AKS): kubernetes/2-deploy-app.md
     - Pod troubleshooting : kubernetes/pod-troubleshooting.md
   - Azure DevOps:
     - Azure DevOps Pipelines (CI & CD): devops/devops.md

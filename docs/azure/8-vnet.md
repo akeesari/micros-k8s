@@ -41,7 +41,7 @@ working on it...
 
 ## Implementation details
 
-Open the terraform project folder in Visual Studio core and creating new file named `virtual_network.tf` for Virtual Network specific azure resources;
+Open the terraform project folder in Visual Studio code and creating new file named `virtual_network.tf` for Virtual Network specific azure resources;
 
 
 **login to Azure**
