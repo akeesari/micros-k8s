@@ -189,7 +189,10 @@ nav:
     - Kubernetes Pod troubleshooting : kubernetes/pod-troubleshooting.md    
   - Azure DevOps:
     - Azure DevOps Pipelines (CI & CD): devops/devops.md
-    - ArgoCD: devops/argocd/argocd.md
+    - ArgoCD: 
+         - ArgoCD Introduction: devops/argocd/argocd-intro.md
+         - Install ArgoCD: devops/argocd/install-argocd.md
+         - Install ArgoCD CLI: devops/argocd/install-argocd-cli.md
     - Helm-Charts: devops/helmcharts/helm-charts.md
   # - ArgoCD:
   #   - Argo CD: argocd/argocd.md
@@ -201,14 +204,14 @@ nav:
       - Helm Cheat Sheet: miscellaneous/helm-cheat-sheet.md
       - az acr Cheat Sheet: miscellaneous/az-acr-cheat-sheet.md
       - Git Cheat Sheet: miscellaneous/git-cheat-sheet.md
-  #     - Section1:
-  #       - page-1 : miscellaneous/section1/page-1.md
-  #       - page-3 : miscellaneous/section1/page-2.md
-  #       - page-3 : miscellaneous/section1/page-3.md
-  #     - Section2:
-  #       - page-1 : miscellaneous/section2/page-1.md
-  #       - page-3 : miscellaneous/section2/page-2.md
-  #       - page-3 : miscellaneous/section2/page-3.md
+      - Section1:
+        - page-1 : miscellaneous/section1/page-1.md
+        - page-3 : miscellaneous/section1/page-2.md
+        - page-3 : miscellaneous/section1/page-3.md
+      - Section2:
+        - page-1 : miscellaneous/section2/page-1.md
+        - page-3 : miscellaneous/section2/page-2.md
+        - page-3 : miscellaneous/section2/page-3.md
       
   - About:
     - About: about.md

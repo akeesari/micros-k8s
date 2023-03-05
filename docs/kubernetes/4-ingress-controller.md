@@ -29,9 +29,9 @@ Ensure that you have a Kubernetes cluster up and running along with following:
 - Azure subscription - <https://azure.microsoft.com/en-us/free/>
 - Install and configure Terraform - <https://www.terraform.io/downloads>
 - Define Terraform providers for Helm Install
-   - helm provider
-   - Kubernetes provider
-   - Kubectl provider
+    - helm provider
+    - Kubernetes provider
+    - Kubectl provider
 - Install azure CLI - <https://learn.microsoft.com/en-us/cli/azure/install-azure-cli>
 - Install and setup kubectl - <https://kubernetes.io/docs/tasks/tools/install-kubectl-windows/>
 - install Helm client
