@@ -1,4 +1,5 @@
-#Introduction
+
+## Introduction
 
 Kubectl is the command line configuration tool for Kubernetes that communicates with a Kubernetes API server. Using Kubectl allows you to create, inspect, update, and delete Kubernetes objects.
 

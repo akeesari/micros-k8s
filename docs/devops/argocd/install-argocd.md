@@ -119,7 +119,7 @@ kubectl get namespace -A
 
 Before installing any helm chart using Terraform in kubernetes, we need to make sure that Terraform providers are configured:
 
-In one of our previous labs [Setup NGINX ingress controller in Kubernetes cluster](../kubernetes/4-ingress-controller.md ) we've already configured Terraform providers therefore we are good here to start the next step.
+In one of our previous labs [Setup NGINX ingress controller in Kubernetes cluster](../../kubernetes/4-ingress-controller.md) we've already configured Terraform providers therefore we are good here to start the next step.
 
 ## Step-2: Create namespace for argocd
 

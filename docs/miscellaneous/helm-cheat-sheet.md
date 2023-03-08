@@ -1,4 +1,5 @@
-#Introduction
+
+## Introduction
 
 Helm is a Kubernetes package manager for deploying helm charts.
 
@@ -8,30 +9,29 @@ Note: make sure that you login into azure and connect to AKS cluster before runn
 
 ## Azure login
 
-```
+``` sh
 az login
 az account list --output table
 ```
 ## Select the subscription
 
-```
+``` sh
 az account set -s "anji.keesari"
 az account show --output table
 ```
 
-## Connect to Cluster
+**Connect to Cluster**
+``` sh
+# Azure Kubernetes Service Cluster User Role
+az aks get-credentials -g "rg-aks-dev" -n "aks-cluster1-dev"
+
+# Azure Kubernetes Service Cluster Admin Role
+az aks get-credentials -g "rg-aks-dev" -n "aks-cluster1-dev" --admin
+
+# get nodes
+kubectl get no
+kubectl get namespace -A
 ```
-## Azure Kubernetes Service Cluster User Role
-az aks get-credentials -g "rg-rgname-dev" -n "aks-clustername-dev"
-
-
-## Azure Kubernetes Service Cluster Admin Role
-az aks get-credentials -g "rg-rgname-dev" -n "aks-clustername-dev" --admin
-
-az aks show -g "rg-rgname-dev" -n "aks-clustername-dev"
-```
-<!-- more info <https://learn.microsoft.com/en-us/azure/aks/control-kubeconfig-access#available-cluster-roles-permissions> -->
-
 
 ## Available Commands
 

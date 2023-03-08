@@ -1,4 +1,5 @@
-#Introduction
+
+## Introduction
 
 `az acr` commands used for managing private registries with Azure Container Registries.
 
