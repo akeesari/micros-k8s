@@ -1,3 +1,2 @@
-# Building and Managing Microservices with Kubernetes using Argocd & Helm
-
-<!-- ![illustration.png](images/illustration.png) -->
+![illustration.png](images/book-cover.png)
+<!-- # Building and Managing Microservices with Kubernetes using Argocd & Helm -->
