@@ -182,6 +182,14 @@ choco install wsl
 choco install jq
 ```
 
+## Windows Terminal 
+
+Allows us to access multiple command-line tools and shells in one customizable interface. It is an open-source project developed and maintained by Microsoft.
+
+```
+choco install microsoft-windows-terminal
+``` 
+
 After install VS code, install the following extensions in vs code as per the need:
 
 - Azure CLI Tools
@@ -230,7 +238,7 @@ Client:
 
 ## Manual Install
 
-Download and Install following Manually
+If you would prefer to install manually then here is the same list of software you can download and Install them manually
 
 - Visual studio code (recommended) - <https://code.visualstudio.com/download/>
 - Visual studio (optional) - <https://visualstudio.microsoft.com/downloads/>

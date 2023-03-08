@@ -1,4 +1,4 @@
-Here is a list of technologies that can be used for development of Microservices development, deploy & run those applications  on Kubernetes cluster:
+Here is a list of technologies that can be used to build, manage Microservices and deploy & run those applications on Kubernetes cluster:
 
 Here you will also see table of contents of each technology so that you can learn them offline when needed.
 

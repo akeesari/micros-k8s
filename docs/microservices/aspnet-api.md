@@ -13,11 +13,11 @@ This sample demonstrates how to create restful service and build container image
 
 ## Technical Scenario
 
-As a Backend developer you've been asked to create a Restful service using .NET core Web API which is one of the service in the microservices list.
+As a `Backend (BE)` developer you've been asked to create a Restful service using .NET core Web API which is one of the service in the microservices list.
  
-This lab will help you to understand how start your journey with Microservices Architecture, we will start with basics like creating repo, creating small project and finally containerize that small Microservice we've created and push to the Azure container registry (ACR).
+This lab will help you to understand how to start your journey with Microservices Architecture, we will start with basics like creating repo, creating small project and finally containerize that small Microservice we've created and push to the Azure container registry (ACR).
 
-we are basically preparing an application for the Kubernetes deployment. the Microservices we are going to create here in this lab will be used in the subsequent labs like creating DevOps pipelines or deploying to Azure Kubernetes services (AKS).
+We are basically preparing an application for the Kubernetes deployment. The Microservices we are going to create here in this lab will be used in the subsequent labs like while creating DevOps pipelines or while deploying to Azure Kubernetes services (AKS).
 
 ## Objective
 
@@ -33,12 +33,12 @@ In this exercise we will accomplish & learn how to implement following:
 
 ## Prerequisites
 
-- An organization in Azure DevOps
-- A project in Azure DevOps
-- Create repository permission
-- Git client
+- An Organization in Azure DevOps
+- A Project in Azure DevOps
+- Create Repository permission
+- Git client tool
 - Download and install software for .NET development 
-- Docker and the VS Code Docker extension must be installed
+- Docker and the VS Code Docker extension
  
 
 ## Task-1: Create a new repo in azure DevOps
@@ -51,8 +51,11 @@ To create a new repository in Azure DevOps, follow these steps:
 4. From the repo drop-down, select `New repository`
 5. In the `Create a new repository` dialog, verify that Git is the repository type and enter a name for the new repository. 
 6. You can also add a README and create a `.gitignore` for the type of code you plan to manage in the repo.
-7. use lower case for the repos (best practice)
-    - repo name - `aspnetapi` 
+7. I'd prefer to use lower case for all repos (one of the best practice)
+    - Repo name - `aspnetapi` 
+
+!!! Best-Practice
+    Use lower case for all repos in azure DevOps
 
 For example: 
 
@@ -66,9 +69,9 @@ To clone a repository from Azure DevOps, you will need to have the Git client in
 
 2. Navigate to the project that contains the repository you want to clone.
 
-3. Click on the "Repos" tab in the navigation menu.
+3. Click on the `Repos` tab in the navigation menu.
 
-4. Find the repository you want to clone and click on the "Clone" button.
+4. Find the repository you want to clone and click on the `Clone` button.
 
 5. Copy the URL of the repository.
 
@@ -102,7 +105,7 @@ git clone https://keesari.visualstudio.com/Microservices/_git/aspnetapi  -b deve
 
 ```
 
-regularly used git commands.
+Some of the regularly used git commands, may be useful. for more information look into our [Git Cheat-Sheet](../miscellaneous/git-cheat-sheet.md)
 
 ```
 git init
@@ -139,28 +142,25 @@ git push -f origin master
 
 We will be using Visual Studio Code instead of Visual Studio to make things faster and easy and save time and money.
 
-**Best Practice** - try to use Visual Studio code instead of visual studio.
+!!! Best-Practice
+    Try to use Visual Studio code instead of visual studio.
 
 To create a new .NET Core Web API project, you will need to have the .NET Core SDK installed on your machine. You can download the .NET Core SDK from the .NET website <https://dotnet.microsoft.com/download>.
 
 Once you have the .NET Core SDK installed, follow these steps to create a new .NET Core Web API project:
 
 1. Open a terminal window and navigate to the directory where you want to create your project.
-2. Run the following command to create a new .NET Core Web API project:
-3. Navigate to the project directory by running the following command:
-
-use this command to get list of commands
-
+2. Run the `dotnet new` command to create a new .NET Core Web API project:
+Let's take a look some useful `dotnet` command before creating the project.
+Use this command to get the `dotnet` commands help so that your get idea on how use these commands better. 
 ```
 dotnet --help
 ```
-
-use this command to get list of available templates
+Use this command to get list of available `dotnet` project templates
 ```
 dotnet new list
 ```
-
-use these commands to create new project
+Use these command to actually create new project
 ```
 dotnet new webapi -o aspnetapi
 
@@ -174,16 +174,13 @@ code .
 or 
 code -r ../aspnetapi
 ```
-
-Notes: 
-
-- `-o` parameter creates a directory
-- `--no-https` flag creates an app that will run without an HTTPS certificate
-- `-f` parameter indicates creation
-
-
+!!! Notes
+```
+  `-o` parameter creates a directory
+  `--no-https` flag creates an app that will run without an HTTPS certificate
+  `-f` parameter indicates creation
+```
 Output
-
 ```
 C:\WINDOWS\system32>cd C:\Source\Repos
 
@@ -200,31 +197,27 @@ C:\Source\Repos>cd aspnetapi
 
 C:\Source\Repos\aspnetapi>code .
 ```
-
-In case if you need example of Adding a package 
-
+3. Here is the example of adding packages to .net projects.
 ```
 dotnet add package Microsoft.EntityFrameworkCore.InMemory
 ```
 4. Run the following command to restore the project's dependencies:
-
 ```
 dotnet restore
 ```
 
-**Mac User**
-
-If you're on a Mac with an Apple M1 chip, you need to install the Arm64 version of the SDK.
+!!! Mac User
+    If you're on a Mac with an Apple M1 chip, you need to install the Arm64 version of the SDK before following above commands.
 
 <https://dotnet.microsoft.com/en-us/download/dotnet/7.0>
 
-Check the install typing following in terminal
+Check the install typing by running following in terminal
 
 ```
 dotnet
 ```
 
-expected output, If the installation succeeded, you should see an output similar to the following:
+You should see an output similar to the following if the installation is successful
 
 ```
 anjikeesari@Anjis-MacBook-Pro-2 MyMicroservice % dotnet
@@ -246,13 +239,10 @@ path-to-application:
 ## Task-4: Test the new .NET core Web API project
 
 1.  Run the following command to build the project:
-
  `dotnet build` command will look for the project or solution file in the current directory and compile the code in it. It will also restore any dependencies required by the project and create the output files in the bin directory.
-
 ```
 dotnet build
 ```
-
 output
 ```
 Microsoft (R) Build Engine version 17.0.1+b177f8fa7 for .NET
@@ -269,15 +259,11 @@ Build succeeded.
 Time Elapsed 00:00:01.51
 ```
 2.  Run the following command to start the development server:
-
  `dotnet run` command will look for the project or solution file in the current directory and compile the code in it. After compiling, it will run the application and any output will be displayed in the console.
-
 ```
 dotnet run
 ```
-
 output
-
 ```
 Building...
 info: Microsoft.Hosting.Lifetime[14]
@@ -291,33 +277,30 @@ info: Microsoft.Hosting.Lifetime[0]
 info: Microsoft.Hosting.Lifetime[0]
       Content root path: C:\Source\Repos\AspNetApi\aspnet-api\
 ```
-you will notice the URL in the output, copy the URL and paste it in your favorite browser. you will get a `404 error. ` don’t worry. Just type swagger at the end of the URL and press enter and you will get the following webpage.
+You will notice the URL in the output, copy the URL and paste it in your favorite browser. you will get a `404 error. ` don’t worry. Just type swagger at the end of the URL and press enter and you will get the following webpage.
 
 ![image.jpg](images/image-1.jpg)
 
-<https://localhost:7136>
+- <https://localhost:7136>
 
-<https://localhost:7136/swagger/index.html> - Swagger URL
+- <https://localhost:7136/swagger/index.html> - Swagger URL
 
-<https://localhost:7136/api/aspnetapi/v1/weatherforecast> - API endpoint URL
-
+- <https://localhost:7136/api/aspnetapi/v1/weatherforecast> - API endpoint URL
 
 If you are able to see this swagger URL in your browser then everything is created and setup as expected.
 
 ![image.jpg](images/image-2.jpg)
 
-use the following command to stop the application in VS Code
-
+Use the following command to stop the application in VS Code
 ```
 ctrl + c
 ```
-
 It is time to push your basic project template source into Azure DevOps Git repo.
 
+!!! Best-Practice
+    It is always recommended to push source code changes into git repo before starting the new task.
 
-**Best Practice:**  It is always recommended to push source code changes into git repo before starting the new task.
-
-Use these commands to push the source code.
+Use these git commands to push the source code.
 
 ```
 git add .
@@ -327,15 +310,12 @@ git push
 
 ## Task-5: Add Docker files to the API project
 
-THere are multiple way to create Dockerfile depending on your code editor. 
-Here are the step-by-step instructions for creating a Dockerfile in a .NET Core Web API project:
+There are multiple way to create `Dockerfile` depending on your code editor. 
+Here are the step-by-step instructions for creating a `Dockerfile` in a .NET Core Web API project:
 
 1. First, open your .NET Core Web API project in Visual Studio code or your favorite code editor.
-
 1. Next, create a new file in the root directory of your project and name it Dockerfile (with no file extension).
-
 1. Open the Dockerfile and add the following code to the file:
-
 ``` Dockerfile
 #See https://aka.ms/containerfastmode to understand how Visual Studio uses this Dockerfile to build your images for faster debugging.
 
@@ -360,7 +340,6 @@ WORKDIR /app
 COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "AspNetApi.dll"]
 ```
-
 This code defines a Docker image that is based on the aspnet:6.0 image from Microsoft's container registry. The image is divided into four stages:
 
    - `base:` sets up the working directory and exposes port 80.
@@ -371,32 +350,17 @@ This code defines a Docker image that is based on the aspnet:6.0 image from Micr
 
 ## Task-6: Docker Build & Run
 
-Docker Build is a command that allows you to build a Docker image from a Dockerfile. The Dockerfile is a text file that contains instructions for Docker to build the image, including the base image to use, the files to include, the commands to run, and the ports to expose.
+`docker build` is a command that allows you to build a Docker image from a Dockerfile. The Dockerfile is a text file that contains instructions for Docker to build the image, including the base image to use, the files to include, the commands to run, and the ports to expose.
 
-To build and publish a container image for a .NET Core Web API project, you will need to have Docker installed on your machine. You can download Docker from the Docker website (https://www.docker.com/get-started).
+To build and publish a container image for a .NET Core Web API project, you will need to have Docker installed on your machine. You can download Docker from the Docker website <https://www.docker.com/get-started>.
 
 Once you have Docker installed, follow these steps to build and publish a container image for your .NET Core Web API project:
 
 1. Open a terminal window and navigate to the root of the project.
-
-2. Run the following command to build the Docker image:
-
-
-**docker build**
-
-Run docker build command to build the source code
-
+2. Run the `docker build` command to build the Docker image:
 ```
 docker build -t sample/aspnet-api:20230226.1 .
 ```
-
-`Best Practice:`
-
-use this docker build pattern.
-
-`docker build -t projectname/domainname/appname:yyyymmdd.sequence .`
-
-
 output
 ```
 
@@ -412,15 +376,9 @@ output
  => => naming to docker.io/sample/aspnet-api:20230226.1                                                                                                             
 ```
 Verify the new image
-
 if you open the docker desktop you should be able to see the newly created image there.
-
 ![image.jpg](images/image-3.jpg)
-
-**docker run**
-
-Run the following command to start a container based on the image:
-
+3. Run the `docker run` command to start a container based on the image:
 ```
 docker run --rm -p 8080:80 sample/aspnet-api:20230226.1
 ```
@@ -436,31 +394,37 @@ info: Microsoft.Hosting.Lifetime[0]
       Content root path: /app/
 ```
 Wait for the container to start. You should see output in the terminal indicating that the container is listening on port 80.
-
 Open the docker desktop to see the newly created container in the docker desktop app
-
 ![image.jpg](images/image-4.jpg)
 
 
-Open a web browser and navigate to http://localhost:8080/api/values (or whatever URL corresponds to your Web API endpoint) to confirm that the Web API is running inside the Docker container.
+Open a web browser and navigate to <http://localhost:8080/api/values> (or whatever URL corresponds to your Web API endpoint) to confirm that the Web API is running inside the Docker container.
 
 use these links for testing when you run docker command from vs code
 
-<http://localhost:8080/swagger/index.html>
-<http://localhost:8080/api/aspnetapi/v1/heartbeat/ping>
-<http://localhost:8080/api/aspnetapi/v1/weatherforecast>
+- <http://localhost:8080/swagger/index.html>
+- <http://localhost:8080/api/aspnetapi/v1/heartbeat/ping>
+- <http://localhost:8080/api/aspnetapi/v1/weatherforecast>
 
 ![image.jpg](images/image-5.jpg)
 
+!!! Best-Practice
+    Use the following pattern for docker container image naming conventions 
+
+```
+docker build -t projectname/domainname/appname:yyyymmdd.sequence .
+
+example:
+docker build -t project1/sample/aspnet-api:20230226 .
+```
 
 That's it! You've successfully created a Dockerfile and built a Docker image for your .NET Core Web API project. You can now distribute the Docker image to other machines or deploy it to a cloud service like Azure or AWS.
 
 
-`tip:`
+!!! Tip
+    delete all containers & images
 
-delete all containers & images
-
-use these commands in case if you need to clean-up the containers or images
+Use these commands in case if you need to clean-up the containers or images locally from Docker desktop
 
 ```
 # To delete all containers including its volumes use,
@@ -492,13 +456,17 @@ To publish a Docker container image to Azure Container Registry (ACR), you will 
 ``` sh
 # azure Login
 az login
+
+# set the azure subscription
 az account set -s "anji.keesari"
 
 # Log in to the container registry
 az acr login --name acr1dev
-# Login Succeeded
-# To get the login server address
+
+# To get the login server address for verification
 az acr list --resource-group rg-acr-dev --query "[].{acrLoginServer:loginServer}" --output table
+
+# output should look similar to this.
 
 # AcrLoginServer    
 # ------------------
@@ -508,7 +476,7 @@ az acr list --resource-group rg-acr-dev --query "[].{acrLoginServer:loginServer}
 ```
 docker tag sample/aspnet-api:20230226.1 acr1dev.azurecr.io/sample/aspnet-api:20230226.1
 ```
-To see a list of your current local images
+Use this command to see a list of your current local images
 ```
 docker images
 ```
@@ -593,7 +561,7 @@ acr1dev.azurecr.io/sample/aspnet-api:20230226.1
 ```
 1. Wait for the pull to complete. Depending on the size of your Docker container image and the speed of your internet connection, this may take a few minutes.
 ![image.jpg](images/image-6.jpg)
-1. verify the recently pulled container image from ACR to make sure it running as expected
+1. Verify the recently pulled container image from ACR to make sure it running as expected
 ``` sh
 docker run --rm -p 8080:80 acr1dev.azurecr.io/sample/aspnet-api:20230226.1
 ```

@@ -7,7 +7,7 @@ If you are a Mac developer, download and install following software as per the n
 
 Homebrew is a free and open-source software package management system that simplifies the installation of software on Apple's operating system, macOS, as well as Linux. 
 
-## Install homebrew
+## install homebrew
 
 This is the fist software you may need to install before installing anything in Mac. for more infor look into this - <https://brew.sh/>
 
@@ -36,13 +36,17 @@ brew upgrade
 
 Once the installation is finished, you can use the `brew` command to install, upgrade, and manage software packages using Homebrew.
 
-## install terminal 
+## install iTerm2 
+
+iTerm2 is a popular terminal emulator for macOS that provides many features and enhancements compared to the default Terminal application that comes with macOS.
+
+
 
 ```
 brew install --cask iterm2
 ```
 
-## install powershell
+## install PowerShell
 
 ``` 
 # install
@@ -86,12 +90,6 @@ brew install --cask dotnet
 ```
 brew install python3
 python3 --version
-```
-
-## install iterm2
-
-```
-brew install iterm2 
 ```
 
 ## install git
@@ -139,7 +137,7 @@ use the following linlk for download and install it manually.
 
 ## install-docker
 
-follow the instruction to install docker.
+follow the instruction provided in the following links to install docker.
 
 <https://dotnet.microsoft.com/en-us/learn/aspnet/microservice-tutorial/install-docker>
 <https://docs.docker.com/desktop/install/mac-install/>

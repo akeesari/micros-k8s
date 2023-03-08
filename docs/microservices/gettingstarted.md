@@ -4,7 +4,7 @@
 
 Getting started with microservices requires a solid understanding of the architecture and the technology stack, as well as careful planning and implementation of the individual services. With the right approach, however, microservices can help you build flexible, scalable, and maintainable applications.
 
-In general building true microservices architecture needs good understand and theoretical and practical knowledge, I am not going to talk much about the theory part of the Microservices her instead I'll focus on how to plan and create on sample Microservices.
+In general building true microservices architecture needs good understand and theoretical and practical knowledge, I am not going to talk much about the theory part of the Microservices here instead I'll focus on how to plan and create on sample Microservices.
 
 I am assuming you've already done your homework on Microservices architecture before reading this. Let's quickly recap very hight level what is Microservice before start the labs.
  
@@ -42,13 +42,13 @@ use the below link to understand and analyze your business domains and define th
 
 <https://learn.microsoft.com/en-us/azure/architecture/microservices/model/domain-analysis>
 
-Since my focus here is not implementing any real world microservices scenarios therefore I'll just use domain names like below: 
+Since my focus here is not implementing any real world microservices scenarios in this book but let's take hypothetical scenario and assume you've 3 domains like below:
 
 - Domain-1
 - Domain-2
 - Domain-3
 
-assuming you've finalized your business domains at this point so that the rest of the design and implementation will be will be easy.
+assuming you've finalized your business domains at this point so that the rest of the design and implementation will depend on these domains.
 
 ## Task-2: Identity list of git repos needed
 
@@ -56,7 +56,7 @@ Once you know the list of domains or microservices needed for your application t
 
 there are multiple ways to organize the source code and pipelines in the azure DevOps git. it is all depends on how you want to manage your source code and pipelines for your microservices architecture, how easy to maintain in the future.
 
-My preference here is to create separate git repo for each domain.
+My preference here is to create separate git repo for each domain or Microservice.  
 
 For example:
 
@@ -137,9 +137,13 @@ Once you have completed these steps, you will have a new Azure DevOps organizati
 6. When you are finished, click the `Finish` button to complete the project creation process.
 
 Project Name - `Microservices`
+
 Description - `Microservices project will be used to roll out sample microservices applications for demonstrating microservices architecture.`
 
+
 ![image.jpg](images/image-10.jpg)
+
+That's it! we have created new organization in azure DevOps and created new project so that we can start working on Microservices in the next labs.
 
 
 ## References
