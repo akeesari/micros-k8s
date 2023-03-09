@@ -2,6 +2,7 @@
 
 A resource provider in Azure is a service that supplies a specific type of resource, such as virtual machines, storage accounts, or virtual networks. When you create a new Azure subscription, certain resource providers are automatically registered, but others may need to be registered manually.
 
+In this lab we will learn how to register resource providers in azure subscription manually and using PowerShell:
 ## Register manually
 
 To view the registered resource providers for an Azure subscription, you can follow these steps:
@@ -22,7 +23,9 @@ If you want to register a new resource provider for the subscription, click on t
 
 This manual register takes lot of time especially if you've to do the same for multiple subscriptions for supporting different environment.
 
-In this lab you will see how to register resource providers in azure subscription using PowerShell.
+## Register using az CLI command
+
+In this lab you will see how to register resource providers in azure subscription using az cli.
 
 **log in to Azure account & select the subscription**
 

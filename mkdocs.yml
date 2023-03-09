@@ -174,7 +174,7 @@ nav:
     - Azure Naming & Tagging Conventions: azure/2-naming-conventions.md
     - Create Azure Free Account: azure/3-azure-account.md
     - Create new subscription: azure/4-azure-subscription.md
-    - Registered resource providers in azure subscription using PowerShell: azure/5-resource-providers.md
+    - Register resource providers: azure/5-resource-providers.md
     - Create Terraform Foundation Part-1: azure/6-tf-foundation-1.md
     - Create Terraform Foundation Part-2: azure/6-tf-foundation-2.md
     - Create Log Analytics Workspace using terraform: azure/7-log-analytics-workspace.md
