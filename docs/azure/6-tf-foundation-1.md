@@ -1,8 +1,23 @@
 ## Introduction
 
-This is the the Part-1 of the terraform foundation, in this lab we will setup the terraform environment in Azure DevOps and Azure portal to run terraform configuration in the upcoming labs;
+This is the the part-1 of the terraform foundation, in this lab we will setup the terraform environment in Azure DevOps and Azure portal to run terraform configuration in the upcoming labs;
 
 Terraform environment setup is onetime activity, once this is completed then we are ready for any kind of azure resource creation with IaC automation.
+
+
+## Technical Scenario
+
+As a cloud engineer, you have been asked to work on `Terraform Management` setup as part of the terraform foundation to manage cloud infrastructure efficiently and effectively.
+
+
+## Prerequisites
+  - Download & Install Terraform
+  - Download & Install Azure CLI
+  - Azure subscription
+  - Register resource providers in the subscription
+  - Visual studio code
+  - Download & Install Git tools
+  - Basic knowledge on Terraform
 
 ## Objective
 
@@ -21,31 +36,23 @@ In this exercise we will accomplish & learn following:
     - Task-9: Create secrets in azure  Key Vault 
     - Task-10: Setup Access Policy in Key Vault 
     - Task-11: Configure Service Principal Role Assignment 
+    - Task-12: Create terraform management using PowerShell Script.
 
-## Prerequisites
-  - Download & Install Terraform
-  - Download & Install Azure CLI
-  - Azure subscription
-  - Register resource providers in the subscription
-  - Visual studio code
-  - Download & Install Git tools
+## Implementation details
 
-**Implementation details**
-
-All the tasks listed above will be performed one by one in this section.
-
-In this lab we will perform some tasks in Azure DevOps web portal and some tasks in Azure Portal.
-
+In this lab we are going to perform some tasks in Azure DevOps web portal and some tasks in Azure Portal.
 
 ## Task-1: Create a new project in azure DevOps
 
-This new project will be used for IaC, later you can create multiple git repos in this project based on the need.
+It is always recommended to have separate project in azure DevOps for Infrastructure as Code maintenance. Here we are going to create new project called `IaC` and under this project we can create a new repo called `terraform` - repo name is in lowercase.
+
+Here are the details of the new project:
 
 Project Name - `IaC`
 
-Project Description - This project contains the source code related to Infrastructure as code (IaC), IaC is a method of provisioning and managing infrastructure using code and automation rather than manual configuration.
+Project Description - `This project contains the source code related to Infrastructure as code (IaC), IaC is a method of provisioning and managing infrastructure using code and automation rather than manual configuration.`
 
-follow these steps for creating a new project in azure DevOps.
+Follow these steps for creating a new project in azure DevOps.
 
 1. Sign in to your organization in Azure DevOps
 1. Select New project.
@@ -55,7 +62,7 @@ Once the project is created then you can add following repos for managing all yo
 
 - `terraform` - you can use this repo for terraform configuration
 - `scripts` - you can use this repo for managing all kinds of scripts like PowerShell, Bash and CLI etc..
-- `Bicep` - you can use this repo for Microsoft Bicep scripts etc..
+- `bicep` - you can use this repo for Microsoft Bicep scripts etc..
 
 ![image.jpg](images/image-1.jpg)
 
@@ -87,7 +94,7 @@ for example:
 
 There are multiple ways to clone the git repo to your computer.
 
-Here we will use the Git CMD tool, open the app in admin mode and follow these commands to clone the code locally.
+Here we will use the Git CMD tool, open the git cmd tool in admin mode and follow these commands to clone the code locally.
 
 ```
 C:\Users\anji.keesari>cd c:\Source\Repos\IaC
@@ -108,9 +115,11 @@ c:\Source\Repos\IaC\terraform>
 
 ## Task-4: Add .gitignore file in the git repo for terraform
 
-Update or add (if not existing) .**gitignore** for terraform ignore - this will allow us not to commit unnecessary terraform files in to git repo.
+This is the first file you need add in the source code before commit any files.
 
-for example: 
+This .gitignore file will prevent Terraform state files, override files, local tfvars files, and CLI configuration files from being tracked by Git. These files contain sensitive information and can cause issues with consistency and conflicts if multiple users are working on the same Terraform project. It's important to not commit these files to your source code repository to maintain the integrity and security of your infrastructure code.
+
+Here is the sample file:
 
 ``` title=".gitignore"
 # Local .terraform directories
@@ -149,28 +158,51 @@ override.tf.json
 terraform.rc
 ```
 
-**Terraform Management Setup** 
+## Terraform Management Setup
+
+The azure resources which are managing the terraform state and securing the terraform state and securing the service principle are called `Terraform management resources`
 
 By following these steps, you can set up a Terraform management environment for running Azure resources. It's important to keep your configuration files and state file in a secure location, and to follow best practices for managing infrastructure as code.
 
-since these steps are part of terraform setup itself therefore we can't create following resources using terraform, here we can use either az cli or PowerShell script to create following resources. Here we are going use PowerShell script
+Here we are going to use Azure Storage Account for storing the terraform state files and Azure Key vault for securing the secrets used for running the terraform configuration in azure.
 
-We are going to create separate resource group for managing terraform management specific azure resource like azure storage account and azure key vault.
+Since these steps are part of terraform setup itself,  we can't create following resources using terraform, here we can use either az cli or PowerShell script to create following resources. I'll be showing the az cli and PowerShell script for creating these resources.
 
+We are going to create separate azure resource group for managing terraform management specific azure resource like azure storage account and azure key vault.
 
+We will start with service principe before creating azure storage account and azure key vault.
 ## Task-5: Create Terraform Service Principle Credentials
 
-In Terraform, a service principal is used to authenticate with Azure in order to manage resources. A service principal is like a user account that is used to access Azure resources programmatically, rather than interactively through the Azure portal.
+A Service Principal is an identity that Terraform can use to authenticate and manage Azure resources.  Terraform uses a Service Principal to authenticate with Azure and manage Azure resources, such as virtual machines, storage accounts, and databases.
 
-To use a service principal with Terraform, you'll need to provide the client ID and client secret, which are used to authenticate with Azure. Here are the steps to create a service principal and retrieve its credentials:
+Here's how you can create a Service Principal in Azure for use with Terraform:
 
-1. Create a new Azure Active Directory (AD) application: Use the Azure portal or Azure CLI to create a new AD application. This will create a new service principal for you.
+- Log in to the Azure portal and go to the Azure Active Directory (AD) section.
+- Click on "App registrations" and then click "New registration".
+- Provide a name for the application and select "Accounts in this organizational directory only" as the supported account type.
+- For the "Redirect URI" field, select "Web" and enter a valid URI. This URI can be any valid URI, but it must be accessible to the application.
+- Click on "Register" to create the application registration.
+Once the application is created, note down the "Application ID" and "Directory (tenant) ID" values. These will be used in the Terraform configuration.
+- Create a client secret by clicking on "Certificates & secrets" and then "New client secret". Note down the client secret value that is generated. This value will be used in the Terraform configuration.
 
-1. Assign a role to the service principal: Use the Azure portal or Azure CLI to assign a role to the service principal. This will determine the level of access that the service principal has to Azure resources.
 
-1. Retrieve the client ID and client secret: Use the Azure portal or Azure CLI to retrieve the client ID and client secret for the service principal. The client ID is a unique identifier for the service principal, and the client secret is a password that is used to authenticate with Azure.
+Now that you have created a Service Principal in Azure, you can use it in Terraform to authenticate with Azure and manage Azure resources. In your Terraform configuration file, you can add the following code to authenticate with Azure using the Service Principal:
 
-az cli commands
+``` tf title="provider.tf"
+provider "azurerm" {
+  subscription_id = "SUBSCRIPTION_ID"
+  client_id       = "CLIENT_ID"
+  client_secret   = "CLIENT_SECRET"
+  tenant_id       = "TENANT_ID"
+}
+
+```
+
+Replace SUBSCRIPTION_ID, CLIENT_ID, CLIENT_SECRET, and TENANT_ID with the values you obtained when creating the Service Principal in Azure. 
+<!-- 
+1. Assign a role to the service principal: Use the Azure portal or Azure CLI to assign a role to the service principal. This will determine the level of access that the service principal has to Azure resources. -->
+
+additional az cli commands may be helpful.
 
 ``` ps1
 az login
@@ -184,13 +216,14 @@ az account show --query "tenantId"
 
 ## Task-6: Create new resource group
 
-Create new azure resource group using az cli
+We are going to create separate resource group for maintaining terraform management resources in azure.
+
+
 Resource Group Name - `rg-tfmgmt-dev` 
 
 ``` ps1
 az group create --name <GROUP_NAME> --location <LOCATION>
 az group create -n "rg-tfmgmt-dev"-l "east us"
-
 ```
 
 ![image6.jpg](images/image-8.jpg)
@@ -210,7 +243,7 @@ az storage account create -n "tfmgmtstates" -g "rg-tfmgmt-dev" -l "east us" --sk
 ```
 ![image6.jpg](images/image-9.jpg)
 
-create new storage account container
+We also need blob container for storing terraform state files, Let's create new storage account container using az cli here
 
 ``` ps1
 
@@ -283,11 +316,15 @@ az role assignment create --assignee-object-id "a68e4529-b584-43c6-9ffd-4ca681da
 ```
 ![image6.jpg](images/image-13.jpg)
 
-you can do the above things using re-usable PowerShell script.
+That it! now you've setup terraform management for running your terraform configuration.
 
-Here is the PowerShell function, this will allow you to run in multiple environments.
+## Create terraform management using PowerShell Script.
 
-Let's look at the complete PowerShell file 
+Alternately you can also use the re-usable PowerShell script to do above steps which is more efficient way:
+
+Here is the re-usable and re-runnable PowerShell function to create terraform management resources; this function will allow you to run in multiple environments.
+
+Let's look at the complete PowerShell script file together.
 
 ``` ps1 title="tf-mgmt.ps1"
 <#
@@ -319,8 +356,6 @@ Let's look at the complete PowerShell file
     - Use "Connect-AzAccount -UseDeviceAuthentication" if browser prompts don't work.
     - select-AzSubscription -SubscriptionName 'Dev'
 #>
-
-
 
 [CmdletBinding()]
 param (    
@@ -581,7 +616,9 @@ try {
 Write-Host "SUCCESS!" -ForegroundColor 'Green'
 
 ```
-## Verify resources
+## Verify Azure resources
+
+The final step in terraform management is to make sure that all the azure resources are created as expected, let's quickly review them manually. 
 
 ![image6.jpg](images/image-14.jpg)
 

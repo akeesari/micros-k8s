@@ -1,12 +1,20 @@
 ## Introduction
 
-This is part-2 of the terraform foundation, in this module we will setup the terraform project or folder structure for running any kind of terraform configuration. this folder structure and terraform source code is required for creating any kind of azure resources using terraform.
+This is part-2 of the terraform foundation, in this module we will setup the terraform project and folder structure for running any kind of terraform configuration. this folder structure and terraform source code created as part of this lab is the minimum requirements for creating any kind of azure resources using terraform.
 
 ## Technical Scenario
-As a cloud engineer, you have been asked to start working on infrastructure as code (IaC) setup using terraform for your organization so that you can create any kind of azure cloud resources using the source code written in terraform. As part of the terraform project structure we will be creating our first resource group so that we can test the basic terraform setup or files created in this module.
+As a cloud engineer, you have been asked to start working on infrastructure as code (IaC) setup using terraform for your organization so that you can create any kind of azure cloud resources using the source code written in terraform language. As part of the terraform project structure we will be creating our first resource group so that we can test the basic terraform setup or files created in this module.
 
 we will start with bare minimum terraform configuration in this module and update the same files while creating more and more resources in the future modules.
 
+
+## Prerequisites
+  - Download & Install Terraform
+  - Download & Install Azure CLI
+  - Azure subscription
+  - Visual studio code
+  - Azure DevOps project & repo
+  - Terraform Management setup (part-1)
 ## Objective
 
 In this exercise we will accomplish & learn following:
@@ -17,33 +25,35 @@ In this exercise we will accomplish & learn following:
 - Task-4: Create terraform variables
 - Task-5: Create locals file
 - Task-6: Create azure resource group
-- Task-7: Initialize Terraform
-- Task-8: Create a Terraform execution plan
-- Task-9: Apply a Terraform execution plan
-- Task-10: Verify the results
+- Task-7: Store Terraform commands
+- Task-8: Initialize Terraform
+- Task-9: Setup Terraform workspace
+- Task-10: Create a Terraform execution plan
+- Task-11: Apply a Terraform execution plan
+- Task-12: Verify the results
+- Task-12: Verify terraform statefile
 
 ## Architecture diagram
 
 <IMG  src="https://www.devopsschool.com/blog/wp-content/uploads/2021/07/terraform-architecture-components-workflow-1.jpg"  alt="Terraform Architecture and Components through diagram - DevOpsSchool.com"/>
 
-## Prerequisites
-  - Download & Install Terraform
-  - Download & Install Azure CLI
-  - Azure subscription
-  - Visual studio code
-  - Azure DevOps project & repo
 
-**Implementation details**
+## Implementation details
 
 Before we start on any of the tasks listed below, we will clone the `terraform` git repo first from Azure devOps portal; this git repo was created in our previous module; Once it is cloned open VS code text editor and open the terraform folder.
 
 ## Task-1: Create terraform environment variables
 
-Create new folder called `environments` and add following files in it. here we are creating *.tfvar files for each environment, these *.tfvar files will contains environment specific values in it.
+Terraform allows you to use environment variables to define variables that are used in your Terraform configuration. Environment variables are a convenient way to pass values to Terraform, without having to hard-code them in your configuration files. 
 
-use these files for controlling your environment specific setting in future labs;
+By using environment variables in Terraform, you can more easily customize your Terraform configuration based on your environment, without having to modify your configuration files directly. This can be useful when working with multiple environments, such as development, testing, and production.
 
-let's start with adding service principal credentials in environment variables and later use these files for adding more environment specific variable as and when needed while creating new azure resources.
+
+Let's create new folder called `environments` and add following files in it. here we are creating *.tfvar files for each environment, these *.tfvar files will contains environment specific values in it.
+
+We are going to use these files for controlling your environment specific setting in future labs;
+
+let's start with adding service principle credentials in environment variables and later use these files for adding more environment specific variable as and when needed while creating new azure resources.
 
 environments folder structure will look like below:
 ```
@@ -78,11 +88,15 @@ sp-client-secret = "value will be replaced by key vault value"
 sp-tenant-id = "value will be replaced by key vault value"
 ```
 
+
+!!! Best-Practice
+    We are going to use lowercase for all the files and folders in the terraform. 
+
 ## Task-2: Create terraform providers
 
 Terraform providers are plugins that allow Terraform to interact with different resources in different infrastructure providers (Azure, AWS, GCP) Here are the steps to create a provider in Terraform:
 
-The `azurerm` Terraform Provider allows managing resources within Azure Resource Manager. When using version 3.0 of the AzureRM Provider we recommend using Terraform 1. x.
+The `azurerm` Terraform Provider allows managing resources within Azure Resource Manager. 
 
 Here we will create a new file called `provider.tf` and register all the required providers for terraform to create required resources.
 
@@ -147,6 +161,8 @@ Terraform variables allow you to define reusable values in your Terraform config
 
 In terraform, variables are divided into inputs and outputs. let's create separate file for each one of them here.
 
+**input variables**
+
 `variables.tf` - use this file for input variables
 
 ```  tf title="variables.tf"
@@ -189,6 +205,8 @@ variable "default_tags" {
 }
 ```
 
+**output variables** 
+
 `output.tf` - use this files for output variables
 
 ``` tf title="output.tf"
@@ -198,7 +216,11 @@ output "resource_group_name" {
 
 ```
 
+**variables prefix**
+
 I am also going to create one more file for azure resource names naming conventions or standards across my organization. This file contains prefix of all the frequently used azure resource names as per the standards.
+
+Let's begin with resource group prefix and keep updating this files in the future labs as per the new resource added.
 
 `variables_prefix.tf`
 
@@ -215,10 +237,11 @@ variable "rg_prefix" {
 
 ## Task-5: Create locals file
 
-This is optional but I'll create this file as place holder.
+In Terraform, `locals` is a block used to define values that are derived from other values in your configuration. These values are typically used for convenience or to improve readability of your configuration.
+
+This is optional but it is recommended to keep all the locals in single files, we are going to use this file in the future labs.
 
 Use this file for storing all the locals in one place together for entire terraform project.
-
 
 
 ``` tf title="locals.tf"
@@ -230,10 +253,11 @@ locals {
 
 ```
 
+Note: - don't worry about `terraform.workspace` will talk more on this in the future labs.
+
 ## Task-6: Create azure resource group
 
 Finally let's create one sample azure resource group to make sure that all the terraform configuration we created above is actually working as expected.
-
 
 
 ``` tf  title="resource_group.tf"
@@ -256,10 +280,9 @@ resource "azurerm_resource_group" "rg" {
 
 ## Task-7: Store terraform commands
 
-Create a separate file for storing all terraform commands here so that anyone working on this project can use them. 
+Create a separate file for storing all terraform commands here, so that anyone working on this project can use them for running commands quickly.
 
 This task is optional, but it will be really helpful especially new team members working on the same project.
-
 
 
 ``` tf  title="tf_commands.ps1"
@@ -477,6 +500,7 @@ Azure storage account container should have two files created and stored the ter
 
 ![image.jpg](images/image-15.jpg)
 
+That's all! we are fully ready with terraform development for creating any azure resources using this foundation, we are going to learn more about terraform configuration while creating new azure resources in the future labs.
 ## Reference
 
 - <https://learn.microsoft.com/en-us/azure/developer/terraform/create-resource-group?source=recommendations&tabs=azure-cli>

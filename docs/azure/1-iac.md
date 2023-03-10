@@ -5,7 +5,7 @@ This is the second module in the series, In this second module you will learn on
 
 Creation of these Azure resources will be completely automated with IaC approach using Terraform configuration and azure DevOps pipelines; 
 
-Let's quickly talk about Infrastructure as Code (IaC) in few line here. 
+Let's quickly talk about Infrastructure as Code (IaC) in few lines here. 
 
 `Infrastructure as Code (IaC)` is an approach to managing IT infrastructure in which the infrastructure is defined and managed using code, rather than through manual configuration. IaC is a set of practices and tools that allow developers and operations teams to automate the process of deploying and managing infrastructure.
 
