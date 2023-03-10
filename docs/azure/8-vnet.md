@@ -41,6 +41,21 @@ working on it...
 
 ## Implementation details
 
+In this lab we are going to create Hub & Spoke virtual network topology. Let's try to understand little bit about this here before jumping into the lab:
+
+A hub and spoke virtual network architecture is a networking topology commonly used in cloud computing, and particularly in Microsoft Azure. In this architecture, a central "hub" virtual network is connected to one or more "spoke" virtual networks, forming a hub-and-spoke topology.
+
+There are several benefits to using a hub and spoke virtual network architecture in Azure:
+
+- Scalability: The hub and spoke architecture is highly scalable and can be easily extended as the needs of the organization change.
+- Security: The centralized hub network can act as a secure boundary for the entire network, providing a single point of entry for traffic.
+- Simplified management: The hub and spoke architecture simplifies network management, making it easier to monitor and manage traffic between the various spoke networks.
+- Cost-effective: The hub and spoke architecture can help reduce costs by reducing the need for redundant networking infrastructure.
+
+In Azure the hub network is created first, followed by the spoke networks which are then connected to the hub network.
+
+Now let's start working on the lab.
+
 Open the terraform project folder in Visual Studio code and creating new file named `virtual_network.tf` for Virtual Network specific azure resources;
 
 
@@ -552,6 +567,8 @@ subnets
 
 ## Task-5: Create Diagnostics Settings for Networking
 
+We are going to create diagnostics setting for all the resources created as part of our labs. Once the diagnostics setting is created, Azure will begin collecting diagnostic logs for the selected categories and sending them to the designated destination. You can use these logs to monitor and troubleshoot your network resources, as well as to create custom alerts and dashboards for monitoring purposes.
+
 ``` tf title="network.tf"
 
 # Create Diagnostics Settings for Networking
@@ -637,6 +654,8 @@ list of resources in the vnet resource group
 resource group lock.
 
 ![image.jpg](images/image-22.jpg)
+
+Now our Virtual Network is created and ready to use. You can now deploy AKS, ACR and other resources within your Virtual Network, and configure their network settings as needed.
 
 ## References
 

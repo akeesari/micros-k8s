@@ -30,7 +30,7 @@ In this exercise we will accomplish & learn following:
 - Task-4: Validate Log Analytics workspace in the portal
 - Task-5: Lock the Log Analytics workspace resource group
 
-Open the terraform folder in VS core and start creating new files or update existing files for Log Analytics specific resources to provision in azure cloud.
+This is our first azure resource that will be created using Terraform configuration, open the terraform folder in VS core and start creating new files or update existing files for Log Analytics specific resources to provision in azure cloud.
 
 
 **login to Azure**
@@ -56,18 +56,18 @@ az account set -s "anji.keesari"
 
 #### define variables
 
-Here is the list of variable used in log analytics workspace creation; wea are going to update existing `variable.tf` file with following variables.
+Here is the list of variable used in log analytics workspace creation; we are going to update existing `variable.tf` file with following variables. read the `description` provided in this source code to understand the purpose of each variable. also look into the variable `type` and `default` value of each variable.
 
 ``` tf title="variable.tf" linenums="1"
 
 variable "log_analytics_workspace_rg_name" {
-  description = "Specifies the resource group name of the log analytics workspace"
+  description = "(Required) Specifies the resource group name of the log analytics workspace"
   type        = string
   default     = "rg-workspace-dev"
 }
 
 variable "log_analytics_workspace_name" {
-  description = "Specifies the name of the log analytics workspace"
+  description = "(Required) Specifies the name of the log analytics workspace"
   type        = string
   default     = "workspace-workspace1-dev"
 }
@@ -90,7 +90,7 @@ variable "log_analytics_workspace_sku" {
 }
 
 variable "solution_plan_map" {
-  description = "Specifies solutions to deploy to log analytics workspace"
+  description = "(Required) Specifies solutions to deploy to log analytics workspace"
   type        = map(any)
   default = {
     ContainerInsight   product   = "OMSGallery/ContainerInsights"
@@ -116,7 +116,7 @@ s = {
 
 #### declare variables
 
-update existing `dev-variable.tfvar` file for the list of variable different for each environment.
+Here I am going to update existing `dev-variable.tfvar` file for the list of variable different for each environment.
 
 ``` tf title="dev-variable.tfvar"
 log_analytics_workspace_rg_name     = "workspace"
@@ -421,6 +421,7 @@ terraform plan -out=dev-plan -var-file="./environments/dev-variables.tfvars"
 terraform apply dev-plan
 ```
 
+That's it, now we've fully working azure Log analytics workspace which we are going to use for future labs.
 
 ### Reference
 
