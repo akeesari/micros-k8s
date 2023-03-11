@@ -2,19 +2,17 @@ Preparing an application for Azure Kubernetes Service (AKS) involves several ste
 
 - **Containerize the application:** The first step is to containerize your application. there are several steps involved in containerize the application.
 
-- **Push the image to container registry:** Again there are several steps involved in pushing docker container image to ACR, those are listed in [Create first Microservice with .NET Core](../microservices/aspnet-api.md) chapter.
+- **Push the image to container registry:** Again there are several steps involved in pushing docker container image to ACR, those steps are listed in [Create first Microservice with .NET Core](../microservices/aspnet-api.md) chapter.
 
 ## Prerequisites 
 
-- Create Repo
-- Clone repo
-- Create Project (.NET core web API)
-- Add .gitignore
+- Create and clone Microservices Repo
+- Create a new Project (.NET core web API)
 - Add Dockerfile
 
 As part of the Microservice module first chapter we've already created our first Microservice with .NET Core, containerized the application and pushed to ACR. follow the instruction provided in that chapter and implement following steps to preparing your application ready for Azure Kubernetes Service.
 
-- **Step-1:** Add Docker files to the API project
+- **Step-1:** Create Dockerfile in API project
 - **Step-2:** Docker Build & Run
     - docker build
     - docker run

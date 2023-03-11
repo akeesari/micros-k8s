@@ -64,6 +64,8 @@ kubectl get namespace -A
 
 ## Step-1: Create a new namespace
 
+We are going to deploy our application in separate namespace in AKS instead of in `default` namespace. use this command to create new namespace in Kubernetes cluster. Let's name our namespace as `sample`
+
 ``` sh
 kubectl create namespace sample 
 ```
@@ -71,7 +73,9 @@ kubectl create namespace sample
 
 Deployment manifest is a YAML file that describes the desired state of the Kubernetes objects that make up a deployment in Azure Kubernetes Service (AKS). The AKS deployment manifest includes information such as the container image to use, the number of replicas to create, the ports to expose, and any other required configuration options. 
 
-``` yaml
+Here is the deployment YAML file for deploying our first Microservice `aspnet-api`. we will name this file as `deployment.yaml` and store it in `aspnet-api` folder.
+
+``` yaml title="deployment.yaml"
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -114,7 +118,9 @@ A Kubernetes service manifest is a YAML file that defines a Kubernetes service o
 
 This manifest creates a service named `aspnet-api` that selects pods with the label app: `aspnet-api` and exposes them on port 80 using the ClusterIP service type. The service forwards incoming traffic to the pods on port 80.
 
-``` yaml
+Here is the service YAML file for our first Microservice `aspnet-api`. we will name this file as `service.yaml` and store it in `aspnet-api` folder.
+
+``` yaml title="service.yaml"
 apiVersion: v1
 kind: Service
 metadata:
@@ -133,13 +139,16 @@ spec:
 
 # kubectl apply -f service.yaml -n sample
 ```
- Kubernetes service types:
+
+ There are 3 service types in Kubernetes:
 
 - `NodePort:` Exposes the service on a static port on each node in the cluster, allowing external traffic to access the service via any node's IP address and the specified static port.
 - `LoadBalancer:` Creates a cloud provider load balancer that distributes incoming traffic to the service across multiple nodes in the cluster.
 - `ExternalName:` Maps the service to the contents of the externalName field (e.g., a DNS name) instead of selecting pods.
 
 ## Step-3: Apply the manifests to your AKS cluster
+
+Use these commands to apply these files in AKS.
 
 ``` sh
 kubectl apply -f deployment.yaml -n sample
@@ -148,6 +157,8 @@ kubectl apply -f deployment.yaml -n sample
 kubectl apply -f service.yaml -n sample
 # service/aspnet-api created
 ```
+Now let's check the status of our deployment and service files in AKS by running following commands.
+
 get pods
 ```
 kubectl get pods -n sample
@@ -166,6 +177,9 @@ output
 NAME         TYPE        CLUSTER-IP   EXTERNAL-IP   PORT(S)   AGE
 aspnet-api   ClusterIP   10.25.74.8   <none>        80/TCP    31m
 ```
+
+!!! Note
+    EXTERNAL-IP is blank here, we'll have to update this to `LoadBalancer` type for testing.
 ## Step-4: Port forwarding
 
 Kubernetes port forwarding is a feature that allows you to access a Kubernetes service running inside a cluster from outside the cluster. It works by forwarding traffic from a local port on your machine to a port on a pod in the cluster.
@@ -180,9 +194,14 @@ Forwarding from [::1]:8080 -> 80
 Handling connection for 8080
 Handling connection for 8080
 ```
-![image.jpg](images/image-2.jpg)
+
+This command forwards port 8080 on your local machine to port 80 on the "aspneet-api" service in the AKS cluster.
+
+With the port forwarding established, you can now access the service using a web browser. In this example, you would access the service by opening a web browser and entering the following URL:
 
 <http://localhost:8080/swagger/index.html>
+
+![image.jpg](images/image-2.jpg)
 
 Port forwarding can be useful for testing and debugging applications running inside a Kubernetes cluster, allowing you to interact with them as if they were running locally on your machine. 
 
@@ -212,13 +231,13 @@ spec:
 ```
 In this example, the type field is set to `LoadBalancer`, which tells AKS to create a public IP address and a load balancer in front of the service. 
 
-run the kubectl apply again to create the service.
+run the `kubectl apply` again to create the service.
 
 ``` sh
 kubectl apply -f service.yaml -n sample
 # service/aspnet-api configured
 ```
-Once the service is created, you can use the kubectl get services command to retrieve the external IP address assigned to the service:
+Once the service is created, you can use the `kubectl get services` command to retrieve the external IP address assigned to the service:
 
 ``` sh
 kubectl get services aspnet-api -n sample
@@ -229,6 +248,8 @@ NAME         TYPE           CLUSTER-IP   EXTERNAL-IP     PORT(S)        AGE
 aspnet-api   LoadBalancer   10.25.74.8   20.246.168.64   80:30363/TCP   7h21m
 ```
 
+!!! Note
+    EXTERNAL-IP is updated here with new public IP address, now you should be able to access your service externally.
 
 ## Step-6: Verify that the application is running
 

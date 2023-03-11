@@ -2,7 +2,11 @@
 
 ## Introduction
 
-An ingress controller is a piece of software that provides reverse proxy, configurable traffic routing, and TLS termination for Kubernetes services. Kubernetes ingress resources are used to configure the ingress rules and routes for individual Kubernetes services. When you use an ingress controller and ingress rules, a single IP address can be used to route traffic to multiple services in a Kubernetes cluster.
+NGINX Ingress Controller is a type of ingress controller, it is a piece of software (configuration) that manages incoming traffic to a Kubernetes cluster. It works as a reverse proxy and load balancer, routing incoming traffic to the appropriate Kubernetes services based on the rules defined in the ingress resources. When you use an ingress controller and ingress rules, a single IP address can be used to route traffic to multiple services in a Kubernetes cluster.
+
+Ingress resources are Kubernetes objects that define rules for routing incoming traffic to specific services. The NGINX Ingress Controller is responsible for reading and interpreting these rules and routing the traffic accordingly.
+
+The NGINX Ingress Controller is a popular choice for Kubernetes users because it is lightweight, highly scalable, and provides advanced features like SSL termination, rate limiting, and WebSockets support.
 
 ## Technical Scenario
 
@@ -11,14 +15,13 @@ As a cloud engineer you've been asked to setup the NGINX ingress controller in a
 
 **Install ingress-nginx controller helm chart using terraform**
 
-Another requirement is to make sure that installation of Nginx ingress controller in AKS is completely automated using using pipelines, therefore Installation of ingress-nginx controller helm chart will be done using terraform. 
+Another requirement here is to make sure that installation of Nginx ingress controller in AKS is completely automated, to fulfill this requirement we are going to use terraform configuration to install the ingress-nginx controller in our AKS.
 
-**Note:**
-
-There are two open source ingress controllers for Kubernetes based on Nginx: 
-
-- One is maintained by the Kubernetes community (kubernetes/ingress-nginx), 
-- Second one is maintained by NGINX, Inc. (nginxinc/kubernetes-ingress). 
+!!! Note
+    There are two open source ingress controllers for Kubernetes based on Nginx: 
+   
+   - One is maintained by the Kubernetes community (kubernetes/ingress-nginx), 
+   - Second one is maintained by NGINX, Inc. (nginxinc/kubernetes-ingress). 
 
 Here we will be using the Kubernetes community ingress controller.
 
@@ -34,7 +37,7 @@ Ensure that you have a Kubernetes cluster up and running along with following:
     - Kubectl provider
 - Install azure CLI - <https://learn.microsoft.com/en-us/cli/azure/install-azure-cli>
 - Install and setup kubectl - <https://kubernetes.io/docs/tasks/tools/install-kubectl-windows/>
-- install Helm client
+- Install Helm client
 - AKS cluster
 
 
@@ -103,15 +106,19 @@ kubectl get namespace -A
 
 ## Step-1: Configure Terraform providers 
 
-Installing ingress resources with Helm Chart using Terraform involves a few steps:
+In order to install any Helmcharts using terraform configuration we need to have following terraform providers.
 
-First, you need to have the necessary Terraform providers and Helm client installed on your local machine or the server where Terraform is being executed. You can install the necessary providers by adding the following code in your Terraform configuration file:
+- helm provider
+- Kubernetes provider
+- Kubectl provider 
 
 The Helm Provider allows you to manage your Helm charts and releases as part of your Terraform-managed infrastructure. With the Helm Provider, you can define your charts as Terraform resources and manage their installation and updates through Terraform.
 
 With Terraform, you can manage the installation, upgrades, and deletion of your Helm charts in a repeatable, version-controlled manner. This can help simplify your infrastructure management, ensure consistency and repeatability, and reduce the chance of manual errors.
 
 **terraform providers**
+
+You can install the necessary providers by adding the following code in your Terraform configuration file:
 
 Let's update our existing `provider.tf` file with new kubernetes, helm and kubectl providers:
 
@@ -172,17 +179,19 @@ provider "kubectl" {
 }
 ```
 
+If you want to know more information about these provides, you can use following links for further reading.
+
 **helm provider** 
 
-read this for more info -  <https://registry.terraform.io/providers/hashicorp/helm/latest/docs>
+more info -  <https://registry.terraform.io/providers/hashicorp/helm/latest/docs>
 
 **Kubernetes provider**
 
-read this for more info -  <https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs>
+more info -  <https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs>
 
 **Kubectl provider** 
 
-read this for info - <https://registry.terraform.io/providers/gavinbunney/kubectl/latest/docs>
+more info - <https://registry.terraform.io/providers/gavinbunney/kubectl/latest/docs>
 
 **terraform init** 
 
@@ -218,7 +227,7 @@ Terraform has been successfully initialized!
 ```
 ## Step-2: Create a new namespace for ingress
 
-Create a separate namespace for nginx-ingress where all ingress related resources will be created. let's create a file called `nginx-ingress.tf` and copy following configuration.
+Create a separate namespace for nginx-ingress so that ingress specific AKS resources together in one single namespace and logically isolated from other Kubernetes resources. let's create a file called `nginx-ingress.tf` and copy following terraform configuration.
 
 ``` tf title="nginx-ingress.tf"
 resource "kubernetes_namespace" "ingress" {  
@@ -271,7 +280,9 @@ Outputs:
 
 ## Step-2: Install ingress resources with helm-chart using terraform
 
-We are going to get the helm chart details from official Nginx ingress ArtifactHUB website.
+Now it is time to install ingress helm chart in AKS cluster.
+
+We are going to get the ingress helm chart details from official Nginx ingress ArtifactHUB website.
 
 <https://artifacthub.io/packages/helm/ingress-nginx/ingress-nginx> - click on Install button and get following helm-chart details
 
@@ -281,7 +292,7 @@ chart      = "ingress-nginx"
 version    = "4.5.2"
 ```
 
-Create a Terraform module that deploys the Helm Chart. You can use the `helm_release` resource to install the Helm Chart:
+we are going to use the `helm_release` terraform resource to install the Helm Chart:
 
 ``` tf title="nginx-ingress.tf"
 # Install ingress helm chart using terraform
@@ -297,7 +308,7 @@ resource "helm_release" "ingress" {
 }
 ```
 
-Run terraform plan
+Let's run terraform plan
 
 ```
 terraform plan -out=dev-plan -var-file="./environments/dev-variables.tfvars"
@@ -363,6 +374,7 @@ Outputs:
 
 ## Step 3. Verify Ingress-Nginx resources in AKS.
 
+Step-2 terraform output shows that helm chart installation is successful therefore in this step we can validate Ingress-Nginx installation by running following commands.
 
 **Connect to AKS cluster**
 
@@ -453,11 +465,17 @@ CRDs
 kubectl get clusterrole -n ingress
 kubectl get clusterrolebinding -n ingress
 kubectl get CustomResourceDefinition -n ingress
-
 ```
+
+outputs from above commands shows that Nginx ingress controller is installed correctly in our AKS cluster and ready to use by deploying a application in AKS.
 ## Step 4: Deploy sample applications for Ingress testing
 
-To see the ingress controller in action, we are going to use demo applications listed here and apply using kubectl in AKS- <https://learn.microsoft.com/en-us/azure/aks/ingress-basic?tabs=azure-powershell>
+Since we confirmed that Nginx ingress controller is successfully install in our AKS, we can now deploy few Microservices which we built in Microservices chapter and test the Ingress controller to make sure it is routing the request to our backend AKS cluster services. 
+
+for now I am going to use sample demo applications from MSDN document and test the ingress controller.
+
+reference - <https://learn.microsoft.com/en-us/azure/aks/ingress-basic?tabs=azure-powershell> 
+
 
 Create an `aks-helloworld-one.yaml` file and copy in the following example YAML:
 
@@ -640,13 +658,15 @@ NAME                         CLASS   HOSTS   ADDRESS          PORTS   AGE
 hello-world-ingress          nginx   *       20.121.154.157   80      7h59m
 hello-world-ingress-static   nginx   *       20.121.154.157   80      7h58m
 ```
-
-verify same static IP (20.121.154.157) address assigned to both applications here.
+!!! Note
+    Verify same static IP (20.121.154.157) address assigned to both applications here.
 
 
 ## Step-6: Test the ingress controller
 
-To test the routes for the ingress controller, browse to the two applications.
+To test the routes for the ingress controller, browse two applications with path prefix mentioned in the ingress.
+
+for example 
 
 hello-world-one app
 
@@ -659,14 +679,38 @@ hello-world-one app
 hello-world-twp app
 
 <http://20.121.154.157/hello-world-two/>
+
 ![image.jpg](images/image-6.jpg)
 
 
-## Step-7: Add DNS recordset in DNS Zone
+## Step-7: Add DNS Recordset in DNS Zone
+
+There are two types of DNS zones in Azure:
+
+- **Public DNS Zones:** These DNS zones are publicly accessible on the internet and can be used to map domain names to IP addresses. You can use public DNS zones to host your website publicly accessible.
+
+- **Private DNS Zones:** These DNS zones are not publicly accessible on the internet and are used to map domain names to private IP addresses within your virtual network. You can use private DNS zones to enable DNS name resolution between resources in your virtual network.
+
+If you want to browse the URL with your custom domain instead of IP address like above you need create A recordset in one of the DNS zones depending on how you want to access your URL. 
 
 An A record (Address Record) maps a domain name to an IPv4 address. Here we will map A record in DNS Zone.
 
+You can create A recordset in DNS zone using the Azure portal, Azure CLI, or Azure PowerShell. 
 
+To create A record set in a DNS zone in Azure portal, follow these steps:
+
+- Sign in to the Azure portal (https://portal.azure.com).
+- In the left-hand menu, click on "All services" and type "DNS zones" in the search box. Click on "DNS zones" when it appears in the results.
+- Select the DNS zone in which you want to create the record set.
+- Click on the "Record set" button at the top of the page.
+- In the "Add record set" blade, enter the following information:
+    - Name: The name of the record set
+    - Type: The type of DNS record you want to create, such as A, AAAA, CNAME, MX, NS, PTR, SRV, or TXT.
+    - TTL: The time-to-live value for the DNS record, in seconds.
+    - IP address : The value or values associated with the DNS record, such as an IP address for an A record
+- Click the "Add" button to create the record set.
+
+Once the record set is created, it may take a few minutes for the changes to propagate across the internet. You can view and manage your DNS record sets in the Azure portal or by using Azure CLI or PowerShell commands.
 
 <!-- **Install cert-manager**
 

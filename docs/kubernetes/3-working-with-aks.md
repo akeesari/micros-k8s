@@ -1,8 +1,7 @@
-You can work with an Azure Kubernetes Service (AKS) cluster using `kubectl`, the command-line tool for Kubernetes.
+Now it is time to learn some basic commands of `kubectl` to interacting with our AKS cluster so that performing actions in  next labs will easer.
 
 ## Prerequisites
 
-- Azure subscription - <https://azure.microsoft.com/en-us/free/>
 - Download & Install Azure CLI - <https://learn.microsoft.com/en-us/cli/azure/install-azure-cli>
 - Existing AKS cluster
 - Visual studio code
@@ -10,7 +9,7 @@ You can work with an Azure Kubernetes Service (AKS) cluster using `kubectl`, the
 
 ## Install kubectl
 
-Here are the steps to use kubectl to manage an AKS cluster:
+Here are the steps to use the `kubectl` command to manage an AKS cluster:
 
 First, you'll need to install kubectl on your local machine. You can download the latest version of kubectl from the Kubernetes official website. <https://kubernetes.io/docs/tasks/tools/install-kubectl-windows/>
 
@@ -22,7 +21,7 @@ choco install kubernetes-cli
 
 Mac OS users.
 
-look into this for more info - https://kubernetes.io/docs/tasks/tools/install-kubectl-macos/
+look into this for more info - <https://kubernetes.io/docs/tasks/tools/install-kubectl-macos/>
 
 ``` sh
 brew install kubectl
@@ -49,7 +48,7 @@ az account set -s "anji.keesari"
 
 ## Connect to AKS cluster
 
-After you've installed kubectl, you'll need to configure it to connect to your AKS cluster. You can do this by running the following command:
+Before using `kubectl` commands, make sure that you connect to Kubernetes cluster first using following commands.
 
 ``` sh
 # azure CLI
@@ -63,6 +62,9 @@ az aks get-credentials -g "rg-aks-dev" -n "aks-cluster1-dev" --admin
 ```
 
 ##  Test workloads in AKS
+
+Once you've connected to the cluster successfully then try running following commands to see everything is working as expected in your cluster.
+
 ``` sh
 kubectl get all --namespace <namespace-name>
 # get nodes
@@ -341,7 +343,7 @@ kubectl g[tab][tab] po[tab][tab] --all[tab][tab]
 
 ## Troubleshooting errors
 
-in case if you are getting following error than means you need to convert or switch to Azure kubelogin.
+In case if you are getting following error while running `kubectl` commands than that means you need to convert or switch to Azure kubelogin.
 
 ```
 ❯ az aks browse  -g "rg-aks-dev" -n "aks-cluster1-dev"
@@ -364,7 +366,7 @@ E0226 12:20:52.660790  116560 memcache.go:238] couldn't get current server API g
 
 reference for more reading- <https://aptakube.com/blog/how-to-use-azure-kubelogin>
 
-## install kubelogin
+## Install kubelogin
 ```
 brew install Azure/kubelogin/kubelogin
 ```
@@ -402,3 +404,5 @@ To convert your kubectl authentication method to Azure CLI, all you need to do i
 ```
 kubelogin convert-kubeconfig -l azurecli
 ```
+
+That's all we need for now to start working with our AKS cluster.
