@@ -432,28 +432,29 @@ list of resources in this ACR resource group
 ### Task-7.1: Log in to registry
 
 ``` sh
-az acr login --name myacr
+az acr login --name acr1dev
 
 ```
 ### Task-7.2: Push image to registry
 
 ``` sh
-az acr login --name myacr
-docker tag myimage:latest myacr.azurecr.io/myimage:latest
-az acr push --name myacr myimage:latest
+az acr login --name acr1dev
+docker tag sample/aspnet-api:20230226.1 acr1dev.azurecr.io/sample/aspnet-api:20230226.1
+docker push acr1dev.azurecr.io/sample/aspnet-api:20230226.1
+or
+az acr push --name acr1dev sample/aspnet-api:20230226.1
 ```
 ### Task-7.3: Pull image from registry
 
 ``` sh
-az acr login --name myacr
-docker pull myacr.azurecr.io/myimage:latest
-
+az acr login --name acr1dev
+docker pull acr1dev.azurecr.io/sample/aspnet-api:20230226.1
 ```
 ### Task-7.4: List container images
 
 ``` sh
-az acr login --name myacr
-az acr repository list --name myacr
+az acr login --name acr1dev
+az acr repository list --name acr1dev
 ```
 
 for more information look into the az acr cheat-sheet [az-acr-cheat-sheet](./../miscellaneous/az-acr-cheat-sheet.md)

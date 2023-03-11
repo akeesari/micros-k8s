@@ -4,13 +4,18 @@ Azure Kubernetes Service (AKS) is a fully managed container orchestration servic
 
 AKS provides a number of benefits, including:
 
-- **Simplified deployment:** You can deploy a fully functional Kubernetes cluster with just a few clicks or commands, and AKS automatically provisions and manages the underlying infrastructure.
 
 - **Autoscaling:** AKS automatically scales your cluster up or down based on the demand for your applications, so you only pay for what you use.
+
+- **High availability:** AKS provides a highly available Kubernetes control plane, which ensures that the cluster remains operational even in the event of a failure.
+
+- **Simplified deployment:** You can deploy a fully functional Kubernetes cluster with just a few clicks or commands, and AKS automatically provisions and manages the underlying infrastructure.
 
 - **Seamless integration:** AKS integrates with other Azure services, such as Azure Active Directory, Azure Monitor, and Azure Virtual Networks, making it easy to incorporate AKS into your existing workflows.
 
 - **Security and compliance:** AKS provides built-in security features, such as role-based access control, network security, and encryption at rest, to help you meet your security and compliance requirements.
+
+- **Monitoring and logging:** AKS provides built-in monitoring and logging capabilities, allowing developers to quickly identify and troubleshoot issues in the cluster.
 
 - **Hybrid and multi-cloud support:** AKS is built on open source Kubernetes, so you can run your workloads on any cloud or on-premises environment that supports Kubernetes.
 
@@ -18,7 +23,7 @@ To get started with AKS, we are going to use terraform to create a new Kubernete
 
 ## Technical Scenario
 
-As a cloud engineer, you have been asked to create a new Azure Kubernetes services (AKS) cluster so that you can deploy containerized microservice applications to it using Kubernetes manifests or Helm charts.
+As a cloud engineer, you have been asked to create a new Azure Kubernetes services (AKS) cluster so that you can deploy containerized Microservice applications to it using Kubernetes manifests or Helm charts.
 
 ## Objective
 
@@ -51,9 +56,9 @@ working on it...
   - Azure subscription
   - Visual studio code
   - Azure DevOps Project & repo
-  - Terraform Foundation
+  - Terraform Foundation Setup
   - Log Analytics workspace
-  - Virtual Network
+  - Virtual Network with subnet for AKS
   - Azure Container Registry (ACR)
   
 ## Implementation details
@@ -83,9 +88,9 @@ az account set -s "anji.keesari"
 
 This section covers list of variables used to create  Azure Kubernetes services (AKS) with detailed description and purpose of each variable with default values.
 
-**Variables Prefixed**
+**Variables Prefixes**
 
-Here is the list of new prefixes used in this lab
+Here is the list of new prefixes used in this lab, read the description and default values.
 
 ``` tf title="variables_prefix.tf"
 variable "aks_prefix" {
@@ -103,7 +108,10 @@ variable "diag_prefix" {
 
 **Declare Variables**
 
-Here is the list of new variables used in this lab
+Here is the list of new variables used in this lab,  read the description and default values carefully. 
+
+!!! Important
+     There are lot of variables here, make sure that you read the MSDN documentation carefully on each property before using it.
 
 ``` tf title="variables.tf"
 
@@ -396,9 +404,10 @@ variable "aks_tags" {
 ```
 **Define variables**
 
-Here is the list of new variables used in this lab
+Here is the list of new variables used in this lab.
 
-`dev-variables.tfvar` - update this existing file for AKS values for development environment.
+`dev-variables.tfvar` - update this existing file for AKS values for development environment. These values will be different for each environments and it may be different for your requirements too.
+
 ``` tf title="dev-variables.tfvar"
 # Azure Kubernetes Service (AKS) 
 aks_rg_name                         = "aks"
@@ -661,6 +670,15 @@ terraform apply dev-plan
 
 ![image.jpg](images/image-29.jpg)
 
+**ssh_public_key**
+
+If you notice, we are using ssh_public_key here in our script.
+
+When you create an AKS cluster, you can specify an SSH public key to use for authentication to the nodes in the cluster. This allows you to securely connect to the nodes using SSH, which can be useful for tasks such as troubleshooting and debugging.
+
+This assumes that your SSH key pair is stored in the default location (~/.ssh/id_rsa and ~/.ssh/id_rsa.pub). If your key pair is stored in a different location, adjust the path accordingly.
+
+
 ## Task-5: Create Diagnostics Settings for AKS
 
 we are going to use diagnostics settings for all kind of azure resources to manage logs and metrics etc... Let's create diagnostics settings for AKS for storing Logs and Metric with default retention of 30 days or as per the requirements.
@@ -790,6 +808,10 @@ resource "azurerm_monitor_diagnostic_setting" "diag_aks" {
   }
 }
 ```
+
+!!! Important
+     Make sure that you will properly review your requirements before enable Diagnostics setting, you may want to toggle off some of them which are not needed for your project so that you can save Log Analytics workspace cost here. 
+
 run terraform validate & format
 
 ``` sh
@@ -808,12 +830,30 @@ terraform apply dev-plan
 
 ##  Task-6: Review AKS Cluster resource in the portal
 
-list of resources in this AKS resource group
+Now it time to review all the azure resource created in the given resource group. Login into the azure portal and select the resource group. you will notice following resource in the resource group you've selected.
 
 ![image.jpg](images/image-31.jpg)
 
+**MC_ resource group**
+
+In Azure Kubernetes Service (AKS), the MC_ resource group is an automatically created resource group that contains the Azure resources that are created as part of an AKS cluster. The MC_ prefix stands for "Managed Cluster".
+
+When you create an AKS cluster, you specify a name and a resource group for the cluster. For example, you might create a cluster named aks-cluster1-dev in a resource group named rg-aks-dev. When the cluster is created, Azure creates a new resource group with the name MC_rg-aks-dev_aks-cluster1-dev_<location>. The <location> part of the name is the Azure region where the resources are deployed.
+
+The MC_ resource group contains a variety of Azure resources that are created as part of the AKS cluster, including virtual machines. These resources are used to support the operation of the cluster and its workloads.
+
+It's worth noting that the MC_ resource group is managed by Azure and should not be modified or deleted directly. If you need to modify the resources in the MC_ resource group, you should do so through the AKS cluster itself or through the Azure Portal or Azure CLI.
+
+Here are the list of resource created automatically for you in the resource group:
+
+![image.jpg](images/image-33.jpg)
+
+
 ##  Task-7: Validate AKS cluster running Kubectl
 
+As a beginner the best way to start interacting AKS is selecting your cluster and click on connect in the overview blade, you will notice bunch of kubectl commands which you can use to start.
+
+![image.jpg](images/image-34.jpg)
 
 ``` sh
 # Azure Kubernetes Service Cluster User Role
@@ -847,11 +887,55 @@ kube-public         Active   5d20h
 kube-system         Active   5d20h
 ```
 
+get pods
+```
+ kubectl get pods -A
+```
+output
+```
+NAMESPACE           NAME                                                READY   STATUS    RESTARTS   AGE
+gatekeeper-system   gatekeeper-audit-584d598c78-chx8v                   1/1     Running   0          14d
+gatekeeper-system   gatekeeper-controller-8684d59cc8-4wtgh              1/1     Running   0          14d
+gatekeeper-system   gatekeeper-controller-8684d59cc8-rtrgx              1/1     Running   0          14d
+kube-system         aks-secrets-store-csi-driver-4vlfk                  3/3     Running   0          14d
+kube-system         aks-secrets-store-csi-driver-w6fcv                  3/3     Running   0          14d
+kube-system         aks-secrets-store-provider-azure-glh4r              1/1     Running   0          18d
+kube-system         aks-secrets-store-provider-azure-v2vrl              1/1     Running   0          18d
+kube-system         azure-ip-masq-agent-gjz65                           1/1     Running   0          18d
+kube-system         azure-ip-masq-agent-lf45m                           1/1     Running   0          18d
+kube-system         azure-npm-fktnn                                     1/1     Running   0          18d
+kube-system         azure-npm-n4qmq                                     1/1     Running   0          18d
+kube-system         azure-policy-587845b8b9-72tws                       1/1     Running   0          14d
+kube-system         azure-policy-webhook-77b5f89f7b-hc2zb               1/1     Running   0          14d
+kube-system         cloud-node-manager-5qshr                            1/1     Running   0          17d
+kube-system         cloud-node-manager-n8gd4                            1/1     Running   0          17d
+kube-system         coredns-7959db464c-52ltx                            1/1     Running   0          17d
+kube-system         coredns-7959db464c-7bjjn                            1/1     Running   0          17d
+kube-system         coredns-autoscaler-5589fb5654-dbpcz                 1/1     Running   0          18d
+kube-system         csi-azuredisk-node-8dwns                            3/3     Running   0          14d
+kube-system         csi-azuredisk-node-qn52k                            3/3     Running   0          14d
+kube-system         csi-azurefile-node-qrvls                            3/3     Running   0          18d
+kube-system         csi-azurefile-node-wzt2j                            3/3     Running   0          18d
+kube-system         konnectivity-agent-cd99df756-l6gqp                  1/1     Running   0          18d
+kube-system         konnectivity-agent-cd99df756-pm4xs                  1/1     Running   0          18d
+kube-system         kube-proxy-7v5hf                                    1/1     Running   0          17d
+kube-system         kube-proxy-8vvzp                                    1/1     Running   0          17d
+kube-system         metrics-server-87c5578c4-j9gsg                      2/2     Running   0          17d
+kube-system         metrics-server-87c5578c4-tr8s8                      2/2     Running   0          17d
+```
+
+get all resource
+
+```
+kubectl get all -A 
+```
+
+
 ##  Task-8: Allow AKS Cluster access to Azure Container
 
-AKS cluster needs access to the ACR to pull images from the ACR.  you can allow an AKS cluster access to an Azure Container Registry (ACR) using role assignment. Here is the terraform configuration for this creating role assignment.
+AKS cluster needs access to the ACR to pull your Microservices container images from the ACR.  you can allow an AKS cluster access to an Azure Container Registry (ACR) using role assignment. Here is the terraform configuration for this creating role assignment.
 
-``` tf
+``` tf title="aks.tf"
 # Allow AKS Cluster access to Azure Container Registry
 resource "azurerm_role_assignment" "role_acrpull" {
   principal_id                     = azurerm_kubernetes_cluster.aks.kubelet_identity[0].object_id
@@ -864,6 +948,20 @@ resource "azurerm_role_assignment" "role_acrpull" {
   ]
 }
 ```
+run terraform validate & format
+
+``` sh
+terraform validate
+terraform fmt
+```
+
+run terraform plan & apply
+
+``` sh
+terraform plan -out=dev-plan -var-file="./environments/dev-variables.tfvars"
+terraform apply dev-plan
+```
+
 ![image.jpg](images/image-32.jpg)
 
 ## Task-9: Lock the resource group
@@ -897,6 +995,6 @@ terraform plan -out=dev-plan -var-file="./environments/dev-variables.tfvars"
 terraform apply dev-plan
 ```
 
-
+That's it! You now have a new AKS cluster deployed in Azure and ready for deploying deployment YAML files for your Microservices.
 
 ## References
