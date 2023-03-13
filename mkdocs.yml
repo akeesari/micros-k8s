@@ -190,7 +190,8 @@ nav:
     - Setup NGINX ingress controller in Kubernetes cluster : kubernetes/4-ingress-controller.md
     - Kubernetes Pod troubleshooting : kubernetes/pod-troubleshooting.md    
   - Azure DevOps:
-    - Azure DevOps Pipelines (CI & CD): devops/devops.md
+    - Azure DevOps Overview : devops/1-devops-overview.md
+
     - ArgoCD: 
          - ArgoCD Introduction: devops/argocd/argocd-intro.md
          - Install ArgoCD: devops/argocd/install-argocd.md

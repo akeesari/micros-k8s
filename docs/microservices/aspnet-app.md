@@ -6,9 +6,9 @@ In our previous labs we've created couple of Microservices to the show the Micro
 
 ## Technical Scenario
 
-As a `Frontend (FE)` developer you've been asked to create a Website / UI application using ASP.NET Core MVC technology which is one of the small Website (UI) in the Microfrontend applications list.
+As a `Frontend (FE)` developer you've been asked to create a website / UI application using ASP.NET Core MVC technology which is one of the small Website (UI) in the Microfrontend applications list.
  
-This lab will help you to understand how to start your journey with Crating ASP.NET MVC application, we will start with creating or using existing repo, creating MVC project template and finally containerize the UI application  and push to the Azure container registry (ACR) for AKS deployment.
+This lab will help you to understand how to start your journey by crating ASP.NET MVC application, we will start with creating or using existing git repo, creating MVC project template and finally containerize the UI application  and push to the Azure container registry (ACR) for AKS deployment.
 
 We are basically preparing a UI application for the Kubernetes deployment. The UI applications we are going to create here in this lab will be used in the subsequent labs like while creating DevOps pipelines or while deploying to Azure Kubernetes services (AKS).
 
@@ -17,11 +17,11 @@ We are basically preparing a UI application for the Kubernetes deployment. The U
 
 In this exercise we will accomplish & learn how to implement following:
 
-- Task-2: Create a new ASP.NET MVC project
-- Task-4: Test ASP.ENT MVC project
-- Task-5: Add Dockerfiles to the project
-- Task-6: Build & Test docker container image locally
-- Task-7: Publish docker container image to ACR
+- Task-1: Create a new ASP.NET MVC project
+- Task-2: Test ASP.NET MVC project
+- Task-3: Add Dockerfiles to the Web App 
+- Task-4: Build & Test docker container image locally
+- Task-5: Publish docker container image to ACR
 - 
 ## Prerequisites
 
@@ -29,7 +29,7 @@ In this exercise we will accomplish & learn how to implement following:
 - Download and install software for .NET development 
 - Docker and the VS Code Docker extension
  
-## Task-2: Create a new ASP.NET Core Web App (MVC project)
+## Task-1: Create a new ASP.NET Core Web App (MVC project)
 
 To create new ASP.NET Core Web App (Model-View-Controller) project you can use either Visual Studio Code or Visual Studio 2022 (latest version).
 
@@ -43,8 +43,6 @@ Here are the steps to create a new ASP.NET Core Web App using the Model-View-Con
 - In the "Create a new ASP.NET Core Web Application" window, select "Web Application (Model-View-Controller)" and click "Create".
 
 Visual Studio will create a new project for you with the necessary files and folders to get started.
-
-That's it! You now have a basic ASP.NET Core Web App using the MVC pattern up and running. From here, you can continue building out your application by adding more controllers, views, and models as needed.
 
 **Using Visual Studio Code**
 
@@ -85,7 +83,7 @@ Pick the following template for our MVC project from the list.
 ```
 ASP.NET Core Web App (Model-View-Controller)  mvc                  [C#],F#     Web/MVC
 ```
-Use this command to actually create new project
+Use `dotnet new` command to create new MVC project
 ```
 dotnet new mvc -o aspnet-app
 ```
@@ -101,18 +99,19 @@ Running 'dotnet restore' on C:\Source\Repos\microservices\aspnet-app\aspnet-app.
 Restore succeeded.
 ```
 
-Verify the project folder structure
+Once the MVC project is created successfully you will see the project folder structure like below:
 
 ![image.jpg](images/image-13.jpg)
 
-cd to the new folder
+cd to the new folder here `aspnet-app`
 
 ```
 cd .\aspnet-app\
 ```
+## Task-2: Test the new ASP.NET core Web App project
 
 1.  Run the following command to build the project:
- `dotnet build` command will look for the project or solution file in the current directory and compile the code in it. It will also restore any dependencies required by the project and create the output files in the bin directory. 
+`dotnet build` command will look for the project or solution file in the current directory and compile the code in it. It will also restore any dependencies required by the project and create the output files in the bin directory. 
 ```
 dotnet build
 ```
@@ -132,7 +131,7 @@ Build succeeded.
 Time Elapsed 00:00:05.07
 ```
 2.  Run the following command to start the development server:
- `dotnet run` command will look for the project or solution file in the current directory and compile the code in it. After compiling, it will run the application and any output will be displayed in the console.
+`dotnet run` command will look for the project or solution file in the current directory and compile the code in it. After compiling, it will run the application and any output will be displayed in the console.
 ```
 dotnet run
 ```
@@ -153,21 +152,22 @@ info: Microsoft.Hosting.Lifetime[0]
 You will notice the URL in the output, copy the URL and paste it in your favorite browser.
 <https://localhost:7289/>
 ![image.jpg](images/image-14.jpg)
-If you are able to see this page in your browser then everything is created and setup as expected.
-
-Use these git commands to push the source code.
-
+For the first time if you are able to see this page in your browser that means ASP.NET MVC project is created as expected.
+Use these git commands to push the source code to remote git.
 ```
 git add .
 git commit -a -m "My fist mvc app commit."
 git push --set-upstream origin main
 git status
 ```
+New folder structure will look like below in the microservices git repo. you will notice the new `aspnet-app` folder with MVC project source code. 
 ![image.jpg](images/image-15.jpg)
 
-## Task-3: Update Landing home page
+## Task-3: Update home page
 
-To make the landing page little fancy we are going to update the `Index.html` file with following code.
+Let's update our landing page to show .NET version, Operating System, processor, CPU core etc.. this information will help us for review when we deploy this application in our AKS in the upcoming labs.  
+
+ We are going to update the `Index.html` file with following code.
 
 ``` c# title="Index.html"
 @page
@@ -273,11 +273,12 @@ To make the landing page little fancy we are going to update the `Index.html` fi
 }
 
 ```
+Here is the home page with new details:
 
-![image.jpg](images/image-15.jpg)
+![image.jpg](images/image-16.jpg)
 
 
-Commit source code 
+Now it is time to commit our source code 
 
 ```
 git add .
@@ -285,62 +286,50 @@ git commit -am "updated landing page"
 git push 
 ```
 
-output
-```
-PS C:\Source\Repos\microservices\aspnet-app> git add .
-PS C:\Source\Repos\microservices\aspnet-app> git add .
-PS C:\Source\Repos\microservices\aspnet-app> git commit -am "updated landing page"
-[main c3fd232] updated landing page
- 2 files changed, 102 insertions(+), 9 deletions(-)
- rewrite aspnet-app/Views/Home/Index.cshtml (95%)
-PS C:\Source\Repos\microservices\aspnet-app> git push
-Enumerating objects: 13, done.
-Counting objects: 100% (13/13), done.
-Delta compression using up to 8 threads
-Compressing objects: 100% (7/7), done.
-Writing objects: 100% (7/7), 1.48 KiB | 758.00 KiB/s, done.
-Total 7 (delta 4), reused 0 (delta 0), pack-reused 0
-remote: Analyzing objects... (7/7) (71 ms)
-remote: Storing packfile... done (90 ms)
-remote: Storing index... done (50 ms)
-To https://keesari.visualstudio.com/Microservices/_git/microservices
-   1e6dc4a..c3fd232  main -> main
-```
 
-
-## Task-5: Add Docker files to the MVC project
+## Task-5: Add Dockerfiles to the MVC project
 
 ``` Dockerfile
 #See https://aka.ms/containerfastmode to understand how Visual Studio uses this Dockerfile to build your images for faster debugging.
-
+# Use the official Microsoft ASP.NET Core runtime image as a parent image
 FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS base
 WORKDIR /app
 EXPOSE 80
 EXPOSE 443
 
+# Copy the project files and restore dependencies
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
 COPY ["aspnet-app.csproj", "."]
 RUN dotnet restore "./aspnet-app.csproj"
+
+# Copy the remaining files and build the application
 COPY . .
 WORKDIR "/src/."
 RUN dotnet build "aspnet-app.csproj" -c Release -o /app/build
 
+# Publish the application
 FROM build AS publish
 RUN dotnet publish "aspnet-app.csproj" -c Release -o /app/publish
 
+# Final image
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
+# Start the application
 ENTRYPOINT ["dotnet", "aspnet-app.dll"]
 ```
 
 
 ## Task-6: Docker Build & Run
 
+The `docker build` command is used to build Docker images from a Dockerfile. The Dockerfile contains a set of instructions that Docker uses to create a new image. 
+
+
 ```
 docker build -t sample/aspnet-app:20230312.1 .
 ```
+`-t` to specify a name and optionally a tag for the image,
 
 output
 
@@ -360,11 +349,17 @@ output
  => => writing image sha256:587f347206bcc67dafe3c0b53047862f11b6e52b1b61bce15b8432cc3a488e24
  => => naming to docker.io/sample/aspnet-app:20230312.1  
 ```
-Error troubleshooting
+
+When you run the `docker build` command, Docker looks for a Dockerfile in the specified directory (PATH) and reads the instructions in the file to build a new image. The Dockerfile contains a series of instructions that define how to build the image, such as copying files, running commands, and setting environment variales. 
+
+**Error & troubleshooting**
+
+In case of you are getting following error while running `docker build` command, that means the docker desktop is not running locally. make sure that run the docker desktop locally to fix this issue.
 
 ```
 error during connect: This error may indicate that the docker daemon is not running.: Post "http://%2F%2F.%2Fpipe%2Fdocker_engine/v1.24/build?buildargs=%7B%7D&cachefrom=%5B%5D&cgroupparent=&cpuperiod=0&cpuquota=0&cpusetcpus=&cpusetmems=&cpushares=0&dockerfile=Dockerfile&labels=%7B%7D&memory=0&memswap=0&networkmode=default&rm=1&shmsize=0&t=sample%2Faspnet-app%3A20230312.1&target=&ulimits=null&version=1": open //./pipe/docker_engine: The system cannot find the file specified.
 ```
+Run the `docker run` command to start a container based on the image:
 
 ```
 docker run --rm -p 8080:80 sample/aspnet-app:20230312.1
@@ -386,17 +381,47 @@ info: Microsoft.Hosting.Lifetime[0]
 warn: Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware[3]
       Failed to determine the https port for redirect.
 ```
+if you open the docker desktop you will notice the new container started running.
+
+![image.jpg](images/image-19.jpg)
 
 <http://localhost:8080/>
 
 
 ![image.jpg](images/image-16.jpg)
 
+
+That's it! You now have a basic ASP.NET Core Web App using the MVC pattern up and running. From here, you can continue building out your application by adding more controllers, views, and models as needed.
+
 ## Task-7: Push docker container image to ACR
+
+To publish a Docker container image to Azure Container Registry (ACR), you will need to have the following:
+
+1. Create an Azure Container Registry. If you don't have one, you can create one by following the instructions in the Azure Portal or using Azure CLI.
+1. Log in to your Azure Container Registry using the Docker command-line interface. You can do this by running the following command:
+``` sh
+# azure Login
+az login
+
+# set the azure subscription
+az account set -s "anji.keesari"
+
+# Log in to the container registry
+az acr login --name acr1dev
+
+# To get the login server address for verification
+az acr list --resource-group rg-acr-dev --query "[].{acrLoginServer:loginServer}" --output table
+
+# output should look similar to this.
+
+# AcrLoginServer    
+# ------------------
+# acr1dev.azurecr.io
+```
+list all the Docker images that are available on the local system
 ```
 docker images
 ```
-
 output
 ```
 REPOSITORY                                                TAG                                                                          IMAGE ID       CREATED         SIZE
@@ -405,19 +430,15 @@ sample/aspnet-app                                         20230312.1            
 .
 .
 ```
-
+1. `Tag` your Docker container image with the full name of your Azure Container Registry, including the repository name and the version tag. You can do this by running the following command:
 ```
 docker tag sample/aspnet-app:20230312.1 acr1dev.azurecr.io/sample/aspnet-app:20230312.1
 ```
-
+1. Push your Docker container image to your Azure Container Registry using the Docker command-line interface. You can do this by running the following command:
 ```
 docker push acr1dev.azurecr.io/sample/aspnet-app:20230312.1
 ```
-
-It takes several mins to push the image depending on the size of the applications, wait for few mins here.
-
 Output
-
 ```
 The push refers to repository [acr1dev.azurecr.io/sample/aspnet-app]
 f9c45e227c3a: Pushed
@@ -430,12 +451,12 @@ f30d150c0152: Pushed
 4695cdfb426a: Pushed
 20230312.1: digest: sha256:049b736aa29e9574010dfe1fc2ef5bb44ed76d54757a8f190b967fa0f854567e size: 1995
 ```
-
-```
+1. Wait for the push to complete. Depending on the size of your Docker container image and the speed of your internet connection, this may take a few minutes.
+1. Verify the newly pushed image to ACR.
+``` sh
 az acr repository list --name acr1dev --output table
 ```
 Output
-
 ```
 Result
 -------------------------------
@@ -444,13 +465,11 @@ mcr.microsoft.com/dotnet/sdk
 sample/aspnet-api
 sample/aspnet-app
 ```
-
+1. Show the new tags of a image in the acr
 ```
 az acr repository show-tags --name acr1dev --repository sample/aspnet-api --output table
 ```
-
 output
-
 ```
 Result
 ----------
@@ -458,3 +477,4 @@ Result
 ```
 
 That's it! You've successfully pushed your Docker container image to Azure Container Registry. You can now use the Azure Portal or Azure CLI to manage your container images and deploy them to Azure services like Azure Kubernetes Service (AKS).
+

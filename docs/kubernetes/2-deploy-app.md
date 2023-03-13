@@ -17,8 +17,6 @@ To deploying an application to Azure Kubernetes Service (AKS) involves several s
 
 
 By following these steps, you can deploy your application to Azure Kubernetes Service (AKS) and take advantage of the scalability and resiliency of the platform. You can also use Azure DevOps or other tools to automate the deployment process and simplify ongoing management of your application on AKS.
-
-
 ## Prerequisites 
 
 - AKS cluster
