@@ -27,7 +27,7 @@ In this exercise we will accomplish & learn how to implement following:
 - Task-2: Clone the repo
 - Task-3: Create a new Web API project
 - Task-4: Test Web API project
-- Task-5: Add Docker files to the project
+- Task-5: Add Dockerfiles to the project
 - Task-6: Build & Test docker container image locally
 - Task-7: Publish docker container image to ACR
 
@@ -158,9 +158,32 @@ dotnet --help
 ```
 Use this command to get list of available `dotnet` project templates
 ```
-dotnet new list
+dotnet new --list
 ```
-Use these command to actually create new project
+output
+
+```
+These templates matched your input: 
+
+Template Name                                 Short Name           Language    Tags
+--------------------------------------------  -------------------  ----------  -------------------------------------
+ASP.NET Core Empty                            web                  [C#],F#     Web/Empty
+ASP.NET Core gRPC Service                     grpc                 [C#]        Web/gRPC
+ASP.NET Core Web API                          webapi               [C#],F#     Web/WebAPI
+ASP.NET Core Web App                          razor,webapp         [C#]        Web/MVC/Razor Pages
+ASP.NET Core Web App (Model-View-Controller)  mvc                  [C#],F#     Web/MVC
+ASP.NET Core with Angular                     angular              [C#]        Web/MVC/SPA
+ASP.NET Core with React.js                    react                [C#]        Web/MVC/SPA
+ASP.NET Core with React.js and Redux          reactredux           [C#]        Web/MVC/SPA
+Blazor Server App                             blazorserver         [C#]        Web/Blazor
+Blazor WebAssembly App                        blazorwasm           [C#]        Web/Blazor/WebAssembly/PWA
+Class Library                                 classlib             [C#],F#,VB  Common/Library
+Console App                                   console              [C#],F#,VB  Common/Console
+.
+.
+and more....
+```
+Use this command to actually create new project
 ```
 dotnet new webapi -o aspnetapi
 
