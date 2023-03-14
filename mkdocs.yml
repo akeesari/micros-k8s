@@ -200,7 +200,10 @@ nav:
          - Deploy your first application with ArgoCD: devops/argocd/deploy-app.md
          - Create new ArgoCD Project: devops/argocd/argocd-project.md
          - Create new Repository in ArgoCD: devops/argocd/argocd-repo.md
-    - Helm-Charts: devops/helmcharts/helm-charts.md
+    - Helm-Charts:
+         - Helm chart Introduction: devops/helmchart/1-introduction.md
+         - Create your first Helm chart: devops/helmchart/2-create-helm.md
+
   # - ArgoCD:
   #   - Argo CD: argocd/argocd.md
   # - Helm-Charts:
