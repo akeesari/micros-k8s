@@ -1,11 +1,11 @@
 ## Introduction
 
-In our previous labs we've already created deployment, service and ingress YAML manifest files for all of our Microservice and applied those manifests using kubectl commands, this is not ideal way to deploy applications to AKS, As part of this lab we are going to use those YAML manifest files and create Helm chart out of those files for AKS deployment so that we are deploying as package instead of individual manifest files.
+In our previous labs we've already created deployment, service and ingress YAML manifest files for all of our Microservice and applied some of those manifests using `kubectl` commands, this is not ideal way to deploy applications to kubernetes cluster especially for microservice architecture, As part of this lab we are going to use those YAML manifest files and create Helm chart for  AKS deployment so that we are deploying as package instead of individual manifest files. Helm charts are a package manager for Kubernetes that make it easier to deploy, manage, and upgrade applications on a Kubernetes cluster.
 
 
 ## Technical Scenario
 
-As a DevOps Engineer, you've been asked to create a Helm chart for Microservices Architecture so that you can deploy Microservices applications to Azure Kubernetes Service (AKS) cluster in a consistent and repeatable manner.
+As a DevOps Engineer, you've been asked to create a basic Helm chart so that you can deploy your applications to Azure Kubernetes Service (AKS) cluster in a consistent and repeatable manner.
 
 ## Prerequisites
 
@@ -24,8 +24,8 @@ In this exercise we will accomplish & learn how to implement following:
 - Step-1: Install Helm
 - Step-2: Create a new Helm chart
 - Step-3: Validate Helm chart
-- Task-3: Create template from Helm chart
-- Task-4: Install Helm chart to AKS
+- Step-4: Install Helm chart in AKS
+- Step-5: UnInstall Helm chart
 
 
 ## Step-1: Install Helm
@@ -61,7 +61,12 @@ After the installation is complete, run the `helm version` command to verify tha
 helm version
 ```
 
-## Task-2: Create a new Helm chart
+your output will look like below:
+```
+version.BuildInfo{Version:"v3.8.2", GitCommit:"6e3701edea09e5d55a8ca2aae03a68917630e91b", GitTreeState:"clean", GoVersion:"go1.17.5"}
+```
+
+## Step-2: Create a new Helm chart
 
 To create a new chart, you can use the `helm create` command. to create a chart named `microservices-chart`, you can run the following command:
 
@@ -69,188 +74,347 @@ To create a new chart, you can use the `helm create` command. to create a chart 
 helm create microservices-chart
 ```
 
-IMAGE
-
-We don’t need hpa, ingress, serviceaccount, etc. I am going to delete all these files which we are not going to use and keep following files which are need to install the helm.
+Let's quickly view the list of files and folders created here by running following command in command prompt.
 
 ```
-microservices-chart/
-  Chart.yaml          # Contains the chart's metadata
-  values.yaml         # Contains default values for the chart
-  templates/          # Contains Kubernetes manifests
-    deployment.yaml   # Defines a Kubernetes deployment
-    service.yaml      # Defines a Kubernetes service
+tree /F
+```
+output
+
+```
+C:.
+│   .helmignore
+│   Chart.yaml
+│   values.yaml
+│
+├───charts
+└───templates
+    │   deployment.yaml
+    │   hpa.yaml
+    │   ingress.yaml
+    │   NOTES.txt
+    │   service.yaml
+    │   serviceaccount.yaml
+    │   _helpers.tpl
+    │
+    └───tests
+            test-connection.yaml
+```
+
+We don’t need all the files here, let me cleanup some files which we are not going use it immediately and keep only files we need it for now to continue our lab work.
+
+Here is the new tree structure of our files & folders after the cleanup
+
+```
+C:.
+│   .helmignore
+│   Chart.yaml
+│   values.yaml
+│
+├───charts
+└───templates
+        deployment.yaml
+        service.yaml
+```
+
+Now let's discuss the purpose of each file and folders used here and update with new contents.
+
+**.helmignore:** 
+
+The `.helmignore` file is used by the Helm package manager to specify files and directories that should be excluded from a chart when it is packaged. The syntax of the .helmignore file is similar to that of a .gitignore file. 
+
+We will continue using this file without any changes.
+
+``` yaml title=".helmignore"
+# Patterns to ignore when building packages.
+# This supports shell glob matching, relative path matching, and
+# negation (prefixed with !). Only one pattern per line.
+.DS_Store
+# Common VCS dirs
+.git/
+.gitignore
+.bzr/
+.bzrignore
+.hg/
+.hgignore
+.svn/
+# Common backup files
+*.swp
+*.bak
+*.tmp
+*.orig
+*~
+# Various IDEs
+.project
+.idea/
+*.tmproj
+.vscode/
 
 ```
 
-- **Chart.yaml:** This file contains the chart's metadata, including its name, version, and description. It also includes information about the chart's dependencies, maintainers, and other relevant details.
-- **values.yaml:** This file contains default values for the chart's templates. These values can be overridden when the chart is installed using the --set or --values flags.
-- **templates/:** This directory contains the Kubernetes manifests that make up the chart. Each file defines a different Kubernetes resource, such as a deployment, service, or ConfigMap.
-- **deployment.yaml:** This file defines a Kubernetes deployment that runs the application. It includes information about the container image to use, the number of replicas to run, and other relevant details.
-- **service.yaml:** This file defines a Kubernetes service that exposes the application to the network. It includes information about the type of service (ClusterIP, NodePort, etc.), the port to use, and other relevant details.
+**Chart.yaml:** 
 
-Together, these components make up a Helm chart that can be used to deploy an application to a Kubernetes cluster. When the chart is installed, Helm will use the templates in the templates/ directory to generate Kubernetes manifests that define the resources needed to run the application.
+This file contains the chart's metadata, including its name, version, and description. Again we don't need to make any changes here for now.
 
-Let's take a look inside each files for more details:
-
-**Chart.yaml**
-
-Chart.yaml contains the information about the Chart such as name, version, description, etc.
-
-```
-Chart.yaml goes here
+``` yaml title="Chart.yaml"
+apiVersion: v2
+name: microservices-chart
+description: A Helm chart for Kubernetes
+.
+.
+access the the git repo for entire source code ...
 ```
 
+**values.yaml:** 
 
-**values.yaml**
+This file contains default values for the chart's templates. These values can be overridden when the chart is installed using the --set or --values flags.
 
+Let's replace the contents of values.yaml file with following:
 
-Using the `values.yaml` file for each environment allows you to define different configurations for your application based on the environment it's deployed in. Here's an example of how you can use the values.yaml file for each environment:
+``` yaml title="values.yaml"
+global:
+  environment: dev
+  namespace: sample
+  registryPrefix: acr1dev.azurecr.io
 
-Create a separate values.yaml file for each environment you want to deploy your application to, for example 
-
-- values.dev.yaml
-- values.test.yaml
-- values.staging.yaml
-- values.prod.yaml
-
-
-By using a separate `values.yaml` file for each environment, you can easily manage configuration for multiple environment and use the same manifest yaml or helm chart.
-
-```
-values.yaml file code
-```
-
-
-**passing values to yaml manifest**
-
-You can pass these values in the deployment and service manifest files as below.
-
-Microservice-1 manifest files 
-
-```
-deployment yaml 
+microservices:
+  aspnetapi:
+    replicaCount: 1    
+  aspnetapp:
+    replicaCount: 1
 ```
 
+**templates/:** 
+
+This directory contains the Kubernetes manifests that make up the chart. Each file defines a different Kubernetes resource, such as a deployment, service, or ConfigMap.
+
+**deployment.yaml:** 
+
+This file defines a Kubernetes deployment that runs the application. It includes information about the container image to use, the number of replicas to run, and other relevant details.
+
+Let's replace the `deployment.yaml` file contents with one our microservice deployment.yaml file and make few changes here to read values from values.yaml file. 
+
+If you notice we've reading the namespace, replicas & image values from values.yaml files; that's how helm syntax works.
+
+``` yaml title="deployment.yaml"
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: aspnet-api
+  namespace: {{ .Values.global.namespace }}
+spec:
+  replicas: {{ .Values.microservices.aspnetapi.replicaCount }}
+  selector: 
+    matchLabels:
+      app: aspnet-api
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  minReadySeconds: 5 
+  template:
+    metadata:
+      labels:
+        app: aspnet-api
+    spec:
+      nodeSelector:
+        "kubernetes.io/os": linux
+      serviceAccountName: default
+      containers:
+        - name: aspnet-api-image
+          image: {{ .Values.global.registryPrefix }}/sample/aspnet-api:20230302.5
+          imagePullPolicy: Always
+          ports:
+            - name: http
+              containerPort: 80
+              protocol: TCP
+          env:
+            - name: KEY
+              value: value
 ```
-service yaml 
-```
-Microfrontend-1 manifest files 
+
+
+
+**service.yaml:** 
+
+This file defines a Kubernetes service that exposes the application to the network. It includes information about the type of service (ClusterIP, NodePort, etc.), the port to use, and other relevant details.
+
+Let's replace the `service.yaml` file contents with one our microservice service.yaml file and make few changes here to read values from values.yaml file. 
+
+``` yaml title="service.yaml"
+apiVersion: v1
+kind: Service
+metadata:
+  name: aspnet-api
+  namespace: {{ .Values.global.namespace }}
+  labels: {}
+spec:
+  type: ClusterIP
+  ports:
+    - port: 80
+      targetPort: 80
+      protocol: TCP
+      name: http
+  selector: 
+    app: aspnet-api
 
 ```
-deployment yaml 
-```
+That's it! Together, these components make up a Helm chart that can be used to deploy an application to a Kubernetes cluster. When the chart is installed, Helm will use the templates in the templates/ directory to generate Kubernetes manifests that define the resources needed to run the application.
 
-```
-service yaml 
-```
+Before we install this Helm chart, we are going to validate helm chart to make sure that no errors in the chart. the first command we are going to use is `helm lint`
 
+**Helm Lint**
 
-## Helm Lint - 
+It is always recommended to run `helm lint` before installing helm chart, `Helm Lint` is a tool that checks the syntax and structure of a Helm chart and ensures that it follows best practices and conventions
 
-`Helm lint` is like your C# source code compilation. It is always recommended to run `helm lint` before installing helm chart, `Helm Lint` is a tool that checks the syntax and structure of a Helm chart and ensures that it follows best practices and conventions
-
-Helm Lint helps you catch errors and issues with your Helm charts before you deploy them to a Kubernetes cluster, which can save you time and avoid potential problems down the line.
-
-When you run helm lint on a Helm chart, it checks for the following:
-
-- Valid YAML syntax
-- Valid Helm chart structure
-- Properly formatted values files
-- Best practices for Helm chart development, such as using templates, labels, and annotations correctly
-
-Helm Lint can be run on a Helm chart directory like this:
-
-```
+``` sh
 helm lint microservices-chart
 ```
+example of the output without any errors
+``` sh
+==> Linting microservices-chart
+[INFO] Chart.yaml: icon is recommended
 
-If Helm Lint finds any issues with the Helm chart, it will output them to the console along with suggestions for how to fix them.
+1 chart(s) linted, 0 chart(s) failed
+```
 
-## Installing a Local Helm Chart
+**Helm template**
 
-To install a local Helm chart, you can use the `helm install` command followed by the path to the chart directory. Here are the steps to follow:
-- Navigate to the directory containing your Helm chart.
-- Run the helm install command and specify a release name for the chart. For example:
+After the `helm lint`, it is also recommended to generate the yaml manifest from helm chart and review the yaml manifest to make sure all the values are replaced correctly or not, for that we are going to use `helm template` command.
+
+`helm template` command does not install the chart or make any changes to the Kubernetes cluster. It simply generates YAML manifests based on the chart and the values provided. This can be useful for reviewing the manifests before applying them to a Kubernetes cluster.
+
+``` sh
+helm template 'microservices-chart' './microservices-chart' --namespace='sample' > microservices-manifests.yaml
 ```
-helm install microservices-chart ./microservices-chart
+
+!!! Note
+    you will notice new file `microservices-manifests.yaml` created in your folder for your review, after the reveiw you can delete this file so that you don't commit this file in your git repo.
+
+
+## Step-3: Installing Helm Chart
+
+To install a local Helm chart, you can use the `helm install` command.
+
+``` sh
+helm install 'microservices-release' './microservices-chart' --namespace 'sample'
 ```
-This command installs the chart from the current directory (./microservices-chart) and gives it a release name of `microservices-chart`
--If you want to specify values for the chart, you can use the --values or -f flag followed by the path to a values.yaml file. For example:
+
+ - `microservices-release`  - release name for the chart.   
+ - `./microservices-chart`  - directory where chart located.
+ - `sample` - namespace of AKS
+
+output
+
+``` sh
+NAME: microservices-release
+LAST DEPLOYED: Tue Mar 14 17:10:36 2023
+NAMESPACE: sample
+STATUS: deployed
+REVISION: 1
+TEST SUITE: None
 ```
-helm install mychart ./mychart --values ./myvalues.yaml
-```
-After running the helm install command, Helm will deploy the chart to your Kubernetes cluster and create a new release. You can verify that the installation was successful by running helm ls, which will show a list of installed releases.
+
+This command installs the chart from the current directory (./microservices-chart) and gives it a release name of `microservices-release`
 
 When you run the `helm install` command to install a Helm chart, the new release is placed in your Kubernetes cluster. The release is installed as a set of Kubernetes resources, which can include Deployments, Services, ConfigMaps, and more, depending on the contents of your Helm chart.
 
-By default, Helm installs the release in the `default` namespace of your Kubernetes cluster. However, you can specify a different namespace by using the --namespace flag followed by the name of the namespace. For example:
+**verify the installation**
 
+You can verify that the installation was successful by running helm ls, which will show a list of installed releases.
+
+``` sh
+helm ls -n sample
 ```
-helm install mychart ./mychart --namespace mynamespace
-```
-To view the Kubernetes resources that were created as part of the release, you can use the kubectl get command. For example, to see all the Deployments in the release, you can run:
-```
-kubectl get deployments -l app=mychart
-```
-This command lists all the Deployments with the app=mychart label, which is automatically applied to all resources in the release.
+output
 
-**--dry-run**
-
-The `--dry-run` flag is used to perform a simulated installation of a chart using the helm install command without actually installing the chart or creating a new release. When this flag is used, Helm will generate the Kubernetes manifest files that would be applied to the cluster during the installation process, but it will not actually make any changes to the cluster.
-
-The purpose of performing a dry run is to preview the changes that would be made to the cluster by the installation process before actually applying those changes. This can be useful for testing and debugging purposes, as well as for verifying that the desired configuration settings are being applied correctly.
-
-By using the --dry-run flag, you can identify any potential issues or conflicts that may arise during the installation process before making any changes to the cluster. This can help you to avoid making unintended changes or causing downtime for your applications.
-
-```
-helm install mychart ./mychart --dry-run  
+``` sh
+NAME                    NAMESPACE       REVISION        UPDATED                                 STATUS          CHART                           APP VERSION
+microservices-release   sample          1               2023-03-14 17:10:36.1926652 -0700 PDT   deployed        microservices-chart-0.1.0       1.16.0
 ```
 
-## Packaging the Helm chart
+**helm status**
 
-Use the helm package command to create the chart package. This command takes the name of the chart directory as its argument and creates a compressed archive file with the extension .tgz.
+Check the status of the release using the `helm status` command to ensure that it has been installed successfully.
 
+``` sh
+helm status 'microservices-release' -n 'sample'
 ```
-helm package mychart/
-```
-This will create a file named mychart-<version>.tgz in the current directory.
+output
 
-You can use the --version flag to specify the version number for the chart package. 
-```
-helm package --version 1.0.0 mychart/
-
-```
-
-Once you have created a Helm chart package, you can share it with others by hosting it in a public or private chart repository. Other users can then install and manage your application or service in their Kubernetes clusters using the helm install command and the name of your chart package.
-
-## Upgrade helm chart
-
-Run the `helm upgrade` command followed by the `release name` and `chart name`. For example, to upgrade a release named my-release with a chart named my-chart, run the following command:
-
-```
-helm upgrade my-release my-chart/
+``` sh
+NAME: microservices-release
+LAST DEPLOYED: Tue Mar 14 17:10:36 2023
+NAMESPACE: sample
+STATUS: deployed
+REVISION: 1
+TEST SUITE: None
 ```
 
-You can specify the namespace in which the release is deployed by using the --namespace flag. For example, to upgrade a release named my-release in the my-namespace namespace with a chart named my-chart, run the following command:
+## Step-4: Upgrade Helm chart
 
+If you've any changes in the application code or configuration then you need to use the `helm upgrade` command to promote the new changes in the existing helm release.
+
+Run the `helm upgrade` command followed by the `release name` and `chart name`.
+
+``` sh
+helm upgrade 'microservices-release' 'microservices-chart' --namespace 'sample'
 ```
-helm upgrade my-release my-chart/ --namespace my-namespace
+
+output
+``` sh
+Release "microservices-release" has been upgraded. Happy Helming!
+NAME: microservices-release
+LAST DEPLOYED: Tue Mar 14 21:34:46 2023
+NAMESPACE: sample
+STATUS: deployed
+REVISION: 2
+TEST SUITE: None
 ```
+
+**helm status**
+
 After the upgrade is complete, check the status of the release using the helm status command to ensure that it has been updated successfully.
-lua
 
+``` sh
+helm status 'microservices-release' -n 'sample'
 ```
-helm status my-release
+output
+``` sh
+NAME: microservices-release
+LAST DEPLOYED: Tue Mar 14 21:34:46 2023
+NAMESPACE: sample
+STATUS: deployed
+REVISION: 2
+TEST SUITE: None
 ```
 
-Note: If you encounter any issues during the upgrade process, you can roll back the release to the previous version using the helm rollback command. For example, to roll back the my-release release to version 1, run the following command:
+**release history**
 
+Display the release history
+
+``` sh
+helm history 'microservices-release'
 ```
-helm rollback my-release 1
-
+output
+``` sh
+REVISION        UPDATED                         STATUS          CHART                           APP VERSION     DESCRIPTION     
+1               Tue Mar 14 17:10:36 2023        superseded      microservices-chart-0.1.0       1.16.0          Install complete
+2               Tue Mar 14 21:34:46 2023        deployed        microservices-chart-0.1.0       1.16.0          Upgrade complete
 ```
-This will revert the release to the previous version and restore the previous configuration.
 
-## helm chart history
+## Step-5: UnInstall Helm chart
 
+To uninstall a Helm chart, you can use the helm uninstall command followed by the name of the release you wish to delete. 
+
+``` sh
+# list helm release
+helm ls -n 'sample'
+helm uninstall 'microservices-release' -n 'sample'
+```
+
+output
+``` sh
+release "microservices-release" uninstalled
+```

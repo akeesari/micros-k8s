@@ -56,7 +56,7 @@ Once you have these prerequisites in place, you can proceed with the installatio
 
 In this exercise we will accomplish & learn how to implement following:
 
-**Step 1:** Step-1: Configure Terraform providers
+**Step 1:** Configure Terraform providers
 
 **Step 2.** Create a new namespace for ArgoCD
 

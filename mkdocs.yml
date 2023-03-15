@@ -203,6 +203,8 @@ nav:
     - Helm-Charts:
          - Helm chart Introduction: devops/helmchart/1-introduction.md
          - Create your first Helm chart: devops/helmchart/2-create-helm.md
+         - Helm commands details: devops/helmchart/3-helm-cmds.md
+         - Create Helm chart for Microservices: devops/helmchart/4-helm-microservices.md
 
   # - ArgoCD:
   #   - Argo CD: argocd/argocd.md

@@ -10,9 +10,9 @@ Let's try to understand some basic concepts of DevOps.
 
 CI/CD stands for Continuous Integration / Continuous Delivery (or Deployment). It is a set of practices and tools used in software development that aims to automate and streamline the process of building, testing, and deploying code changes to multiple environments like dev, test & production.
 
-- Continuous Integration (CI) - is the practice of frequently merging code changes from multiple developers or Teams into a central repository, verifying the changes through automated tests, and reporting any issues that arise. This helps to catch problems early on and ensures that the codebase remains stable and functional.
+- **Continuous Integration (CI)** - is the practice of frequently merging code changes from multiple developers or Teams into a central repository, verifying the changes through automated tests, and reporting any issues that arise. This helps to catch problems early on and ensures that the codebase remains stable and functional.
 
-- Continuous Delivery (CD) - is the practice of automating the entire software release process, from building the code to deploying it to production environments. This involves using tools and processes that enable the release of code changes quickly and reliably, while ensuring that the software remains stable and functional.
+- **Continuous Delivery (CD)** - is the practice of automating the entire software release process, from building the code to deploying it to production environments. This involves using tools and processes that enable the release of code changes quickly and reliably, while ensuring that the software remains stable and functional.
 
 CI/CD helps to improve the speed and quality of software development, as well as reduce the risk of errors and downtime. By automating many of the processes involved in software development, teams can focus on creating value for customers rather than spending time on manual tasks.
 
@@ -24,18 +24,18 @@ CI/CD in microservices architecture helps to ensure that each Microservice is te
 
 The goals of a robust CI/CD (Continuous Integration/Continuous Delivery) process include:
 
-- Faster delivery of software: A robust CI/CD process should enable developers to deliver software faster, with automated processes for building, testing, and deploying code changes. This can help reduce the time to market for new features and bug fixes.
-- Improved quality of software: Automated testing and validation help catch bugs and errors early in the development process, reducing the likelihood of issues in production. This leads to higher quality software that is more reliable and stable.
-- Better collaboration among team members: CI/CD promotes collaboration among developers, testers, and operations teams, with automated feedback loops that help identify and resolve issues quickly.
-- Greater efficiency in development: CI/CD automates many of the time-consuming and repetitive tasks involved in software development, freeing up developers to focus on creating new features and functionality.
-- Increased agility in development: The ability to rapidly build, test, and deploy code changes enables developers to respond quickly to changing business requirements or customer needs.
-- Lower costs: A robust CI/CD process can help reduce the costs associated with manual testing and deployment processes, as well as minimize the risk of downtime or other issues that can be costly for the organization.
+- **Faster delivery of software**: A robust CI/CD process should enable developers to deliver software faster, with automated processes for building, testing, and deploying code changes. This can help reduce the time to market for new features and bug fixes.
+- **Improved quality of software**: Automated testing and validation help catch bugs and errors early in the development process, reducing the likelihood of issues in production. This leads to higher quality software that is more reliable and stable.
+- **Better collaboration among team members**: CI/CD promotes collaboration among developers, testers, and operations teams, with automated feedback loops that help identify and resolve issues quickly.
+- **Greater efficiency in development**: CI/CD automates many of the time-consuming and repetitive tasks involved in software development, freeing up developers to focus on creating new features and functionality.
+- **Increased agility in development**: The ability to rapidly build, test, and deploy code changes enables developers to respond quickly to changing business requirements or customer needs.
+- **Lower costs**: A robust CI/CD process can help reduce the costs associated with manual testing and deployment processes, as well as minimize the risk of downtime or other issues that can be costly for the organization.
 
 Overall, a robust CI/CD process enables organizations to develop high-quality software faster and more efficiently, while also promoting collaboration and agility among development teams.
 
 ## What is Blue-green deployment?
 
-Blue-green deployment is a technique used in software deployment that enables organizations to deploy new versions of an application without downtime. In this deployment strategy, two identical production environments are created, and one environment is designated as the "blue" environment, while the other is designated as the "green" environment.
+`Blue-green deployment` is a technique used in software deployment that enables organizations to deploy new versions of an application without downtime. In this deployment strategy, two identical production environments are created, and one environment is designated as the "blue" environment, while the other is designated as the "green" environment.
 
 The current version of the application is running in the blue environment, and the new version is deployed to the green environment. Once the new version has been fully deployed and tested in the green environment, traffic is redirected from the blue environment to the green environment. This is done by switching the routing rules or updating DNS records.
 
@@ -47,7 +47,7 @@ Overall, blue-green deployment is a powerful tool for software deployment that e
 
 ## What is Canary release?
 
-Canary release is a deployment strategy that allows organizations to test new versions of an application in production, with a subset of users, before making it available to everyone. In a canary release, a small percentage of production traffic is redirected to the new version of the application, while the majority of traffic continues to use the current version.
+`Canary release` is a deployment strategy that allows organizations to test new versions of an application in production, with a subset of users, before making it available to everyone. In a canary release, a small percentage of production traffic is redirected to the new version of the application, while the majority of traffic continues to use the current version.
 
 Canary release enables organizations to test new features, performance improvements, or other changes in a production-like environment, without exposing all users to potential issues. By gradually increasing the percentage of traffic directed to the new version, organizations can carefully monitor the performance of the new version and quickly roll back if any issues arise.
 
