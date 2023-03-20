@@ -1,12 +1,12 @@
-# Create first Website (Microfrontend) using .NET Core MVC
+# Create your first MicroFrontend using .NET Core MVC
 
 ## Introduction
 
-In our previous labs we've created couple of Microservices to the show the Microservices architecture pattern, similarly in this lab and next lab we are going to create couple of microfrontend UI applications to the show the Microfrontend architecture pattern; 
+In our previous labs we've created couple of Microservices to the show the Microservices architecture pattern, similarly in this lab and next lab we are going to create couple of MicroFrontend UI applications to the show the MicroFrontend architecture pattern; 
 
 ## Technical Scenario
 
-As a `Frontend (FE)` developer you've been asked to create a website / UI application using ASP.NET Core MVC technology which is one of the small Website (UI) in the Microfrontend applications list.
+As a `Frontend (FE)` developer you've been asked to create a website / UI application using ASP.NET Core MVC technology which is one of the small Website (UI) in the MicroFrontend applications list.
  
 This lab will help you to understand how to start your journey by crating ASP.NET MVC application, we will start with creating or using existing git repo, creating MVC project template and finally containerize the UI application  and push to the Azure container registry (ACR) for AKS deployment.
 

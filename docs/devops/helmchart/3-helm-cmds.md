@@ -1,3 +1,5 @@
+Here are some of the most frequently used Helm commands and their details:
+
 ## Helm lint
 
 `Helm lint` is like your C# source code compilation. It is always recommended to run `helm lint` before installing helm chart, `Helm Lint` is a tool that checks the syntax and structure of a Helm chart and ensures that it follows best practices and conventions
@@ -27,6 +29,8 @@ example of output with error
 
 Error: 1 chart(s) linted, 1 chart(s) failed
 ```
+
+Read the error details and fix the YAML manifest accordingly before installing Helm chart, you will not be able to install Helm with errors in the Chart.
 
 example of output without any error
 ``` sh
@@ -231,3 +235,6 @@ REVISION        UPDATED                         STATUS          CHART           
 5               Tue Mar 14 22:37:09 2023        superseded      microservices-chart-0.1.0       1.16.0          Upgrade complete
 6               Tue Mar 14 22:37:14 2023        deployed        microservices-chart-0.1.0       1.16.0          Upgrade complete
 ```
+## Helm Cheat Sheet
+
+For more information about Helm commands look into the [Helm Cheat Sheet](../../miscellaneous/helm-cheat-sheet.md).

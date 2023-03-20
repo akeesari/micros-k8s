@@ -1,8 +1,30 @@
-Here is a cheat sheet of common Git commands:
+Here is a cheat sheet of some commonly used Git commands:
+## Git configuration:
+
+Set your name and email that will be associated with your Git commits.
+
+``` sh
+git config --global user.name "anji.keesari"
+git config --global user.email "anjkeesari@gmail.com"
+```
+
+## cache credentials
+
+You can store login credentials in the cache so you don't have to type them in each time.
+``` sh
+git config --global credential.helper cache
+```
+## Check Git configuration:
+
+The command below returns a list of information about your git configuration including user name and email:
+
+``` sh
+git config -l
+```
 
 ## Initializing git
 
-Initializing a Git repository:
+The first step is to initialize a new Git repo locally in your project root. 
 ```
 git init
 ```
@@ -15,40 +37,57 @@ git clone <repository-url>
 ## Git add
 
 Adding files to the Git staging area:
-```
+``` sh
 git add <file-name>
-git add . # Add the whole directory changes to staging (no delete files).
+
+# Add the whole directory changes to staging (no delete files).
+git add . 
+
+# add all files starting with 'test' in the staging area.
+git add test*
 ```
 
 ## Committing changes
 
 Committing changes to the repository:
 
-```
-git commit -m “(message)”	// Commits the changes with a custom message.
-git commit -am “(message)”	// Adds all changes to staging and commits them with a custom message.
-
+``` sh
+#  Commits the changes with a custom message.
+git commit -m “(message)”
+# Adds all changes to staging and commits them with a custom message.
+git commit -am “(message)”
 ```
 
 ## Git log
 
 Viewing the commit history:
 
-```
+``` sh
+#  shows the commit history for the current repository:
 git log
+# commit's history including all files and their changes:
+git log -p
+
 press q any time to quit
 ```
 
+## commit details
+
+use this command to see a specific commit in details
+``` sh
+git show commit-id
+```
+Note: replace `commit-id` with the id of the commit that you can find in the git log
 
 ## Git status
-Checking the status of your repository:
+This command will show the status of the current repository including staged, unstaged, and untracked files.
 
-```
+``` sh
 git status
 ```
 
 Undoing changes:
-```
+``` sh
 git checkout -- <file-name>
 ```
 
@@ -61,35 +100,28 @@ git diff
 ```
 ## Pushing changes 
 Pushing changes to a remote repository:
-```
-
+``` sh
 git push origin <branch-name>
-git push origin (branch_name)	// Push branch to the Origin.
 
 git push --set-upstream origin aspnet-api
-
 ```
 ## Pulling changes
 Pulling changes from a remote repository:
 
-```
+``` sh
 git pull origin <branch-name>
 ```
 
 ## Git fetch
 
 Get the latest changes from the origin but not merge.
-```
+``` sh
 git fetch
 ```
 ## Creating a new branch:
 
-```
-git branch	// Shows the list of all branches.
-
+```sh
 git branch <branch-name>
-
-example:
 
 # Creates a new branch, `aspnet-api` is name of the branch here
 git branch aspnet-api
@@ -100,31 +132,49 @@ git branch aspnet-api
 
 Switching to a different branch:
 
-```
+```sh
 git checkout <branch-name>
 
 # Switched to branch 'aspnet-api'
 git checkout aspnet-api
-
-
 ```
+## list branches
 
+It will show a list of all branches and mark the current branch with an asterisk and highlight it in green.
+
+```sh
+# Shows the list of all branches.
+git branch	
+```
+## Get remote URLs
+
+You can see all remote repositories for your local repository with this command:
+
+``` sh
+git remote -v
+```
+## more info about a remote repo 
+
+How to get more info about a remote repo in Git:
+
+``` sh
+git remote show origin
+```
 ## Merging branches
-```
+``` sh
 git merge <branch-name>
 
-example, merging from develop to main
+# example, merging from develop to main
 # cd to the folder
 git checkout main
 git merge develop
 
 git status
 git logs
-
 ```
 
 ## Delete branch
-```
+``` sh
 git branch --delete <branch-name>
 git branch -d <branch-name>
 
@@ -142,19 +192,25 @@ git branch
 
 Create the branch using a commit hash:
 
-
-```
+``` sh
 git branch branch_name <commit-hash>
 # step-1
 
 git branch new_branch 07615d50afde24d21e2180b90d3a0a58ec131980
 
-this will create the local branch
+# this will create the local branch
 
 # step-2 commit the branch 
 
 git commit -am “(message)” 
+```
 
+## rollback an old commit
+
+You can revert an old commit using its commit id. 
+
+``` sh
+git revert comit_id
 ```
 ## How to resolve merge conflicts using git commands
 
@@ -192,7 +248,7 @@ Resolving merge conflicts in Git involves editing the conflicted files to choose
     ```
     git push origin <branch-name>
     ```
-
+<!-- 
 ## How to set global git config settings?
 
 There are a number of ways to edit the global git config file. One way is to add properties through the command line. The global git config email and username properties are often set in the following way:
@@ -215,6 +271,6 @@ These are some of the most commonly used Git commands. However, Git is a powerfu
 
 
 
-## Reference
+## Reference -->
 
 <!-- - https://www.theserverside.com/blog/Coffee-Talk-Java-News-Stories-and-Opinions/The-global-Git-config-files-key-settings-and-usages#:~:text=How%20to%20do%20a%20git,It's%20that%20easy. -->

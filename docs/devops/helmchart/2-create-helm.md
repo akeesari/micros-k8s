@@ -21,14 +21,14 @@ As a DevOps Engineer, you've been asked to create a basic Helm chart so that you
 
 In this exercise we will accomplish & learn how to implement following:
 
-- Step-1: Install Helm
+- Step-1: Install Helm locally
 - Step-2: Create a new Helm chart
 - Step-3: Validate Helm chart
 - Step-4: Install Helm chart in AKS
 - Step-5: UnInstall Helm chart
 
 
-## Step-1: Install Helm
+## Step-1: Install Helm locally
 
 You need to install Helm on your local machine. You can find the installation instructions in the Helm documentation: <https://helm.sh/docs/intro/install/>
 
@@ -86,7 +86,6 @@ C:.
 │   .helmignore
 │   Chart.yaml
 │   values.yaml
-│
 ├───charts
 └───templates
     │   deployment.yaml
@@ -96,7 +95,6 @@ C:.
     │   service.yaml
     │   serviceaccount.yaml
     │   _helpers.tpl
-    │
     └───tests
             test-connection.yaml
 ```
@@ -110,7 +108,6 @@ C:.
 │   .helmignore
 │   Chart.yaml
 │   values.yaml
-│
 ├───charts
 └───templates
         deployment.yaml
@@ -192,7 +189,7 @@ This directory contains the Kubernetes manifests that make up the chart. Each fi
 
 This file defines a Kubernetes deployment that runs the application. It includes information about the container image to use, the number of replicas to run, and other relevant details.
 
-Let's replace the `deployment.yaml` file contents with one our microservice deployment.yaml file and make few changes here to read values from values.yaml file. 
+Let's replace the `deployment.yaml` file contents with one of our Microservice deployment.yaml file and make few changes here to read values from values.yaml file. 
 
 If you notice we've reading the namespace, replicas & image values from values.yaml files; that's how helm syntax works.
 
@@ -240,7 +237,7 @@ spec:
 
 This file defines a Kubernetes service that exposes the application to the network. It includes information about the type of service (ClusterIP, NodePort, etc.), the port to use, and other relevant details.
 
-Let's replace the `service.yaml` file contents with one our microservice service.yaml file and make few changes here to read values from values.yaml file. 
+Let's replace the `service.yaml` file contents with one of our microservices service.yaml file and make few changes here to read values from values.yaml file. 
 
 ``` yaml title="service.yaml"
 apiVersion: v1
@@ -290,7 +287,7 @@ helm template 'microservices-chart' './microservices-chart' --namespace='sample'
 ```
 
 !!! Note
-    you will notice new file `microservices-manifests.yaml` created in your folder for your review, after the reveiw you can delete this file so that you don't commit this file in your git repo.
+    you will notice a new file `microservices-manifests.yaml` created in your folder for your review, after the reveiw you can delete this file so that you don't commit this file in your git repo.
 
 
 ## Step-3: Installing Helm Chart
@@ -418,3 +415,5 @@ output
 ``` sh
 release "microservices-release" uninstalled
 ```
+
+Overall, Helm simplifies the process of installing and managing Kubernetes applications and provides an easy-to-use command-line interface for managing charts and releases.
