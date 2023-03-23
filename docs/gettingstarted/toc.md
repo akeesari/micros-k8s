@@ -154,7 +154,7 @@
 
 - Azure DevOps Overview
 - Create new service connections
-- Create Pipeline for .NET Core API
+- Create Pipeline for .NET Core Web API
 - Create Pipeline for ASP.NET Core Website
 - Create Pipeline for Node JS API
 - Create Pipeline for React JS website

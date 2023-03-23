@@ -192,6 +192,7 @@ nav:
     - Kubernetes Pod troubleshooting : kubernetes/pod-troubleshooting.md    
   - Azure DevOps:
     - Azure DevOps Overview : devops/1-devops-overview.md
+    - Create Pipeline for .NET Core Web API : devops/pipelines/1-pipeline-aspnet-api.md
 
     - ArgoCD: 
          - ArgoCD Introduction: devops/argocd/argocd-intro.md
