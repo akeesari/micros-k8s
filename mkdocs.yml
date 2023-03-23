@@ -167,6 +167,7 @@ nav:
       - Microfrontend:
           - Microfrontend Overview : microservices/microfrontend.md
           - Create Microfrontend-1 with ASP.NET MVC: microservices/aspnet-app.md      
+          - Create Microfrontend-2 with React JS: microservices/react-app.md      
       # - Create Website-2 with React JS: microservices/reactjs-app.md
       # - Create Website-3 with Blazor : microservices/blazor-app.md
       # - Create Database-1 with SQL : microservices/sqldb.md

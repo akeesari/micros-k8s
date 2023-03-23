@@ -23,13 +23,13 @@ We are basically preparing an application for the Kubernetes deployment. The Mic
 
 In this exercise we will accomplish & learn how to implement following:
 
-- Task-1: Create a new repo in azure DevOps
-- Task-2: Clone the repo
-- Task-3: Create a new Web API project
-- Task-4: Test Web API project
-- Task-5: Add Dockerfiles to the project
-- Task-6: Build & Test docker container image locally
-- Task-7: Publish docker container image to ACR
+- Step-1: Create a new repo in azure DevOps
+- Step-2: Clone the repo
+- Step-3: Create a new Web API project
+- Step-4: Test Web API project
+- Step-5: Add Dockerfiles to the project
+- Step-6: Build & Test docker container image locally
+- Step-7: Publish docker container image to ACR
 
 ## Prerequisites
 
@@ -41,7 +41,7 @@ In this exercise we will accomplish & learn how to implement following:
 - Docker and the VS Code Docker extension
  
 
-## Task-1: Create a new repo in azure DevOps
+## Step-1: Create a new repo in azure DevOps
 
 To create a new repository in Azure DevOps, follow these steps:
 
@@ -61,7 +61,7 @@ For example:
 
 ![image.jpg](images/image-11.jpg)
 
-## Task-2: Clone the repo from azure DevOps
+## Step-2: Clone the repo from azure DevOps
 
 To clone a repository from Azure DevOps, you will need to have the Git client installed on your local machine. follow these steps to clone the source code locally:
 
@@ -138,7 +138,7 @@ git push -f origin master
 ``` 
 -->
 
-## Task-3: Create a new .NET Core Web API project
+## Step-3: Create a new .NET Core Web API project
 
 We will be using Visual Studio Code instead of Visual Studio to make things faster and easy and save time and money.
 
@@ -259,7 +259,7 @@ path-to-application:
 ```
 
 
-## Task-4: Test the new .NET core Web API project
+## Step-4: Test the new .NET core Web API project
 
 1.  Run the following command to build the project:
  `dotnet build` command will look for the project or solution file in the current directory and compile the code in it. It will also restore any dependencies required by the project and create the output files in the bin directory.
@@ -321,7 +321,7 @@ ctrl + c
 It is time to push your basic project template source into Azure DevOps Git repo.
 
 !!! Best-Practice
-    It is always recommended to push source code changes into git repo before starting the new task.
+    It is always recommended to push source code changes into git repo before starting the new Step.
 
 Use these git commands to push the source code.
 
@@ -331,7 +331,7 @@ git commit -am "My fist commit - Create Web API project"
 git push
 ```
 
-## Task-5: Add Docker files to the API project
+## Step-5: Add Docker files to the API project
 
 There are multiple way to create `Dockerfile` depending on your code editor. 
 Here are the step-by-step instructions for creating a `Dockerfile` in a .NET Core Web API project:
@@ -371,7 +371,7 @@ This code defines a Docker image that is based on the aspnet:6.0 image from Micr
    - `final:` sets the working directory to `/app` and copies the published output from the `publish` stage to the current directory. It also specifies the entry point for the container, which is the `dotnet` command with the name of your project's DLL file.
 
 
-## Task-6: Docker Build & Run
+## Step-6: Docker Build & Run
 
 `docker build` is a command that allows you to build a Docker image from a Dockerfile. The Dockerfile is a text file that contains instructions for Docker to build the image, including the base image to use, the files to include, the commands to run, and the ports to expose.
 
@@ -470,7 +470,7 @@ Update port number
 ![image.png](/.attachments/image-801c4b54-4050-402e-b546-6fa987dce9b5.png)
  -->
 
-## Task-7: Push docker container image to ACR
+## Step-7: Push docker container image to ACR
 
 To publish a Docker container image to Azure Container Registry (ACR), you will need to have the following:
 
@@ -553,7 +553,7 @@ Result
 
 That's it! You've successfully pushed your Docker container image to Azure Container Registry. You can now use the Azure Portal or Azure CLI to manage your container images and deploy them to Azure services like Azure Kubernetes Service (AKS).
 
-## Task-8: Pull docker container image from ACR
+## Step-8: Pull docker container image from ACR
 
 To pull a Docker container image from Azure Container Registry (ACR), you need to perform the following steps:
 

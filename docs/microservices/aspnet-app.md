@@ -17,11 +17,13 @@ We are basically preparing a UI application for the Kubernetes deployment. The U
 
 In this exercise we will accomplish & learn how to implement following:
 
-- Task-1: Create a new ASP.NET MVC project
-- Task-2: Test ASP.NET MVC project
-- Task-3: Add Dockerfiles to the Web App 
-- Task-4: Build & Test docker container image locally
-- Task-5: Publish docker container image to ACR
+- **Step-1:** Create a new ASP.NET Core Web App (MVC project)
+- **Step-2:** Test ASP.NET MVC project
+- **Step-3:** Update home page contents
+- **Step-4:** Add Dockerfiles to MVC project
+- **Step-5:** Docker Build locally
+- **Step-6:** Docker Run locally
+- **Step-7:** Publish docker container to ACR
 - 
 ## Prerequisites
 
@@ -29,7 +31,7 @@ In this exercise we will accomplish & learn how to implement following:
 - Download and install software for .NET development 
 - Docker and the VS Code Docker extension
  
-## Task-1: Create a new ASP.NET Core Web App (MVC project)
+## Step-1: Create a new ASP.NET Core Web App (MVC project)
 
 To create new ASP.NET Core Web App (Model-View-Controller) project you can use either Visual Studio Code or Visual Studio 2022 (latest version).
 
@@ -108,7 +110,7 @@ cd to the new folder here `aspnet-app`
 ```
 cd .\aspnet-app\
 ```
-## Task-2: Test the new ASP.NET core Web App project
+## Step-2: Test the new ASP.NET core Web App project
 
 1.  Run the following command to build the project:
 `dotnet build` command will look for the project or solution file in the current directory and compile the code in it. It will also restore any dependencies required by the project and create the output files in the bin directory. 
@@ -162,8 +164,7 @@ git status
 ```
 New folder structure will look like below in the microservices git repo. you will notice the new `aspnet-app` folder with MVC project source code. 
 ![image.jpg](images/image-15.jpg)
-
-## Task-3: Update home page
+## Step-3: Update home page contents
 
 Let's update our landing page to show .NET version, Operating System, processor, CPU core etc.. this information will help us for review when we deploy this application in our AKS in the upcoming labs.  
 
@@ -285,9 +286,9 @@ git add .
 git commit -am "updated landing page"
 git push 
 ```
+## Step-4: Add Dockerfiles to the MVC project
 
-
-## Task-5: Add Dockerfiles to the MVC project
+Create a Dockerfile in the root directory of your project and copy following code.
 
 ``` Dockerfile
 #See https://aka.ms/containerfastmode to understand how Visual Studio uses this Dockerfile to build your images for faster debugging.
@@ -319,12 +320,9 @@ COPY --from=publish /app/publish .
 # Start the application
 ENTRYPOINT ["dotnet", "aspnet-app.dll"]
 ```
-
-
-## Task-6: Docker Build & Run
+## Task-5: Docker Build locally
 
 The `docker build` command is used to build Docker images from a Dockerfile. The Dockerfile contains a set of instructions that Docker uses to create a new image. 
-
 
 ```
 docker build -t sample/aspnet-app:20230312.1 .
@@ -359,6 +357,8 @@ In case of you are getting following error while running `docker build` command,
 ```
 error during connect: This error may indicate that the docker daemon is not running.: Post "http://%2F%2F.%2Fpipe%2Fdocker_engine/v1.24/build?buildargs=%7B%7D&cachefrom=%5B%5D&cgroupparent=&cpuperiod=0&cpuquota=0&cpusetcpus=&cpusetmems=&cpushares=0&dockerfile=Dockerfile&labels=%7B%7D&memory=0&memswap=0&networkmode=default&rm=1&shmsize=0&t=sample%2Faspnet-app%3A20230312.1&target=&ulimits=null&version=1": open //./pipe/docker_engine: The system cannot find the file specified.
 ```
+## Step-6: Docker Run locally
+
 Run the `docker run` command to start a container based on the image:
 
 ```
@@ -392,8 +392,7 @@ if you open the docker desktop you will notice the new container started running
 
 
 That's it! You now have a basic ASP.NET Core Web App using the MVC pattern up and running. From here, you can continue building out your application by adding more controllers, views, and models as needed.
-
-## Task-7: Push docker container image to ACR
+## Step-7: Push docker container to ACR
 
 To publish a Docker container image to Azure Container Registry (ACR), you will need to have the following:
 
