@@ -217,6 +217,7 @@ nav:
       - Helm Cheat Sheet: miscellaneous/helm-cheat-sheet.md
       - az acr Cheat Sheet: miscellaneous/az-acr-cheat-sheet.md
       - Git Cheat Sheet: miscellaneous/git-cheat-sheet.md
+      - Docker Cheat Sheet: miscellaneous/docker-cheat-sheet.md
       - ArgoCD Cheat Sheet: miscellaneous/argocd-cheat-sheet.md
       # - Section1:
       #   - page-1 : miscellaneous/section1/page-1.md
