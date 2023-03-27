@@ -1,2 +1,2 @@
 ![illustration.png](images/book-cover.png)
-<!-- # Building and Managing Microservices with Kubernetes using Argocd & Helm -->
+<!-- # Build and Deploy Microservices Applications on Kubernetes platform using Argocd & Helm -->

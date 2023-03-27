@@ -1,7 +1,10 @@
 # Table of Contents
 
-**Introduction**
+<!-- **Introduction** -->
 
+- About the Author
+- Acknowledgments
+- Introduction
 - Developer Workstation Configuration
 - Download & Install software (workstation setup)
 - Technology Stack
