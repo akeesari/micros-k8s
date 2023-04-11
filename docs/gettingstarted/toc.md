@@ -22,10 +22,10 @@
     - Task-2: Clone the repo from azure DevOps
     - Task-3: Create a new .NET Core Web API project
     - Task-4: Test the new .NET core Web API project
-    - Task-5: Add Docker files to the API project
+    - Task-5: Add Dockerfiles to the API project
     - Task-6: Docker Build & Run
-    - Task-7: Push docker container image to ACR
-    - Task-8: Pull docker container image from ACR
+    - Task-7: Push docker container to ACR
+    - Task-8: Pull docker container from ACR
 - Create your second Microservice with Node JS
 <!-- - Create third Microservice with Java -->
 - Create your first website using ASP.NET Core MVC
