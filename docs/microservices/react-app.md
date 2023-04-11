@@ -2,7 +2,7 @@
 
 ## Introduction
 
-In this lab we are going to create a website using React JS application, this is another MicroFrontend as part of the Microservices architecture demo.
+In this lab we are going to create a website using React JS application, this is another MicroFrontend as part of the Microservices applications list.
 
 ## Technical Scenario
 
@@ -28,17 +28,20 @@ In this exercise we will accomplish & learn how to implement following:
 - Git repo
 - Clone existing Microservices repo
 - Download and install software for development 
-- Docker and the VS Code Docker extension
+- Docker desktop
+- VS Code Docker extension
  
 ## Step-1: Install Node.js and NPM
 
 Before you can create a React app, you'll need to install Node.js and NPM (Node Package Manager) on your system. You can download the latest version of Node.js and NPM from the official website: <https://nodejs.org/en/download/>
 
+**Manual install**
+
 Click on the Installer as per your Operating system preference to install Node.js & NPM both in your system.
 
-or
+**install using commands**
 
-**Windows OS**
+- **Windows OS**
 
 Install Node.js & NPM using Chocolatey (choco) for windows users, assuming you already installed choco in your system, run these commands as administrator from command prompt
 
@@ -50,7 +53,7 @@ choco install nodejs
 choco install nodejs --version=14.17.6
 ```
 
-**Mac OS**
+- **Mac OS**
 
 Install Node.js & NPM using Homebrew for Mac users, assuming you already installed Homebrew in your system:
 
@@ -168,6 +171,9 @@ webpack compiled successfully
 
 ![image.jpg](images/image-21.jpg)
 
+!!! Note
+    Read inline comments of the Dockerfile for understanding the Dockerfile instructions
+
 ## Step-3: Add Dockerfiles to the MVC project
 
 Create a Dockerfile in the root directory of your project and copy following code.
@@ -218,7 +224,9 @@ Use 'docker scan' to run Snyk tests against images to find vulnerabilities and l
 
 ```
 
-When you run the `docker build` command, Docker looks for a Dockerfile in the specified directory (PATH) and reads the instructions in the file to build a new image. The Dockerfile contains a series of instructions that define how to build the image, such as copying files, running commands, and setting environment variables. 
+When you run the `docker build` command, Docker looks for a Dockerfile in the specified directory (PATH) and reads the instructions in the file to build a new image. 
+
+The Dockerfile contains a series of instructions that define how to build the image, such as copying files, running commands, and setting environment variables. 
 
 ## Step-5: Docker Run locally
 
@@ -255,9 +263,11 @@ if you open the docker desktop you will notice the new image & container started
 
 ![image.jpg](images/image-23.jpg)
 
-This will start the ReactJS application in the Docker container and map the container's port 3000 to your local machine's port 3000. That's it! Your ReactJS application is now running inside a Docker container.
+This will start the ReactJS application in the Docker container and map the container's port 3000 to your local machine's port 3000. 
 
-Open your browser and enter the following URL to see the running application in port 3000
+That's it! Your ReactJS application is now running inside a Docker container.
+
+Open your favorite browser and enter the following URL to see the running application in port 3000
 
 <http://localhost:3000/>
 
@@ -265,11 +275,13 @@ Open your browser and enter the following URL to see the running application in 
 ![image.jpg](images/image-21.jpg)
 
 
-That's it! You now have a basic React JS application up and running. From here, you can continue building out your application by adding more more code as per your requirements.
+That's it! You now have a basic React JS application up and running. From here, you can continue building out your application by adding more and more code as per your requirements.
 
 ## Step-6: Push docker container to ACR
 
-To publish a Docker container image to Azure Container Registry (ACR), you will need to have the following:
+Now we've Docker Containers ready locally for push to Container Registry so that we can use them in future labs.
+
+To publish a Docker container to Azure Container Registry (ACR), you will need to have the following:
 
 1. Create an Azure Container Registry. If you don't have one, you can create one by following the instructions in the Azure Portal or using Azure CLI.
 1. Log in to your Azure Container Registry using the Docker command-line interface. You can do this by running the following command:

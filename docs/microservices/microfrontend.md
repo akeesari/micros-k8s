@@ -51,3 +51,4 @@ There are several benefits of using a MicroFrontend architecture to build web ap
 
 Overall, MicroFrontend architecture provides a more modular, scalable, and efficient way to build web applications, allowing teams to work faster and more effectively while improving the user experience.
 
+Now you understand the MicroFrontend architecture, we will create few MicroFrontend applications in our next labs.

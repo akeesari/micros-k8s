@@ -1,14 +1,14 @@
 Here is a list of technologies that can be used to build, manage Microservices and deploy & run those applications on Kubernetes cluster:
 
-Here you will also see table of contents of each technology so that you can learn them offline when needed.
+Here you will also see the list of topics from each technology so that you can learn them offline when needed.
 
-You may encounter some specific tools and technologies that are not listed here but you will see the references end of each lab.
+You may encounter some specific tools and technologies that are not listed here but you will see the references end of each lab for further learning.
 
 ## C\# Programming language
 
 ??? question "C\# Programming language"
 
-    Here is the list of topics you need to know as a C# programming developer:
+    Here is the list of topics you need to know as a `C# programming developer`:
         
     1. Introduction to C#:
         - What is C#
@@ -17,7 +17,7 @@ You may encounter some specific tools and technologies that are not listed here 
     2. Getting Started with C#:
         - Setting up a development environment
         - Creating your first C# program
-        - Understanding the structure of a C# program
+        - Understanding the structure of a C# projects
     3. Variables and Data Types:
         - Understanding variables
         - Data types in C#
@@ -104,7 +104,7 @@ You may encounter some specific tools and technologies that are not listed here 
 
 ??? question "React JS"
 
-    Here is the list of topics that you need to know as a Frontend (FE) developer:
+    Here is the list of topics that you need to know as a `Frontend (FE) React Developer`:
 
     1. Introduction to React
         - What is React
@@ -135,7 +135,7 @@ You may encounter some specific tools and technologies that are not listed here 
 
 ??? question "Blazor"
 
-    Here is the list of topics you need to know as a Fontend (FE) Blazor developer:
+    Here is the list of topics you need to know as a `Fontend (FE) Blazor Developer`:
 
     1. Introduction to Blazor
         - What is Blazor
@@ -165,7 +165,7 @@ You may encounter some specific tools and technologies that are not listed here 
 
 ??? question "Node.js"
  
-    Here is the list of topics that you need to know as a Frontend (FE) developer:
+    Here is the list of topics that you need to know as a `Frontend (FE) developer`:
 
     1. Introduction to Node.js
         - What is Node.js
@@ -202,7 +202,7 @@ You may encounter some specific tools and technologies that are not listed here 
 
 ??? question "Azure DevOps"
 
-    Here is the list of topics that you need to know as a Azure DevOps Engineer:
+    Here is the list of topics that you need to know as a `Azure DevOps Engineer`:
     
     1. Introduction to Azure DevOps
         - What is Azure DevOps
@@ -249,7 +249,7 @@ You may encounter some specific tools and technologies that are not listed here 
 
 ??? question "Azure Cloud"
 
-    Here is the list of topics that you need to know as a Azure Cloud Engineer:
+    Here is the list of topics that you need to know as a `Azure Cloud Engineer`:
 
     1. Introduction to Azure Cloud
         - What is Microsoft Azure
@@ -258,8 +258,8 @@ You may encounter some specific tools and technologies that are not listed here 
     1. Getting Started with Azure
         - Setting up an Azure account
         - Navigating the Azure portal
-        - Creating your first Azure resource
-    1.Virtual Machines in Azure
+    1. Creating your first Azure resource
+        - Virtual Machines in Azure
         - Overview of Azure virtual machines
         - Creating and managing virtual machines
         - Virtual machine sizing and scalability
@@ -301,19 +301,15 @@ You may encounter some specific tools and technologies that are not listed here 
 
 ??? question "Kubernetes Cluster"
 
-    Here is the list of topics that you need to know to build and deploy application in Kubernetes. 
+    Here is the list of topics that you need to know as `Azure Cloud Engineer` to build and deploy application in Kubernetes. 
 
     - Introduction to AKS
         - What is AKS
         - Key features and benefits
-    - What Is Azure Kubernetes Service (AKS)?
-        - Kubernetes ─ Master Machine Components
-        - Kubernetes ─ Node Components
     - Kubernetes Architecture Components
         - Kubernetes ─ Master Machine Components
         - Kubernetes ─ Node Components
     - Creating AKS cluster
-        - Prerequisites
         - Creating an AKS cluster using the Azure portal
         - Creating an AKS cluster using Terraform
         - Testing cluster connection & creating namespace
@@ -353,7 +349,7 @@ You may encounter some specific tools and technologies that are not listed here 
 
 ??? question "Terraform"
 
-    Here is the list of topics that you need to know as a Azure Cloud Terraform Developer:
+    Here is the list of topics that you need to know as a `Azure Cloud Terraform Developer`:
 
     1. Introduction
         - What is Terraform?
@@ -402,7 +398,7 @@ You may encounter some specific tools and technologies that are not listed here 
 
 ??? question "ArgoCD"
 
-    Here is the list of topics that you need to know to deploy and manage application in Kubernetes using argocd. 
+    Here is the list of topics that you need to know as `DevSecOps Engineer` to deploy and manage application in Kubernetes using Argocd. 
 
     1. Introduction to Argo CD
         - What is Argo CD
@@ -435,10 +431,10 @@ You may encounter some specific tools and technologies that are not listed here 
 
 ??? question "Helm Chart"
 
-    Here is the list of topics that you need to know to deploy and manage application in Kubernetes using Helm Chart. 
+    Here is the list of topics that you need to know as `DevSecOps Engineer` to deploy and manage application in Kubernetes using Helm Chart. 
 
     1. Introduction to Helm
-        - What is Helm
+        - What is Helm?
         - Benefits of using Helm
     2. Getting started with Helm
         - Installing Helm
@@ -462,7 +458,7 @@ You may encounter some specific tools and technologies that are not listed here 
 
 ??? question "Application Testing"
 
-    Here is the list of topics that you need to know as Test Engineer for supporting Unit, Integration and Functional testing.
+    Here is the list of topics that you need to know as `QA Engineer` for supporting Unit, Integration and Functional testing.
 
     1. Introduction to Unit and Integration Testing
         - Overview of testing in software development
