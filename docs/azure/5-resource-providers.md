@@ -2,6 +2,8 @@
 
 A resource provider in Azure is a service that supplies a specific type of resource, such as virtual machines, storage accounts, or virtual networks. When you create a new Azure subscription, certain resource providers are automatically registered, but others may need to be registered manually.
 
+azure resource providers registration can be done instantly before creating any the azure resource if it is missing but if you want to avoid the errors during Terraform plan and apply register upfront would help. sometime you may have to spend more time if the errors are misleading.  
+
 In this lab we will learn how to register resource providers in azure subscription manually and using PowerShell:
 ## Register manually
 

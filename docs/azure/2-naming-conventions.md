@@ -2,19 +2,19 @@
 
 ## Naming conventions
 
-Azure naming conventions are guidelines and best practices for naming resources in Azure. These conventions help to ensure that resources are easily identifiable, consistent, and organized within your Azure environment. Some of the key components of Azure naming conventions include:
+Azure naming conventions are guidelines and best practices for naming resources in Azure. These conventions help us to ensure that resources are easily identifiable, consistent, and organized within your Azure environment. Some of the key components of Azure naming conventions include:
 
-- `Consistency`: All resources should be named in a consistent manner, using the same naming convention across all resource types. This makes it easier to identify and locate resources in the Azure portal and other Azure tools.
+- **Consistency**: All resources should be named in a consistent manner, using the same naming convention across all resource types. This makes it easier to identify and locate resources in the Azure portal and other Azure tools.
 
-- `Meaningful names`: Resources should be named in a way that makes their purpose and context clear. This includes using prefixes or suffixes to indicate the resource type, environment, or other relevant information.
+- **Meaningful names**: Resources should be named in a way that makes their purpose and context clear. This includes using prefixes or suffixes to indicate the resource type, environment, or other relevant information.
 
-- `Length and character limitations`: Azure has a maximum length limit and character limitations on the name of a resource, it's important to be aware of these limitations when creating a name.
+- **Length and character limitations**: Azure has a maximum length limit and character limitations on the name of a resource, it's important to be aware of these limitations when creating a name.
 
-- `Uniqueness`: Resources must have unique names within the subscription and resource group they are located in.
+- **Uniqueness**: Resources must have unique names within the subscription and resource group they are located in.
 
-- `Avoid using special characters and spaces`: Azure resource names cannot contain special characters, such as “!”, “@”, “#”, and “$”, and spaces.
+- **Avoid using special characters and spaces**: Azure resource names cannot contain special characters, such as “!”, “@”, “#”, and “$”, and spaces.
 
-Using a consistent naming convention for resources can help to improve the organization and management of your Azure environment, making it easier to find, understand and troubleshoot resources.
+Using a consistent naming convention for resources can help us to improve the organization and management of your Azure environment, making it easier to find, understand and troubleshoot resources.
 
 Examples of naming conventions for Azure resources:
 ```

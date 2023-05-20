@@ -2,15 +2,6 @@
 
 ## Introduction
 
-`Docker` is a platform that enables developers to build, package, and deploy applications inside containers. 
-
-`Image` is a read-only template that contains the instructions for creating a Docker container. Docker images can be created using a Dockerfile, Once an image is built, it can be stored in a Docker registry, which is a centralized repository for Docker images.
-
-`Containers`  is a runtime instance of a Docker image. Containers are lightweight, standalone executable packages that contain everything needed to run an application, including code, libraries, dependencies, and configuration files. 
-
-With Docker, developers can create and test applications in a local environment, then package them into containers that can be easily deployed to production servers or cloud-based environments.
-
-
 This cheat sheet includes some of the most commonly used `Docker` commands, b
 
 

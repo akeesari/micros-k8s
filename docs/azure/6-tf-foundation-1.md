@@ -1,13 +1,13 @@
 ## Introduction
 
-This is the the part-1 of the terraform foundation, in this lab we will setup the terraform environment in Azure DevOps and Azure portal to run terraform configuration in the upcoming labs;
+This is the the part-1 of the terraform foundation, in this lab we will setup the `Terraform Management` so that you can use the Terraform to create azure resources. as part of this Terraform management we need storage account for storing the Terraform State and Azure Key vault for securing the Terraform service principle.
 
 Terraform environment setup is onetime activity, once this is completed then we are ready for any kind of azure resource creation with IaC automation.
 
 
 ## Technical Scenario
 
-As a cloud engineer, you have been asked to work on `Terraform Management` setup as part of the terraform foundation to manage cloud infrastructure efficiently and effectively.
+As a `Cloud engineer`, you have been asked to work on `Terraform Management` setup as part of the terraform foundation to manage cloud infrastructure efficiently and effectively.
 
 
 ## Prerequisites
@@ -40,11 +40,14 @@ In this exercise we will accomplish & learn following:
 
 ## Implementation details
 
-In this lab we are going to perform some tasks in Azure DevOps web portal and some tasks in Azure Portal.
+In this lab we are going to perform some tasks in Azure DevOps portal and some tasks in Azure Portal for Terraform Management setup.
 
 ## Task-1: Create a new project in azure DevOps
 
-It is always recommended to have separate project in azure DevOps for Infrastructure as Code maintenance. Here we are going to create new project called `IaC` and under this project we can create a new repo called `terraform` - repo name is in lowercase.
+It is always recommended to have separate project in azure DevOps for Infrastructure as Code maintenance. Here we are going to create new project called `IaC` and under this project we can create a new repo called `terraform` 
+
+!!! Best-practice 
+    Repo name should be in lowercase.
 
 Here are the details of the new project:
 
@@ -58,7 +61,9 @@ Follow these steps for creating a new project in azure DevOps.
 1. Select New project.
 1. Enter project name & description
 
-Once the project is created then you can add following repos for managing all your IaC related scripts or configuration, some of the  example here are:
+Once the project is created then you can add more repos as needed.
+
+For example:
 
 - `terraform` - you can use this repo for terraform configuration
 - `scripts` - you can use this repo for managing all kinds of scripts like PowerShell, Bash and CLI etc..
@@ -160,9 +165,9 @@ terraform.rc
 
 ## Terraform Management Setup
 
-The azure resources which are managing the terraform state and securing the terraform state and securing the service principle are called `Terraform management resources`
+The azure resources which are managing and securing the terraform state and securing the service principle are called `Terraform management resources`
 
-By following these steps, you can set up a Terraform management environment for running Azure resources. It's important to keep your configuration files and state file in a secure location, and to follow best practices for managing infrastructure as code.
+By following these steps, you can set up a Terraform management environment for creating Azure resources. It's important to keep your configuration files and state file in a secure location, and to follow best practices for managing infrastructure as code.
 
 Here we are going to use Azure Storage Account for storing the terraform state files and Azure Key vault for securing the secrets used for running the terraform configuration in azure.
 

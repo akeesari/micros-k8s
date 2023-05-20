@@ -9,7 +9,7 @@ edit_uri: edit/main/docs/
 # Author details
 site_author: Anji Keesari
 site_description: >-
-  Building and Managing Microservices with Kubernetes using Argocd & Helm
+  Build and Deploy Microservices Applications on Kubernetes platform using Argocd & Helm
   Azure and Azure DevOps Pipelines.
 
 # # Repository details
@@ -152,7 +152,9 @@ nav:
   - Home:
     - Home: index.md      
   - Getting started:
-    - Table of Contents: gettingstarted/toc.md      
+    - Table of Contents: gettingstarted/toc.md    
+    - About the Author: gettingstarted/about-author.md      
+    - Acknowledgments: gettingstarted/acknowledgments.md      
     - Introduction: gettingstarted/introduction.md    
     - Developer Workstation Configuration: gettingstarted/workstation.md    
     - Download & Install software:
@@ -160,14 +162,13 @@ nav:
        - Mac OS: gettingstarted/software/mac.md
     - Technology Stack: gettingstarted/tech-stack.md
   - Microservices:
-      - Getting started with Microservices : microservices/gettingstarted.md
-      - Create Microservice-1 with .NET Core: microservices/aspnet-api.md
+      - Getting started with Microservices : microservices/1.gettingstarted.md
+      - Create Microservice-1 with .NET Core: microservices/2.aspnet-api.md
       # - Create Micrservice-2 with Node JS: microservices/nodejs-api.md
       # - Create Micrservice-3 with Java: microservices/java-api.md
-      - Microfrontend:
-          - Microfrontend Overview : microservices/microfrontend.md
-          - Create Microfrontend-1 with ASP.NET MVC: microservices/aspnet-app.md      
-          - Create Microfrontend-2 with React JS: microservices/react-app.md      
+      - MicroFrontend Overview : microservices/microfrontend.md
+      - Create MicroFrontend-1 with ASP.NET MVC: microservices/aspnet-app.md      
+      - Create MicroFrontend-2 with React JS: microservices/react-app.md      
       # - Create Website-2 with React JS: microservices/reactjs-app.md
       # - Create Website-3 with Blazor : microservices/blazor-app.md
       # - Create Database-1 with SQL : microservices/sqldb.md
@@ -185,6 +186,7 @@ nav:
     -  Create Azure Container Registry (ACR) using terraform: azure/9-acr.md
     -  Create Azure Kubernetes Service (AKS) using terraform: azure/10-aks.md
   - Kubernetes:
+    - Getting Started with Docker Container: kubernetes/0.getting-started.md
     - Prepare an application for Azure Kubernetes Service (AKS): kubernetes/1-prepare-app.md
     - Deploying an application to Azure Kubernetes Service (AKS): kubernetes/2-deploy-app.md
     - Working with AKS cluster using kubectl : kubernetes/3-working-with-aks.md
@@ -197,6 +199,7 @@ nav:
     - Azure DevOps Overview : devops/1-devops-overview.md
     - Create your first service connection : devops/pipelines/1-service-connections.md
     - Create Pipeline for .NET Core Web API : devops/pipelines/2-pipeline-aspnet-api.md
+    - Create Pipeline for ASP.NET Core MVC Project : devops/pipelines/3-pipeline-aspnet-app.md
 
     - ArgoCD: 
          - ArgoCD Introduction: devops/argocd/argocd-intro.md
