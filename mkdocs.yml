@@ -189,6 +189,9 @@ nav:
     - Deploying an application to Azure Kubernetes Service (AKS): kubernetes/2-deploy-app.md
     - Working with AKS cluster using kubectl : kubernetes/3-working-with-aks.md
     - Setup NGINX ingress controller in Kubernetes cluster : kubernetes/4-ingress-controller.md
+    - Create YAML Manifests for Microservice-1 : kubernetes/5.1-manifests-microservice-1.md
+    - Create YAML Manifests for Microservice-2 : kubernetes/5.2-manifests-microservice-2.md
+    - Create YAML Manifests for Microservice-3 : kubernetes/5.3-manifests-microservice-3.md
     - Kubernetes Pod troubleshooting : kubernetes/pod-troubleshooting.md    
   - Azure DevOps:
     - Azure DevOps Overview : devops/1-devops-overview.md
