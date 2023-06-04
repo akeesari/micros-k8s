@@ -10,6 +10,15 @@ In addition to his experience with Kubernetes and related tools, Anji has extens
 
 Anji has a passion for teaching and sharing his knowledge with others. He has written numerous articles and tutorials on Kubernetes, ArgoCD, and Helm, and has presented at various industry conferences and events, He has YouTube Chanel for sharing the knowledge on various technical topics.
 
-In his free time, Anji enjoys soccer, hiking, traveling, and spending time with his family and friends.
-
 With his extensive knowledge and experience in Kubernetes, ArgoCD, and Helm, Anji is the perfect author for this book on `Build and Deploy Microservices Applications on a Kubernetes using ArgoCD and Helm`. His passion for teaching and his ability to explain complex concepts in simple terms will make this book a valuable resource for readers of all levels of expertise.
+
+Anji has recently been involved in developing multi-tenant applications while also focusing on infrastructure automation. He leverages tools like Terraform and Azure DevOps to streamline the process. Anji's goal is to efficiently create new environments, aiming to complete the setup within a remarkable 30-minute timeframe. 
+
+Throughout my career, I have worked with various companies in different domains such as Banking, Healthcare, and Finance, across countries like India, UK, and US. I am passionate about making a significant impact at my workplace and helping others along the way.
+
+During his free time, Anji finds joy in various activities such as playing soccer, going hiking, exploring new places, and most importantly, spending quality time with his loved ones.
+
+If you have any question, suggestion or want to request a topic, feel free to drop me a message and we’ll get in touch when I can with my busy schedule.
+
+- Email: <anjkeesari@gmail.com>
+- Website: [https://anjikeesari.com](https://anjikeesari.com)
