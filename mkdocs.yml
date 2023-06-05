@@ -9,7 +9,7 @@ edit_uri: edit/main/docs/
 # Author details
 site_author: Anji Keesari
 site_description: >-
-  Build and Deploy Microservices Applications on Kubernetes platform using Argocd & Helm
+  Build & Deploy Microservices on Kubernetes using ArgoCD & Helm
   Azure and Azure DevOps Pipelines.
 
 # # Repository details

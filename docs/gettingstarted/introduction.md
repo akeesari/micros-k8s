@@ -1,5 +1,5 @@
 
-**Build and Deploy Microservices Applications on Kubernetes platform using Argocd & Helm**
+**Build & Deploy Microservices on Kubernetes using ArgoCD & Helm**
 
 ## Overview
 
@@ -9,7 +9,7 @@ However, managing microservices can be challenging, particularly when it comes t
 
 In this book, we will show you how to build and deploy microservices applications on a Kubernetes using ArgoCD and Helm. ArgoCD is a powerful continuous delivery tool that simplifies the deployment of Kubernetes applications. Helm is a package manager for Kubernetes that makes it easy to deploy and manage complex applications.
 
-This book `Build and Deploy Microservices Applications on Kubernetes platform using Argocd & Helm` covers the step by step instructions for Developer, DevOps engineer, or IT professional.
+This book `Build & Deploy Microservices on Kubernetes using ArgoCD & Helm` covers the step by step instructions for Developer, DevOps engineer, or IT professional.
 
 You can use this step by step implementation guide as your reference architecture for creating, deploying and managing your microservices architecture with Azure Kubernetes Services (AKS) using Argocd & Helm CI/CD DevOps process.
 
