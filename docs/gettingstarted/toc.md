@@ -5,18 +5,19 @@
 - About the Author
 - Acknowledgments
 - Introduction
-- Developer Workstation Configuration
+<!-- - Developer Workstation Configuration
 - Download & Install software (workstation setup)
-- Technology Stack
+- Technology Stack -->
 
 **Chapter-1: Getting started with Microservices**
 
 - Getting started with Microservices
-    - Task-1: Identity list of business domains / microservices
-    - Task-2: Identity list of git repos needed
-    - Task-3: Identity list of Applications needed
-    - Task-4: Create new Azure DevOps Organization
-    - Task-5: Create new Azure DevOps Project
+    - Overview
+    - Microservices
+    - Task-1: Identify Microservices List:
+    - Task-2: Identify the List of Git Repositories Needed
+    - Task-3: Create new Azure DevOps Organization
+    - Task-4: Create new Azure DevOps Project
 - Create your first Microservice with .NET Core
     - Task-1: Create a new repo in azure DevOps
     - Task-2: Clone the repo from azure DevOps

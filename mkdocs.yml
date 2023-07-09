@@ -9,7 +9,7 @@ edit_uri: edit/main/docs/
 # Author details
 site_author: Anji Keesari
 site_description: >-
-  Build & Deploy Microservices on Kubernetes using ArgoCD & Helm
+  Build and Deploy Microservices on Kubernetes using ArgoCD & Helm
   Azure and Azure DevOps Pipelines.
 
 # # Repository details
@@ -156,6 +156,7 @@ nav:
     - About the Author: gettingstarted/about-author.md      
     - Acknowledgments: gettingstarted/acknowledgments.md      
     - Introduction: gettingstarted/introduction.md    
+    - Lab Format: gettingstarted/lab-format.md    
   - Microservices:
       - Getting started with Microservices : microservices/1.gettingstarted.md
       - Create Microservice-1 with .NET Core: microservices/2.aspnet-api.md
