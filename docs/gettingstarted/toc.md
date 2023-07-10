@@ -12,24 +12,28 @@
 **Chapter-1: Getting started with Microservices**
 
 - Getting started with Microservices
-    - Overview
-    - Microservices
     - Task-1: Identify Microservices List:
     - Task-2: Identify the List of Git Repositories Needed
     - Task-3: Create new Azure DevOps Organization
     - Task-4: Create new Azure DevOps Project
 - Create your first Microservice with .NET Core
-    - Task-1: Create a new repo in azure DevOps
-    - Task-2: Clone the repo from azure DevOps
-    - Task-3: Create a new .NET Core Web API project
-    - Task-4: Test the new .NET core Web API project
-    - Task-5: Add Dockerfiles to the API project
-    - Task-6: Docker Build & Run
-    - Task-7: Push docker container to ACR
-    - Task-8: Pull docker container from ACR
+    - Step-1: Create a new repo in azure DevOps
+    - Step-2: Clone the repo from azure DevOps
+    - Step-3: Create a new .NET Core Web API project
+    - Step-4: Test the new .NET core Web API project
+    - Step-5: Add Dockerfiles to the API project
+    - Step-6: Docker Build & Run
+    - Step-7: Push docker container to ACR
+    - Step-8: Pull docker container from ACR
 - Create your second Microservice with Node JS
-<!-- - Create third Microservice with Java -->
 - Create your first website using ASP.NET Core MVC
+    - Step-1: Create a new ASP.NET Core Web App (MVC project)
+    - Step-2: Test the new ASP.NET core Web App project
+    - Step-3: Update home page contents
+    - Step-4: Add Dockerfiles to the MVC project
+    - Task-5: Docker Build locally
+    - Step-6: Docker Run locally
+    - Step-7: Push docker container to ACR
 - Create your second website using React JS
 - Create your third website using Blazor
 - Create your first database with SQL server

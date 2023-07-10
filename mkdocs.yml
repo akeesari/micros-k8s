@@ -158,17 +158,15 @@ nav:
     - Introduction: gettingstarted/introduction.md    
     - Lab Format: gettingstarted/lab-format.md    
   - Microservices:
-      - Getting started with Microservices : microservices/1.gettingstarted.md
-      - Create Microservice-1 with .NET Core: microservices/2.aspnet-api.md
-      # - Create Micrservice-2 with Node JS: microservices/nodejs-api.md
-      # - Create Micrservice-3 with Java: microservices/java-api.md
-      - MicroFrontend Overview : microservices/microfrontend.md
-      - Create MicroFrontend-1 with ASP.NET MVC: microservices/aspnet-app.md      
-      - Create MicroFrontend-2 with React JS: microservices/react-app.md      
-      # - Create Website-2 with React JS: microservices/reactjs-app.md
-      # - Create Website-3 with Blazor : microservices/blazor-app.md
-      # - Create Database-1 with SQL : microservices/sqldb.md
-      # - Create Database-2 with PostgreSQL : microservices/psqldb.md
+      - Getting started with Microservices : microservices/0.gettingstarted.md
+      - Create Microservice-1 : microservices/1.aspnet-api.md
+      - Create Microservice-2 : microservices/2.node-api.md      
+      # - MicroFrontend Overview : microservices/microfrontend.md
+      - Create website-1 : microservices/3.aspnet-app.md      
+      - Create website-2 : microservices/4.react-app.md      
+      - Create Website-3 : microservices/5.blazor-app.md
+      - Create Database-1 : microservices/6.sqlserver-db.md
+      - Create Database-2 : microservices/7.postgresql-db.md
   - Azure (IaC):
     - Infrastructure as Code (IaC): azure/1-iac.md
     - Azure Naming & Tagging Conventions: azure/2-naming-conventions.md
