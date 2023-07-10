@@ -164,11 +164,12 @@ nav:
       # - MicroFrontend Overview : microservices/microfrontend.md
       - Create website-1 : microservices/3.aspnet-app.md      
       - Create website-2 : microservices/4.react-app.md      
-      - Create Website-3 : microservices/5.blazor-app.md
-      - Create Database-1 : microservices/6.sqlserver-db.md
-      - Create Database-2 : microservices/7.postgresql-db.md
+      # - Create Website-3 : microservices/5.blazor-app.md
+      # - Create Database-1 : microservices/6.sqlserver-db.md
+      # - Create Database-2 : microservices/7.postgresql-db.md
   - Azure (IaC):
     - Infrastructure as Code (IaC): azure/1-iac.md
+    - Microservices Architecture on AKS: azure/1-microservices-architecture-on-aks.md
     - Azure Naming & Tagging Conventions: azure/2-naming-conventions.md
     - Create Azure Free Account: azure/3-azure-account.md
     - Create new subscription: azure/4-azure-subscription.md

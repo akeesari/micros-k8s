@@ -35,6 +35,12 @@
     - Step-6: Docker Run locally
     - Step-7: Push docker container to ACR
 - Create your second website using React JS
+    - Step-1: Install Node.js and NPM
+    - Step-2: Create a new React JS application
+    - Step-3: Add Dockerfiles to the MVC project
+    - Step-4: Docker Build locally
+    - Step-5: Docker Run locally
+    - Step-6: Push docker container to ACR
 - Create your third website using Blazor
 - Create your first database with SQL server
 - Create your second database with PostgreSQL
