@@ -6,7 +6,7 @@ ArgoCD Projects are a way to group related applications together in order to man
 
 ArgoCD Projects provide a logical boundary for organizing and managing deployments. 
 
-Overall, ArgoCD Projects are a key feature of ArgoCD that provide a powerful tool for managing deployments and enforcing security policies across complex environments.
+ArgoCD Projects are a key feature of ArgoCD that provide a powerful tool for managing deployments and enforcing security policies across complex environments.
 
 
 Projects provide a logical grouping of applications, which is useful when Argo CD is used by multiple teams.

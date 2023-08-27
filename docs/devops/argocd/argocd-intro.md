@@ -59,7 +59,7 @@ The core components of GitOps include:
 - **Observability:** Observability tools are used to monitor and debug the system. By using Git to track changes and version control, it becomes easier to identify issues and roll back changes if necessary.
 - **Security:** Security best practices such as RBAC and secrets management are used to secure the system. 
 
-Overall, GitOps architecture is designed to promote automation, repeatability, and reliability in the software development and deployment process. By using a GitOps approach, organizations can improve their ability to deliver high-quality software at scale.
+GitOps architecture is designed to promote automation, repeatability, and reliability in the software development and deployment process. By using a GitOps approach, organizations can improve their ability to deliver high-quality software at scale.
 
 ## GitOps Operators
 
@@ -72,7 +72,7 @@ Some popular GitOps operators include:
 - Jenkins X
 - Keel
 
-Overall, GitOps operators simplify and automate GitOps workflows, enabling organizations to improve efficiency and reliability in their development and deployment processes.
+GitOps operators simplify and automate GitOps workflows, enabling organizations to improve efficiency and reliability in their development and deployment processes.
 
 now let's start talking about ArgoCD here.
 
@@ -153,7 +153,7 @@ ArgoCD architecture consists of the following components:
 - **Dex authentication server:** Dex is used to provide single sign-on (SSO) authentication for ArgoCD. It supports multiple identity providers, including GitHub, GitLab, and Google.
 - **RBAC:** ArgoCD supports role-based access control (RBAC) to control access to resources and operations within the Kubernetes cluster.
 
-Overall, the components of ArgoCD architecture work together to automate the deployment and management of applications in Kubernetes environments. By leveraging GitOps principles, ArgoCD helps to ensure that the desired state of the environment is always in sync with the actual state of the cluster, reducing the likelihood of errors and improving the overall efficiency of the software development lifecycle.
+The components of ArgoCD architecture work together to automate the deployment and management of applications in Kubernetes environments. By leveraging GitOps principles, ArgoCD helps to ensure that the desired state of the environment is always in sync with the actual state of the cluster, reducing the likelihood of errors and improving the overall efficiency of the software development lifecycle.
 
 ## ArgoCD supports tools
 

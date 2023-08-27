@@ -4,7 +4,7 @@ A Log Analytics workspace allows you to log data from Azure Monitor and other Az
 
 ### Technical Scenario
 
-As a cloud engineer, you have been asked to collect all the monitoring data, azure resources logs from azure services for your organization so that you can use the log queries to retrieve and analyze data from a Log Analytics workspace.
+As a `Cloud Engineer`, you have been asked to collect all the monitoring data, azure resources logs from azure services for your organization so that you can use the log queries to retrieve and analyze data from a Log Analytics workspace.
 
 ### Prerequisites
   - Download & Install Terraform

@@ -10,7 +10,7 @@ The NGINX Ingress Controller is a popular choice for Kubernetes users because it
 
 ## Technical Scenario
 
-As a cloud engineer you've been asked to setup the NGINX ingress controller in an Azure Kubernetes Service (AKS) cluster. also deploy couple of applications in the AKS cluster, each of which is accessible over the single IP address.
+As a `Cloud Engineer` you've been asked to setup the NGINX ingress controller in an Azure Kubernetes Service (AKS) cluster. also deploy couple of applications in the AKS cluster, each of which is accessible over the single IP address.
 
 
 **Install ingress-nginx controller helm chart using terraform**

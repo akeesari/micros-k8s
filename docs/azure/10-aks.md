@@ -23,7 +23,7 @@ To get started with AKS, we are going to use terraform to create a new Kubernete
 
 ## Technical Scenario
 
-As a cloud engineer, you have been asked to create a new Azure Kubernetes services (AKS) cluster so that you can deploy containerized Microservice applications to it using Kubernetes manifests or Helm charts.
+As a `Cloud Engineer`, you have been asked to create a new Azure Kubernetes services (AKS) cluster so that you can deploy containerized Microservice applications to it using Kubernetes manifests or Helm charts.
 
 ## Objective
 

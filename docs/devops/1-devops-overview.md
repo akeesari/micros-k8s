@@ -43,7 +43,7 @@ At this point, the green environment becomes the production environment, while t
 
 Blue-green deployment allows organizations to deploy new versions of an application with minimal risk and downtime. This strategy also enables organizations to test the new version of the application in a production-like environment, ensuring that any issues are identified and addressed before the new version is fully deployed.
 
-Overall, blue-green deployment is a powerful tool for software deployment that enables organizations to deploy new versions of their applications with confidence and speed, without risking downtime or disrupting the user experience.
+Blue-green deployment is a powerful tool for software deployment that enables organizations to deploy new versions of their applications with confidence and speed, without risking downtime or disrupting the user experience.
 
 ## What is Canary release?
 
@@ -53,7 +53,7 @@ Canary release enables organizations to test new features, performance improveme
 
 This approach helps organizations to minimize the risk of deploying new versions of an application and ensure that the user experience remains stable and consistent. It also enables organizations to gather feedback from a small group of users before making changes available to everyone.
 
-Overall, canary release is a powerful tool for organizations to test and deploy new versions of their applications with minimal risk and disruption, while also enabling them to gather feedback and improve the user experience.   
+Canary release is a powerful tool for organizations to test and deploy new versions of their applications with minimal risk and disruption, while also enabling them to gather feedback and improve the user experience.   
 
 
 ## CI/CD strategy for microservices on Kubernetes 

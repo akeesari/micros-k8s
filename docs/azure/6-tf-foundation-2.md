@@ -3,7 +3,7 @@
 This is part-2 of the terraform foundation, in this module we will setup the terraform project and folder structure for running any kind of terraform configuration. this folder structure and terraform source code created as part of this lab is the minimum requirements for creating any kind of azure resources using terraform.
 
 ## Technical Scenario
-As a cloud engineer, you have been asked to start working on infrastructure as code (IaC) setup using terraform for your organization so that you can create any kind of azure cloud resources using the source code written in terraform language. As part of the terraform project structure we will be creating our first resource group so that we can test the basic terraform setup or files created in this module.
+As a `Cloud Engineer`, you have been asked to start working on infrastructure as code (IaC) setup using terraform for your organization so that you can create any kind of azure cloud resources using the source code written in terraform language. As part of the terraform project structure we will be creating our first resource group so that we can test the basic terraform setup or files created in this module.
 
 we will start with bare minimum terraform configuration in this module and update the same files while creating more and more resources in the future modules.
 
@@ -15,9 +15,10 @@ we will start with bare minimum terraform configuration in this module and updat
   - Visual studio code
   - Azure DevOps project & repo
   - Terraform Management setup (part-1)
+
 ## Objective
 
-In this exercise we will accomplish & learn following:
+The objective of this lab is to accomplish the following tasks in order to set up the Terraform environment and successfully provision Azure resources:
 
 - Task-1: Create terraform environment variables
 - Task-2: Create terraform providers
@@ -40,14 +41,15 @@ In this exercise we will accomplish & learn following:
 
 ## Implementation details
 
-Before we start on any of the tasks listed below, we will clone the `terraform` git repo first from Azure devOps portal; this git repo was created in our previous module; Once it is cloned open VS code text editor and open the terraform folder.
+Before proceeding with the tasks, make sure to clone the Terraform Git repository from the Azure DevOps portal. This repository should have been created in the previous module. Once the repository is cloned, open the VS Code text editor and navigate to the Terraform folder to access the Terraform configuration files.
+
+Here are the step-by-step instructions to perform each task:
 
 ## Task-1: Create terraform environment variables
 
 Terraform allows you to use environment variables to define variables that are used in your Terraform configuration. Environment variables are a convenient way to pass values to Terraform, without having to hard-code them in your configuration files. 
 
 By using environment variables in Terraform, you can more easily customize your Terraform configuration based on your environment, without having to modify your configuration files directly. This can be useful when working with multiple environments, such as development, testing, and production.
-
 
 Let's create new folder called `environments` and add following files in it. here we are creating *.tfvar files for each environment, these *.tfvar files will contains environment specific values in it.
 
@@ -130,6 +132,9 @@ provider "azurerm" {
 
 ```
 
+!!! note
+    It's important to keep your provider versions up to date and ensure compatibility with your other Terraform modules and configurations.
+
 ## Task-3: Configure terraform backend state
 
 By default, Terraform state is stored locally, which isn't ideal, rather we should be storing using remote state which is in azure storage account so that multiple team members can work on the terraform project. here we will configure the terraform backend for remote state.
@@ -143,6 +148,9 @@ To configure the backend state, you need the following information:
 - `container_name`: The name of the blob container.
 - `key`: The name of the state store file to be created.
 
+Create a new file called `backend.tf` in your Terraform project directory.
+
+In the `backend.tf` file, add the following configuration to define the Azure Storage Account as the backend:
 
 ```  tf title="backend.tf"
 terraform {
@@ -153,8 +161,8 @@ terraform {
     key                  = "project1-state-"
   }
 }
-
 ```
+
 ## Task-4: Create terraform variables
 
 Terraform variables allow you to define reusable values in your Terraform configuration, which can be used to parameterize your Terraform code.
@@ -413,11 +421,13 @@ terraform workspace select dev
 Run `terraform plan` to create an execution plan.
 
 
-Key points:
-- The terraform plan command creates an execution plan, but doesn't execute it. Instead, it determines what actions are necessary to create the configuration specified in your configuration files. This pattern allows you to verify whether the execution plan matches your expectations before making any changes to actual resources.
-- The optional -out parameter allows you to specify an output file for the plan. Using the -out parameter ensures that the plan you reviewed is exactly what is applied.
+Here are the key points to keep in mind when running terraform plan:
 
-
+- The terraform plan command creates an execution plan by evaluating your Terraform configuration files. It determines what actions are necessary to achieve the desired state specified in your configuration.
+- The plan provides a detailed summary of the changes that Terraform will make to your infrastructure. It shows additions, modifications, and deletions of resources, as well as any dependencies or potential issues.
+- Running terraform plan allows you to review and verify the execution plan before applying any changes to the actual resources. This step is crucial for understanding the impact of the changes and ensuring they align with your expectations.
+- By default, the execution plan is displayed in the terminal. However, you can also save the plan to a file using the optional -out parameter. This ensures that the plan you reviewed is exactly what will be applied when you proceed with the terraform apply command.
+  
 **Terraform plan**
 
 ```
@@ -500,7 +510,8 @@ Azure storage account container should have two files created and stored the ter
 
 ![image.jpg](images/image-15.jpg)
 
-That's all! we are fully ready with terraform development for creating any azure resources using this foundation, we are going to learn more about terraform configuration while creating new azure resources in the future labs.
+We are fully ready with terraform development for creating any azure resources using this foundation, we are going to learn more about terraform configuration while creating new azure resources in the future labs.
+
 ## Reference
 
 - <https://learn.microsoft.com/en-us/azure/developer/terraform/create-resource-group?source=recommendations&tabs=azure-cli>

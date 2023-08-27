@@ -4,7 +4,7 @@ Azure Virtual Network also known as vnet is the fundamental building block for p
 
 ## Technical Scenario
 
-As a cloud engineer, you have been asked to deploy azure resources with fully secured and isolated networking capabilities, we will use the azure virtual network capabilities to protect azure virtual machines, AKS clusters, azure key vault services, azure storage account services using azure virtual network.
+As a `Cloud Engineer`, you have been asked to deploy azure resources with fully secured and isolated networking capabilities, we will use the azure virtual network capabilities to protect azure virtual machines, AKS clusters, azure key vault services, azure storage account services using azure virtual network.
 
 ## Objective
 

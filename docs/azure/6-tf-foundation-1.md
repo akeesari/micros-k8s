@@ -1,14 +1,16 @@
 ## Introduction
 
-This is the the part-1 of the terraform foundation, in this lab we will setup the `Terraform Management` so that you can use the Terraform to create azure resources. as part of this Terraform management we need storage account for storing the Terraform State and Azure Key vault for securing the Terraform service principle.
+Welcome to Part 1 of the Terraform Foundation lab. In this lab, we will set up the `Terraform Management` environment, enabling you to create Azure resources using Terraform. As part of this setup, we will create a Azure Blob storage account for storing the Terraform state and an Azure Key Vault for securing the Terraform Secrets.
 
-Terraform environment setup is onetime activity, once this is completed then we are ready for any kind of azure resource creation with IaC automation.
+The Terraform `Terraform Management` environment setup is a one-time activity that lays the foundation for automating infrastructure provisioning using Infrastructure as Code (IaC) principles. Once this setup is completed, you will be ready to create various Azure resources using Terraform in an automated and consistent manner.
 
+Let's dive in and get started with setting up the Terraform Management environment!
 
 ## Technical Scenario
 
-As a `Cloud engineer`, you have been asked to work on `Terraform Management` setup as part of the terraform foundation to manage cloud infrastructure efficiently and effectively.
+As a `Cloud Engineer`, you play a critical role in managing cloud infrastructure efficiently and effectively. As part of your responsibilities, you have been tasked with setting up the Terraform Management environment, which will empower your team to provision and manage cloud resources using Terraform.
 
+By setting up the Terraform Management environment, you will provide your team with a centralized platform to automate the creation and management of cloud resources. This setup will streamline the deployment process, enhance collaboration, and improve the overall efficiency of your cloud infrastructure management.
 
 ## Prerequisites
   - Download & Install Terraform
@@ -21,7 +23,7 @@ As a `Cloud engineer`, you have been asked to work on `Terraform Management` set
 
 ## Objective
 
-In this exercise we will accomplish & learn following:
+In this exercise, our objective is to accomplish the following tasks and gain a deeper understanding of the Terraform Management setup:
 
 - **Azure DevOps setup**
     - Task-1: Create a new project in azure DevOps
@@ -40,14 +42,13 @@ In this exercise we will accomplish & learn following:
 
 ## Implementation details
 
-In this lab we are going to perform some tasks in Azure DevOps portal and some tasks in Azure Portal for Terraform Management setup.
+In this lab, we will perform various tasks both in the Azure DevOps portal and the Azure portal to set up the Terraform Management. The following are the implementation details for each task:
 
 ## Task-1: Create a new project in azure DevOps
 
-It is always recommended to have separate project in azure DevOps for Infrastructure as Code maintenance. Here we are going to create new project called `IaC` and under this project we can create a new repo called `terraform` 
+We will create a new project in Azure DevOps to organize our Terraform-related activities and workflows. This project will serve as a central hub for managing our infrastructure as code.
 
-!!! Best-practice 
-    Repo name should be in lowercase.
+It is always recommended to have separate project in azure DevOps for Infrastructure as Code maintenance. Here we are going to create new project called `IaC` and under this project we can create a new repo called `terraform` 
 
 Here are the details of the new project:
 
@@ -73,7 +74,9 @@ For example:
 
 ## Task-2: Create a new Azure DevOps Repo for terraform
 
-You can use Azure DevOps to create a new Git repository to store and manage terraform configuration source code. Here are the steps to create a new Git repository in Azure DevOps:
+We will create a dedicated Git repository within Azure DevOps to store our Terraform configurations and scripts. This repository will enable version control and collaboration among team members.
+
+Here are the steps to create a new Git repository in Azure DevOps:
 
 - Login into azure DevOps -  <https://dev.azure.com/>
 - Select the project where we want to create the repo
@@ -97,7 +100,7 @@ for example:
 
 ## Task-3: Clone the git repo
 
-There are multiple ways to clone the git repo to your computer.
+We will clone the newly created Git repository to our local machine. This will allow us to work with the Terraform configurations locally and push changes to the remote repository.
 
 Here we will use the Git CMD tool, open the git cmd tool in admin mode and follow these commands to clone the code locally.
 
@@ -120,7 +123,9 @@ c:\Source\Repos\IaC\terraform>
 
 ## Task-4: Add .gitignore file in the git repo for terraform
 
-This is the first file you need add in the source code before commit any files.
+We will add a .gitignore file to the Git repository specifically tailored for Terraform. This file will exclude unnecessary files and directories from being tracked by Git, ensuring a cleaner and more manageable repository.
+
+This is the first file you need to add in the source code before commit any files.
 
 This .gitignore file will prevent Terraform state files, override files, local tfvars files, and CLI configuration files from being tracked by Git. These files contain sensitive information and can cause issues with consistency and conflicts if multiple users are working on the same Terraform project. It's important to not commit these files to your source code repository to maintain the integrity and security of your infrastructure code.
 
@@ -176,6 +181,7 @@ Since these steps are part of terraform setup itself,  we can't create following
 We are going to create separate azure resource group for managing terraform management specific azure resource like azure storage account and azure key vault.
 
 We will start with service principe before creating azure storage account and azure key vault.
+
 ## Task-5: Create Terraform Service Principle Credentials
 
 A Service Principal is an identity that Terraform can use to authenticate and manage Azure resources.  Terraform uses a Service Principal to authenticate with Azure and manage Azure resources, such as virtual machines, storage accounts, and databases.
@@ -221,13 +227,20 @@ az account show --query "tenantId"
 
 ## Task-6: Create new resource group
 
-We are going to create separate resource group for maintaining terraform management resources in azure.
+To maintain the Terraform management resources in Azure, we will create a separate resource group specifically for this purpose.
 
 
 Resource Group Name - `rg-tfmgmt-dev` 
 
+You can use the following Azure CLI command to create the resource group:
+
 ``` ps1
 az group create --name <GROUP_NAME> --location <LOCATION>
+```
+
+For example:
+
+``` ps1
 az group create -n "rg-tfmgmt-dev"-l "east us"
 ```
 
@@ -235,14 +248,19 @@ az group create -n "rg-tfmgmt-dev"-l "east us"
 
 ## Task-7: Create new storage account & container
 
-We are going to use the azure storage account for storing the terraform remote state. This allows you to store the state file remotely and access it from anywhere, and also provides additional features like versioning, locking, and auditing.
+To store the Terraform remote state, we will create an Azure Storage Account. This will allow us to store the state file remotely and access it from anywhere, while also providing additional features such as versioning, locking, and auditing.
 
 Terraform remote state is a way to store and manage Terraform's state files remotely. By default, Terraform stores the state file on the local file system, but this can cause problems when working in a team or when scaling up infrastructure. Remote state storage provides a centralized location for storing state files, which makes it easier to manage state across teams and across environments.
 
- Create new azure storage account using az cli
+ Here is the command to create a new Azure Storage Account using the Azure CLI:
 
 ``` ps1
 az storage account create --name <ACCOUNT_NAME> --resource-group <RESOURCE_GROUP_NAME> --location <LOCATION> --sku <SKU>
+```
+
+For example:
+
+``` ps1
 az storage account create -n "tfmgmtstates" -g "rg-tfmgmt-dev" -l "east us" --sku "Standard_LRS"
 
 ```
@@ -251,10 +269,8 @@ az storage account create -n "tfmgmtstates" -g "rg-tfmgmt-dev" -l "east us" --sk
 We also need blob container for storing terraform state files, Let's create new storage account container using az cli here
 
 ``` ps1
-
 az storage container create --name <CONTAINER_NAME> --account-name <ACCOUNT_NAME> --account-key <ACCOUNT_KEY>
 az storage container create -n "terraformstates" --account-name "tfmgmtstates" --account-key "koB5PQEGX5pEHVAWsyM0efP3aeFsuNhw8dzRXvqrLXXcD12VEIC4HkhNnwDAGWUJcZWb8Q3C8yxZ+AStXGHDGQ=="
-
 ```
 ![image6.jpg](images/image-10.jpg)
 
@@ -276,29 +292,41 @@ az keyvault create -n "kv-tfstates-dev" -g "rg-tfmgmt-dev" -l "east us"
 
 Terraform management secrets will be protected by storing in the azure key vault.
 
-create secretes in azure key vault using az cli
+Here are the commands to create and store secrets in the Azure Key Vault using the Azure CLI:
 
 ``` ps1
 az keyvault secret set --vault-name <VAULT_NAME> --name <SECRET_NAME> --value <SECRET_VALUE>
+```
 
+For example:
+
+```ps1
 az keyvault secret set --vault-name "kv-tfstates-dev" --name "tf-subscription-id" --value "1115d52c-5170-4366-b262-cc12cba2d222"
 az keyvault secret set --vault-name "kv-tfstates-dev" --name "tf-client-id" --value "11183cf3-7184-457a-a71b-eb5fb7e02222"
 az keyvault secret set --vault-name "kv-tfstates-dev" --name "tf-client-secret" --value "1118Q~eQTMTWEwpvK~CHeTIrU7l7xnhw9wE1z222"
 az keyvault secret set --vault-name "kv-tfstates-dev" --name "tf-tenant-id" --value "1113c4a0-f87d-46ad-b4be-3ee05cefe222"
 az keyvault secret set --vault-name "kv-tfstates-dev" --name "tf-access-key" --value "1115PQEGX5pEHVAWsyM0efP3aeFsuNhw8dzRXvqrLXXcD12VEIC4HkhNnwDAGWUJcZWb8Q3C8yxZ+AStXGHDG222"
-
 ```
+
 ![image6.jpg](images/image-12.jpg)
 
-## Task-10: Setup Access Policy in Key Vault 
-Terraform management service principle need access to azure key to retrieve the secrets stored in Azure Key Vault. 
 
-create azure key vault access policy using az cli
+Make sure to store sensitive information, such as passwords or access keys, as secrets in the Azure Key Vault to maintain security and compliance.
+
+## Task-10: Setup Access Policy in Key Vault 
+
+To grant access to the Terraform service principal to retrieve the secrets stored in the Azure Key Vault, we need to set up an access policy in the Key Vault.
+
+Use the following command to set up the access policy using the Azure CLI:
 
 ``` ps1
 az keyvault set-policy --name <VAULT_NAME> --object-id <OBJECT_ID> --secret-permissions <SECRET_PERMISSIONS> --key-permissions <KEY_PERMISSIONS>
-az keyvault set-policy --name "kv-tfstates-dev" --object-id "a68e4529-b584-43c6-9ffd-4ca681da9efc" --secret-permissions get list --key-permissions get list
+```
 
+For example:
+
+``` ps1
+az keyvault set-policy --name "kv-tfstates-dev" --object-id "a68e4529-b584-43c6-9ffd-4ca681da9efc" --secret-permissions get list --key-permissions get list
 ```
 
 ![image6.jpg](images/image-6.jpg)
@@ -308,17 +336,23 @@ az keyvault set-policy --name "kv-tfstates-dev" --object-id "a68e4529-b584-43c6-
 The new Service principle needs at least contributor access at subscription level where azure resources will be created, 
 if you want avoid unnecessary issues during resources creation or azure DevOps terraform automation you can even provide owner role at subscription level so that we don't run any issues while creating azure resource from terraform configuration.
 
-add owner role assignment to service principle using az cli
+
+Use the following command to assign the role to the service principal using the Azure CLI:
 
 ``` ps1
 az role assignment create --assignee-object-id <SERVICE_PRINCIPAL_OBJECT_ID> --role Owner --scope <SCOPE>
+```
+
+For example:
+
+``` ps1
+az role assignment create --assignee-object-id "a68e4529-b584-43c6-9ffd-4ca681da9efc" --role Owner --scope "/subscriptions/b635d52c-5170-4366-b262-cc12cba2d9be" 
+```
 
 Note:- make sure that you will get the service principle object id here instead of app registration object id
 service principle object id will be found in `Enterprise Application`
 
-az role assignment create --assignee-object-id "a68e4529-b584-43c6-9ffd-4ca681da9efc" --role Owner --scope "/subscriptions/b635d52c-5170-4366-b262-cc12cba2d9be" 
 
-```
 ![image6.jpg](images/image-13.jpg)
 
 That it! now you've setup terraform management for running your terraform configuration.

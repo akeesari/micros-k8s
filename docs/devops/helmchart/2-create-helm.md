@@ -416,4 +416,4 @@ output
 release "microservices-release" uninstalled
 ```
 
-Overall, Helm simplifies the process of installing and managing Kubernetes applications and provides an easy-to-use command-line interface for managing charts and releases.
+Helm simplifies the process of installing and managing Kubernetes applications and provides an easy-to-use command-line interface for managing charts and releases.

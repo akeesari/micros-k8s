@@ -301,7 +301,7 @@ You may encounter some specific tools and technologies that are not listed here 
 
 ??? question "Kubernetes Cluster"
 
-    Here is the list of topics that you need to know as `Azure Cloud Engineer` to build and deploy application in Kubernetes. 
+    Here is the list of topics that you need to know as `Azure `Cloud Engineer`` to build and deploy application in Kubernetes. 
 
     - Introduction to AKS
         - What is AKS

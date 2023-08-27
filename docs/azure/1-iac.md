@@ -37,4 +37,4 @@ Here we've chosen Terraform because of following:
 - **Modularity and reusability:** Terraform allows users to define reusable modules that can be shared across multiple infrastructure projects. This promotes code reuse and simplifies the process of managing infrastructure resources.
 - **Community support:** Terraform has a large and active community of users who contribute to the development of the tool, as well as share best practices, tips, and modules. This provides a wealth of resources and support for users of the tool.
 
-Overall, Terraform provides a powerful and flexible tool for managing infrastructure as code that is well-suited for complex and multi-cloud environments. Its declarative syntax, modularity, and community support make it a popular choice for teams looking to adopt infrastructure as code best practices.
+Terraform provides a powerful and flexible tool for managing infrastructure as code that is well-suited for complex and multi-cloud environments. Its declarative syntax, modularity, and community support make it a popular choice for teams looking to adopt infrastructure as code best practices.

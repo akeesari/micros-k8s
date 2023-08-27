@@ -37,7 +37,7 @@ You might need to use Helm charts when deploying and managing applications in a 
 - **Dependency management:** Helm charts can manage dependencies between different components, making it easier to deploy and manage complex applications that consist of multiple components.
 - **Scalability:** Helm charts are designed to be scalable, making it easy to manage deployments across multiple clusters and teams.
 
-Overall, Helm charts are a powerful tool for automating and simplifying the process of deploying and managing applications in a Kubernetes cluster. If you need to deploy and manage applications in a large-scale or complex environment, using Helm charts might be a good option to consider.
+Helm charts are a powerful tool for automating and simplifying the process of deploying and managing applications in a Kubernetes cluster. If you need to deploy and manage applications in a large-scale or complex environment, using Helm charts might be a good option to consider.
 
 ## key features of Helm
 

@@ -18,7 +18,7 @@ To get started with ACR, we are going to use terraform to create a new Azure Con
 
 ## Technical Scenario
 
-As a cloud engineer, you have been asked to store and manage organization application development private container images and helm charts in secure way in cloud so that these are not directly accessible outside of the company network. also, make sure that azure Container Registry should provide organization users with direct control of their container content, with integrated authentication.
+As a `Cloud Engineer`, you have been asked to store and manage organization application development private container images and helm charts in secure way in cloud so that these are not directly accessible outside of the company network. also, make sure that azure Container Registry should provide organization users with direct control of their container content, with integrated authentication.
 
 ## Objective
 

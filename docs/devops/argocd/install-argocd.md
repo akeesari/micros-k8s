@@ -27,7 +27,7 @@ Helm simplifies the installation process and provides a more streamlined approac
 
 ## Technical Scenario
 
-As cloud engineer you have been asked to setup **ArgoCD** in the existing Kubernetes cluster so that you can use ArgoCD to deploy Microservice architecture manifests to a Kubernetes cluster so that ArgoCD will continuously monitor and reconcile the live environment with the desired state defined in Git.
+As `Cloud Engineer` you have been asked to setup **ArgoCD** in the existing Kubernetes cluster so that you can use ArgoCD to deploy Microservice architecture manifests to a Kubernetes cluster so that ArgoCD will continuously monitor and reconcile the live environment with the desired state defined in Git.
 
 ## Prerequisites
 
