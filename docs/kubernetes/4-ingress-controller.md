@@ -71,6 +71,9 @@ In this exercise we will accomplish & learn how to implement following:
 
 <!-- <IMG  src="https://miro.medium.com/max/1400/1*AgWCYOe3yMevVfzT_1EHog.png"  alt="Kubernetes — Ingress Overview. What is K8s Ingress? — Introduction to… | by  Ashish Patel | DevOps Mojo | Medium" width=600 /> -->
   
+Here is the high level architecture diagram of ingress nginx controller components.
+
+working on it...
 
 **login to Azure**
 
@@ -105,6 +108,8 @@ kubectl get namespace -A
 
 
 ## Step-1: Configure Terraform providers 
+
+Launch Visual Studio Code and open your current Terraform repository to begin working on your Terraform configuration.
 
 In order to install any Helmcharts using terraform configuration we need to have following terraform providers.
 
@@ -255,16 +260,16 @@ output
 
 Terraform will perform the following actions:
 
-  # kubernetes_namespace.ingress will be created
-  + resource "kubernetes_namespace" "ingress" {
-      + id = (known after apply)
-      + metadata {
-          + generation       = (known after apply)
-          + name             = "ingress"
-          + resource_version = (known after apply)
-          + uid              = (known after apply)
-        }
-    }
+# kubernetes_namespace.ingress will be created
++ resource "kubernetes_namespace" "ingress" {
+    + id = (known after apply)
+    + metadata {
+        + generation       = (known after apply)
+        + name             = "ingress"
+        + resource_version = (known after apply)
+        + uid              = (known after apply)
+      }
+  }
 
 Plan: 1 to add, 0 to change, 0 to destroy.
 ```
@@ -380,7 +385,6 @@ Step-2 terraform output shows that helm chart installation is successful therefo
 
 ``` sh
 # azure CLI
-az aks get-credentials --resource-group <resource-group-name> --name <aks-cluster-name>
 
 # Azure Kubernetes Service Cluster User Role
 az aks get-credentials -g "rg-aks-dev" -n "aks-cluster1-dev"
@@ -393,15 +397,10 @@ Get pods and services related to ingress.
 
 ``` sh
 kubectl get namespace ingress
-
 kubectl get deployments -n ingress
-
 kubectl get pods -n ingress
-
 kubectl get services -n ingress
-
 kubectl get configmaps -n ingress
-
 kubectl get secrets -n ingress
 ```
 
@@ -456,7 +455,7 @@ kubectl get ingress -n ingress
 output
 
 ```
-No resources found in argocd namespace.
+No resources found in ingress namespace.
 ```
 
 CRDs
@@ -465,6 +464,8 @@ CRDs
 kubectl get clusterrole -n ingress
 kubectl get clusterrolebinding -n ingress
 kubectl get CustomResourceDefinition -n ingress
+or
+kubectl get crd -l app.kubernetes.io/name=cert-manager
 ```
 
 outputs from above commands shows that Nginx ingress controller is installed correctly in our AKS cluster and ready to use by deploying a application in AKS.

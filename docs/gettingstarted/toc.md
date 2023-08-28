@@ -143,7 +143,7 @@
     - kubectl commands
     - Troubleshooting errors
     - install kubelogin
-- Setup NGINX ingress controller in Kubernetes cluster
+- Setup NGINX ingress controller in AKS using Terraform
     - Step-1: Configure Terraform providers
     - Step-2: Create a new namespace for ingress
     - Step-2: Install ingress resources with helm-chart using terraform
