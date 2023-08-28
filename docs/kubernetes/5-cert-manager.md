@@ -742,7 +742,7 @@ Add the following annotations to the ingress.yaml file for the sample Ingress re
 ```
   tls:
   - hosts:
-    - dev1.tenant1.assetmark.net
+    - dev.k8s.anjikeesari.com
     secretName: tls-secret
 ```
 
