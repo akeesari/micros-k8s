@@ -8,6 +8,14 @@ Ingress resources are Kubernetes objects that define rules for routing incoming 
 
 The NGINX Ingress Controller is a popular choice for Kubernetes users because it is lightweight, highly scalable, and provides advanced features like SSL termination, rate limiting, and WebSockets support.
 
+## What is Ingress? 
+
+Ingress serves as the gateway for HTTP and HTTPS traffic from external sources into your cluster. It efficiently directs this traffic to specific services within the cluster based on predefined rules set on the Ingress resource.
+
+![Ingress](images/image-11.png)
+
+Reference diagram from Kubernetes documentation.
+
 ## Technical Scenario
 
 As a `Cloud Engineer` you've been asked to setup the NGINX ingress controller in an Azure Kubernetes Service (AKS) cluster. also deploy couple of applications in the AKS cluster, each of which is accessible over the single IP address.
