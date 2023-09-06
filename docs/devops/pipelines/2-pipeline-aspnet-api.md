@@ -4,6 +4,7 @@
 
 In this lab we are going to create an azure DevOps pipeline for our first Microservice built using .NET Core Web API. This pipeline will  automate the continuous integration and continuous deployment (CI/CD) of build, test, and deployment process of a .NET Core Web API. 
 
+The Build Pipeline we are creating here is designed exclusively for containerized microservices, specifically those based on .NET Core Web API. This pipeline is tailored for seamless deployment on Azure Kubernetes Services (AKS).
 
 ## Technical Scenario
 
@@ -191,14 +192,26 @@ Result
 20230323.8
 latest
 ```
-## Step-5: Run your tests
+
+## Step-5: Run your tests
+
+- The primary purpose of this task is to automatically execute various tests on your codebase to ensure its quality and functionality.
+- It's an essential part of the Continuous Integration (CI) and Continuous Deployment (CD) pipeline, where code changes are tested automatically to identify and resolve issues early in the development process.
+
 ``` yaml
-Pending
+use this task for running test
 ```
-## Step-6: Collect code coverage
+
+## Step-6: Collect code coverage
+
+- After running your automated tests, this task collects information about which parts of your code were executed during the testing process.
+- It uses a code coverage tool specific to your programming language or platform. 
+- These tools instrument your code to track which lines, functions, or branches are executed during testing.
+
 ``` yaml
-Pending
+use this task for running test
 ```
+
 ## Step-7: Update the image tag in ArgoCD or Helm chart
 
 This is the last step of the pipeline and it is very important part of this pipeline, this step will update the latest docker image tag in deployment.yaml manifest file in the Helm chart or ArgoCD, depending on how your microservices are getting deployed to AKS, Helm chart and ArgoCD manifests will be managed in separate git repos; but in our case here we are keeping it in the same repo for the simplicity.

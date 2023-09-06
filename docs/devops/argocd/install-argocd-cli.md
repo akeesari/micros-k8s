@@ -19,6 +19,24 @@ The Argo CD CLI and Argo CD web UI are two different interfaces for interacting 
 - The web UI provides an intuitive and user-friendly interface that requires no programming or scripting knowledge.
 - It provides additional features such as visualization of the application dependencies and comparison of the application configurations.
 
+
+## Technical Scenario
+
+You, as a `DevSecOps Engineer`, have been tasked with setting up the **Argo CD CLI** on your local environment. This will empower you to utilize the Argo CD CLI for local Kubernetes cluster management, especially when the Argo CD Web UI interface encounters issues or limitations.
+
+
+## Implementation Details
+
+In this exercise we will accomplish & learn how to implement following:
+
+**Step 1:** Install Argo CD CLI
+
+**Step 2.** Access the Argo CD API Server
+
+**Step 3.** Login to Argo CD
+
+**Step 4.** Logout Argo CD
+
 ## Step 1.Install Argo CD CLI
 
 **Install Argo CD CLI in windows using choco**
@@ -162,7 +180,7 @@ Update the password using argocd cli
 argocd account update-password
 ```
 
-## Step 5. Logout argocd
+## Step 4. Logout Argo CD
 
 use the following command for exit from the context
 

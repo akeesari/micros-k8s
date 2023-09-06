@@ -1,10 +1,10 @@
-<!-- # Chapter 3: Azure DevOps -->
+# Azure DevOps CI/CD Strategy for Microservices on Kubernetes
 
 ## Introduction:
 
 This is the fourth module in the series, In this fourth module you will learn some basic concept of azure DevOps and CI & CD strategy for Microservices and how to create CI & CD pipelines for deploying our Microservices into AKS cluster.
 
-Let's try to understand some basic concepts of DevOps.
+Let's try to understand some basic concepts of DevOps before Azure DevOps CI & CD strategy .
 
 ## What is CI/CD?
 
@@ -75,6 +75,25 @@ The second tool we are going to use for deploying our Microservices to AKS is Ar
 
 We will talk more about these tools in the upcoming labs.
 
+## Deploying Helm Charts with Argo CD
+
+Deploying Helm Charts with Argo CD
+
+Argo CD provides flexible options for deploying resources using Helm charts. Helm charts are a convenient way to package, version, and deploy applications on Kubernetes. Here's how you can deploy Helm charts with Argo CD:
+
+Argo CD allows you to deploy Helm charts directly from a Git repository. Here's how it works:
+
+1. **Repository Setup**: First, ensure that your Helm chart is stored in a Git repository. This repository can be public or private, but Argo CD should have access to it.
+
+2. **Argo CD Configuration**: In your Argo CD application configuration, specify the Git repository URL and the path to the Chart.yaml file. The Chart.yaml file is essential for Argo CD to understand how to deploy the chart.
+
+3. **Automatic Detection**: When you sync your Argo CD application, it will automatically detect the Helm chart in the specified Git repository. Argo CD understands the structure of Helm charts and can render them during deployment.
+
+4. **Customization**: You can customize the deployment by providing a values.yaml file or specifying values directly in the Argo CD application configuration. This allows you to tailor the Helm chart to your specific environment and requirements.
+
+Deploying Helm charts with Argo CD provides a powerful way to manage complex Kubernetes applications. It simplifies the deployment process and allows for fine-grained customization to fit your specific needs.
+
+
 ## Azure DevOps Pipeline
 
 Azure DevOps Pipeline provides end-to-end CI/CD capabilities for building, testing, and deploying applications to various platforms, including Azure, AWS, and on-premises environments. It allows developers and DevOps teams to create, manage, and run automated build and release pipelines, and to integrate with various tools and services, such as GitHub, Jenkins, Docker, Kubernetes, and more.
@@ -88,6 +107,7 @@ The following diagram shows our end-to-end CI/CD process for deploying Microserv
 
 <IMG  src="https://learn.microsoft.com/en-us/azure/architecture/microservices/images/aks-cicd-flow.png"  alt="CD/CD pipeline"/>
 
+Reference Architecture diagram from MSDN documentation.
 
 ## Reference
 

@@ -199,7 +199,7 @@ nav:
     - Create Pipeline for ASP.NET Core MVC Project : devops/pipelines/3-pipeline-aspnet-app.md
 
     - ArgoCD: 
-         - ArgoCD Introduction: devops/argocd/argocd-intro.md
+         - Getting Started with ArgoCD: devops/argocd/argocd-intro.md
          - Install ArgoCD: devops/argocd/install-argocd.md
          - Install ArgoCD CLI: devops/argocd/install-argocd-cli.md
          - Registering an AKS Cluster with Argo CD: devops/argocd/register-cluster.md
