@@ -1,10 +1,12 @@
-# Azure DevOps CI/CD Strategy for Microservices on Kubernetes
+<!-- # Azure DevOps CI/CD Strategy for Microservices on Kubernetes -->
 
 ## Introduction:
 
-This is the fourth module in the series, In this fourth module you will learn some basic concept of azure DevOps and CI & CD strategy for Microservices and how to create CI & CD pipelines for deploying our Microservices into AKS cluster.
+**Introduction:**
 
-Let's try to understand some basic concepts of DevOps before Azure DevOps CI & CD strategy .
+Welcome to the fourth module of our series. In this module, we will look into fundamental concepts and establish a robust CI/CD pipeline using Azure DevOps. Specifically, we will explore Blue-Green deployment, Canary releases, and CI/CD strategies required for microservices on Kubernetes. Additionally, we will leverage tools like Helm and Argo CD. By the end of this module, you will have a clear understanding of how to create a comprehensive CI & CD pipeline architecture for deploying our Microservices into an AKS cluster.
+
+Before we dive into Azure DevOps CI & CD strategies, let's lay a solid foundation by revisiting some core DevOps concepts.
 
 ## What is CI/CD?
 
@@ -31,7 +33,7 @@ The goals of a robust CI/CD (Continuous Integration/Continuous Delivery) process
 - **Increased agility in development**: The ability to rapidly build, test, and deploy code changes enables developers to respond quickly to changing business requirements or customer needs.
 - **Lower costs**: A robust CI/CD process can help reduce the costs associated with manual testing and deployment processes, as well as minimize the risk of downtime or other issues that can be costly for the organization.
 
-Overall, a robust CI/CD process enables organizations to develop high-quality software faster and more efficiently, while also promoting collaboration and agility among development teams.
+A robust CI/CD process enables organizations to develop high-quality software faster and more efficiently, while also promoting collaboration and agility among development teams.
 
 ## What is Blue-green deployment?
 
@@ -65,11 +67,11 @@ The tools we are going to use to meet the goals are:
 - Helm Charts
 - ArgoCD
 
-## Helm Charts
+## What Helm Charts?
 
 One of the key tools we use from the Kubernetes ecosystem is Helm. Helm is a package manager for Kubernetes, which simplifies the process of installing and managing applications on a Kubernetes cluster. A Helm chart is a collection of files that define how an application should be installed and configured on a Kubernetes cluster.
 
-## Argo CD
+## What is Argo CD?
 
 The second tool we are going to use for deploying our Microservices to AKS is ArgoCD. `ArgoCD` is a GitOps-based continuous delivery tool for Kubernetes. It is an open-source tool that allows you to declaratively manage and deploy applications on Kubernetes clusters.
 
@@ -77,7 +79,7 @@ We will talk more about these tools in the upcoming labs.
 
 ## Deploying Helm Charts with Argo CD
 
-Deploying Helm Charts with Argo CD
+The approach we will follow here involves deploying Helm Charts with Argo CD.
 
 Argo CD provides flexible options for deploying resources using Helm charts. Helm charts are a convenient way to package, version, and deploy applications on Kubernetes. Here's how you can deploy Helm charts with Argo CD:
 

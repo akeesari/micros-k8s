@@ -194,7 +194,7 @@ nav:
     - Kubernetes Pod troubleshooting : kubernetes/pod-troubleshooting.md    
   - Azure DevOps:
     - Azure DevOps Overview : devops/1-devops-overview.md
-    - Create your first service connection : devops/pipelines/1-service-connections.md
+    - Azure DevOps-Service connections : devops/pipelines/1-service-connections.md
     - Create Pipeline for .NET Core Web API : devops/pipelines/2-pipeline-aspnet-api.md
     - Create Pipeline for ASP.NET Core MVC Project : devops/pipelines/3-pipeline-aspnet-app.md
 
