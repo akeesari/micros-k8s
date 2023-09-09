@@ -20,6 +20,7 @@ In this exercise, our objective is to accomplish and learn the following tasks:
 - **Step-3:** Add Dockerfiles to the API project
 - **Step-4:** Build & Test docker container locally
 - **Step-5:** Publish docker container to ACR
+- **Step-6:** Pull docker container from ACR
  
 ## Prerequisites 
 
@@ -31,7 +32,7 @@ In this exercise, our objective is to accomplish and learn the following tasks:
 
 ## Implementation details
 
-Step by step implementation details of getting application ready to run on Azure Kubernetes Service (AKS)
+Here is the step by step implementation details of getting application ready to run on Azure Kubernetes Service (AKS)
 
 ## Step-1: Create a new .NET Core Web API project
 

@@ -183,23 +183,24 @@ nav:
   - Kubernetes:
     - Getting Started with Docker Container: kubernetes/0.getting-started.md
     - Prepare an application for Azure Kubernetes Service (AKS): kubernetes/1-prepare-app.md
-    - Deploying an application to Azure Kubernetes Service (AKS): kubernetes/2-deploy-app.md
+    - Deploying an .NET Core API to Azure Kubernetes Service (AKS): kubernetes/2-deploy-api.md
+    - Deploying an ASP.NET Core MVC to Azure Kubernetes Service (AKS): kubernetes/2-deploy-app.md
     - Working with AKS cluster using kubectl : kubernetes/3-working-with-aks.md
     - Setup NGINX ingress controller in AKS using Terraform : kubernetes/4-ingress-controller-nginx.md
     - Setup Application Gateway ingress controller (AGIC) in AKS using Terraform : kubernetes/4.1-ingress-controller-agic.md
     - Setup Cert-Manager in AKS using Terraform : kubernetes/5-cert-manager.md
-    - Create YAML Manifests for Microservice-1 : kubernetes/5.1-manifests-microservice-1.md
-    - Create YAML Manifests for Microservice-2 : kubernetes/5.2-manifests-microservice-2.md
-    - Create YAML Manifests for Microservice-3 : kubernetes/5.3-manifests-microservice-3.md
+    # - Create YAML Manifests for Microservice-1 : kubernetes/5.1-manifests-microservice-1.md
+    # - Create YAML Manifests for Microservice-2 : kubernetes/5.2-manifests-microservice-2.md    
     - Kubernetes Pod troubleshooting : kubernetes/pod-troubleshooting.md    
+    - AKS Cluster nodepool resize : kubernetes/aks-nodepool-resize.md
   - Azure DevOps:
     - Azure DevOps Overview : devops/1-devops-overview.md
-    - Azure DevOps-Service connections : devops/pipelines/1-service-connections.md
+    - Create your first service connection : devops/pipelines/1-service-connections.md
     - Create Pipeline for .NET Core Web API : devops/pipelines/2-pipeline-aspnet-api.md
     - Create Pipeline for ASP.NET Core MVC Project : devops/pipelines/3-pipeline-aspnet-app.md
 
     - ArgoCD: 
-         - Getting Started with ArgoCD: devops/argocd/argocd-intro.md
+         - ArgoCD Introduction: devops/argocd/argocd-intro.md
          - Install ArgoCD: devops/argocd/install-argocd.md
          - Install ArgoCD CLI: devops/argocd/install-argocd-cli.md
          - Registering an AKS Cluster with Argo CD: devops/argocd/register-cluster.md

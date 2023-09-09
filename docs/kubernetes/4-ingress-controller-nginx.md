@@ -46,34 +46,21 @@ Ensure that you have a Kubernetes cluster up and running along with following:
 - Install azure CLI - <https://learn.microsoft.com/en-us/cli/azure/install-azure-cli>
 - Install and setup kubectl - <https://kubernetes.io/docs/tasks/tools/install-kubectl-windows/>
 - Install Helm client
-- AKS cluster
+- Azure Container Registry (ACR) [Create Azure Container Registry (ACR) using terraform](../azure/9-acr.md)
+- Azure Kubernetes Service (AKS) [Create Azure Kubernetes Service (AKS) using terraform](../azure/10-aks.md)
 
-
-<!--
-- Install cert-manager
-- Create a CA cluster issuer
--->
-
-## Implementation Details
+## Objective
 
 In this exercise we will accomplish & learn how to implement following:
 
-**Step 1.** Create a new namespace for Nginx ingress Controller
-
-**Step 2:** Install ingress nginx controller using terraform 
-
-**Step 3:** Verify ingress-nginx resources in AKS
-
-**Step 4:** Deploy sample applications for Ingress testing
-
-**Step 5:** Create an ingress route
-
-**Step-6:** Test the ingress controller (Browse website URLs)
-
-**Step-7:** Add DNS recordset in DNS Zone
-
-**Step-8:** Create Ingress YAML file (Apply Let's Encrypt changes)
-
+- **Step 1.** Create a new namespace for Nginx ingress Controller
+- **Step 2:** Install ingress nginx controller using terraform 
+- **Step 3:** Verify ingress-nginx resources in AKS
+- **Step 4:** Deploy sample applications for Ingress testing
+- **Step 5:** Create an ingress route
+- **Step-6:** Test the ingress controller (Browse website URLs)
+- **Step-7:** Add DNS recordset in DNS Zone
+- **Step-8:** Create Ingress YAML file (Apply Let's Encrypt changes)
 
 ## Architecture diagram
 
@@ -81,7 +68,7 @@ In this exercise we will accomplish & learn how to implement following:
   
 Here is the high level architecture diagram of ingress nginx controller components.
 
-working on it...
+![Alt text](images/image-26.png)
 
 **login to Azure**
 
@@ -114,6 +101,9 @@ kubectl get no
 kubectl get namespace -A
 ```
 
+## Implementation Details
+
+The steps given below will guide you through the process of setting up Nginx Ingress Controller in your AKS cluster. By the end of this exercise, you'll have a functional environment for ingress route working for applications within Kubernetes.
 
 ## Step-1: Configure Terraform providers 
 
@@ -481,122 +471,189 @@ outputs from above commands shows that Nginx ingress controller is installed cor
 
 Since we confirmed that Nginx ingress controller is successfully install in our AKS, we can now deploy few Microservices which we built in Microservices chapter and test the Ingress controller to make sure it is routing the request to our backend AKS cluster services. 
 
-for now I am going to use sample demo applications from MSDN document and test the ingress controller.
+**Create a new namespace**
 
-reference - <https://learn.microsoft.com/en-us/azure/aks/ingress-basic?tabs=azure-powershell> 
+We are going to deploy our application in separate namespace in AKS instead of in `default` namespace. use this command to create new namespace in Kubernetes cluster. Let's name our namespace as `sample`
 
-
-Create an `aks-helloworld-one.yaml` file and copy in the following example YAML:
-
-``` yaml title="aks-helloworld-one.yaml"
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: aks-helloworld-one
-  namespace: sample  
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: aks-helloworld-one
-  template:
-    metadata:
-      labels:
-        app: aks-helloworld-one
-    spec:
-      containers:
-      - name: aks-helloworld-one
-        image: mcr.microsoft.com/azuredocs/aks-helloworld:v1
-        ports:
-        - containerPort: 80
-        env:
-        - name: TITLE
-          value: "Welcome to Azure Kubernetes Service (AKS)"
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: aks-helloworld-one  
-spec:
-  type: ClusterIP
-  ports:
-  - port: 80
-  selector:
-    app: aks-helloworld-one
-
-# kubectl apply -f aks-helloworld-one.yaml -n sample
+``` sh
+kubectl create namespace sample
 ```
-Create an `aks-helloworld-two.yaml` file and copy in the following example YAML:
+Here I am going to re-use or create Kubernetes YAML Manifests files for `aspnet-api` 
 
-``` yaml title="service.yaml"
+**Deployment YAML (deployment.yaml)**
+
+```yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: aks-helloworld-two
+  name: aspnet-api
   namespace: sample
 spec:
   replicas: 1
-  selector:
+  selector: 
     matchLabels:
-      app: aks-helloworld-two
+      app: aspnet-api
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  minReadySeconds: 5 
   template:
     metadata:
       labels:
-        app: aks-helloworld-two
+        app: aspnet-api
     spec:
+      nodeSelector:
+        "kubernetes.io/os": linux
+      serviceAccountName: default
       containers:
-      - name: aks-helloworld-two
-        image: mcr.microsoft.com/azuredocs/aks-helloworld:v1
-        ports:
-        - containerPort: 80
-        env:
-        - name: TITLE
-          value: "AKS Ingress Demo"
----
+        - name: aspnet-api
+          image: acr1dev.azurecr.io/sample/aspnet-api:20230323.15
+          imagePullPolicy: Always
+          ports:
+            - name: http
+              containerPort: 80
+              protocol: TCP
+
+# kubectl apply -f deployment.yaml -n sample
+```
+
+**Service YAML (service.yaml)**
+
+```yaml
 apiVersion: v1
 kind: Service
 metadata:
-  name: aks-helloworld-two  
+  name: aspnet-api
+  namespace: sample
+  labels: {}
 spec:
-  type: ClusterIP
+  type: ClusterIP #LoadBalancer
   ports:
-  - port: 80
-  selector:
-    app: aks-helloworld-two
+    - port: 80
+      targetPort: 80
+      protocol: TCP
+      name: http
+  selector: 
+    app: aspnet-api
 
-# kubectl apply -f aks-helloworld-two.yaml -n sample
-```
-
-Run the two demo applications using kubectl apply:
-
-```
-kubectl apply -f aks-helloworld-one.yaml -n sample
-kubectl apply -f aks-helloworld-two.yaml -n sample
+# kubectl apply -f service.yaml -n sample
 ```
 
-Verify both applications are now running on your Kubernetes cluster. 
 
+Apply the YAML manifests to deploy your ASP.NET Core MVC application:
+
+```bash
+kubectl apply -f deployment.yaml
+kubectl apply -f service.yaml
 ```
-kubectl get pods -n sample
+
+Create Kubernetes YAML Manifests files for `aspnet-app`
+
+
+**Deployment YAML (deployment.yaml)**
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: aspnet-app
+  namespace: sample
+spec:
+  replicas: 1
+  selector: 
+    matchLabels:
+      app: aspnet-app
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  minReadySeconds: 5 
+  template:
+    metadata:
+      labels:
+        app: aspnet-app
+    spec:
+      nodeSelector:
+        "kubernetes.io/os": linux
+      serviceAccountName: default
+      containers:
+        - name: aspnet-app
+          image: acr1dev.azurecr.io/sample/aspnet-app:20230312.1
+          imagePullPolicy: Always
+          ports:
+            - name: http
+              containerPort: 80
+              protocol: TCP
+
+# kubectl apply -f deployment.yaml -n sample
 ```
-output
+
+**Service YAML (service.yaml)**
+
+```yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: aspnet-app
+  namespace: sample
+  labels: {}
+spec:
+  type: ClusterIP #LoadBalancer
+  ports:
+    - port: 80
+      targetPort: 80
+      protocol: TCP
+      name: http
+  selector: 
+    app: aspnet-app
+
+# kubectl apply -f service.yaml -n sample
 ```
-NAME                                  READY   STATUS    RESTARTS   AGE
-aks-helloworld-one-6965865b8b-dk6w9   1/1     Running   0          8h
-aks-helloworld-two-66c5cf894b-vmztv   1/1     Running   0          7h57m
-aspnet-api-6b7d8fbf9f-wf2qb           1/1     Running   0          11h
+
+
+
+Apply the YAML manifests to deploy your ASP.NET Core MVC application:
+
+```bash
+kubectl apply -f deployment.yaml
+kubectl apply -f service.yaml
+```
+
+Verify the kubernetes objects deployment
+
+```bash
+kubectl get all -n sample 
+
+# output
+NAME                                      READY   STATUS    RESTARTS   AGE
+pod/aspnet-api-79b4cbf4bb-5dljg           1/1     Running   0          20h
+pod/aspnet-app-8654797b89-99xdq           1/1     Running   0          50m
+
+NAME                         TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)   AGE
+service/aspnet-api           ClusterIP   10.25.69.201    <none>        80/TCP    178d
+service/aspnet-app           ClusterIP   10.25.243.72    <none>        80/TCP    50m
+
+NAME                                 READY   UP-TO-DATE   AVAILABLE   AGE
+deployment.apps/aspnet-api           1/1     1            1           12d
+deployment.apps/aspnet-app           1/1     1            1           50m
+
+NAME                                            DESIRED   CURRENT   READY   AGE
+replicaset.apps/aspnet-api-79b4cbf4bb           1         1         1       12d
+replicaset.apps/aspnet-app-8654797b89           1         1         1       50m
 ```
 
 ## Step-5: Create an ingress route
 
-Create a new file named `ingress-no-ssl.yaml` and copy in the following YAML.
+Create a new file named `ingress.yaml` and copy in the following YAML.
 
-``` yaml title="ingress-no-ssl.yaml"
+``` yaml title="ingress.yaml"
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: hello-world-ingress
-  namespace: sample
+  name: aspnet-ingress
   annotations:
     nginx.ingress.kubernetes.io/ssl-redirect: "false"
     nginx.ingress.kubernetes.io/use-regex: "true"
@@ -606,66 +663,45 @@ spec:
   rules:
   - http:
       paths:
-      - path: /hello-world-one(/|$)(.*)
+      - path: /aspnet-app(/|$)(.*)
         pathType: Prefix
         backend:
           service:
-            name: aks-helloworld-one
+            name: aspnet-app
             port:
               number: 80
-      - path: /hello-world-two(/|$)(.*)
+      - path: /aspnet-api(/|$)(.*)
         pathType: Prefix
         backend:
           service:
-            name: aks-helloworld-two
+            name: aspnet-api
             port:
               number: 80
       - path: /(.*)
         pathType: Prefix
         backend:
           service:
-            name: aks-helloworld-one
+            name: aspnet-app
             port:
               number: 80
----
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: hello-world-ingress-static
-  annotations:
-    nginx.ingress.kubernetes.io/ssl-redirect: "false"
-    nginx.ingress.kubernetes.io/rewrite-target: /static/$2
-spec:
-  ingressClassName: nginx
-  rules:
-  - http:
-      paths:
-      - path: /static(/|$)(.*)
-        pathType: Prefix
-        backend:
-          service:
-            name: aks-helloworld-one
-            port: 
-              number: 80
-# kubectl apply -f ingress-no-ssl.yaml -n sample
 ```
 kubectl apply
 
 ``` sh
-kubectl apply -f ingress-no-ssl.yaml -n sample
-ingress.networking.k8s.io/hello-world-ingress unchanged
-ingress.networking.k8s.io/hello-world-ingress-static unchanged
+kubectl apply -f ingress.yaml -n sample
+
+# output
+ingress.networking.k8s.io/aspnet-ingress created
 ```
 
 Get Ingress 
 
-```
+```sh
 kubectl get ingress -n sample
-```
-```
-NAME                         CLASS   HOSTS   ADDRESS          PORTS   AGE
-hello-world-ingress          nginx   *       20.121.154.157   80      7h59m
-hello-world-ingress-static   nginx   *       20.121.154.157   80      7h58m
+
+# output 
+NAME             CLASS   HOSTS   ADDRESS          PORTS   AGE
+aspnet-ingress   nginx   *       20.121.154.157   80      58s
 ```
 !!! Note
     Verify same static IP (20.121.154.157) address assigned to both applications here.
@@ -677,19 +713,19 @@ To test the routes for the ingress controller, browse two applications with path
 
 for example 
 
-hello-world-one app
+ASP.NET MVC applications
 
 <http://20.121.154.157/> or
 
-<http://20.121.154.157/hello-world-one/>
+<http://20.121.154.157/aspnet-app/>
 
-![image.jpg](images/image-5.jpg)
+![image.jpg](images/image-28.png)
 
-hello-world-twp app
+aspnet-api Swagger URL
 
-<http://20.121.154.157/hello-world-two/>
+<http://20.121.154.157/aspnet-api/swagger/index.html>
 
-![image.jpg](images/image-6.jpg)
+![image.jpg](images/image-27.png)
 
 
 ## Step-7: Add DNS Recordset in DNS Zone

@@ -44,7 +44,7 @@ Before proceeding with this exercise, ensure you have the following in place:
 - Helm client installed
 - An AKS (Azure Kubernetes Service) cluster
 
-## Implementation Details
+## Objective
 
 In this exercise, we will cover the following steps to implement Cert-Manager in your AKS cluster:
 
@@ -104,9 +104,9 @@ az aks get-credentials -g "rg-aks-dev" -n "aks-cluster1-dev" --admin
 kubectl get no
 kubectl get namespace -A
 ```
+## Implementation Details
 
-
-These steps will guide you through the process of setting up and using Cert-Manager in your AKS cluster. By the end of this exercise, you'll have a functional environment for automating the management of TLS certificates within Kubernetes.
+The steps given below will guide you through the process of setting up and using Cert-Manager in your AKS cluster. By the end of this exercise, you'll have a functional environment for automating the management of TLS certificates within Kubernetes.
 
 ## Step-1: Configure Terraform providers 
 
