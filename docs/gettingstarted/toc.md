@@ -47,11 +47,15 @@
 
 **Chapter 2: Azure Cloud- Infrastructure as Code (IaC)**
 
-- Infrastructure as Code (IaC) Overview
-- Azure Naming & Tagging Conventions
-- Create Azure Free Account
-- Create new subscription
-- Registered resource providers
+- Infrastructure as Code (IaC) 
+    - Overview
+    - Infrastructure as Code (IaC)
+    - Hight level Architecture
+    - Benefits of IaC
+    - Terraform Benefits
+- Azure Account & Subscription Management
+    - Create New Azure Account
+    - Create New Azure Subscription
 - Create Terraform Foundation Part-1
     - Task-1: Create a new project in azure DevOps
     - Task-2: Create a new Azure DevOps Repo for terraform

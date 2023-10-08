@@ -6,11 +6,16 @@ Let's look into the details of each component and explore how they come together
 
 ## High Level Architecture
 
-The high-level design of the Azure cloud resources is depicted in the following diagram. This diagram illustrates the key components and their interactions within the Microservices Architecture on AKS.
+The high-level architecture of the Azure resources, which serves as a reference architecture in our labs, is visualized in the diagram below. This diagram provides an overview of the essential components and how they interact within the Microservices Architecture on AKS.
 
-[Insert diagram here] - under construction
+**Azure High Level Architecture**
+![image.jpg](images/image-36.jpg)
 
-## Azure Resources
+**DevOps High Level Architecture**
+
+![image.jpg](images/image-37.jpg)
+
+## Azure Reference Architecture Components
 
 **Log Analytics workspace:**
 
@@ -51,52 +56,6 @@ Azure Storage account is a Microsoft cloud storage service that allows us to sto
 **Azure Active Directory (AAD):**
 
 AAD will be used for managing identity and authentication between different services. It provides a secure and centralized approach for authentication and access control, ensuring that only authorized users and services can access our microservices.
-
-
-
-
-
-**Log Analytics workspace** 
-
-A Log Analytics workspace allows us to log data from Azure Monitor and other Azure services. we are going to use this resource for storing and analyzing log data from various sources created as part of the Microservices architecture need.
-
-
-**Virtual network.** 
-
-All the services created in our labs will be completely secured using private Virtual Network. will show you Hub & Spoke vnet model in the lab.
-
-**Azure Container Registry(ACR)** 
-
-We are going to use Container Registry to store all our private Docker images, which are deployed to the cluster. AKS can authenticate with Container Registry using its Azure AD identity. 
-
-**Application Gateway**
-
-This is our entry point to from public DNS, Application Gateway route client requests to the right backend services. This routing provides a single endpoint for clients, and helps to decouple clients from services. reverse proxy, load balancer, SSL / TLS termination, Listeners, backend pools will be configured in this resource.
-
-**Azure Kubernetes Service (AKS)** 
-
-Azure Kubernetes Service (AKS): AKS is a fully managed Kubernetes service that provides a platform for deploying and scaling containerized applications. It is a popular choice for deploying Microservices in Azure due to its scalability, resilience, and ease of management. AKS is used for deploying all our microservices.
-
-**Azure Database** 
-
-Azure Database for PostgreSQL - Flexible Server is a fully managed database service for running PostgreSQL on the Azure managed platform. we will create this PostgreSQL - Flexible Server to allow us to easily create, configure, and manage PostgreSQL databases on Azure.
-
-
-**Azure Key Vault**
-
-We will use the Azure Key Vault which is a cloud-based service for securely storing and managing cryptographic keys, certificates, and other secrets related to microservices applications.
-
-**Azure Redis Cache**
-
-Azure Redis Cache is a fully managed, in-memory data store that is based on the open-source Redis cache. we will use this service for caching application specific data for fast data access and low latency. 
-
-**Azure Storage account**
-
-Azure Storage account is a Microsoft cloud storage service that allow us to store and retrieve large amounts of unstructured data there are different places we are going to use blob storage, will learn more on this during the labs.
-
-**Azure Active Directory** 
-
-AAD will be used for managing Identity and authentication between two services.
 
 **Azure Pipelines** 
 

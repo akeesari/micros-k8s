@@ -15,10 +15,12 @@ As a `Cloud Engineer`, you have been asked to collect all the monitoring data, a
 - Terraform Foundation Setup
 
 
-### Architecture diagram
+<!-- ### Architecture diagram
+
+The following reference diagram from Microsoft MSDN documentation illustrates the high level data structure of the Log Analytics Workspace used in this lab.
 
 <IMG  src="https://learn.microsoft.com/en-us/azure/azure-monitor/logs/media/data-platform-logs/logs-structure.png"  alt="Diagram that shows the Azure Monitor Logs structure." width=700px; height=300/>
-
+ -->
 
 ### Implementation Details
 

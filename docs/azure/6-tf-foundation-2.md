@@ -36,7 +36,9 @@ The objective of this lab is to accomplish the following tasks in order to set u
 
 ## Architecture diagram
 
-<IMG  src="https://www.devopsschool.com/blog/wp-content/uploads/2021/07/terraform-architecture-components-workflow-1.jpg"  alt="Terraform Architecture and Components through diagram - DevOpsSchool.com"/>
+The following diagram illustrates the essential components used to run Terraform configuration setup in this lab.
+
+![image.jpg](images/image-35.jpg)
 
 
 ## Implementation details

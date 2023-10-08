@@ -13,6 +13,12 @@ Let's quickly talk about Infrastructure as Code (IaC) in few lines here.
 
 With IaC, infrastructure is defined using either Terraform, YAML or JSON, which describes the desired state of the infrastructure. This code is then stored in a version control system like Azure DevOps, allowing teams to collaborate on changes and track changes over time. The code can then be used to provision infrastructure resources, such as servers, networks, and storage, databases in an automated and repeatable way.
 
+## Architecture Diagram 
+
+The following diagram shows the high level architecture of IaC process.
+
+![image.jpg](images/image-35.jpg)
+
 ## Benefits of IaC
 
 Some benefits of IaC include:

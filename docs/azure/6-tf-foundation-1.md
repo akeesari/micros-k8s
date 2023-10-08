@@ -40,6 +40,12 @@ In this exercise, our objective is to accomplish the following tasks and gain a 
     - Task-11: Configure Service Principal Role Assignment 
     - Task-12: Create terraform management using PowerShell Script.
 
+## High Level components
+
+The following diagram illustrates the essential components used in the Terraform management setup in this lab.
+
+![image.jpg](images/image-39.jpg)
+
 ## Implementation details
 
 In this lab, we will perform various tasks both in the Azure DevOps portal and the Azure portal to set up the Terraform Management. The following are the implementation details for each task:
