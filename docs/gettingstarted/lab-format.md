@@ -18,9 +18,9 @@ For example:
 - Download and Install Terraform
 - Download and Install Azure CLI
 
-**Implementation Details:**
+**Objective:**
 
-This section presents a step-by-step breakdown of the tasks or steps to be implemented in the lab. It provides a comprehensive list of all the actions you will perform during the lab.
+This section presents objective of tasks or steps to be implemented in the lab. It provides a comprehensive list of all the actions you will perform during the lab.
 
 For example:
 

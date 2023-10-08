@@ -165,8 +165,8 @@ nav:
       - Create website-1 : microservices/3.aspnet-app.md      
       - Create website-2 : microservices/4.react-app.md      
       # - Create Website-3 : microservices/5.blazor-app.md
-      # - Create Database-1 : microservices/6.sqlserver-db.md
-      # - Create Database-2 : microservices/7.postgresql-db.md
+      - Create Database-1 : microservices/6.sqlserver-db.md
+      - Create Database-2 : microservices/7.postgresql-db.md
   - Azure (IaC):
     - Infrastructure as Code (IaC): azure/1-iac.md
     - Microservices Architecture on AKS: azure/1-microservices-architecture-on-aks.md
@@ -193,7 +193,7 @@ nav:
     # - Create YAML Manifests for Microservice-2 : kubernetes/5.2-manifests-microservice-2.md    
     - Create a new user node pool : kubernetes/aks-create-node-pools.md
     - Kubernetes Pod troubleshooting : kubernetes/pod-troubleshooting.md    
-    # - AKS Cluster nodepool resize : kubernetes/aks-nodepool-resize.md
+    - Upgrade - Resize node pools in AKS : kubernetes/aks-upgrade-nodepool.md
   - Azure DevOps:
     - Azure DevOps Overview : devops/1-devops-overview.md
     - Create your first service connection : devops/pipelines/1-service-connections.md

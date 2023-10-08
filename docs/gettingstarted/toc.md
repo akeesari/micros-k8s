@@ -29,7 +29,7 @@
 - Create your first website using ASP.NET Core MVC
     - Step-1: Create a new ASP.NET Core Web App (MVC project)
     - Step-2: Test the new ASP.NET core Web App project
-    - Step-3: Update home page contents
+    - Step-3: Update home page contents [Optional]
     - Step-4: Add Dockerfiles to the MVC project
     - Task-5: Docker Build locally
     - Step-6: Docker Run locally

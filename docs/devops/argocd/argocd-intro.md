@@ -179,4 +179,5 @@ By supporting multiple formats for defining Kubernetes manifests, ArgoCD allows 
 - <https://mohitgoyal.co/2021/04/30/>declarative-gitops-continuous-deployment-for-application-with-kubernetes-argo-cd-helm-kustomize-and-kind-index/> - excellent
 - <https://github.com/goyalmohit/argocd-example-apps/tree/master/apps> - Good examples 
 - <https://spacelift.io/blog/argocd>
+- <https://stackoverflow.com/questions/58984878/multiple-variable-groups-in-azure-devops-yaml-pipelines>
 - -->
