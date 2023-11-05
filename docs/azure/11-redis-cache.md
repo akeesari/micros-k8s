@@ -10,19 +10,18 @@ As a `Cloud Architect`, you've been tasked with providing a caching mechanism to
 
 In this exercise we will accomplish & learn how to implement following:
 
-**Task-1:** Define and declare Azure Cache for Redis variables.
-**Task-2:** Create Azure Cache for Redis using Terraform.
-**Task-3:** Configure diagnostic settings for Azure Cache for Redis using Terraform.
-**Task-4:** Create a private DNS zone for Redis Cache using Terraform.
-**Task-5:** Create a virtual network link to associate the Redis private DNS zone with a VNet.
-**Task-6:** Configure a private endpoint for Azure Cache for Redis using Terraform.
-
+- **Task-1:** Define and declare Azure Cache for Redis variables.
+- **Task-2:** Create Azure Cache for Redis using Terraform.
+- **Task-3:** Configure diagnostic settings for Azure Cache for Redis using Terraform.
+- **Task-4:** Create a private DNS zone for Redis Cache using Terraform.
+- **Task-5:** Create a virtual network link to associate the Redis private DNS zone with a VNet.
+- **Task-6:** Configure a private endpoint for Azure Cache for Redis using Terraform.
 
 ## Architecture diagram
 
-The following diagram illustrates the architecture of our setup:
+The following diagram illustrates the high level architecture of redis usage:
 
-[Insert architecture diagram here]
+![Alt text](images/image-51.png)
 
 ## Prerequisites
 
@@ -233,9 +232,13 @@ Azure Cache for Redis - Diagnostic settings from left nav
 Azure Cache for Redis - Diagnostic settings
 ![Alt text](images/image-44.png)
 
-## Azure Cache for Redis network isolation options
+## Securing an Azure Cache for Redis instance
 
-**Private Link for Azure Cache for Redis**
+Securing an Azure Cache for Redis instance from public access involves creating a private endpoint and restricting access to only a specific virtual network or networks. Here are step-by-step instructions to achieve this:
+
+For more details: [Azure Cache for Redis with Azure Private Link](https://docs.microsoft.com/en-us/azure/azure-cache-for-redis/cache-private-link)
+
+**Private Endpoint**
 
 Azure Private Endpoint is a network interface that connects you privately and securely to Azure Cache for Redis powered by Azure Private Link.
 
@@ -243,8 +246,13 @@ You can restrict public access to the private endpoint of your cache by disablin
 
 Private endpoint is supported on cache tiers Basic, Standard, Premium, and Enterprise. We recommend using private endpoint instead of VNets. Private endpoints are easy to set up or remove, are supported on all tiers, and can connect your cache to multiple different VNets at once.
 
-For more details: [Azure Cache for Redis with Azure Private Link](https://docs.microsoft.com/en-us/azure/azure-cache-for-redis/cache-private-link)
+before creating private endpoint we need to make sure that following variable is updated to false.
 
+```bash
+redis_public_network_access_enabled= false
+```
+
+Here are step-by-step instructions to achieve this:
 
 ## Task-4: Create private DNS zone for Redis Cache using terraform
 
@@ -397,11 +405,63 @@ Azure Cache for Redis - Private endpoint
 Azure Cache for Redis - Private endpoint - Network interface
 ![Alt text](images/image-50.png)
 
+By following these steps, we've secured your Azure Cache for Redis instance from public access. It's now only accessible through the private endpoint in our specified Virtual Network.
+
+## key features
+
+Azure Cache for Redis is a fully managed, in-memory data store service provided by Microsoft Azure. It offers several key features that make it a valuable tool for caching and enhancing the performance of your applications. Here are some of the key features of Azure Cache for Redis:
+
+1. **High Performance**: Azure Cache for Redis is designed for high throughput and low-latency access to cached data. It's based on the popular open-source Redis cache, making it extremely fast and efficient.
+
+2. **In-Memory Data Store**: It stores data in memory, which allows for lightning-fast data retrieval. This is particularly useful for caching frequently accessed data to reduce latency.
+
+3. **Fully Managed Service**: Azure Cache for Redis is a fully managed service. Azure takes care of tasks like patching, monitoring, and backups, so you can focus on your application.
+
+4. **Data Persistence**: It offers both non-persistent and persistent caching options. You can configure it to store data on disk for data durability.
+
+5. **Scaling**: Azure Cache for Redis provides the ability to scale your cache horizontally by adding or removing cache nodes to handle increased load.
+
+6. **Security**: It supports various security features, including Virtual Network service endpoints, SSL encryption, and Azure AD integration, to keep your data secure.
+
+7. **Advanced Data Structures**: Redis supports various data structures like strings, hashes, lists, sets, sorted sets, bitmaps, and geospatial indexes, making it versatile for different types of data.
+
+8. **Pub/Sub Messaging**: Redis supports publish/subscribe messaging patterns, allowing applications to communicate in real-time.
+
+9. **Geo-Replication**: Azure Cache for Redis supports geo-replication, enabling you to replicate your cache across multiple Azure regions for high availability.
+
+10. **Diagnostic and Monitoring**: It integrates with Azure Monitor and Azure Diagnostics, providing detailed insights into cache usage and performance.
+
+Azure Cache for Redis is a powerful tool for optimizing application performance, reducing the load on your primary data sources, and enabling real-time data processing. It's commonly used in web applications, microservices, and various scenarios where low-latency data access is crucial.
+
+
 ## Reference
+
+Here are some references related to Azure Cache for Redis &  securing using private endpoints with Terraform:
+
+**Microsoft Azure Documentation:**
+
+1. [Azure Cache for Redis Documentation](https://learn.microsoft.com/en-us/azure/azure-cache-for-redis/)
+
+2. [Tutorial: Secure access to an Azure Cache for Redis instance from a virtual network](https://docs.microsoft.com/en-us/azure/azure-cache-for-redis/cache-private-link)
+
+3. [Azure Private DNS Zone Overview](https://docs.microsoft.com/en-us/azure/private-link/private-endpoint-dns)
+
+**Terraform Resources:**
+
+1. [Documentation on creating a azure cache for redis with Terraform.](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/redis_cache)
+   
+2. [Documentation on creating a private DNS zone with Terraform.](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/private_dns_zone)
+
+3. [Documentation on creating a virtual network link to associate a private DNS zone to a VNet in Terraform.](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/private_dns_zone_virtual_network_link)
+  
+4. [Information on creating a private endpoint for Azure Cache for Redis using Terraform.](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/private_endpoint)
+
 
 <!-- - https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/redis_cache.html
 - https://stackoverflow.com/questions/73544491/how-to-implement-in-terraform-azure-for-redis-with-private-endpoint
 - https://www.youtube.com/watch?v=WexiwCm33Qs
 - https://learn.microsoft.com/en-us/azure/azure-cache-for-redis/cache-private-link
 - https://stackoverflow.com/questions/62556733/private-endpoint-for-redis-cache
-- https://www.youtube.com/watch?v=WexiwCm33Qs -->
+- https://www.youtube.com/watch?v=WexiwCm33Qs 
+- https://www.red-gate.com/simple-talk/development/dotnet-development/overview-of-azure-cache-for-redis/
+- -->
