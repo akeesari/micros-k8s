@@ -127,7 +127,7 @@ az aks nodepool list \
 
 # example
 az aks nodepool list `
-   --resource-group 'rg-ewm30-test' --cluster-name 'aks-multitenant-test' `
+   --resource-group 'rg-aks-dev' --cluster-name 'aks-cluster1-dev' `
    --query "[].{Name:name,NodeImageVersion:nodeImageVersion}" --output table
 
 ```
@@ -141,7 +141,7 @@ az aks nodepool get-upgrades \
 
 # example
 az aks nodepool get-upgrades `
-   --resource-group 'rg-ewm30-test' --cluster-name 'aks-multitenant-test' `
+   --resource-group 'rg-aks-dev' --cluster-name 'aks-cluster1-dev' `
    --nodepool-name agentpool --output table
 ```
 
@@ -165,8 +165,8 @@ az aks nodepool show \
 
 # example
 az aks nodepool show `
-    --resource-group 'rg-ewm30-test' `
-    --cluster-name 'aks-multitenant-test' `
+    --resource-group 'rg-aks-dev' `
+    --cluster-name 'aks-cluster1-dev' `
     --name agentpool
 
 ```
@@ -186,7 +186,7 @@ az aks show \
     --name myAKSCluster
 
 
-az aks show -g 'rg-ewm30-test' -n  'aks-multitenant-test' 
+az aks show -g 'rg-aks-dev' -n  'aks-cluster1-dev' 
 ```
 
 AKS Patching and Node Pool Upgrade Azure Kubernetes Services (AKS) 

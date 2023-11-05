@@ -199,8 +199,8 @@ az aks nodepool add \
     --no-wait
 
 az aks nodepool add `
-    --resource-group 'rg-ewm30-dev' `
-    --cluster-name 'aks-multitenant-dev' `
+    --resource-group 'rg-aks-dev' `
+    --cluster-name 'aks-cluster1-dev' `
     --name nodepool2 `
     --node-count 3 `
     --node-vm-size Standard_B8ms `
@@ -231,7 +231,7 @@ aks-nodepool1-31721111-vmss000002    Ready    agent   10d   v1.21.9
 ## Cordon the existing nodes
 
 ```sh
-az aks nodepool update --disable-cluster-autoscaler -g 'rg-ewm30-dev' -n nodepool1 --cluster-name 'aks-multitenant-dev'
+az aks nodepool update --disable-cluster-autoscaler -g 'rg-aks-dev' -n nodepool1 --cluster-name 'aks-cluster1-dev'
 
 # output
 
@@ -261,8 +261,8 @@ aks-nodepool2-23546727-vmss00001u `
 # Remove the existing node pool
 
 az aks nodepool delete `
-    --resource-group 'rg-ewm30-dev' `
-    --cluster-name 'aks-multitenant-dev' `
+    --resource-group 'rg-aks-dev' `
+    --cluster-name 'aks-cluster1-dev' `
     --name agentpool
 
 ```

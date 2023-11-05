@@ -181,8 +181,8 @@ az aks nodepool add \
     --no-wait
 
 az aks nodepool add `
-    --resource-group 'rg-ewm30-dev' `
-    --cluster-name 'aks-multitenant-dev' `
+    --resource-group 'rg-aks-dev' `
+    --cluster-name 'aks-cluster1-dev' `
     --name nodepool2 `
     --node-count 3 `
     --node-vm-size Standard_B8ms `
@@ -217,7 +217,7 @@ Cordoning marks specified nodes as unschedulable and prevents any more pods from
 First, obtain the names of the nodes you'd like to cordon with `kubectl get nodes`. Your output should look similar to the following:
 
 ```sh
-az aks nodepool update --disable-cluster-autoscaler -g 'rg-ewm30-dev' -n nodepool1 --cluster-name 'aks-multitenant-dev'
+az aks nodepool update --disable-cluster-autoscaler -g 'rg-aks-dev' -n nodepool1 --cluster-name 'aks-cluster1-dev'
 
 # output
 The behavior of this command has been altered by the following extension: aks-preview
@@ -237,47 +237,7 @@ The behavior of this command has been altered by the following extension: aks-pr
   "enableUltraSsd": false,
   "gpuInstanceProfile": null,
   "hostGroupId": null,
-  "id": "/subscriptions/5e5eafbf-e675-41d2-9d44-4f93b050d001/resourcegroups/rg-ewm30-prod/providers/Microsoft.ContainerService/managedClusters/aks-multitenant-p01/agentPools/agentpool",
-  "kubeletConfig": null,
-  "kubeletDiskType": "OS",
-  "linuxOsConfig": null,
-  "maxCount": null,
-  "maxPods": 110,
-  "messageOfTheDay": null,
-  "minCount": null,
-  "mode": "System",
-  "name": "agentpool",
-  "networkProfile": null,
-  "nodeImageVersion": "AKSUbuntu-2204gen2containerd-202307.27.0",
-  "nodeLabels": null,
-  "nodePublicIpPrefixId": null,
-  "nodeTaints": null,
-  "orchestratorVersion": "1.26.6",
-  "osDiskSizeGb": 128,
-  "osDiskType": "Managed",
-  "osSku": "Ubuntu",
-  "osType": "Linux",
-  "podSubnetId": null,
-  "powerState": {
-    "code": "Running"
-  },
-  "provisioningState": "Succeeded",
-  "proximityPlacementGroupId": null,
-  "resourceGroup": "rg-ewm30-prod",
-  "scaleDownMode": "Delete",
-  "scaleSetEvictionPolicy": null,
-  "scaleSetPriority": null,
-  "spotMaxPrice": null,
-  "tags": null,
-  "type": "Microsoft.ContainerService/managedClusters/agentPools",
-  "typePropertiesType": "VirtualMachineScaleSets",
-  "upgradeSettings": {
-    "maxSurge": null
-  },
-  "vmSize": "Standard_B4ms",
-  "vnetSubnetId": "/subscriptions/5e5eafbf-e675-41d2-9d44-4f93b050d001/resourceGroups/rg-networkcore-prod/providers/Microsoft.Network/virtualNetworks/vnet-ewm30spoke1-prod/subnets/snet-aks-multitenant",
-  "windowsProfile": null,
-  "workloadRuntime": null
+  
 }
 ```
 
@@ -360,8 +320,8 @@ To delete the existing node pool, use the Azure portal or the az aks nodepool de
 
 ```sh
 az aks nodepool delete `
-    --resource-group 'rg-ewm30-dev' `
-    --cluster-name 'aks-multitenant-dev' `
+    --resource-group 'rg-aks-dev' `
+    --cluster-name 'aks-cluster1-dev' `
     --name agentpool
 
 ```
