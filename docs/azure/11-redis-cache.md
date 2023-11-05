@@ -1,21 +1,21 @@
 ## Introduction
 
-Azure Cache for Redis is a fully managed, in-memory data store that provides high throughput and low-latency access to cached data. In this lab, we will use Terraform's Infrastructure as Code (IaC) capabilities to provision and configure the Azure Cache for Redis resource.
+Azure Cache for Redis is a fully managed, in-memory data store that offers high throughput and low-latency access to cached data. In this guide, we'll utilize Terraform's Infrastructure as Code (IaC) capabilities to provision and configure an Azure Cache for Redis resource.
 
 ## Technical Scenario
 
-As a `Cloud Architecture` you have been asked to provide a solution on caching mechanism to improve performance and reduce database load in Microservices Architecture. Azure Cache for Redis offers an ideal solution, allowing us to store frequently accessed data in memory for fast retrieval.
+As a `Cloud Architect`, you've been tasked with providing a caching mechanism to enhance performance and reduce the database load in a Microservices Architecture. Azure Cache for Redis offers an ideal solution by enabling us to store frequently accessed data in memory for rapid retrieval.
 
 ## Objective
 
 In this exercise we will accomplish & learn how to implement following:
 
-- Task-1: Define and declare Azure Cache for Redis variable
-- Task-2: Create Azure Cache for Redis using terraform
-- Task-3: Configure diagnostic settings for Azure Cache for Redis using terraform
-- Task-4: Create private DNS zone for Redis Cache using terraform
-- Task-5: Create virtual network link to associate redis private DNS zone to vnet
-- Task-6: Configure private endpoint for Azure Cache for Redis using terraform 
+**Task-1:** Define and declare Azure Cache for Redis variables.
+**Task-2:** Create Azure Cache for Redis using Terraform.
+**Task-3:** Configure diagnostic settings for Azure Cache for Redis using Terraform.
+**Task-4:** Create a private DNS zone for Redis Cache using Terraform.
+**Task-5:** Create a virtual network link to associate the Redis private DNS zone with a VNet.
+**Task-6:** Configure a private endpoint for Azure Cache for Redis using Terraform.
 
 
 ## Architecture diagram
@@ -26,25 +26,25 @@ The following diagram illustrates the architecture of our setup:
 
 ## Prerequisites
 
-Before proceeding with this lab, ensure that you have the following prerequisites in place:
+Before proceeding with this lab, make sure you have the following prerequisites in place:
 
-  - Download & Install Terraform
-  - Download & Install Azure CLI
-  - Azure subscription
-  - Visual studio code
-  - Log Analytics workspace - for configuring diagnostic settings
-  - Virtual Network with subnet - for configuring private endpoint
-  - Basic knowledge of Terraform and Azure concepts
+1. Download and Install Terraform.
+2. Download and Install Azure CLI.
+3. Azure subscription.
+4. Visual Studio Code.
+5. Log Analytics workspace - for configuring diagnostic settings.
+6. Virtual Network with subnet - for configuring a private endpoint.
+7. Basic knowledge of Terraform and Azure concepts.
 
 ## Implementation details
 
-Let's dive into the step-by-step implementation details:
+Now, let's delve into the step-by-step implementation details:
 
 ## Task-1: Define and declare virtual network variables
 
-In this task, we will define and declare the necessary variables for creating the Azure Cache for Redis resource. These variables will be used to specify the azure redis cache resource settings and customize the values according to our requirements in each environment.
+In this task, we will define and declare the necessary variables for creating the Azure Cache for Redis resource. These variables will be used to specify the Azure Redis Cache resource settings and customize the values according to our requirements in each environment.
 
-**Variable declaration:** 
+*Variable declaration:*
 
 ``` bash title="variables.tf"
 variable "redis_cache_enabled" {
@@ -105,9 +105,9 @@ variable "private_endpoint_prefix" {
 }
 ```
 
-**Variable Definition:**
+*Variable Definition:*
 
-```bash
+``` bash title="dev-variables.tfvars"
 # Redis Cache
 redis_cache_name                   = "redis1"
 redis_cache_capacity               = 1
@@ -150,7 +150,7 @@ resource "azurerm_redis_cache" "redis" {
   ]
 }
 ```
-run terraform validate & format
+Run Terraform validation and formatting:
 
 ``` bash
 terraform validate
@@ -288,6 +288,7 @@ Azure Cache for Redis - Private DNS zone
 ## Task-5: Create virtual network link to associate redis private DNS zone to vnet
 
 In this task, we will create a virtual network link to associate the Redis private DNS zone with our virtual network. This link enables DNS resolution for the Redis Cache within the virtual network.
+
 
 ``` bash title="private_dns.tf"
 # Create private virtual network link to vnet
