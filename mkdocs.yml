@@ -180,7 +180,8 @@ nav:
     -  Create Virtual Network using terraform: azure/8-vnet.md
     -  Create Azure Container Registry (ACR) using terraform: azure/9-acr.md
     -  Create Azure Kubernetes Service (AKS) using terraform: azure/10-aks.md
-    -  Create Azure Cache for Redis using Terraform: azure/11-redis-cache.md
+    -  Create Azure Application Gateway using terraform: azure/11-application-gateway.md
+    -  Create Azure Cache for Redis using Terraform: azure/12-redis-cache.md    
   - Kubernetes:
     - Getting Started with Docker Container: kubernetes/0.getting-started.md
     - Prepare an application for Azure Kubernetes Service (AKS): kubernetes/1-prepare-app.md
