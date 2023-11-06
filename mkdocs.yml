@@ -180,7 +180,7 @@ nav:
     -  Create Virtual Network using terraform: azure/8-vnet.md
     -  Create Azure Container Registry (ACR) using terraform: azure/9-acr.md
     -  Create Azure Kubernetes Service (AKS) using terraform: azure/10-aks.md
-    -  Create Azure Application Gateway using terraform: azure/11-application-gateway.md
+    -  Create Azure Application Gateway using terraform: azure/11-appgateway.md
     -  Create Azure Cache for Redis using Terraform: azure/12-redis-cache.md    
   - Kubernetes:
     - Getting Started with Docker Container: kubernetes/0.getting-started.md
@@ -193,9 +193,9 @@ nav:
     - Setup Cert-Manager in AKS using Terraform : kubernetes/5-cert-manager.md
     # - Create YAML Manifests for Microservice-1 : kubernetes/5.1-manifests-microservice-1.md
     # - Create YAML Manifests for Microservice-2 : kubernetes/5.2-manifests-microservice-2.md    
-    - Create a new user node pool : kubernetes/aks-create-node-pools.md
     - Kubernetes Pod troubleshooting : kubernetes/pod-troubleshooting.md    
-    - Upgrade - Resize node pools in AKS : kubernetes/aks-upgrade-nodepool.md
+    - Create a new user node pool in AKS : kubernetes/aks-create-nodepool.md
+    - Upgrade or Resize node pools in AKS : kubernetes/aks-upgrade-nodepool.md
   - Azure DevOps:
     - Azure DevOps Overview : devops/1-devops-overview.md
     - Create your first service connection : devops/pipelines/1-service-connections.md

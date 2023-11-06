@@ -2,8 +2,9 @@
 
 Azure Kubernetes Service (AKS) is a fully managed container orchestration service provided by Microsoft Azure. It allows you to easily deploy, scale, and manage containerized applications using Kubernetes.
 
-AKS provides a number of benefits, including:
+In this lab, I will walk you through the steps to create an Azure Kubernetes Service (AKS) using Terraform. Additionally, I will show you how to confirm its successful deployment through the Azure portal and provide insights on how to utilize it effectively. We will also cover how to validate your AKS cluster using Kubectl and set up access to Azure Container services.
 
+AKS provides a number of benefits, including:
 
 - **Autoscaling:** AKS automatically scales your cluster up or down based on the demand for your applications, so you only pay for what you use.
 
@@ -87,6 +88,48 @@ az account set -s "anji.keesari"
 ## Task-1: Define and declare AKS variables
 
 This section covers list of variables used to create  Azure Kubernetes services (AKS) with detailed description and purpose of each variable with default values.
+
+| Variable Name                        | Description                                                          | Type                | Default Value        |
+|-------------------------------------|----------------------------------------------------------------------|---------------------|-----------------------|
+| aks_rg_name                          | The name of the resource group in which to create the AKS            | string              |                       |
+| aks_rg_location                      | Location in which to deploy the AKS                                  | string              | East US               |
+| cluster_name                         | Specifies the name of the AKS cluster                                | string              |                       |
+| dns_prefix                           | DNS prefix specified when creating the managed cluster               | string              |                       |
+| private_cluster_enabled               | Should this Kubernetes Cluster have its API server only exposed on internal IP addresses | bool | false |
+| azure_rbac_enabled                   | Is Role Based Access Control based on Azure AD enabled                | bool                | true                  |
+| admin_group_object_ids               | A list of Object IDs of Azure Active Directory Groups which should have Admin Role on the Cluster | list(string) | ["c63746fd-eb61-xx"] |
+| role_based_access_control_enabled     | Is Role Based Access Control Enabled?                                  | bool                | true                  |
+| automatic_channel_upgrade             | The upgrade channel for this Kubernetes Cluster                        | string              | stable                |
+| aks_sku_tier                         | The SKU Tier that should be used for this Kubernetes Cluster          | string              | Free                  |
+| kubernetes_version                   | Specifies the AKS Kubernetes version                                  | string              | 1.23.12               |
+| default_node_pool_vm_size            | Specifies the vm size of the default node pool                        | string              | Standard_B4ms         |
+| default_node_pool_availability_zones  | Specifies the availability zones of the default node pool             | list(string)         | ["1", "2", "3"]        |
+| network_docker_bridge_cidr           | Specifies the Docker bridge CIDR                                      | string              | 172.17.0.1/16         |
+| network_dns_service_ip               | Specifies the DNS service IP                                           | string              | 10.25.0.10            |
+| network_service_cidr                 | Specifies the service CIDR                                             | string              | 10.25.0.0/16          |
+| network_plugin                       | Specifies the network plugin of the AKS cluster                         | string | azure |
+| network_policy                       | Specifies the network policy of the AKS cluster                         | string | azure |
+| outbound_type                        | The outbound (egress) routing method which should be used for this Kubernetes Cluster | string | userDefinedRouting |
+| default_node_pool_name               | Specifies the name of the default node pool                             | string | agentpool           |
+| default_node_pool_subnet_name         | Specifies the name of the subnet that hosts the default node pool       | string | SystemSubnet        |
+| default_node_pool_subnet_address_prefix | Specifies the address prefix of the subnet that hosts the default node pool | list(string) | ["10.0.0.0/20"] |
+| default_node_pool_enable_auto_scaling | Whether to enable auto-scaler                                             | bool | true |
+| default_node_pool_enable_host_encryption | Should the nodes in this Node Pool have host encryption enabled       | bool | false |
+| default_node_pool_enable_node_public_ip | Should each node have a Public IP Address                                | bool | false |
+| default_node_pool_max_pods           | The maximum number of pods that can run on each agent                   | number | 110 |
+| default_node_pool_node_labels         | A list of Kubernetes taints which should be applied to nodes in the agent pool | map(any) | {} |
+| default_node_pool_node_taints         | A map of Kubernetes labels which should be applied to nodes in this Node Pool | list(string) | [] |
+| default_node_pool_os_disk_type       | The type of disk which should be used for the Operating System            | string | Ephemeral |
+| default_node_pool_max_count           | The maximum number of nodes which should exist within this Node Pool     | number | 5 |
+| default_node_pool_min_count           | The minimum number of nodes which should exist within this Node Pool     | number | 2 |
+| default_node_pool_node_count          | The initial number of nodes which should exist within this Node Pool    | number | 2 |
+| aks_log_analytics_retention_days     | Specifies the number of days of the retention policy                   | number              | 30                    |
+| azure_policy                         | Specifies the Azure Policy addon configuration                          | object | { enabled = false } |
+| http_application_routing              | Specifies the HTTP Application Routing addon configuration               | object | { enabled = false } |
+| kube_dashboard                       | Specifies the Kubernetes Dashboard addon configuration                    | object | { enabled = false } |
+| admin_username                       | Specifies the Admin Username for the AKS cluster worker nodes            | string | azadmin |
+| ssh_public_key                       | Specifies the SSH public key used to access the cluster                   | string | -|
+| aks_tags                             | Specifies the tags of the AKS                                             | map(any) | {} |
 
 **Variables Prefixes**
 

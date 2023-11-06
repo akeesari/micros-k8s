@@ -2,6 +2,8 @@
 
 Azure Cache for Redis is a fully managed, in-memory data store that offers high throughput and low-latency access to cached data. In this guide, we'll utilize Terraform's Infrastructure as Code (IaC) capabilities to provision and configure an Azure Cache for Redis resource.
 
+In this lab, I will walk through the steps to create an Azure Cache for Redis using Terraform. I'll also configure diagnostic settings to monitor its performance effectively. To ensure the security of our Azure Cache for Redis, I'll establish a private endpoint, thereby securing it from public access. Finally, we'll validate these resources within the Azure portal to confirm that everything is functioning as expected.
+
 ## Technical Scenario
 
 As a `Cloud Architect`, you've been tasked with providing a caching mechanism to enhance performance and reduce the database load in a Microservices Architecture. Azure Cache for Redis offers an ideal solution by enabling us to store frequently accessed data in memory for rapid retrieval.
@@ -39,9 +41,46 @@ Before proceeding with this lab, make sure you have the following prerequisites 
 
 Now, let's delve into the step-by-step implementation details:
 
+
+**login to Azure**
+
+Verify that you are logged into the right Azure subscription before start anything in visual studio code
+
+```bash
+# Login to Azure
+az login 
+
+# Shows current Azure subscription
+az account show
+
+# Lists all available Azure subscriptions
+az account list
+
+# Sets Azure subscription to desired subscription using ID
+az account set -s "anji.keesari"
+```
+
 ## Task-1: Define and declare virtual network variables
 
 In this task, we will define and declare the necessary variables for creating the Azure Cache for Redis resource. These variables will be used to specify the Azure Redis Cache resource settings and customize the values according to our requirements in each environment.
+
+This table presents the variables along with their descriptions, data types, and default values:
+
+| Variable Name                  | Description                                                                                                       | Type  | Default Value |
+| ----------------------------- | ----------------------------------------------------------------------------------------------------------------- | ----- | ------------- |
+| redis_cache_enabled            | (Optional) Whether to enable or disable redis_cache resource creations.                                                     | bool  | true          |
+| redis_cache_prefix             | Prefix of the Redis cache name that's combined with the name of the Redis Cache.                                | string| redis         |
+| redis_cache_name               | (Required) The name of the Redis instance.                                                                                  | string|  redis1      |
+| redis_cache_sku                | (Required) The SKU of Redis to use. Possible values are Basic, Standard, and Premium.                                       | string| Basic         |
+| redis_cache_capacity           | (Required) The size of the Redis cache to deploy. Valid values for a SKU family of C (Basic/Standard) are 0-6, and for P (Premium) family are 1-5. | string| 1            |
+| redis_cache_family             | (Required) The SKU family/pricing group to use. Valid values are C (for Basic/Standard SKU family) and P (for Premium). | string| C           |
+| request_message                | (Optional) Specifies a message passed to the owner of the remote resource when the private endpoint attempts to establish the connection to the remote resource. | string| null |
+| redis_public_network_access_enabled | (Optional) Whether or not public network access is allowed for this Redis Cache. true means this resource could be accessed by both the public and private endpoint. false means only private endpoint access is allowed. Defaults to false. | bool | false |
+| redis_enable_authentication      | (Optional) If set to false, the Redis instance will be accessible without authentication. Defaults to true. | bool | true |
+| redis_pe_core_enabled             | (Optional) Enable core subscription private endpoint. | bool | false |
+| private_endpoint_prefix           | Prefix of the Private Endpoint name that's combined with the name of the Private Endpoint. | string | pe |
+
+This table presents the variables with their descriptions and default values in line with Azure naming conventions for a more structured setup.
 
 *Variable declaration:*
 

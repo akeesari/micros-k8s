@@ -2,6 +2,8 @@
 
 A Log Analytics workspace allows you to log data from Azure Monitor and other Azure services.
 
+In this lab, I will guide you through the process of creating a Log Analytics workspace using Terraform and demonstrate how to verify its successful creation in the Azure portal.
+
 ### Technical Scenario
 
 As a `Cloud Engineer`, you have been asked to collect all the monitoring data, azure resources logs from azure services for your organization so that you can use the log queries to retrieve and analyze data from a Log Analytics workspace.
@@ -12,7 +14,7 @@ As a `Cloud Engineer`, you have been asked to collect all the monitoring data, a
   - Azure subscription
   - Visual studio code
   - Azure DevOps Project & repo
-- Terraform Foundation Setup
+  - Terraform Foundation Setup
 
 
 <!-- ### Architecture diagram
@@ -55,12 +57,24 @@ az account set -s "anji.keesari"
 
 ### Task-1: Configure terraform variables for Log Analytics workspace 
 
+Here's the table with the variable names, their descriptions, variable type and their default values:
+
+| Variable Name                        | Description                                                                                           | Type          | Default Value   |
+|--------------------------------------|-------------------------------------------------------------------------------------------------------|---------------|-----------------|
+| log_analytics_workspace_rg_name      | (Required) Specifies the resource group name of the log analytics workspace                         | string        | "rg-workspace-dev" |
+| log_analytics_workspace_name          | (Required) Specifies the name of the log analytics workspace                                          | string        | "workspace-workspace1-dev" |
+| log_analytics_workspace_location      | (Required) Specifies the location of the log analytics workspace                                      | string        | "East US"       |
+| log_analytics_workspace_sku           | (Optional) Specifies the sku of the log analytics workspace                                           | string        | "PerGB2018"     |
+| solution_plan_map                    | (Required) Specifies solutions to deploy to log analytics workspace                                    | map(any)       | See default value |
+| log_analytics_retention_days          | (Optional) Specifies the workspace data retention in days.                                            | number        | 30              |
+| log_analytics_tags                    | (Optional) Specifies the tags of the log analytics                                                   | map(any)       | {}              |
 
 #### define variables
 
 Here is the list of variable used in log analytics workspace creation; we are going to update existing `variable.tf` file with following variables. read the `description` provided in this source code to understand the purpose of each variable. also look into the variable `type` and `default` value of each variable.
 
-``` tf title="variable.tf" linenums="1"
+
+```bash title="variable.tf" linenums="1"
 
 variable "log_analytics_workspace_rg_name" {
   description = "(Required) Specifies the resource group name of the log analytics workspace"
@@ -112,7 +126,6 @@ variable "log_analytics_tags" {
   type        = map(any)
   default     = {}
 }
-s = {
    
 ```
 

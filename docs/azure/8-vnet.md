@@ -2,6 +2,8 @@
 
 Azure Virtual Network also known as vnet is the fundamental building block for private network for securing the infrastructure, azure virtual network will be used for securely communicate with each other in the azure infrastructure and securely connecting from outside publicly, azure vnet will brings with it additional benefits of Azure's infrastructure such as scale, availability, and isolation.
 
+In this lab, I will walk you through the steps to create an Azure Virtual Network for a hub-and-spoke model with subnets using Terraform. Additionally, I will show you how to confirm its successful deployment through the Azure portal.
+
 ## Technical Scenario
 
 As a `Cloud Engineer`, you have been asked to deploy azure resources with fully secured and isolated networking capabilities, we will use the azure virtual network capabilities to protect azure virtual machines, AKS clusters, azure key vault services, azure storage account services using azure virtual network.

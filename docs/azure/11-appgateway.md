@@ -2,7 +2,9 @@
 
 Azure Application Gateway is like the traffic cop of your web applications. Azure Application Gateway is a web traffic load balancer provided by Microsoft Azure. It acts as a central point for managing and optimizing the traffic to web applications, ensuring they are secure, highly available, and performant. 
 
-Here are some key aspects of Azure Application Gateway:
+In this lab, I will take a detailed walk-through to create an Azure Application Gateway using Terraform. I will also create a Public IP address for the Application Gateway using Terraform. Then, I will configure diagnostic settings to ensure robust monitoring and troubleshooting. Finally, I will validate these resources within the Azure portal to confirm that everything is functioning as expected.
+
+Here are some key features of Azure Application Gateway:
 
 1. **Load Balancing**: It distributes incoming network traffic across multiple servers to ensure even utilization and prevent overloading any single server. This results in better performance and fault tolerance.
 
@@ -39,9 +41,9 @@ Azure Application Gateway, combined with a Web Application Firewall (WAF), offer
 
 In this exercise we will accomplish & learn how to implement following:
 
-- **Task-1:** Define and declare Azure Cache for  Application Gateway
-- **Task-2:** Create Public IP address for Application Gateway
-- **Task-3:** Create Application Gateway using Terraform
+- **Task-1:** Define and declare variables for  Application Gateway
+- **Task-2:** Create Public IP address for Application Gateway using Terraform
+- **Task-3:** Create Azure Application Gateway using Terraform
 - **Task-4:** Configure diagnostic settings for Application Gateway using Terraform
 
 
@@ -67,7 +69,25 @@ Before proceeding with this lab, make sure you have the following prerequisites 
 
 Let's delve into the step-by-step implementation details:
 
-## Task-1: Define and declare virtual network variables
+
+**login to Azure**
+
+Verify that you are logged into the right Azure subscription before start anything in visual studio code
+
+```bash
+# Login to Azure
+az login 
+
+# Shows current Azure subscription
+az account show
+
+# Lists all available Azure subscriptions
+az account list
+
+# Sets Azure subscription to desired subscription using ID
+az account set -s "anji.keesari"
+```
+## Task-1: Define and declare variables for  Application Gateway
 
 In this task, we will define and declare the necessary variables for creating the Azure Application Gateway. These variables will be used to specify the Application Gateway's settings and customize the values as per the environment requirements.
 
@@ -75,15 +95,15 @@ Here's the table with the variable names, their descriptions, variable type and 
 
 | Variable Name               | Description                                                        | Type        | Default Value      |
 |-----------------------------|--------------------------------------------------------------------|-------------|---------------------|
-| appgtw_name                 | (Required) Specifies the name of the Application Gateway.         | string      |  appgtw-appgtw1-dev  |
-| appgtw_rg_name              | (Required) The name of the resource group.                        | string      |  rg-resourcegroup1-dev  |
-| appgtw_location             | (Required) The Azure region for the Application Gateway.          | string      | North Central US    |
-| appgtw_sku_size             | (Required) Name of the SKU for the Application Gateway.           | string      | Standard_v2         |
-| appgtw_sku_tier             | (Required) The tier of the SKU for the Application Gateway.      | string      | Standard_v2         |
-| appgtw_sku_capacity         | (Required) The capacity of the SKU for the Application Gateway.  | string      | 1                   |
-| appgtw_pip_name             | (Required) Specifies the name of the Public IP.                   | string      | pip-appgtw-dev     |
-| pip_allocation_method       | (Required) Defines the allocation method for the IP address.      | string      | Static              |
-| pip_sku                    | (Optional) The SKU of the Public IP.                              | string      | Basic               |
+| appgtw_name                 | (Required) Specifies the name of the Application Gateway.         | string       |  appgtw-appgtw1-dev  |
+| appgtw_rg_name              | (Required) The name of the resource group.                        | string       |  rg-resourcegroup1-dev  |
+| appgtw_location             | (Required) The Azure region for the Application Gateway.          | string       | North Central US    |
+| appgtw_sku_size             | (Required) Name of the SKU for the Application Gateway.           | string       | Standard_v2         |
+| appgtw_sku_tier             | (Required) The tier of the SKU for the Application Gateway.       | string       | Standard_v2         |
+| appgtw_sku_capacity         | (Required) The capacity of the SKU for the Application Gateway.   | string       | 1                   |
+| appgtw_pip_name             | (Required) Specifies the name of the Public IP.                   | string       | pip-appgtw-dev      |
+| pip_allocation_method       | (Required) Defines the allocation method for the IP address.      | string       | Static              |
+| pip_sku                     | (Optional) The SKU of the Public IP.                              | string       | Basic               |
 
 
 *Variable declaration:*
@@ -191,7 +211,7 @@ pip_sku                             = "Standard"
 
 ```
 
-## Task-2: Create Public IP address for Application Gateway using terraform
+## Task-2: Create Public IP address for Application Gateway using Terraform
 
 In this task, we will create a Public IP address to be used by the Application Gateway.
 
@@ -234,7 +254,7 @@ Azure Application Gateway - Public IP address
 ![Alt text](images/image-53.png)
 
 
-## Task-3: Create Application Gateway using Terraform
+## Task-3: Create Azure Application Gateway using Terraform
 
 In this task, we will use Terraform to create the Azure Application Gateway with the specified configuration.
 
@@ -464,4 +484,9 @@ Application gateway - Diagnostic settings
 
 ## Reference
 
-Here are some references:
+   - [Web Application Firewall documentation](https://learn.microsoft.com/en-us/azure/web-application-firewall/)
+  - [Tutorial: Create an application gateway with a web application firewall using Terraform](https://learn.microsoft.com/en-us/azure/web-application-firewall/ag/application-gateway-web-application-firewall-portal)
+   - [Azure Terraform QuickStart Templates](https://github.com/Azure/terraform/tree/master/quickstart)
+   - [Azure Application Gateway Terraform Provider](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/application_gateway)
+   - [Create Public IP address for Application Gateway using Terraform](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/public_ip) 
+   - [Create Diagnostic Settings using terraform](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/monitor_diagnostic_setting)

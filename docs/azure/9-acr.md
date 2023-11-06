@@ -2,6 +2,8 @@
 
 Azure Container Registry (ACR) is a managed Docker registry service provided by Microsoft Azure. It allows you to store and manage container images for your applications in a secure and private environment.
 
+In this lab, I will guide you through the process of creating an Azure Container Registry using Terraform. Furthermore, I will demonstrate how to verify its successful deployment within the Azure portal and provide insights on how to utilize it effectively post-creation.
+
 ACR provides a number of benefits, including:
 
 - **Private repository:** ACR provides a private Docker registry, which means that you can store your Docker images securely and privately, and only authorized users or services can access them.
@@ -80,6 +82,20 @@ az account set -s "anji.keesari"
 ## Task-1: Define and declare ACR variables
 
 This section covers list of variables used to create  Azure container registry with detailed description and purpose of each variable with default values.
+
+
+| Variable Name                 | Description                                                                                              | Type          | Default Value   |
+|-------------------------------|----------------------------------------------------------------------------------------------------------|---------------|-----------------|
+| acr_name                      | (Required) Specifies the name of the Container Registry. Changing this forces a new resource to be created. | string        | acr1dev             |
+| acr_rg_name                   | (Required) The name of the resource group in which to create the Container Registry. Changing this forces a new resource to be created. | string        | acr1               |
+| acr_location                  | Location in which to deploy the Container Registry                                                      | string        | "East US"       |
+| acr_admin_enabled             | (Optional) Specifies whether the admin user is enabled. Defaults to false.                                 | bool          | false           |
+| acr_sku                       | (Optional) The SKU name of the container registry. Possible values are Basic, Standard, and Premium. Defaults to Basic | string | "Basic"         |
+| acr_georeplication_locations  | (Optional) A list of Azure locations where the container registry should be geo-replicated. | list(string) | ["Central US", "East US"] |
+| acr_log_analytics_retention_days | Specifies the number of days of the retention policy                                  | number        | 7               |
+| acr_tags                      | (Optional) Specifies the tags of the ACR                                                               | map(any)      | {}              |
+| data_endpoint_enabled         | (Optional) Whether to enable dedicated data endpoints for this Container Registry? Defaults to false. This is only supported on resources with the Premium SKU. | bool | true |
+
 
 **Variables Prefixed**
 

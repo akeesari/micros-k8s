@@ -117,13 +117,26 @@
     - Task-7: Validate AKS cluster running Kubectl
     - Task-8: Allow AKS Cluster access to Azure Container
     - Task-9: Lock the resource group
+- Create Azure Application Gateway using terraform
+    - Task-1: Define and declare variables for Application Gateway
+    - Task-2: Create Public IP address for Application Gateway using Terraform
+    - Task-3: Create Azure Application Gateway using Terraform
+    - Task-4: Configure diagnostic settings for Application Gateway using terraform
+- Create Azure Cache for Redis using Terraform
+    - Task-1: Define and declare virtual network variables
+    - Task-2: Create Azure Cache for Redis using terraform
+    - Task-3: Configure diagnostic settings for Azure Cache for Redis using terraform
+    - Securing an Azure Cache for Redis instance
+    - Task-4: Create private DNS zone for Redis Cache using terraform
+    - Task-5: Create virtual network link to associate Redis private DNS zone to vnet
+    - Task-5: Configure private endpoint for Azure Cache for Redis using terraform
+    - key features of Redis cache
 - Create Storage Account using terraform
 - Create Azure Bastion Host using terraform
 - Create Virtual Machine (Jumpbox) using terraform
 - Create Azure Key Vault using terraform
 - Create PostgreSQL Server & databases using terraform
 - Configure Private Endpoint & Private Links using terraform
-- Create Application Gateway using terraform
 - Azure DNS setup
 
 **Chapter 3: Kubernetes - Azure Kubernetes Service (AKS)**
