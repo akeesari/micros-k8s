@@ -80,7 +80,6 @@ This table presents the variables along with their descriptions, data types, and
 | redis_pe_core_enabled             | (Optional) Enable core subscription private endpoint. | bool | false |
 | private_endpoint_prefix           | Prefix of the Private Endpoint name that's combined with the name of the Private Endpoint. | string | pe |
 
-This table presents the variables with their descriptions and default values in line with Azure naming conventions for a more structured setup.
 
 *Variable declaration:*
 
