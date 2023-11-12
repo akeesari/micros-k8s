@@ -2,6 +2,8 @@
 
 Azure Key Vault is a cloud service provided by Microsoft Azure that allows you to securely store and manage sensitive information such as secrets, encryption keys, and certificates. It provides a centralized and secure storage location for managing application secrets, connection strings, passwords, and cryptographic keys used in microservices applications and services.
 
+In this hands-on lab, I'll guide you through the process of creating an Azure Key Vault using Terraform. We'll set up diagnostic settings to monitor this resource effectively. also, we'll ensure that access policies are configured to allow developers access to the secrets stored in the Azure Key Vault.
+
 Here are some key features of Azure Key Vault:
 
 1. **Secrets Management:** Azure Key Vault can be used to securely store and manage sensitive information such as API keys, passwords, and connection strings.
@@ -16,7 +18,6 @@ Here are some key features of Azure Key Vault:
 
 Azure Key Vault enhances the security of microservice applications by reducing the need to store sensitive information in the source code or configuration files. Instead, microservice applications can retrieve sensitive information from Key Vault at runtime.
 
-In this lab, I will walk through the steps to create an Azure Key Vault using Terraform. I'll also configure diagnostic settings to monitor this service. we will also configure the access policy for the developers so that key vault secretes are accesable to developers
 
 ## Technical Scenario
 As a `Cloud Architect`, I need to design and implement a robust solution to address the secure storage and management of sensitive information within our microservices architecture hosted in Azure Kubernetes Service (AKS). This solution should ensure that application secrets, connection strings, passwords, and cryptographic keys are stored centrally and accessed securely by our services.
@@ -71,7 +72,7 @@ az account list
 az account set -s "anji.keesari"
 ```
 
-## Task-1: Define and declare virtual network variables
+## Task-1: Define and declare Azure Key vault variables
 
 In this task, we will define and declare the necessary variables for creating the Azure Key vault resource. These variables will be used to specify the resource settings and customize the values according to our requirements in each environment.
 

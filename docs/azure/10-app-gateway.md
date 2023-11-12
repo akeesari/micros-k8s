@@ -87,7 +87,7 @@ az account list
 # Sets Azure subscription to desired subscription using ID
 az account set -s "anji.keesari"
 ```
-## Task-1: Define and declare variables for  Application Gateway
+## Task-1: Define and declare variables for Application Gateway
 
 In this task, we will define and declare the necessary variables for creating the Azure Application Gateway. These variables will be used to specify the Application Gateway's settings and customize the values as per the environment requirements.
 

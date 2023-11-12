@@ -60,7 +60,7 @@ az account list
 az account set -s "anji.keesari"
 ```
 
-## Task-1: Define and declare virtual network variables
+## Task-1: Define and declare Azure Cache for Redis variables
 
 In this task, we will define and declare the necessary variables for creating the Azure Cache for Redis resource. These variables will be used to specify the Azure Redis Cache resource settings and customize the values according to our requirements in each environment.
 
