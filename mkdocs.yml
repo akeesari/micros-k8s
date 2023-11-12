@@ -181,7 +181,7 @@ nav:
     -  Create Azure Container Registry (ACR) using terraform: azure/9-acr.md
     -  Create Azure Application Gateway using terraform: azure/10-app-gateway.md
     -  Create Azure Kubernetes Service (AKS) using terraform: azure/11-aks.md    
-    -  Create Azure Database for PostgreSQL - Flexible Server using terraform: azure/12-postgresql.md    
+    -  Create Azure PostgreSQL - Flexible Server using terraform: azure/12-postgresql.md    
     -  Create Azure Key Vault using Terraform: azure/13-key-vault.md
     -  Create Azure Cache for Redis using Terraform: azure/14-redis-cache.md
   - Kubernetes:
