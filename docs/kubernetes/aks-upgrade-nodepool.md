@@ -68,8 +68,8 @@ kubectl get nodes -o wide
 
 # output
 NAME                                STATUS   ROLES   AGE    VERSION    INTERNAL-IP   EXTERNAL-IP   OS-IMAGE             KERNEL-VERSION     CONTAINER-RUNTIME
-aks-agentpool-25316841-vmss000000   Ready    agent   198d   v1.23.12   10.64.4.4     <none>        Ubuntu 18.04.6 LTS   5.4.0-1101-azure   containerd://1.6.15+azure-1
-aks-agentpool-25316841-vmss000001   Ready    agent   198d   v1.23.12   10.64.4.113   <none>        Ubuntu 18.04.6 LTS   5.4.0-1101-azure   containerd://1.6.15+azure-1
+aks-nodepool1-25316841-vmss000000   Ready    agent   198d   v1.23.12   10.64.4.4     <none>        Ubuntu 18.04.6 LTS   5.4.0-1101-azure   containerd://1.6.15+azure-1
+aks-nodepool1-25316841-vmss000001   Ready    agent   198d   v1.23.12   10.64.4.113   <none>        Ubuntu 18.04.6 LTS   5.4.0-1101-azure   containerd://1.6.15+azure-1
 
 ```
 This provides an overview of your existing nodes and running pods.
@@ -78,26 +78,26 @@ This provides an overview of your existing nodes and running pods.
 kubectl get pods -o wide -A
 
 # output
-kube-system         azure-policy-557988f6df-q5rgf                       1/1     Running   0             23d    10.64.4.171   aks-agentpool-25316841-vmss000001   <none>           <none>
-kube-system         azure-policy-webhook-5dfcfc5998-cn7p6               1/1     Running   0             23d    10.64.4.161   aks-agentpool-25316841-vmss000001   <none>           <none>
-kube-system         cloud-node-manager-j8zg4                            1/1     Running   1 (23d ago)   72d    10.64.4.4     aks-agentpool-25316841-vmss000000   <none>           <none>
-kube-system         cloud-node-manager-p8nk5                            1/1     Running   0             72d    10.64.4.113   aks-agentpool-25316841-vmss000001   <none>           <none>
-kube-system         coredns-785fcf7bdd-6d84r                            1/1     Running   0             82d    10.64.4.214   aks-agentpool-25316841-vmss000001   <none>           <none>
-kube-system         coredns-785fcf7bdd-n8bvt                            1/1     Running   0             23d    10.64.4.199   aks-agentpool-25316841-vmss000001   <none>           <none>
-kube-system         coredns-autoscaler-65bb858f95-6lwkf                 1/1     Running   0             23d    10.64.4.117   aks-agentpool-25316841-vmss000001   <none>           <none>
-kube-system         csi-azuredisk-node-2n6md                            3/3     Running   0             10d    10.64.4.4     aks-agentpool-25316841-vmss000000   <none>           <none>
-kube-system         csi-azuredisk-node-r7snn                            3/3     Running   0             10d    10.64.4.113   aks-agentpool-25316841-vmss000001   <none>           <none>
-kube-system         csi-azurefile-node-7tjxl                            3/3     Running   0             3d1h   10.64.4.113   aks-agentpool-25316841-vmss000001   <none>           <none>
-kube-system         csi-azurefile-node-nfntk                            3/3     Running   0             3d1h   10.64.4.4     aks-agentpool-25316841-vmss000000   <none>           <none>
-kube-system         konnectivity-agent-6d4987776d-2wbc2                 1/1     Running   0             23d    10.64.4.142   aks-agentpool-25316841-vmss000001   <none>           <none>
-kube-system         konnectivity-agent-6d4987776d-hdgx9                 1/1     Running   0             82d    10.64.4.204   aks-agentpool-25316841-vmss000001   <none>           <none>
-kube-system         kube-proxy-dvl5k                                    1/1     Running   0             44d    10.64.4.113   aks-agentpool-25316841-vmss000001   <none>           <none>
-kube-system         kube-proxy-jx2qw                                    1/1     Running   1 (23d ago)   44d    10.64.4.4     aks-agentpool-25316841-vmss000000   <none>           <none>
-kube-system         metrics-server-7757d565cf-rrktr                     2/2     Running   0             41d    10.64.4.181   aks-agentpool-25316841-vmss000001   <none>           <none>
-kube-system         metrics-server-7757d565cf-zz97t                     2/2     Running   0             23d    10.64.4.190   aks-agentpool-25316841-vmss000001   <none>           <none>
-sample              aks-helloworld-one-6965865b8b-dk6w9                 1/1     Running   0             192d   10.64.4.116   aks-agentpool-25316841-vmss000001   <none>           <none>
-sample              aks-helloworld-two-66c5cf894b-vmztv                 1/1     Running   0             192d   10.64.4.115   aks-agentpool-25316841-vmss000001   <none>           <none>
-sample              aspnet-api-79b4cbf4bb-54cng                         1/1     Running   0             10d    10.64.4.100   aks-agentpool-25316841-vmss000000   <none>           <none>
+kube-system         azure-policy-557988f6df-q5rgf                       1/1     Running   0             23d    10.64.4.171   aks-nodepool1-25316841-vmss000001   <none>           <none>
+kube-system         azure-policy-webhook-5dfcfc5998-cn7p6               1/1     Running   0             23d    10.64.4.161   aks-nodepool1-25316841-vmss000001   <none>           <none>
+kube-system         cloud-node-manager-j8zg4                            1/1     Running   1 (23d ago)   72d    10.64.4.4     aks-nodepool1-25316841-vmss000000   <none>           <none>
+kube-system         cloud-node-manager-p8nk5                            1/1     Running   0             72d    10.64.4.113   aks-nodepool1-25316841-vmss000001   <none>           <none>
+kube-system         coredns-785fcf7bdd-6d84r                            1/1     Running   0             82d    10.64.4.214   aks-nodepool1-25316841-vmss000001   <none>           <none>
+kube-system         coredns-785fcf7bdd-n8bvt                            1/1     Running   0             23d    10.64.4.199   aks-nodepool1-25316841-vmss000001   <none>           <none>
+kube-system         coredns-autoscaler-65bb858f95-6lwkf                 1/1     Running   0             23d    10.64.4.117   aks-nodepool1-25316841-vmss000001   <none>           <none>
+kube-system         csi-azuredisk-node-2n6md                            3/3     Running   0             10d    10.64.4.4     aks-nodepool1-25316841-vmss000000   <none>           <none>
+kube-system         csi-azuredisk-node-r7snn                            3/3     Running   0             10d    10.64.4.113   aks-nodepool1-25316841-vmss000001   <none>           <none>
+kube-system         csi-azurefile-node-7tjxl                            3/3     Running   0             3d1h   10.64.4.113   aks-nodepool1-25316841-vmss000001   <none>           <none>
+kube-system         csi-azurefile-node-nfntk                            3/3     Running   0             3d1h   10.64.4.4     aks-nodepool1-25316841-vmss000000   <none>           <none>
+kube-system         konnectivity-agent-6d4987776d-2wbc2                 1/1     Running   0             23d    10.64.4.142   aks-nodepool1-25316841-vmss000001   <none>           <none>
+kube-system         konnectivity-agent-6d4987776d-hdgx9                 1/1     Running   0             82d    10.64.4.204   aks-nodepool1-25316841-vmss000001   <none>           <none>
+kube-system         kube-proxy-dvl5k                                    1/1     Running   0             44d    10.64.4.113   aks-nodepool1-25316841-vmss000001   <none>           <none>
+kube-system         kube-proxy-jx2qw                                    1/1     Running   1 (23d ago)   44d    10.64.4.4     aks-nodepool1-25316841-vmss000000   <none>           <none>
+kube-system         metrics-server-7757d565cf-rrktr                     2/2     Running   0             41d    10.64.4.181   aks-nodepool1-25316841-vmss000001   <none>           <none>
+kube-system         metrics-server-7757d565cf-zz97t                     2/2     Running   0             23d    10.64.4.190   aks-nodepool1-25316841-vmss000001   <none>           <none>
+sample              aks-helloworld-one-6965865b8b-dk6w9                 1/1     Running   0             192d   10.64.4.116   aks-nodepool1-25316841-vmss000001   <none>           <none>
+sample              aks-helloworld-two-66c5cf894b-vmztv                 1/1     Running   0             192d   10.64.4.115   aks-nodepool1-25316841-vmss000001   <none>           <none>
+sample              aspnet-api-79b4cbf4bb-54cng                         1/1     Running   0             10d    10.64.4.100   aks-nodepool1-25316841-vmss000000   <none>           <none>
 
 ```
 
@@ -189,7 +189,7 @@ Kubernetes          1.25.6
 The kubectl describe nodes command provides status information of nodes
 
 ```bash
-kubectl describe nodes aks-agentpool-23144520-vmss00001s
+kubectl describe nodes aks-nodepool1-23144520-vmss00001s
 
 ```
 ## Step-2: Create a new node pool with the desired SKU
@@ -256,6 +256,7 @@ aks-nodepool2-31721111-vmss000001    Ready    agent   10d   v1.21.9
 ## Step-3: Cordon the existing nodes
 
 Cordoning marks specified nodes as unschedulable and prevents any more pods from being added to the nodes.
+
 <!-- 
 First, obtain the names of the nodes you'd like to cordon with `kubectl get nodes`. Your output should look similar to the following:
 
@@ -282,7 +283,8 @@ The behavior of this command has been altered by the following extension: aks-pr
   "hostGroupId": null,
   
 }
-``` -->
+``` 
+-->
 
 
 
@@ -390,4 +392,3 @@ You have successfully upgraded or resized a node pool in Azure Kubernetes Servic
 
 - <a href="https://learn.microsoft.com/en-us/azure/aks/resize-node-pool?tabs=azure-cli" target="_blank">Resize node pools in AKS</a>
 - <a href="https://github.com/MicrosoftDocs/azure-docs/blob/main/articles/aks/use-system-pools.md" target="_blank">Manage system node pools in Azure Kubernetes Service (AKS)</a>
-- 
