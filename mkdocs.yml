@@ -193,6 +193,7 @@ nav:
     - Setup NGINX ingress controller in AKS using Terraform : kubernetes/4-ingress-controller-nginx.md
     - Setup Application Gateway ingress controller (AGIC) in AKS using Terraform : kubernetes/4.1-ingress-controller-agic.md
     - Setup Cert-Manager in AKS using Terraform : kubernetes/5-cert-manager.md
+    - Issue the Let's Encrypt SSL Certificate to the Website : kubernetes/5.1-issue-cert.md
     # - Create YAML Manifests for Microservice-1 : kubernetes/5.1-manifests-microservice-1.md
     # - Create YAML Manifests for Microservice-2 : kubernetes/5.2-manifests-microservice-2.md    
     - Kubernetes Pod troubleshooting : kubernetes/pod-troubleshooting.md    
