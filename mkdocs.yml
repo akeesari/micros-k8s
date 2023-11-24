@@ -195,6 +195,7 @@ nav:
     - Setup Cert-Manager in AKS using Terraform : kubernetes/5-cert-manager.md
     - Issue the Let's Encrypt SSL Certificate to the Website : kubernetes/5.1-issue-cert.md
     - Troubleshooting Problems with Let's Encrypt Certificates : kubernetes/5.2-cert-troubleshooting.md
+    - Integrating Azure Key Vault with AKS using Terraform : kubernetes/6-aks-kv-integration.md
     # - Create YAML Manifests for Microservice-1 : kubernetes/5.1-manifests-microservice-1.md
     # - Create YAML Manifests for Microservice-2 : kubernetes/5.2-manifests-microservice-2.md    
     - Kubernetes Pod troubleshooting : kubernetes/pod-troubleshooting.md    
