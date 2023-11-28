@@ -43,7 +43,11 @@ In this exercise we will accomplish & learn how to implement following:
 
 Here is the reference architecture diagram of Azure container registry.
 
-<IMG  src="https://learn.microsoft.com/en-us/azure/container-registry/media/container-registry-concepts/registry-elements.png"  alt="Registry, repositories, and artifacts"/>
+![Alt text](images/image-75.png)
+
+<!-- Here is the reference architecture diagram from MSDN on registries, repositories, and container images and related artifacts.
+
+<IMG  src="https://learn.microsoft.com/en-us/azure/container-registry/media/container-registry-concepts/registry-elements.png"  alt="Registry, repositories, and artifacts"/> -->
 
 reference- <https://learn.microsoft.com/en-us/azure/container-registry/container-registry-concepts>
 

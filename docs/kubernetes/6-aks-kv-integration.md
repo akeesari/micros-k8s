@@ -16,7 +16,7 @@ so that all your application configuration is fully secured. we are going to use
 
 ## Prerequisites
 
-Before delving into the implementation, ensure you have the following prerequisites:
+Before start the implementation, ensure you have the following prerequisites:
 
 - Azure subscription
 - Terraform installed and configured
@@ -31,7 +31,7 @@ In this exercise, we will cover the following steps to integrating Azure key vau
 
 1. **Step-1:** Install the Secrets Store CSI Driver and the Azure Keyvault Provider
 
-2. **Step 2:** Grant AKS Access to Key Vault
+2. **Step 2:** Craete access policy in Azure Key Vault for AKS cluster
 
 3. **Step 3:** Create Secret Provider Class
 
@@ -43,7 +43,7 @@ In this exercise, we will cover the following steps to integrating Azure key vau
 
 ## Architecture Diagram
 
-This digram from MSDN documentation explains step by step workflow of the CSI driver with pod identity.
+This digram explains components used in this lab like CSI driver, Keyvault Provider & AKS VMSS access in Key vault.
  
 ![Alt text](images\image-32.png)
 
@@ -83,13 +83,13 @@ kubectl get namespace -A
 
 ## Implementation Details
 
-This guide will take you through the steps to configure and run the Azure Key Vault Provider for Secrets Store CSI driver on Kubernetes.
+This guide will take you through the steps to configure and run the Azure Key Vault Provider for Secrets Store CSI driver on Kubernetes for Integrating Azure Key Vault with AKS cluster.
 
 Utilize Terraform to deploy the Secrets Store CSI Driver Helm chart onto AKS.
 
 ## Step-1: Install the Secrets Store CSI Driver and the Azure Keyvault Provider
 
-In order to install any kind of helm charts using terraform we need following three providers; 
+To install Helm charts using Terraform, you'll need to add the necessary Terraform providers. Here's an example of how to include them in your `provider.tf` file:
 
 Let's add following terraform providers in `provider.tf` file
 
@@ -209,15 +209,16 @@ kubectl get pods -l app=csi-secrets-store-provider-azure -n kube-system
 NAME                                         READY   STATUS    RESTARTS   AGE
 csi-secrets-store-provider-azure-tpb4j   1/1     Running   0          3h52m
 ```
-Certainly, I'll help you refine the content for "Step-2: Grant AKS Access to Key Vault." Here's an improved version:
 
----
+!!! note
+    I recently observed that the latest version of AKS clusters now includes these pods by default. Therefore, if you have created an AKS cluster with the latest Kubernetes version, you can safely skip step-1.
 
-## Step-2: Grant AKS Access to Key Vault
+## Step-2: Craete access policy in Azure Key Vault for AKS cluster
 
 Granting the necessary permissions for the Kubernetes cluster to access secrets in the Key Vault is a crucial step in securing your applications. There are multiple approaches to achieve this, such as using Helm charts, Azure Command-Line Interface (az) commands, or Azure Active Directory (AAD) pod identity. In this guide, we'll focus on granting access to the Azure Kubernetes Service (AKS) Virtual Machine Scale Set (VMSS) identity, when I tried with AAD pod identity I've encountered couple of issues therefore I am selecting VMSS identity here.
 
-Manual Steps: Create Managed Service Identity (MSI) for AKS VMSS
+
+Manual Steps: Enable Managed Service Identity (MSI) for the AKS VMSS.
 
 1. Navigate to the AKS MC_ resource group in the Azure portal, typically named in the format `MC_rg-rgname-dev_aks-aksname-dev_region`.
 
@@ -225,7 +226,7 @@ Manual Steps: Create Managed Service Identity (MSI) for AKS VMSS
 
 3. In the left navigation pane, click on "Identity," and set the Status to "On" in the "System Assigned" tab. This action creates a new MSI. Copy the generated ID; you'll need it later.
 
-**Update Key Vault Access Policy**
+Update the Terraform script with the AKS VMSS identity.
 
 Once the AKS VMSS identity is enabled, proceed to update the Terraform script to incorporate this identity. Below are the steps:
 
@@ -456,9 +457,6 @@ kubectl exec busybox-secrets-store-inline --namespace kube-system -- cat /mnt/se
 MyAKSHCIExampleSecret
 ```
 
-Certainly! Here's an improved version for the "References" section:
-
----
 
 ## References
 
