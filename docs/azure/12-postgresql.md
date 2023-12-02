@@ -59,7 +59,7 @@ In this exercise we will accomplish & learn how to implement following:
 
 The following diagram illustrates the high level architecture of PostgreSQL - Flexible Server:
 
-![Alt text](images/image-62.jpg)
+![Alt text](images/image-62.png)
 
 ## Prerequisites
 

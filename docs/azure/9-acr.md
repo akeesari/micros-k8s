@@ -47,9 +47,10 @@ Here is the reference architecture diagram of Azure container registry.
 
 <!-- Here is the reference architecture diagram from MSDN on registries, repositories, and container images and related artifacts.
 
-<IMG  src="https://learn.microsoft.com/en-us/azure/container-registry/media/container-registry-concepts/registry-elements.png"  alt="Registry, repositories, and artifacts"/> -->
+<IMG  src="https://learn.microsoft.com/en-us/azure/container-registry/media/container-registry-concepts/registry-elements.png"  alt="Registry, repositories, and artifacts"/> 
 
 reference- <https://learn.microsoft.com/en-us/azure/container-registry/container-registry-concepts>
+-->
 
 ## Prerequisites
   - Download & Install Terraform

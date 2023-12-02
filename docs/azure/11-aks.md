@@ -49,7 +49,7 @@ In this exercise we will accomplish & learn how to implement following:
 
 Here is the reference architecture diagram of Azure Kubernetes services.
 
-working on it...
+![Alt text](images/image-79.png)
 
 ## Prerequisites
   - Download & Install Terraform
