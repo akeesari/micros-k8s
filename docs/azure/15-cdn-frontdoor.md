@@ -1,8 +1,58 @@
 ## Introduction
 
-Azure Front Door is a modern cloud content delivery network (CDN) service that delivers high performance, scalability, and secure user experiences for your content and applications. Azure Front Door offers a range of security, acceleration, global load balancing, and caching solutions operating at the network edge. 
+Azure Front Door and Azure CDN (Content Delivery Network) services are provided by Microsoft Azure
 
-In this lab, I will walk through the steps to create an Azure Front Door & CDN profile using Terraform. We'll also configure frontend URL of Azure Front Door and backend origin group and origin with route and custome domain.  I'll also configure diagnostic settings to monitor its performance effectively. Finally, we'll validate these resources within the Azure portal to confirm that everything is functioning as expected.
+**Azure Front Door**
+
+`Azure Front Door`is a global, scalable entry-point service that optimizes and secures web applications. It acts as a load balancer with routing, providing global load balancing, SSL termination, and application acceleration. Azure Front Door improves the performance, availability, and security of web applications.
+
+**Key Features:**
+
+1. **Global Load Balancing:** Distributes user traffic across multiple endpoints globally, ensuring users are directed to the closest and healthiest server.
+  
+2. **Web Application Firewall (WAF):** Provides protection against common web vulnerabilities and exploits through customizable security policies.
+
+3. **SSL/TLS Termination:** Terminates SSL/TLS at the edge to reduce the load on backend servers and enhance performance.
+
+4. **Acceleration of Dynamic and Static Content:** Optimizes content delivery by caching static content at edge locations and accelerating dynamic content.
+
+5. **Session Affinity:** Supports sticky sessions to direct user requests to the same backend server, ensuring a consistent user experience.
+
+6. **Custom Domains:** Allows the use of custom domain names and certificates for secure communication.
+
+7. **Health Probing:** Monitors the health of backend servers and automatically routes traffic away from unhealthy servers.
+
+8. **Routing Rules:** Enables flexible routing based on criteria such as path, host, query string, and client IP address.
+
+9. **Backend Pools:** Groups endpoints (backend servers) into pools for better organization and management.
+
+10. **Analytics and Monitoring:** Provides insights into user traffic, performance, and security through analytics and monitoring tools.
+
+**Azure CDN Profile:**
+
+Azure CDN is a distributed network of servers that delivers web content (such as images, videos, and scripts) to users based on their geographical location. It helps reduce latency and improves content delivery by caching and serving content from `edge locations` that are closer to the end-users.
+
+**Key Features:**
+
+1. **Content Caching:** Distributes and caches content at edge locations to reduce latency and improve performance.
+
+2. **Dynamic Site Acceleration:** Optimizes delivery of dynamic content by using advanced caching techniques.
+
+3. **HTTPS Support:** Provides secure content delivery over HTTPS.
+
+4. **Origin Fetch Optimization:** Minimizes the need to fetch content from the origin server by serving it directly from the edge.
+
+5. **Compression:** Compresses content to reduce file sizes and improve delivery speed.
+
+6. **Content Purging:** Allows manual purging of cached content to ensure updated content is delivered.
+
+7. **Rules Engine:** Enables customization of content delivery rules based on various criteria.
+
+8. **Analytics and Monitoring:** Provides insights into content delivery performance and user behavior.
+
+`Azure Front Door` is primarily focused on application optimization, global load balancing, and security, while `Azure CDN` is focused on efficiently delivering and caching content to improve overall performance. 
+
+In this lab, I will walk through the steps to create an Azure Front Door & CDN profile using Terraform. We'll also configure frontend URL of Azure Front Door and backend origin group and origin with route and custom domain.  I'll also configure diagnostic settings to monitor its performance effectively. Finally, we'll validate these resources within the Azure portal to confirm that everything is functioning as expected.
 
 ## Technical Scenario
 
@@ -266,10 +316,9 @@ cdn_frontdoor_profile_sku_name      = "Standard_AzureFrontDoor"
 
 ## Task-2: Create a Front Door CDN profile using Terraform.
 
-In this task, you will use Terraform to create an Azure CDN profile. The provided Terraform code demonstrates how to configure the CDN profile, including its name, resource group, SKU, and tags. This profile is the foundation of your content delivery network.
+In this task, you will use Terraform to create an Azure CDN profile. The provided Terraform code demonstrates how to configure the CDN profile, including its name, resource group, SKU, and tags. This profile is the foundation of your content delivery network (CDN).
 
-CDN profiles are commonly used to optimize the delivery of static and dynamic content, accelerate web performance, and reduce the load on your web servers by distributing cached content from the edge servers to users.
-
+CDN Profile which contains a collection of endpoints and origin groups which we will discuss in next steps.
 
 ```tf title="cdn-frontdoor.tf"
 # Task-2: Create a Front Door CDN profile using Terraform.
@@ -306,31 +355,18 @@ Azure Front Door and CDN profile - Overview blade
 
 ![Alt text](images/image-80.png)
 
-## Task-3: Create a Front Door Endpoint using using Terraform.
+## Task-3: Create a Front Door Endpoint using Terraform.
 
-**Azure Front Door manager**
 
-Before creating CDN endpoints let's try to understand the `Azure Front Door manager` first here.
+In Azure Front Door, an "Endpoint" represents a specific destination to which incoming requests are routed. Endpoints are critical components of the routing and load balancing capabilities provided by Azure Front Door. Each endpoint points to a backend resource, such as an Azure Web App, an Azure API Management instance, a custom domain, or any other service that you want to expose through Azure Front Door.
 
-The Front Door manager in Azure Front Door Standard and Premium provides an overview of endpoints you've configured for your Azure Front Door profile. With Front Door manager, you can manage your collection of endpoints. You can also configure routings rules along with their domains and origin groups, and security policies you want to apply to protect your web application.
-
-<https://learn.microsoft.com/en-us/azure/frontdoor/media/manager/manager-expanded.png#lightbox>
-
-for more information - <https://learn.microsoft.com/en-us/azure/frontdoor/manager>
-
-**Endpoint**
-
-In Azure Front Door, an endpoint is a logical grouping of one or more routes that are associated with domain names. Each endpoint is assigned a domain name by Front Door, and you can associate your own custom domains by using routes.
-
-A Front Door profile can contain multiple endpoints. However, in many situations you might only need a single endpoint.
-
-For example, suppose you have created an endpoint named myendpoint. The endpoint domain name might be myendpoint-mdjf2jfgjf82mnzx.z01.azurefd.net.
+For example, suppose you have created an endpoint named `myendpoint`. The endpoint domain name might be `myendpoint-mdjf2jfgjf82mnzx.z01.azurefd.net`.
 
 for more information - <https://learn.microsoft.com/en-us/azure/frontdoor/endpoint?tabs=azurecli> 
 
 
 ```tf title="cdn-frontdoor.tf"
-# Task-3: Create a Front Door endpoint using using Terraform. - (frontend) 
+# Task-3: Create a Front Door endpoint using Terraform. - (frontend) 
 resource "azurerm_cdn_frontdoor_endpoint" "cdn_frontdoor_endpoint" {
   name                     = var.cdn_frontdoor_endpoint_name
   cdn_frontdoor_profile_id = azurerm_cdn_frontdoor_profile.cdn_frontdoor_profile.id
@@ -370,6 +406,7 @@ terraform apply dev-plan
 
 An Origin Group, also known as a Backend Pool, is a logical grouping of multiple backend resources (usually web servers or application instances) that serve the same content or application but may be distributed across different geographic locations or data centers. The primary purpose of an Origin Group is to ensure high availability and load balancing.
 
+more information - <https://learn.microsoft.com/en-us/azure/frontdoor/origin?pivots=front-door-standard-premium>
 
 ```tf title="cdn-frontdoor.tf"
 
@@ -422,9 +459,13 @@ terraform apply dev-plan
 
 ## Task-5: Create a Front Door Origin using Terraform.
 
-Origin
-An origin refers to the application deployment that Azure Front Door retrieves contents from when caching isn't enabled or when a cache gets missed. Azure Front Door supports origins hosted in Azure and applications hosted in your on-premises datacenter or with another cloud provider. An origin shouldn't be confused with your database tier or storage tier. The origin should be viewed as the endpoint for your application backend. When you add an origin to an origin group in the Front Door configuration, you must also configure the following settings:
-Origin type: 
+Origins are the destinations where Front Door forwards user traffic
+
+An origin can be any service or resource that you want to expose through Azure Front Door. This includes Azure Web Apps, API Management instances, custom domains, or other backend services.
+
+Origins are part of Origin Groups in Azure Front Door.
+
+for more information - <https://learn.microsoft.com/en-us/azure/frontdoor/origin?pivots=front-door-standard-premium>
 
 ```tf title="cdn-frontdoor.tf"
 # Task-5: Create a Front Door origin using Terraform. (backend)
@@ -451,17 +492,12 @@ resource "azurerm_cdn_frontdoor_origin" "cdn_frontdoor_origin" {
   }
 }
 ```
-In Azure Front Door, an "Origin" refers to the source of content that you want to distribute or deliver using the Front Door service. The term "Origin" typically represents a backend service or web application that hosts the content you want to serve to users. Origins are part of Origin Groups in Azure Front Door.
 
 Here's a bit more detail:
 
 - **Origin Group:** An Origin Group is a logical grouping of multiple backend Origins. It allows you to specify a collection of backend endpoints, often geographically distributed, that host the same content or service. These endpoints are used to serve traffic for your application. An Origin Group can be used for redundancy, load balancing, or traffic distribution based on your configuration.
 
-2. **Origin:** An Origin, within an Origin Group, is a specific backend endpoint or server that hosts the content you want to serve. You might have multiple Origins within an Origin Group to provide high availability and fault tolerance. Azure Front Door automatically balances and routes traffic to these Origins.
-
-For example, if you have a web application hosted in different data centers or regions, you can define each data center or region as an Origin within an Origin Group. Azure Front Door will then intelligently route traffic to the closest or healthiest Origin based on the routing rules you've configured.
-
-By using Origin Groups and Origins, Azure Front Door can ensure high availability, low latency, and redundancy for your applications and content delivery.
+- **Origin:** An Origin, within an Origin Group, is a specific backend endpoint or server that hosts the content you want to serve. You might have multiple Origins within an Origin Group to provide high availability and fault tolerance. Azure Front Door automatically balances and routes traffic to these Origins.
 
 
 run terraform validate & format
@@ -514,8 +550,7 @@ resource "azurerm_cdn_frontdoor_custom_domain" "cdn_frontdoor_custom_domain" {
   }
 }
 ```
-
-<https://learn.microsoft.com/en-us/azure/frontdoor/domain>
+for more information - <https://learn.microsoft.com/en-us/azure/frontdoor/domain>
 
 run terraform validate & format
 
@@ -534,6 +569,11 @@ terraform apply dev-plan
 <!-- ![Alt text](images/image-83.png) -->
 
 ## Task-7: Create a Front Door Route using Terraform
+
+
+
+In the context of Azure Front Door and similar content delivery or load balancing services, a `Route` typically refers to the configuration or rule that defines how incoming requests are directed to specific backend Origins or Origin Groups.
+
 
 ```tf title="cdn-frontdoor.tf"
 # Task-7: Create Route in Origin of the Origin Group
@@ -569,24 +609,6 @@ resource "azurerm_cdn_frontdoor_route" "cdn_frontdoor_route" {
 }
 
 ```
-
-
-In the context of Azure Front Door and similar content delivery or load balancing services, a "Route" typically refers to the configuration or rule that defines how incoming requests are directed to specific backend Origins or Origin Groups.
-
-Here's a breakdown:
-
-- **Route Configuration:** A "Route" configuration specifies the criteria for routing requests based on factors like the request's path, host, or other HTTP attributes. It defines what should happen when a request matches certain conditions.
-
-2. **Origin Group Routing:** In Azure Front Door, you can define routing rules that determine which Origin Group should serve traffic based on certain conditions. For example, you might configure routing rules to direct requests for images to one Origin Group and requests for dynamic content to another. This allows for intelligent load balancing and content delivery.
-
-3. **Routing Decisions:** Routes are used to make routing decisions. When a request is received by the Front Door service, it examines the request attributes and matches them against the defined routing rules. Once a match is found, the request is directed to the associated Origin or Origin Group.
-
-4. **Path-Based Routing:** Path-based routing is a common use of routes. For instance, you can route requests that match the path "/images/*" to one Origin Group for image content and requests matching "/api/*" to another Origin Group for API requests.
-
-In summary, "Route" in this context is a configuration element that enables the intelligent and dynamic routing of incoming requests to the appropriate backend Origin or Origin Group based on specific criteria. This is crucial for scenarios where you need to load balance, distribute, or segregate traffic effectively, whether for content delivery or backend service access. The exact terminology and configuration may vary depending on the service or platform you're using, but the fundamental concept of routing based on rules remains consistent.
-
-
-
 run terraform validate & format
 
 ``` bash
@@ -601,16 +623,9 @@ terraform plan -out=dev-plan -var-file="./environments/dev-variables.tfvars"
 terraform apply dev-plan
 ```
 
-<!-- ![Alt text](images/image-83.png) -->
-## DNS configuration
-
-When you add a domain to your Azure Front Door profile, you configure two records in your DNS server:
-A DNS TXT record, which is required to validate ownership of your domain name. For more information on the DNS TXT records, see Domain validation.
-A DNS CNAME record, which controls the flow of internet traffic to Azure Front Door.
-
 ## Task-8: Create a DNS TXT (temporary) record in DNS Zone
 
-The provided Terraform configuration is used to create a DNS TXT record in an Azure DNS zone. The primary purpose of this DNS TXT record is to validate ownership and control of a custom domain for Azure Front Door. Let's break down the key components of this configuration:
+The provided Terraform configuration is used to create a DNS TXT record in an Azure DNS zone. The primary purpose of this DNS TXT record is to validate ownership and control of a custom domain for Azure Front Door. 
 
 
 ```tf title="cdn-frontdoor.tf"
@@ -646,10 +661,11 @@ terraform apply dev-plan
 ```
 
 <!-- ![Alt text](images/image-83.png) -->
-In summary, this Terraform configuration creates a DNS TXT record in an Azure DNS zone with specific content, and it associates it with Azure Front Door for domain ownership validation. It's an essential step when setting up a custom domain to point to Azure Front Door, as it proves that you have control over the domain you're configuring.
+This Terraform configuration creates a DNS TXT record in an Azure DNS zone with specific content, and it associates it with Azure Front Door for domain ownership validation. It's an essential step when setting up a custom domain to point to Azure Front Door, as it proves that you have control over the domain you're configuring.
 
 ## Task-9: Create DNS CNAME records in DNS Zone
 
+ This Terraform task facilitates the automated setup of DNS CNAME records, linking your custom domain or subdomain to an Azure CDN Front Door endpoint for streamlined access to your application.
 
 ```tf title="cdn-frontdoor.tf"
 # Task-9: Create DNS CNAME records in DNS Zone
@@ -785,5 +801,5 @@ Here are some references related to Azure Front Door and CDN:
 - [azurerm_cdn_frontdoor_custom_domain](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/cdn_frontdoor_custom_domain)
 - [azurerm_dns_txt_record](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/dns_txt_record)
 - [azurerm_dns_cname_record](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/dns_cname_record)
-
+- [101-front-door-standard-premium](https://github.com/Azure/terraform/tree/master/quickstart/101-front-door-standard-premium)
 <!-- - https://intellipaat.com/blog/azure-front-door/ -->
