@@ -41,6 +41,7 @@ Before proceeding with this lab, make sure you have the following prerequisites 
 - Azure subscription.
 - Visual Studio Code.
 - Log Analytics workspace - for configuring diagnostic settings.
+- Azure Public DNS zone - for custom domain
 - Basic knowledge of Terraform and Azure concepts.
 
 ## Implementation details
@@ -79,7 +80,7 @@ This table presents the variables along with their descriptions, data types, and
 | `cdn_frontdoor_tags`                               | Specifies a mapping of tags for the Front Door Endpoint.                                                          | `map(any)`   | `{}`          |
 | `cdn_frontdoor_profile_name`                        | Specifies the name of the Front Door Profile.                                                                     | `string`     | `"afd-cdn_frontdoor1-dev"` |
 | `cdn_frontdoor_profile_sku_name`                    | The SKU for the Front Door profile. Possible values include: `Standard_AzureFrontDoor`, `Premium_AzureFrontDoor`.  | `string`     | `"Standard_AzureFrontDoor"` |
-| `cdn_frontdoor_endpoint_name`                       | The name for the Front Door Origin. Changing this forces a new Front Door Origin to be created.                   | `string`     | `"endpoint1"` |
+| `cdn_frontdoor_endpoint_name`                       | The name for the Front Door Origin.                    | `string`     | `"endpoint1"` |
 | `cdn_frontdoor_endpoint_enabled`                    | Specifies if this Front Door Endpoint is enabled. Defaults to `true`.                                             | `bool`       | `true`        |
 | `cdn_frontdoor_origin_group_name`                  | The name for the Front Door Origin Group.                                                                         | `string`     | `"origingroup1"` |
 | `session_affinity_enabled`                          | Specifies whether session affinity should be enabled on this host. Defaults to `true`.                            | `bool`       | `true`        |
@@ -89,7 +90,7 @@ This table presents the variables along with their descriptions, data types, and
 | `cdn_frontdoor_origin_host_name`                   | The host name of the domain. The `host_name` field must be the FQDN of your domain.                              | `string`     | `"sitename.mydomain.com"` |
 | `cdn_frontdoor_origin_host_header`                 | The host header value which is sent to the origin with each request.                                               | `string`     | `"sitename.mydomain.com"` |
 | `cdn_frontdoor_route_name`                         | The name for the Front Door Route. Valid values must begin with a letter or number and may only contain letters, numbers, and hyphens with a maximum length of 90 characters. | `string` | `"route1"` |
-| `content_types_to_compress`                        | Specifies the address space of the hub virtual virtual network.                                                     | `list(string)` | See default values in the code |
+| `content_types_to_compress`                        | (Optional) An array of strings that indicates a content types on which compression will be applied. The value for the elements should be MIME types.                                                     | `list(string)` | See default values in the code |
 | `public_dns_zone_name`                             | The name of the DNS Zone. Must be a valid domain name.                                                             | `string`     | `"mydomain.com"` |
 | `public_dns_zone_rg_name`                          | Specifies the resource group where the resource exists.                                                           | `string`     | `"rg-mydomains-dev"` |
 | `cdn_frontdoor_custom_domain_name`                 | The name for the Front Door Custom Domain. Must be between 2 and 260 characters in length.                         | `string`     | `"sitename"` |
