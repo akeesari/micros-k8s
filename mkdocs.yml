@@ -115,6 +115,9 @@ markdown_extensions:
   #     permalink: true
 
 extra:
+  analytics:
+    provider: google
+    property: G-KR7ZFHXJM1
   social:
     - icon: fontawesome/brands/github-alt
       link: https://github.com
