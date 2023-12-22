@@ -473,29 +473,16 @@ Azure Cache for Redis is a powerful tool for optimizing application performance,
 
 
 ## Reference
+- [Microsoft MSDN - Azure Cache for Redis Documentation](https://learn.microsoft.com/en-us/azure/azure-cache-for-redis/){:target="_blank"}
+- [Microsoft MSDN - Tutorial: Secure access to an Azure Cache for Redis instance from a virtual network](https://docs.microsoft.com/en-us/azure/azure-cache-for-redis/cache-private-link){:target="_blank"}
+- [Microsoft MSDN - Azure Private DNS Zone Overview](https://docs.microsoft.com/en-us/azure/private-link/private-endpoint-dns){:target="_blank"}
+- [Terraform Registry - azurerm_redis_cache](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/redis_cache){:target="_blank"}
+- [Terraform Registry - azurerm_private_dns_zone](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/private_dns_zone){:target="_blank"}
+- [Terraform Registry - azurerm_private_dns_zone_virtual_network_link](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/private_dns_zone_virtual_network_link){:target="_blank"}
+- [Terraform Registry - azurerm_private_endpoint](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/private_endpoint){:target="_blank"}
+- [Terraform Registry - azurerm_monitor_diagnostic_setting](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/monitor_diagnostic_setting){:target="_blank"}
 
-Here are some references related to Azure Cache for Redis &  securing using private endpoints with Terraform:
-
-**Microsoft Azure Documentation:**
-
-1. [Azure Cache for Redis Documentation](https://learn.microsoft.com/en-us/azure/azure-cache-for-redis/)
-
-2. [Tutorial: Secure access to an Azure Cache for Redis instance from a virtual network](https://docs.microsoft.com/en-us/azure/azure-cache-for-redis/cache-private-link)
-
-3. [Azure Private DNS Zone Overview](https://docs.microsoft.com/en-us/azure/private-link/private-endpoint-dns)
-
-**Terraform Resources:**
-
-1. [Documentation on creating a azure cache for redis with Terraform.](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/redis_cache)
-   
-2. [Documentation on creating a private DNS zone with Terraform.](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/private_dns_zone)
-
-3. [Documentation on creating a virtual network link to associate a private DNS zone to a VNet in Terraform.](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/private_dns_zone_virtual_network_link)
-  
-4. [Information on creating a private endpoint for Azure Cache for Redis using Terraform.](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/private_endpoint)
-
-
-<!-- - https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/redis_cache.html
+<!-- 
 - https://stackoverflow.com/questions/73544491/how-to-implement-in-terraform-azure-for-redis-with-private-endpoint
 - https://www.youtube.com/watch?v=WexiwCm33Qs
 - https://learn.microsoft.com/en-us/azure/azure-cache-for-redis/cache-private-link

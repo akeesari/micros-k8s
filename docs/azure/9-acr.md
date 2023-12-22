@@ -483,9 +483,18 @@ for more information look into the az acr cheat-sheet [az-acr-cheat-sheet](./../
 ![image.jpg](images/image-28.jpg)
 
 ## References
- - <https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/container_registry>
- - <https://github.com/Azure-Samples/private-aks-cluster-terraform-devops/blob/main/terraform/modules/container_registry/main.tf>
- - <https://learn.microsoft.com/en-us/azure/container-registry/> - Azure Container Registry documentation
- - <https://learn.microsoft.com/en-us/azure/container-registry/container-registry-get-started-portal?tabs=azure-cli> - Quickstart: Create an Azure container registry using the Azure portal
-- <https://learn.microsoft.com/en-us/azure/container-registry/container-registry-get-started-docker-cli?tabs=azure-cli> - Push your first image to your Azure container registry using the Docker CLI
-- <https://learn.microsoft.com/en-us/azure/container-registry/container-registry-helm-repos>  -Push and pull Helm charts to an Azure container registry
+- [Microsoft MSDN - Azure Container Registry documentation](https://learn.microsoft.com/en-us/azure/container-registry/){:target="_blank"}
+- [Microsoft MSDN - Quickstart: Create an Azure container registry using the Azure portal](https://learn.microsoft.com/en-us/azure/container-registry/container-registry-get-started-portal?tabs=azure-cli){:target="_blank"}
+- [Microsoft MSDN - Push your first image to your Azure container registry using the Docker CLI](https://learn.microsoft.com/en-us/azure/container-registry/container-registry-get-started-docker-cli?tabs=azure-cli){:target="_blank"}
+- [Microsoft MSDN - Push and pull Helm charts to an Azure container registry](https://learn.microsoft.com/en-us/azure/container-registry/container-registry-helm-repos){:target="_blank"}
+- [Terraform Registry - azurerm_resource_group](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/resource_group){:target="_blank"}
+- [Terraform Registry - azurerm_management_lock](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/management_lock){:target="_blank"}
+- [Terraform Registry - azurerm_container_registry](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/container_registry){:target="_blank"}
+- [Terraform Registry - azurerm_user_assigned_identity](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/user_assigned_identity){:target="_blank"}
+- [Terraform Registry - azurerm_monitor_diagnostic_setting](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/monitor_diagnostic_setting){:target="_blank"}
+- [Azure-Samples/private-aks-cluster-terraform-devop](https://github.com/Azure-Samples/private-aks-cluster-terraform-devops/blob/main/terraform/modules/container_registry/main.tf){:target="_blank"}
+
+<!-- 
+- https://github.com/kumarvna/terraform-azurerm-container-registry
+- https://github.com/avinor/terraform-azurerm-container-registry 
+-->

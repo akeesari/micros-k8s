@@ -450,7 +450,8 @@ Azure key vault - Azure Access Policies
 
 
 ## Reference
-
-1. [Azure Key Vault documentation-MSDN](https://learn.microsoft.com/en-us/azure/key-vault/general/)
-2. [azurerm_key_vault - Terraform](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/key_vault)
-2. [azurerm_key_vault_access_policy - Terraform](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/key_vault_access_policy)
+- [Microsoft MSDN - Azure Key Vault documentation](https://learn.microsoft.com/en-us/azure/key-vault/general/){:target="_blank"}
+- [Terraform Registry - azurerm_key_vault](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/key_vault){:target="_blank"}
+- [Terraform Registry - azurerm_key_vault_access_policy](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/key_vault_access_policy){:target="_blank"}
+- [Terraform Registry - azurerm_monitor_diagnostic_setting](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/monitor_diagnostic_setting){:target="_blank"}
+- [Azure Terraform Quickstart/101-key-vault-key](https://github.com/Azure/terraform/tree/master/quickstart/101-key-vault-key){:target="_blank"}

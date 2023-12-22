@@ -1040,4 +1040,14 @@ terraform apply dev-plan
 
 That's it! You now have a new AKS cluster deployed in Azure and ready for deploying deployment YAML files for your Microservices.
 
-## References
+## Reference
+- [Microsoft MSDN - Azure Kubernetes Service (AKS) documentation](https://learn.microsoft.com/en-us/azure/aks/){:target="_blank"}
+- [Microsoft MSDN - Network concepts for applications in Azure Kubernetes Service (AKS)](https://learn.microsoft.com/en-us/azure/aks/concepts-network){:target="_blank"}
+- [Deploying a Kubernetes Cluster Using Azure Kubernetes Service](https://www.pluralsight.com/)
+- [Terraform Registry - azurerm_resource_group](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/resource_group){:target="_blank"}
+- [Terraform Registry - azurerm_user_assigned_identity](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/user_assigned_identity)applicationkube{:target="_blank"}
+- [Terraform Registry - azurerm_kubernetes_cluster](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/kubernetes_cluster){:target="_blank"}
+- [Terraform Registry - azurerm_role_assignment](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/role_assignment){:target="_blank"}
+- [Terraform Registry - azurerm_monitor_diagnostic_setting](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/monitor_diagnostic_setting){:target="_blank"}
+- [Terraform Registry - azurerm_management_lock](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/management_lock){:target="_blank"}
+- [Azure Terraform Quickstart/301-aks-private-cluster](https://github.com/Azure/terraform/tree/master/quickstart/301-aks-private-cluster){:target="_blank"}

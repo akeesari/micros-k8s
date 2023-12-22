@@ -103,10 +103,15 @@
     - Task-5: Create Diagnostics Settings for ACR
     - Task-6: Lock the resource group
     - Task-7: Validate ACR resource
-    - Task-7.1: Log in to registry
-    - Task-7.2: Push image to registry
-    - Task-7.3: Pull image from registry
-    - Task-7.4: List container images
+        - Task-7.1: Log in to registry
+        - Task-7.2: Push image to registry
+        - Task-7.3: Pull image from registry
+        - Task-7.4: List container images
+- Create Azure Application Gateway using terraform
+    - Task-1: Define and declare variables for Application Gateway
+    - Task-2: Create Public IP address for Application Gateway using Terraform
+    - Task-3: Create Azure Application Gateway using Terraform
+    - Task-4: Configure diagnostic settings for Application Gateway using terraform
 - Create Azure Kubernetes Service (AKS) using terraform
     - Task-1: Define and declare AKS variables
     - Task-2: Create a resource group for AKS
@@ -117,25 +122,48 @@
     - Task-7: Validate AKS cluster running Kubectl
     - Task-8: Allow AKS Cluster access to Azure Container
     - Task-9: Lock the resource group
-- Create Azure Application Gateway using terraform
-    - Task-1: Define and declare variables for Application Gateway
-    - Task-2: Create Public IP address for Application Gateway using Terraform
-    - Task-3: Create Azure Application Gateway using Terraform
-    - Task-4: Configure diagnostic settings for Application Gateway using terraform
+- Create Azure PostgreSQL - Flexible Server using terraform
+    - Task-1: Define and declare PostgreSQL - Flexible Server variables
+    - Task-2: Create an Azure resource group for PostgreSQL
+    - Task-3: Create an Azure Virtual Network
+    - Task-4: Create an Azure Subnet for PostgreSQL
+    - Task-5: Create a Private DNS zone for PostgreSQL
+    - Task-6: Associate PostgreSQL Private DNS zone with virtual network
+    - Task-7: Generate PostgreSQL admin random password & store in Key Vault
+    - Task-8: Create Azure PostgreSQL - Flexible Server using Terraform
+    - Task-9: Configure Diagnostic Settings for Azure PostgreSQL - Flexible Server
+    - Task-10: Set a user or group as the AD administrator for a PostgreSQL Flexible Server
+    - Task-11: Create new Databases in PostgreSQL Server
+    - Task-12: Create AD groups for database access
+- Create Azure Key Vault using Terraform
+    - Task-1: Define and declare Azure Key vault variables
+    - Task-2: Create Azure Key Vault using Terraform
+    - Task-3: Configure diagnostic settings for Azure Key Vault using terraform
+    - Task-4: Configure access policy for developer in Azure Key Vault
 - Create Azure Cache for Redis using Terraform
-    - Task-1: Define and declare virtual network variables
+    - Task-1: Define and declare Azure Cache for Redis variables
     - Task-2: Create Azure Cache for Redis using terraform
     - Task-3: Configure diagnostic settings for Azure Cache for Redis using terraform
     - Securing an Azure Cache for Redis instance
     - Task-4: Create private DNS zone for Redis Cache using terraform
-    - Task-5: Create virtual network link to associate Redis private DNS zone to vnet
+    - Task-5: Create virtual network link to associate redis private DNS zone to vnet
     - Task-5: Configure private endpoint for Azure Cache for Redis using terraform
     - key features of Redis cache
+- Create Front Door and CDN profile using Terraform
+    - Task-1: Define and Declare Azure Front Door & CDN variables.
+    - Task-2: Create a Front Door CDN profile using Terraform.
+    - Task-3: Create a Front Door Endpoint using Terraform.
+    - Task-4: Create a Front Door Origin Group using Terraform.
+    - Task-5: Create a Front Door Origin using Terraform.
+    - Task-6: Create custom domains for the Front Door using Terraform.
+    - Task-7: Create a Front Door Route using Terraform
+    - Task-8: Create a DNS TXT (temporary) record in DNS Zone
+    - Task-9: Create DNS CNAME records in DNS Zone
+    - Task-10: Configure diagnostic settings for CDN profile
+    - Task-11: Apply lock on Front Door Profile
 - Create Storage Account using terraform
 - Create Azure Bastion Host using terraform
 - Create Virtual Machine (Jumpbox) using terraform
-- Create Azure Key Vault using terraform
-- Create PostgreSQL Server & databases using terraform
 - Configure Private Endpoint & Private Links using terraform
 - Azure DNS setup
 
@@ -253,7 +281,7 @@
 - Install pgadmin4 helm chart using terraform
 - Install minio helm chart using terraform
 - Helm hooks examples in Kubernetes
-  
+<!--   
 **Chapter 7: Miscellaneous - Commands & cheat-sheets**
 
 - Git cheat-sheet
@@ -263,4 +291,5 @@
 - Kubectl cheat-sheet
 - Helm cheat-sheet
 - ArgoCD cheat-sheet
-- az acr Cheat Sheet
+- az acr Cheat Sheet 
+-->

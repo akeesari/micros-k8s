@@ -789,17 +789,20 @@ terraform apply dev-plan
 
 Here are some references related to Azure Front Door and CDN:
 
-- [Azure Front Door and CDN documentation](https://learn.microsoft.com/en-us/azure/frontdoor/)
-- [What is Azure Front Door?](https://learn.microsoft.com/en-us/azure/frontdoor/front-door-overview)
-- [Create an Azure Front Door Standard/Premium profile using Terraform](https://learn.microsoft.com/en-us/azure/frontdoor/create-front-door-terraform)
-- [Decision tree for load balancing in Azure](https://learn.microsoft.com/en-us/azure/architecture/guide/technology-choices/load-balancing-overview)
-- [azurerm_cdn_frontdoor_profile](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/cdn_frontdoor_profile)
-- [azurerm_cdn_frontdoor_endpoint](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/cdn_frontdoor_endpoint)
-- [azurerm_cdn_frontdoor_origin_group](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/cdn_frontdoor_origin_group)
-- [azurerm_cdn_frontdoor_origin](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/cdn_frontdoor_origin)
-- [azurerm_cdn_frontdoor_route](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/cdn_frontdoor_route)
-- [azurerm_cdn_frontdoor_custom_domain](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/cdn_frontdoor_custom_domain)
-- [azurerm_dns_txt_record](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/dns_txt_record)
-- [azurerm_dns_cname_record](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/dns_cname_record)
-- [101-front-door-standard-premium](https://github.com/Azure/terraform/tree/master/quickstart/101-front-door-standard-premium)
-<!-- - https://intellipaat.com/blog/azure-front-door/ -->
+- [Microsoft MSDN - Azure Front Door and CDN documentation](https://learn.microsoft.com/en-us/azure/frontdoor/){:target="_blank"}
+- [Microsoft MSDN - What is Azure Front Door?](https://learn.microsoft.com/en-us/azure/frontdoor/front-door-overview){:target="_blank"}
+- [Microsoft MSDN - Create an Azure Front Door Standard/Premium profile using Terraform](https://learn.microsoft.com/en-us/azure/frontdoor/create-front-door-terraform){:target="_blank"}
+- [Microsoft MSDN - Decision tree for load balancing in Azure](https://learn.microsoft.com/en-us/azure/architecture/guide/technology-choices/load-balancing-overview){:target="_blank"}
+- [Terraform Registry - azurerm_cdn_frontdoor_profile](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/cdn_frontdoor_profile){:target="_blank"}
+- [Terraform Registry - azurerm_cdn_frontdoor_endpoint](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/cdn_frontdoor_endpoint){:target="_blank"}
+- [Terraform Registry - azurerm_cdn_frontdoor_origin_group](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/cdn_frontdoor_origin_group){:target="_blank"}
+- [Terraform Registry - azurerm_cdn_frontdoor_origin](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/cdn_frontdoor_origin){:target="_blank"}
+- [Terraform Registry - azurerm_cdn_frontdoor_route](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/cdn_frontdoor_route){:target="_blank"}
+- [Terraform Registry - azurerm_cdn_frontdoor_custom_domain](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/cdn_frontdoor_custom_domain){:target="_blank"}
+- [Terraform Registry - azurerm_dns_txt_record](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/dns_txt_record){:target="_blank"}
+- [Terraform Registry - azurerm_dns_cname_record](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/dns_cname_record){:target="_blank"}
+- [Azure Terraform Quickstart/101-front-door-standard-premium](https://github.com/Azure/terraform/tree/master/quickstart/101-front-door-standard-premium){:target="_blank"}
+
+<!-- 
+- https://intellipaat.com/blog/azure-front-door/ 
+-->

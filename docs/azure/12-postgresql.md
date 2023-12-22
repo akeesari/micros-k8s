@@ -723,13 +723,23 @@ terraform apply dev-plan
 ```
 
 ## Reference
-
-here is the list of all the resources used while working on this technical story:
-
-- https://learn.microsoft.com/en-us/azure/postgresql/flexible-server/
-- https://learn.microsoft.com/en-us/azure/postgresql/flexible-server/overview
-- https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/postgresql_flexible_server
-- https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/postgresql_flexible_server_database
-- https://docs.microsoft.com/en-us/azure/developer/terraform/deploy-postgresql-flexible-server-database?tabs=azure-cli
-- https://github.com/claranet/terraform-azurerm-db-postgresql-flexible/blob/master/variables.tf - very good
-- https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/postgresql_flexible_server_active_directory_administrator
+- [Microsoft MSDN - Azure Database for PostgreSQL documentation](https://learn.microsoft.com/en-us/azure/postgresql/){:target="_blank"}
+- [Microsoft MSDN - Deploy a PostgreSQL Flexible Server Database using Terraform](https://learn.microsoft.com/en-us/azure/aks/concepts-network){:target="_blank"}
+- [Microsoft MSDN - Azure Database for PostgreSQL pricing](https://azure.microsoft.com/en-us/pricing/details/postgresql/flexible-server/){:target="_blank"}
+- [Terraform Registry - azurerm_resource_group](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/resource_group){:target="_blank"}
+- [Terraform Registry - azurerm_virtual_network](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/virtual_network){:target="_blank"}
+- [Terraform Registry - azurerm_subnet](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/subnet){:target="_blank"}
+- [Terraform Registry - azurerm_private_dns_zone](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/private_dns_zone){:target="_blank"}
+- [Terraform Registry - azurerm_private_dns_zone_virtual_network_link](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/private_dns_zone_virtual_network_link){:target="_blank"}
+- [Terraform Registry - random_password ](https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/password.html){:target="_blank"}
+- [Terraform Registry - azurerm_key_vault_secret ](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/key_vault_secret){:target="_blank"}
+- [Terraform Registry - azurerm_postgresql_flexible_server](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/postgresql_flexible_server){:target="_blank"}
+- [Terraform Registry - azurerm_postgresql_flexible_server_database](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/postgresql_flexible_server_database){:target="_blank"}
+- [Terraform Registry - azurerm_postgresql_flexible_server_active_directory_administrator](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/postgresql_flexible_server_active_directory_administrator){:target="_blank"}
+- [Terraform Registry - azurerm_monitor_diagnostic_setting](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/monitor_diagnostic_setting){:target="_blank"}
+- [Terraform Registry - azurerm_management_lock](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/management_lock){:target="_blank"}
+- [Azure Terraform Quickstart/201-postgresql-fs-db](https://github.com/Azure/terraform/tree/master/quickstart/201-postgresql-fs-db){:target="_blank"}
+<!-- 
+- https://www.youtube.com/watch?v=fzVROh-xgto
+- https://github.com/claranet/terraform-azurerm-db-postgresql-flexible/blob/master/variables.tf
+ -->

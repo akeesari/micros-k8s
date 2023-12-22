@@ -430,7 +430,7 @@ run terraform validate & format
 terraform validate
 terraform fmt
 ```
-
+Log Analytics
 run terraform plan & apply
 
 ```
@@ -442,5 +442,10 @@ That's it, now we've fully working azure Log analytics workspace which we are go
 
 ### Reference
 
-- <https://learn.microsoft.com/en-us/azure/azure-monitor/logs/log-analytics-workspace-overview> - Log Analytics workspace overview
-<!-- - https://learn.microsoft.com/en-us/cli/azure/acr?view=azure-cli-latest -->
+- [Microsoft MSDN - Log Analytics workspace overview](https://learn.microsoft.com/en-us/azure/azure-monitor/logs/log-analytics-workspace-overview){:target="_blank"}
+- [Terraform Registry - azurerm_resource_group](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/resource_group){:target="_blank"}
+- [Terraform Registry - azurerm_log_analytics_solution](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/log_analytics_solution){:target="_blank"}
+- [Terraform Registry - azurerm_log_analytics_workspace](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/log_analytics_workspace.html)
+{:target="_blank"}
+- [Terraform Registry - azurerm_management_lock](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/management_lock){:target="_blank"}
+- [Azure Terraform Quickstart/201-aks-log-analytics](https://github.com/Azure/terraform/tree/master/quickstart/201-aks-log-analytics){:target="_blank"}

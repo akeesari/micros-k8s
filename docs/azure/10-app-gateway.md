@@ -483,10 +483,13 @@ Application gateway - Diagnostic settings
 
 
 ## Reference
-
-   - [Web Application Firewall documentation](https://learn.microsoft.com/en-us/azure/web-application-firewall/)
-  - [Tutorial: Create an application gateway with a web application firewall using Terraform](https://learn.microsoft.com/en-us/azure/web-application-firewall/ag/application-gateway-web-application-firewall-portal)
-   - [Azure Terraform QuickStart Templates](https://github.com/Azure/terraform/tree/master/quickstart)
-   - [Azure Application Gateway Terraform Provider](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/application_gateway)
-   - [Create Public IP address for Application Gateway using Terraform](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/public_ip) 
-   - [Create Diagnostic Settings using terraform](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/monitor_diagnostic_setting)
+- [Microsoft MSDN - Azure Application Gateway documentation](https://learn.microsoft.com/en-us/azure/application-gateway/){:target="_blank"}
+- [Microsoft MSDN - Web Application Firewall documentation](https://learn.microsoft.com/en-us/azure/web-application-firewall/){:target="_blank"}
+- [Microsoft MSDN - Quickstart: Direct web traffic with Azure Application Gateway - Terraform](https://learn.microsoft.com/en-us/azure/application-gateway/quick-create-terraform){:target="_blank"}
+- [Microsoft MSDN - Tutorial: Create an application gateway with a web application firewall using Terraform](https://learn.microsoft.com/en-us/azure/web-application-firewall/ag/application-gateway-web-application-firewall-portal){:target="_blank"}
+- [Azure Terraform Quickstart/101-application-gateway](https://github.com/Azure/terraform/tree/master/quickstart/101-application-gateway){:target="_blank"}
+- [Terraform Registry - azurerm_public_ip](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/public_ip){:target="_blank"}
+- [Terraform Registry - azurerm_application_gateway](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/application_gateway){:target="_blank"}
+- [Terraform Registry - azurerm_monitor_diagnostic_setting](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/monitor_diagnostic_setting)
+{:target="_blank"}
+- [Azure Terraform Quickstart/101-application-gateway](https://github.com/Azure/terraform/tree/master/quickstart/101-application-gateway){:target="_blank"}

@@ -661,8 +661,17 @@ Now our Virtual Network is created and ready to use. You can now deploy AKS, ACR
 
 ## References
 
-- <https://learn.microsoft.com/en-us/azure/virtual-network/virtual-networks-overview>
-- <https://learn.microsoft.com/en-us/azure/virtual-network/virtual-network-peering-overview?source=recommendations>
-- <https://learn.microsoft.com/en-us/azure/aks/concepts-network>
-- <https://learn.microsoft.com/en-us/azure/architecture/reference-architectures/hybrid-networking/hub-spoke?tabs=cli>
-- <https://learn.microsoft.com/en-us/azure/architecture/reference-architectures/containers/aks/baseline-aks>
+- [Microsoft MSDN - Virtual Network documentation](https://learn.microsoft.com/en-us/azure/virtual-network/){:target="_blank"}
+- [Microsoft MSDN - Virtual network peering](https://learn.microsoft.com/en-us/azure/virtual-network/virtual-network-peering-overview?source=recommendations){:target="_blank"}
+- [Microsoft MSDN - Network concepts for applications in Azure Kubernetes Service (AKS)](https://learn.microsoft.com/en-us/azure/aks/concepts-network){:target="_blank"}
+- [Microsoft MSDN - Hub-spoke network topology in Azure](https://learn.microsoft.com/en-us/azure/architecture/reference-architectures/hybrid-networking/hub-spoke?tabs=cli){:target="_blank"}
+- [Microsoft MSDN - Baseline architecture for an Azure Kubernetes Service (AKS) cluster](https://learn.microsoft.com/en-us/azure/architecture/reference-architectures/containers/aks/baseline-aks){:target="_blank"}
+- [Terraform Registry - azurerm_resource_group](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/resource_group){:target="_blank"}
+- [Terraform Registry - azurerm_virtual_network](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/virtual_network){:target="_blank"}
+- [Terraform Registry - azurerm_subnet](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/subnet){:target="_blank"}
+- [Terraform Registry - azurerm_monitor_diagnostic_setting](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/monitor_diagnostic_setting){:target="_blank"}
+- [Terraform Registry - azurerm_management_lock](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/management_lock){:target="_blank"}
+- [IP Calculator](https://jodies.de/ipcalc){:target="_blank"}
+- [Azure Terraform Quickstart/301-hub-spoke](https://github.com/Azure/terraform/tree/master/quickstart/301-hub-spoke){:target="_blank"}
+- [Azure Terraform Quickstart/301-aks-enterprise/networking](https://github.com/Azure/terraform/blob/master/quickstart/301-aks-enterprise/networking.tf){:target="_blank"}
+
