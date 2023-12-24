@@ -21,7 +21,7 @@ choco install kubernetes-cli
 
 Mac OS users.
 
-look into this for more info - <https://kubernetes.io/docs/tasks/tools/install-kubectl-macos/>
+look into this for more info - [Install and Set Up kubectl on macOS](https://kubernetes.io/docs/tasks/tools/install-kubectl-macos/)
 
 ``` sh
 brew install kubectl

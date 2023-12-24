@@ -84,7 +84,7 @@ We will create a dedicated Git repository within Azure DevOps to store our Terra
 
 Here are the steps to create a new Git repository in Azure DevOps:
 
-- Login into azure DevOps -  <https://dev.azure.com/>
+- Login into azure DevOps -  [azure DevOps](https://dev.azure.com/){:target="_blank"}
 - Select the project where we want to create the repo
 - Click on `Repos` left nav link
 - From the repo drop-down, select `New repository`
@@ -670,7 +670,6 @@ The final step in terraform management is to make sure that all the azure resour
 
 ## References
 
-
-- <https://learn.microsoft.com/en-us/azure/devops/organizations/projects/create-project?view=azure-devops&tabs=browser>
-- <https://learn.microsoft.com/en-us/azure/devops/repos/git/create-new-repo?view=azure-devops>
-- <https://learn.microsoft.com/en-us/power-apps/developer/data-platform/walkthrough-register-app-azure-active-directory>
+- [Microsoft MSDN - Create a project in Azure DevOps](https://learn.microsoft.com/en-us/azure/devops/organizations/projects/create-project?view=azure-devops&tabs=browser){:target="_blank"}
+- [Microsoft MSDN - Create a new Git repo in your project](https://learn.microsoft.com/en-us/azure/devops/repos/git/create-new-repo?view=azure-devops){:target="_blank"}
+- [Microsoft MSDN - Tutorial: Register an app with Microsoft Entra ID](https://learn.microsoft.com/en-us/power-apps/developer/data-platform/walkthrough-register-app-azure-active-directory){:target="_blank"}

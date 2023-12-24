@@ -172,5 +172,6 @@ Creating a new Library Variable Group for Service Connections or any other varia
 In summary, creating a Library Variable Group for Service Connections in Azure DevOps is a best practice that enhances the organization, security, and maintainability of your pipelines, promoting efficiency and consistency in your DevOps workflows.
 
 ## References:
-- <https://learn.microsoft.com/en-us/azure/devops/pipelines/library/connect-to-azure?view=azure-devops>
+- [Microsoft MSDN - Connect to Microsoft Azure with an ARM service connection](https://learn.microsoft.com/en-us/azure/devops/pipelines/library/connect-to-azure?view=azure-devops){:target="_blank"}
+
 <!-- - <https://azuredevopslabs.com/labs/devopsserver/azureserviceprincipal/> -->

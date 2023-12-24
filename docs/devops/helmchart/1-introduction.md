@@ -91,7 +91,7 @@ The architecture of Helm provides a simple and flexible way to manage and deploy
 
 
 ## References
-- <https://helm.sh/docs/topics/charts/>
+- [Helm Docs - Charts](https://helm.sh/docs/topics/charts/){:target="_blank"}
 
 <!--
 # Reference

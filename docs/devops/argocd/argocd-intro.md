@@ -174,7 +174,8 @@ By supporting multiple formats for defining Kubernetes manifests, ArgoCD allows 
 ![image.png](/.attachments/image-48645e55-40cf-4177-a0f9-6dd32538ca11.png) -->
 
 ## References
-- <https://argo-cd.readthedocs.io/en/stable/>
+- [Argo CD - Overview](https://argo-cd.readthedocs.io/en/stable/){:target="_blank"}
+
 <!-- - <https://www.youtube.com/watch?v=aWDIQMbp1cc&t=64s>
 - <https://mohitgoyal.co/2021/04/30/>declarative-gitops-continuous-deployment-for-application-with-kubernetes-argo-cd-helm-kustomize-and-kind-index/> - excellent
 - <https://github.com/goyalmohit/argocd-example-apps/tree/master/apps> - Good examples 

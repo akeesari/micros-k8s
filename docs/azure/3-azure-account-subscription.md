@@ -30,7 +30,7 @@ In this lab you will learn how to create new azure account & new azure subscript
 Follow these steps to create new free azure account:
 
 
-**Step-1:** Go to the following URL - <https://azure.microsoft.com/en-us/free/>
+**Step-1:** Go to the following URL - [Azure free account](https://azure.microsoft.com/en-us/free/){:target="_blank"}
 
 **Step-2:** Click on start Free.
 
@@ -61,13 +61,13 @@ There are different subscription types available in Azure, creating new subscrip
 
 read the information from following Microsoft documentation before creating any new subscription to make sure that you select the right one.
 
-- <https://learn.microsoft.com/en-us/azure/cost-management-billing/manage/create-subscription#create-a-subscription>
-- <https://learn.microsoft.com/en-us/azure/cost-management-billing/manage/create-enterprise-subscription>
-- <https://learn.microsoft.com/en-us/azure/cost-management-billing/manage/create-customer-subscription>
+[Create a subscription](https://learn.microsoft.com/en-us/azure/cost-management-billing/manage/create-subscription#create-a-subscription){:target="_blank"}
+[Create an Enterprise Agreement subscription](https://learn.microsoft.com/en-us/azure/cost-management-billing/manage/create-enterprise-subscription){:target="_blank"}
+[Create a subscription for a partner's customer](https://learn.microsoft.com/en-us/azure/cost-management-billing/manage/create-customer-subscription){:target="_blank"}
 
 To create a new Azure subscription, you can follow these steps:
 
-**Step-1:** Login into Azure portal - <https://portal.azure.com/>
+**Step-1:** Login into Azure portal - [Azure portal login](https://portal.azure.com/){:target="_blank"}
 
 **Step-2:** Click on Subscriptions in the left nav and click Add button
 
@@ -82,7 +82,6 @@ To create a new Azure subscription, you can follow these steps:
 After a few minutes, your new subscription will be created and will be listed on the Subscriptions page in the Azure portal.
 
 ## Reference
-
-- <https://www.youtube.com/watch?v=cX0ikhVkCcY&t=35s>
-- <https://azure.microsoft.com/en-us/free/>
-- <https://learn.microsoft.com/en-us/azure/cost-management-billing/manage/direct-ea-administration?WT.mc_id=Portal-Microsoft_Azure_Ea#create-a-subscription>
+[YouTube - Chapter-1.1: Create New Azure Portal Account](https://www.youtube.com/watch?v=cX0ikhVkCcY&t=35s){:target="_blank"}
+[Microsoft- Azure free account](https://azure.microsoft.com/en-us/free/){:target="_blank"}
+[Microsoft- Create a subscription](https://learn.microsoft.com/en-us/azure/cost-management-billing/manage/direct-ea-administration?WT.mc_id=Portal-Microsoft_Azure_Ea#create-a-subscription){:target="_blank"}
