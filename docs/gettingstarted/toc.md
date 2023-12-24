@@ -11,12 +11,12 @@
 
 [**Chapter-1: Getting started with Microservices**](../microservices/0.gettingstarted.md)
 
-- [Getting started with Microservices](../microservices/0.gettingstarted.md)
+- [Lab-1: Getting started with Microservices](../microservices/0.gettingstarted.md)
     - Task-1: Identify Microservices List:
     - Task-2: Identify the List of Git Repositories Needed
     - Task-3: Create new Azure DevOps Organization
     - Task-4: Create new Azure DevOps Project
-- [Create your first Microservice with .NET Core](../microservices/1.aspnet-api.md)
+- [Lab-2: Create your first Microservice with .NET Core](../microservices/1.aspnet-api.md)
     - Step-1: Create a new repo in azure DevOps
     - Step-2: Clone the repo from azure DevOps
     - Step-3: Create a new .NET Core Web API project
@@ -25,14 +25,14 @@
     - Step-6: Docker Build & Run
     - Step-7: Push docker container to ACR
     - Step-8: Pull docker container from ACR
-- [Create your second Microservice with Node JS](../microservices/2.node-api.md)
+- [Lab-3: Create your second Microservice with Node JS](../microservices/2.node-api.md)
     - Step-1: Create a new Node JS API Project
     - Step-2: Test the Node JS API project
     - Step-3: Add Dockerfiles to the Node JS API
     - Task-4: Docker Build locally
     - Step-5: Docker Run locally
     - Step-6: Push docker container to ACR
-- [Create your first website using ASP.NET Core MVC](../microservices/3.aspnet-app.md)
+- [Lab-4: Create your first website using ASP.NET Core MVC](../microservices/3.aspnet-app.md)
     - Step-1: Create a new ASP.NET Core Web App (MVC project)
     - Step-2: Test the new ASP.NET core Web App project
     - Step-3: Update home page contents [Optional]
@@ -40,7 +40,7 @@
     - Task-5: Docker Build locally
     - Step-6: Docker Run locally
     - Step-7: Push docker container to ACR
-- [Create your second website using React JS](../microservices/4.react-app.md)
+- [Lab-5: Create your second website using React JS](../microservices/4.react-app.md)
     - Step-1: Install Node.js and NPM
     - Step-2: Create a new React JS application
     - Step-3: Add Dockerfiles to the MVC project
@@ -48,7 +48,7 @@
     - Step-5: Docker Run locally
     - Step-6: Push docker container to ACR
 <!-- - Create your third website using Blazor -->
-- [Create your first database with SQL server](../microservices/6.sqlserver-db.md)
+- [Lab-6: Create your first database with SQL server](../microservices/6.sqlserver-db.md)
     - Introduction
     - Databases concepts
     - SQL Server Management Studio (SSMS)
@@ -59,23 +59,23 @@
     - Retrieving Data
     - Deleting Data
     - Dropping a Database
-- [Create your second database with PostgreSQL](../microservices/7.postgresql-db.md)
+- [Lab-7: Create your second database with PostgreSQL](../microservices/7.postgresql-db.md)
 
 [**Chapter 2: Azure Cloud- Infrastructure as Code (IaC)**](../azure/1-iac.md)
 
-- [Infrastructure as Code (IaC)](../azure/1-iac.md) 
+- [Lab-1: Infrastructure as Code (IaC)](../azure/1-iac.md) 
     - Overview
     - Infrastructure as Code (IaC)
     - Hight level Architecture
     - Benefits of IaC
     - Terraform Benefits
-- [Microservices Architecture on AKS](../azure/1-microservices-architecture-on-aks.md)
+- [Lab-2: Microservices Architecture on AKS](../azure/1-microservices-architecture-on-aks.md)
     - High Level Architecture
     - Azure Reference Architecture Components 
-- [Azure Account & Subscription Management](../azure/3-azure-account-subscription.md)
+- [Lab-3: Azure Account & Subscription Management](../azure/3-azure-account-subscription.md)
     - Create New Azure Account
     - Create New Azure Subscription
-- [Create Terraform Foundation Part-1](../azure/6-tf-foundation-1.md)
+- [Lab-4: Create Terraform Foundation Part-1](../azure/6-tf-foundation-1.md)
     - Task-1: Create a new project in azure DevOps
     - Task-2: Create a new Azure DevOps Repo for terraform
     - Task-3: Clone the git repo
@@ -87,7 +87,7 @@
     - Task-9: Create secrets in Key Vault
     - Task-10: Setup Access Policy in Key Vault
     - Task-11: Configure Service Principal Role Assignment
-- [Create Terraform Foundation Part-2](../azure/6-tf-foundation-2.md)
+- [Lab-5: Create Terraform Foundation Part-2](../azure/6-tf-foundation-2.md)
     - Task-1: Create terraform environment variables
     - Task-2: Create terraform providers
     - Task-3: Configure terraform backend state
@@ -101,20 +101,20 @@
     - Task-11: Apply a Terraform execution plan
     - Task-12: Verify the results
     - Task-13: Verify terraform state file.
-- [Create Log Analytics Workspace using terraform](../azure/7-log-analytics-workspace.md)
+- [Lab-6: Create Log Analytics Workspace using terraform](../azure/7-log-analytics-workspace.md)
     - Task-1: Configure terraform variables for Log Analytics workspace
     - Task-2: Create new resource group for Log Analytics workspace
     - Task-3: Create Log Analytics workspace using terraform
     - Task-4: Validate Log Analytics workspace in the Azure portal
     - Task-5: Lock the resource group
-- [Create Virtual Network using terraform](../azure/8-vnet.md)
+- [Lab-7: Create Virtual Network using terraform](../azure/8-vnet.md)
     - Task-1: Define and declare virtual network variables
     - Task-2: Create a resource group for virtual network
     - Task-3: Create Hub virtual network using terraform
     - Task-4: Create Spoke virtual network using terraform
     - Task-5: Create Diagnostics Settings for Networking
     - Task-6: Lock the resource group
-- [Create Azure Container Registry (ACR) using terraform](../azure/9-acr.md)
+- [Lab-8: Create Azure Container Registry (ACR) using terraform](../azure/9-acr.md)
     - Task-1: Define and declare ACR variables
     - Task-2: Create a resource group for ACR
     - Task-3: Create ACR user assigned identity
@@ -126,7 +126,7 @@
     - Task-7.2: Push image to registry
     - Task-7.3: Pull image from registry
     - Task-7.4: List container images
-- [Create Azure Kubernetes Service (AKS) using terraform](../azure/11-aks.md)
+- [Lab-9: Create Azure Kubernetes Service (AKS) using terraform](../azure/11-aks.md)
     - Task-1: Define and declare AKS variables
     - Task-2: Create a resource group for AKS
     - Task-3: Create AKS user assigned identity
@@ -136,7 +136,7 @@
     - Task-7: Validate AKS cluster running Kubectl
     - Task-8: Allow AKS Cluster access to Azure Container
     - Task-9: Lock the resource group
-- [Create Azure PostgreSQL - Flexible Server using terraform](../azure/12-postgresql.md)
+- [Lab-10: Create Azure PostgreSQL - Flexible Server using terraform](../azure/12-postgresql.md)
     - Task-1: Define and declare PostgreSQL - Flexible Server variables
     - Task-2: Create an Azure resource group for PostgreSQL
     - Task-3: Create an Azure Virtual Network
@@ -149,12 +149,12 @@
     - Task-10: Set a user or group as the AD administrator for a PostgreSQL Flexible Server
     - Task-11: Create new Databases in PostgreSQL Server
     - Task-12: Create AD groups for database access
-- [Create Azure Key Vault using Terraform](../azure/13-key-vault.md)
+- [Lab-11: Create Azure Key Vault using Terraform](../azure/13-key-vault.md)
     - Task-1: Define and declare Azure Key vault variables
     - Task-2: Create Azure Key Vault using Terraform
     - Task-3: Configure diagnostic settings for Azure Key Vault using terraform
     - Task-4: Configure access policy for developer in Azure Key Vault
-- [Create Azure Cache for Redis using Terraform](../azure/14-redis-cache.md)
+- [Lab-12: Create Azure Cache for Redis using Terraform](../azure/14-redis-cache.md)
     - Task-1: Define and declare Azure Cache for Redis variables
     - Task-2: Create Azure Cache for Redis using terraform
     - Task-3: Configure diagnostic settings for Azure Cache for Redis using terraform
@@ -163,7 +163,7 @@
     - Task-5: Create virtual network link to associate redis private DNS zone to vnet
     - Task-5: Configure private endpoint for Azure Cache for Redis using terraform
     - key features of Redis cache
-- [Create Front Door and CDN profile using Terraform](../azure/15-cdn-frontdoor.md)
+- [Lab-13: Create Front Door and CDN profile using Terraform](../azure/15-cdn-frontdoor.md)
     - Task-1: Define and Declare Azure Front Door & CDN variables.
     - Task-2: Create a Front Door CDN profile using Terraform.
     - Task-3: Create a Front Door Endpoint using Terraform.
@@ -175,11 +175,11 @@
     - Task-9: Create DNS CNAME records in DNS Zone
     - Task-10: Configure diagnostic settings for CDN profile
     - Task-11: Apply lock on Front Door Profile
-- Create Storage Account using terraform
-- Create Azure Bastion Host using terraform
-- Create Virtual Machine (Jumpbox) using terraform
-- Configure Private Endpoint & Private Links using terraform
-- Azure DNS setup
+- Lab-14: Create Storage Account using terraform
+- Lab-15: Create Azure Bastion Host using terraform
+- Lab-16: Create Virtual Machine (Jumpbox) using terraform
+- Lab-17: Configure Private Endpoint & Private Links using terraform
+- Lab-18: Azure DNS setup
 
 [**Chapter 3: Kubernetes - Azure Kubernetes Service (AKS)**](../kubernetes/0.getting-started.md)
 

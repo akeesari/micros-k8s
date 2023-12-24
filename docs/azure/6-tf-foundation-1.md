@@ -25,20 +25,23 @@ By setting up the Terraform Management environment, you will provide your team w
 
 In this exercise, our objective is to accomplish the following tasks and gain a deeper understanding of the Terraform Management setup:
 
-- **Azure DevOps setup**
-    - Task-1: Create a new project in azure DevOps
-    - Task-2: Create a new Azure DevOps Repo for terraform
-    - Task-3: Clone a new git repo
-    - Task-4: Add .gitignore file in the git repo for terraform
-- **Terraform Management setup**
-    - Task-5: Create terraform Service Principle 
-    - Task-6: Create new azure resource group
-    - Task-7: Create new azure storage account & container
-    - Task-8: Create new azure Key vault 
-    - Task-9: Create secrets in azure  Key Vault 
-    - Task-10: Setup Access Policy in Key Vault 
-    - Task-11: Configure Service Principal Role Assignment 
-    - Task-12: Create terraform management using PowerShell Script.
+**Azure DevOps setup**
+
+- Task-1: Create a new project in azure DevOps
+- Task-2: Create a new Azure DevOps Repo for terraform
+- Task-3: Clone a new git repo
+- Task-4: Add .gitignore file in the git repo for terraform
+
+**Terraform Management setup**
+
+- Task-5: Create terraform Service Principle 
+- Task-6: Create new azure resource group
+- Task-7: Create new azure storage account & container
+- Task-8: Create new azure Key vault 
+- Task-9: Create secrets in azure  Key Vault 
+- Task-10: Setup Access Policy in Key Vault 
+- Task-11: Configure Service Principal Role Assignment 
+- Task-12: Create terraform management using PowerShell Script.
 
 ## High Level components
 
