@@ -2,21 +2,21 @@
 
 <!-- **Introduction** -->
 
-- About the Author
-- Acknowledgments
-- Introduction
+- [About the Author](../gettingstarted/about-author.md)
+- [Acknowledgments](../gettingstarted/acknowledgments.md)
+- [Introduction](../gettingstarted/introduction.md)
 <!-- - Developer Workstation Configuration
 - Download & Install software (workstation setup)
 - Technology Stack -->
 
-**Chapter-1: Getting started with Microservices**
+[**Chapter-1: Getting started with Microservices**](../microservices/0.gettingstarted.md)
 
-- Getting started with Microservices
+- [Getting started with Microservices](../microservices/0.gettingstarted.md)
     - Task-1: Identify Microservices List:
     - Task-2: Identify the List of Git Repositories Needed
     - Task-3: Create new Azure DevOps Organization
     - Task-4: Create new Azure DevOps Project
-- Create your first Microservice with .NET Core
+- [Create your first Microservice with .NET Core](../microservices/1.aspnet-api.md)
     - Step-1: Create a new repo in azure DevOps
     - Step-2: Clone the repo from azure DevOps
     - Step-3: Create a new .NET Core Web API project
@@ -25,8 +25,14 @@
     - Step-6: Docker Build & Run
     - Step-7: Push docker container to ACR
     - Step-8: Pull docker container from ACR
-- Create your second Microservice with Node JS
-- Create your first website using ASP.NET Core MVC
+- [Create your second Microservice with Node JS](../microservices/2.node-api.md)
+    - Step-1: Create a new Node JS API Project
+    - Step-2: Test the Node JS API project
+    - Step-3: Add Dockerfiles to the Node JS API
+    - Task-4: Docker Build locally
+    - Step-5: Docker Run locally
+    - Step-6: Push docker container to ACR
+- [Create your first website using ASP.NET Core MVC](../microservices/3.aspnet-app.md)
     - Step-1: Create a new ASP.NET Core Web App (MVC project)
     - Step-2: Test the new ASP.NET core Web App project
     - Step-3: Update home page contents [Optional]
@@ -34,29 +40,42 @@
     - Task-5: Docker Build locally
     - Step-6: Docker Run locally
     - Step-7: Push docker container to ACR
-- Create your second website using React JS
+- [Create your second website using React JS](../microservices/4.react-app.md)
     - Step-1: Install Node.js and NPM
     - Step-2: Create a new React JS application
     - Step-3: Add Dockerfiles to the MVC project
     - Step-4: Docker Build locally
     - Step-5: Docker Run locally
     - Step-6: Push docker container to ACR
-- Create your third website using Blazor
-- Create your first database with SQL server
-- Create your second database with PostgreSQL
+<!-- - Create your third website using Blazor -->
+- [Create your first database with SQL server](../microservices/6.sqlserver-db.md)
+    - Introduction
+    - Databases concepts
+    - SQL Server Management Studio (SSMS)
+    - Create Azure SQL Server
+    - Creating your first database
+    - Creating Tables
+    - Inserting Data
+    - Retrieving Data
+    - Deleting Data
+    - Dropping a Database
+- [Create your second database with PostgreSQL](../microservices/7.postgresql-db.md)
 
-**Chapter 2: Azure Cloud- Infrastructure as Code (IaC)**
+[**Chapter 2: Azure Cloud- Infrastructure as Code (IaC)**](../azure/1-iac.md)
 
-- Infrastructure as Code (IaC) 
+- [Infrastructure as Code (IaC)](../azure/1-iac.md) 
     - Overview
     - Infrastructure as Code (IaC)
     - Hight level Architecture
     - Benefits of IaC
     - Terraform Benefits
-- Azure Account & Subscription Management
+- [Microservices Architecture on AKS](../azure/1-microservices-architecture-on-aks.md)
+    - High Level Architecture
+    - Azure Reference Architecture Components 
+- [Azure Account & Subscription Management](../azure/3-azure-account-subscription.md)
     - Create New Azure Account
     - Create New Azure Subscription
-- Create Terraform Foundation Part-1
+- [Create Terraform Foundation Part-1](../azure/6-tf-foundation-1.md)
     - Task-1: Create a new project in azure DevOps
     - Task-2: Create a new Azure DevOps Repo for terraform
     - Task-3: Clone the git repo
@@ -68,7 +87,7 @@
     - Task-9: Create secrets in Key Vault
     - Task-10: Setup Access Policy in Key Vault
     - Task-11: Configure Service Principal Role Assignment
-- Create Terraform Foundation Part-2
+- [Create Terraform Foundation Part-2](../azure/6-tf-foundation-2.md)
     - Task-1: Create terraform environment variables
     - Task-2: Create terraform providers
     - Task-3: Configure terraform backend state
@@ -82,20 +101,20 @@
     - Task-11: Apply a Terraform execution plan
     - Task-12: Verify the results
     - Task-13: Verify terraform state file.
-- Create Log Analytics Workspace using terraform
+- [Create Log Analytics Workspace using terraform](../azure/7-log-analytics-workspace.md)
     - Task-1: Configure terraform variables for Log Analytics workspace
     - Task-2: Create new resource group for Log Analytics workspace
     - Task-3: Create Log Analytics workspace using terraform
     - Task-4: Validate Log Analytics workspace in the Azure portal
     - Task-5: Lock the resource group
-- Create Virtual Network using terraform
+- [Create Virtual Network using terraform](../azure/8-vnet.md)
     - Task-1: Define and declare virtual network variables
     - Task-2: Create a resource group for virtual network
     - Task-3: Create Hub virtual network using terraform
     - Task-4: Create Spoke virtual network using terraform
     - Task-5: Create Diagnostics Settings for Networking
     - Task-6: Lock the resource group
-- Create Azure Container Registry (ACR) using terraform
+- [Create Azure Container Registry (ACR) using terraform](../azure/9-acr.md)
     - Task-1: Define and declare ACR variables
     - Task-2: Create a resource group for ACR
     - Task-3: Create ACR user assigned identity
@@ -103,16 +122,11 @@
     - Task-5: Create Diagnostics Settings for ACR
     - Task-6: Lock the resource group
     - Task-7: Validate ACR resource
-        - Task-7.1: Log in to registry
-        - Task-7.2: Push image to registry
-        - Task-7.3: Pull image from registry
-        - Task-7.4: List container images
-- Create Azure Application Gateway using terraform
-    - Task-1: Define and declare variables for Application Gateway
-    - Task-2: Create Public IP address for Application Gateway using Terraform
-    - Task-3: Create Azure Application Gateway using Terraform
-    - Task-4: Configure diagnostic settings for Application Gateway using terraform
-- Create Azure Kubernetes Service (AKS) using terraform
+    - Task-7.1: Log in to registry
+    - Task-7.2: Push image to registry
+    - Task-7.3: Pull image from registry
+    - Task-7.4: List container images
+- [Create Azure Kubernetes Service (AKS) using terraform](../azure/11-aks.md)
     - Task-1: Define and declare AKS variables
     - Task-2: Create a resource group for AKS
     - Task-3: Create AKS user assigned identity
@@ -122,7 +136,7 @@
     - Task-7: Validate AKS cluster running Kubectl
     - Task-8: Allow AKS Cluster access to Azure Container
     - Task-9: Lock the resource group
-- Create Azure PostgreSQL - Flexible Server using terraform
+- [Create Azure PostgreSQL - Flexible Server using terraform](../azure/12-postgresql.md)
     - Task-1: Define and declare PostgreSQL - Flexible Server variables
     - Task-2: Create an Azure resource group for PostgreSQL
     - Task-3: Create an Azure Virtual Network
@@ -135,12 +149,12 @@
     - Task-10: Set a user or group as the AD administrator for a PostgreSQL Flexible Server
     - Task-11: Create new Databases in PostgreSQL Server
     - Task-12: Create AD groups for database access
-- Create Azure Key Vault using Terraform
+- [Create Azure Key Vault using Terraform](../azure/13-key-vault.md)
     - Task-1: Define and declare Azure Key vault variables
     - Task-2: Create Azure Key Vault using Terraform
     - Task-3: Configure diagnostic settings for Azure Key Vault using terraform
     - Task-4: Configure access policy for developer in Azure Key Vault
-- Create Azure Cache for Redis using Terraform
+- [Create Azure Cache for Redis using Terraform](../azure/14-redis-cache.md)
     - Task-1: Define and declare Azure Cache for Redis variables
     - Task-2: Create Azure Cache for Redis using terraform
     - Task-3: Configure diagnostic settings for Azure Cache for Redis using terraform
@@ -149,7 +163,7 @@
     - Task-5: Create virtual network link to associate redis private DNS zone to vnet
     - Task-5: Configure private endpoint for Azure Cache for Redis using terraform
     - key features of Redis cache
-- Create Front Door and CDN profile using Terraform
+- [Create Front Door and CDN profile using Terraform](../azure/15-cdn-frontdoor.md)
     - Task-1: Define and Declare Azure Front Door & CDN variables.
     - Task-2: Create a Front Door CDN profile using Terraform.
     - Task-3: Create a Front Door Endpoint using Terraform.
@@ -167,10 +181,10 @@
 - Configure Private Endpoint & Private Links using terraform
 - Azure DNS setup
 
-**Chapter 3: Kubernetes - Azure Kubernetes Service (AKS)**
+[**Chapter 3: Kubernetes - Azure Kubernetes Service (AKS)**](../kubernetes/0.getting-started.md)
 
-- Prepare an application for Azure Kubernetes Service (AKS)
-- Deploying an application to Azure Kubernetes Service (AKS)
+- [Prepare an application for Azure Kubernetes Service (AKS)](../kubernetes/1-prepare-app.md)
+- [Deploying an application to Azure Kubernetes Service (AKS)](../kubernetes/2-deploy-api.md)
     - Step-1: Create a new namespace
     - Step-1: Create a Kubernetes deployment manifest
     - Step-2: Create a Kubernetes service manifest
@@ -178,7 +192,7 @@
     - Step-4: Port forwarding
     - Step-5: Expose the service externally
     - Step-6: Verify that the application is running
-- Working with AKS cluster using kubectl
+- [Working with AKS cluster using kubectl](../kubernetes/3-working-with-aks.md)
     - Login to azure & set subscription
     - Connect to AKS cluster
     - Test workloads in AKS
@@ -188,7 +202,7 @@
     - kubectl commands
     - Troubleshooting errors
     - install kubelogin
-- Setup NGINX ingress controller in AKS using Terraform
+- [Setup NGINX ingress controller in AKS using Terraform](../kubernetes/4-ingress-controller-nginx.md)
     - Step-1: Configure Terraform providers
     - Step-2: Create a new namespace for ingress
     - Step-2: Install ingress resources with helm-chart using terraform
@@ -197,7 +211,7 @@
     - Step-5: Create an ingress route
     - Step-6: Test the ingress controller
     - Step-7: Add DNS recordset in DNS Zone
-- Kubernetes Pod troubleshooting
+- [Kubernetes Pod troubleshooting](../kubernetes/pod-troubleshooting.md)
     - Login to Azure
     - Connect to Cluster
     - Verify the pod status
