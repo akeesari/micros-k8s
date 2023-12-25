@@ -4,6 +4,34 @@ Azure Cache for Redis is a fully managed, in-memory data store that offers high 
 
 In this lab, I will walk through the steps to create an Azure Cache for Redis using Terraform. I'll also configure diagnostic settings to monitor its performance effectively. To ensure the security of our Azure Cache for Redis, I'll establish a private endpoint, thereby securing it from public access. Finally, we'll validate these resources within the Azure portal to confirm that everything is functioning as expected.
 
+
+## key features
+
+Azure Cache for Redis is a fully managed, in-memory data store service provided by Microsoft Azure. It offers several key features that make it a valuable tool for caching and enhancing the performance of your applications. Here are some of the key features of Azure Cache for Redis:
+
+1. **High Performance**: Azure Cache for Redis is designed for high throughput and low-latency access to cached data. It's based on the popular open-source Redis cache, making it extremely fast and efficient.
+
+2. **In-Memory Data Store**: It stores data in memory, which allows for lightning-fast data retrieval. This is particularly useful for caching frequently accessed data to reduce latency.
+
+3. **Fully Managed Service**: Azure Cache for Redis is a fully managed service. Azure takes care of tasks like patching, monitoring, and backups, so you can focus on your application.
+
+4. **Data Persistence**: It offers both non-persistent and persistent caching options. You can configure it to store data on disk for data durability.
+
+5. **Scaling**: Azure Cache for Redis provides the ability to scale your cache horizontally by adding or removing cache nodes to handle increased load.
+
+6. **Security**: It supports various security features, including Virtual Network service endpoints, SSL encryption, and Azure AD integration, to keep your data secure.
+
+7. **Advanced Data Structures**: Redis supports various data structures like strings, hashes, lists, sets, sorted sets, bitmaps, and geospatial indexes, making it versatile for different types of data.
+
+8. **Pub/Sub Messaging**: Redis supports publish/subscribe messaging patterns, allowing applications to communicate in real-time.
+
+9. **Geo-Replication**: Azure Cache for Redis supports geo-replication, enabling you to replicate your cache across multiple Azure regions for high availability.
+
+10. **Diagnostic and Monitoring**: It integrates with Azure Monitor and Azure Diagnostics, providing detailed insights into cache usage and performance.
+
+Azure Cache for Redis is a powerful tool for optimizing application performance, reducing the load on your primary data sources, and enabling real-time data processing. It's commonly used in web applications, microservices, and various scenarios where low-latency data access is crucial.
+
+
 ## Technical Scenario
 
 As a `Cloud Architect`, you've been tasked with providing a caching mechanism to enhance performance and reduce the database load in a Microservices Architecture. Azure Cache for Redis offers an ideal solution by enabling us to store frequently accessed data in memory for rapid retrieval.
@@ -444,33 +472,6 @@ Azure Cache for Redis - Private endpoint - Network interface
 ![Alt text](images/image-50.png)
 
 By following these steps, we've secured your Azure Cache for Redis instance from public access. It's now only accessible through the private endpoint in our specified Virtual Network.
-
-## key features
-
-Azure Cache for Redis is a fully managed, in-memory data store service provided by Microsoft Azure. It offers several key features that make it a valuable tool for caching and enhancing the performance of your applications. Here are some of the key features of Azure Cache for Redis:
-
-1. **High Performance**: Azure Cache for Redis is designed for high throughput and low-latency access to cached data. It's based on the popular open-source Redis cache, making it extremely fast and efficient.
-
-2. **In-Memory Data Store**: It stores data in memory, which allows for lightning-fast data retrieval. This is particularly useful for caching frequently accessed data to reduce latency.
-
-3. **Fully Managed Service**: Azure Cache for Redis is a fully managed service. Azure takes care of tasks like patching, monitoring, and backups, so you can focus on your application.
-
-4. **Data Persistence**: It offers both non-persistent and persistent caching options. You can configure it to store data on disk for data durability.
-
-5. **Scaling**: Azure Cache for Redis provides the ability to scale your cache horizontally by adding or removing cache nodes to handle increased load.
-
-6. **Security**: It supports various security features, including Virtual Network service endpoints, SSL encryption, and Azure AD integration, to keep your data secure.
-
-7. **Advanced Data Structures**: Redis supports various data structures like strings, hashes, lists, sets, sorted sets, bitmaps, and geospatial indexes, making it versatile for different types of data.
-
-8. **Pub/Sub Messaging**: Redis supports publish/subscribe messaging patterns, allowing applications to communicate in real-time.
-
-9. **Geo-Replication**: Azure Cache for Redis supports geo-replication, enabling you to replicate your cache across multiple Azure regions for high availability.
-
-10. **Diagnostic and Monitoring**: It integrates with Azure Monitor and Azure Diagnostics, providing detailed insights into cache usage and performance.
-
-Azure Cache for Redis is a powerful tool for optimizing application performance, reducing the load on your primary data sources, and enabling real-time data processing. It's commonly used in web applications, microservices, and various scenarios where low-latency data access is crucial.
-
 
 ## Reference
 - [Microsoft MSDN - Azure Cache for Redis Documentation](https://learn.microsoft.com/en-us/azure/azure-cache-for-redis/){:target="_blank"}

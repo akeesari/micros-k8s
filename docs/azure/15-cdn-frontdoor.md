@@ -80,7 +80,7 @@ In this exercise we will accomplish & learn how to implement following:
 
 The following diagram illustrates the high level architecture of Azure Front Door & CDN:
 
-<!-- ![Alt text](images/image-51.png) -->
+![Alt text](images/image-85.png)
 
 ## Prerequisites
 
