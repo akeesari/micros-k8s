@@ -122,10 +122,14 @@
     - Task-5: Create Diagnostics Settings for ACR
     - Task-6: Lock the resource group
     - Task-7: Validate ACR resource
-    - Task-7.1: Log in to registry
-    - Task-7.2: Push image to registry
-    - Task-7.3: Pull image from registry
-    - Task-7.4: List container images
+        - Task-7.1: Log in to registry
+        - Task-7.2: Push image to registry
+        - Task-7.3: Pull image from registry
+        - Task-7.4: List container images
+    - Task-8: Restrict Access Using Private Endpoint
+        - Task-8.1: Configure the Private DNS Zone
+        - Task-8.2: Create a Virtual Network Link
+        - Task-8.3: Create a Private Endpoint Using Terraform
 - [Lab-9: Create Azure Kubernetes Service (AKS) using terraform](../azure/11-aks.md)
     - Task-1: Define and declare AKS variables
     - Task-2: Create a resource group for AKS
