@@ -167,12 +167,12 @@
 - [Lab-12: Create Azure Cache for Redis using Terraform](../azure/14-redis-cache.md)
     - Task-1: Define and declare Azure Cache for Redis variables
     - Task-2: Create Azure Cache for Redis using terraform
-    - Task-3: Configure diagnostic settings for Azure Cache for Redis using terraform
-    - Securing an Azure Cache for Redis instance
-    - Task-4: Create private DNS zone for Redis Cache using terraform
-    - Task-5: Create virtual network link to associate redis private DNS zone to vnet
-    - Task-5: Configure private endpoint for Azure Cache for Redis using terraform
-    - key features of Redis cache
+    - Task-3: Configure diagnostic settings for Azure Cache for Redis using terraform    
+    - Task-4: Securing an Azure Cache for Redis instance
+        - Task-4.1: Create private DNS zone for Redis Cache using terraform
+        - Task-4.2: Create virtual network link to associate redis private DNS zone to vnet
+        - Task-4.3: Configure private endpoint for Azure Cache for Redis using terraform
+        - Task-4.4: Validate private link connection using `nslookup` or `dig`  
 - [Lab-13: Create Front Door and CDN profile using Terraform](../azure/15-cdn-frontdoor.md)
     - Task-1: Define and Declare Azure Front Door & CDN variables.
     - Task-2: Create a Front Door CDN profile using Terraform.

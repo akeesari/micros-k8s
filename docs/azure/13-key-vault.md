@@ -634,6 +634,9 @@ output
 # should not expect the private IP Address: 10.64.3.6
 ```
 
+
+This process ensures that the private link connection is successfully established and allows expected private IP address associated with our resource in the private virtual network.
+
 ## Reference
 - [Microsoft MSDN - Azure Key Vault documentation](https://learn.microsoft.com/en-us/azure/key-vault/general/){:target="_blank"}
 - [Terraform Registry - azurerm_key_vault](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/key_vault){:target="_blank"}

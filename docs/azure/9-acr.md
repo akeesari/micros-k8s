@@ -752,6 +752,8 @@ Name:   r1029ncus.northcentralus.cloudapp.azure.com
 Address: 52.240.241.132
 ```
 
+This process ensures that the private link connection is successfully established and allows expected private IP address associated with our resource in the private virtual network.
+
 ## References
 - [Microsoft MSDN - Azure Container Registry documentation](https://learn.microsoft.com/en-us/azure/container-registry/){:target="_blank"}
 - [Microsoft MSDN - Connect privately to an Azure container registry using Azure Private Link](https://learn.microsoft.com/en-us/azure/container-registry/container-registry-private-link){:target="_blank"}
