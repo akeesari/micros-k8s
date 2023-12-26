@@ -9,11 +9,12 @@ Let's look into the details of each component and explore how they come together
 The high-level architecture of the Azure resources, which serves as a reference architecture in our labs, is visualized in the diagram below. This diagram provides an overview of the essential components and how they interact within the Microservices Architecture on AKS.
 
 **Azure High Level Architecture**
-![image.jpg](images/image-36.jpg)
+
+[![Alt text](images/image-36.jpg)](images/acr/image-36.jpg){:target="_blank"}
 
 **DevOps High Level Architecture**
 
-![image.jpg](images/image-37.jpg)
+[![Alt text](images/image-37.jpg)](images/acr/image-37.jpg){:target="_blank"}
 
 ## Azure Reference Architecture Components
 

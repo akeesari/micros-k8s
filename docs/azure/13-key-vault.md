@@ -36,7 +36,7 @@ In this exercise we will accomplish & learn how to implement following:
 
 The following diagram illustrates the high level architecture of key vault usage:
 
-![Alt text](images/image-61.png)
+[![Alt text](images/image-61.png)](images/image-61.png){:target="_blank"}
 
 ## Prerequisites
 
@@ -350,7 +350,7 @@ terraform apply dev-plan
 
 Azure Key Vault - Overview blade 
 
-![Alt text](images/image-58.png)
+[![Alt text](images/image-58.png)](images/image-58.png){:target="_blank"}
 
 ## Task-3: Configure diagnostic settings for Azure Key Vault using terraform
 
@@ -404,7 +404,8 @@ terraform apply dev-plan
 
 
 Azure Key vault - Diagnostic settings from left nav
-![Alt text](images/image-59.png)
+
+[![Alt text](images/image-59.png)](images/image-59.png){:target="_blank"}
 
 ## Task-4: Configure access policy for developer in Azure Key Vault
 
@@ -446,7 +447,7 @@ terraform apply dev-plan
 
 Azure key vault - Azure Access Policies
 
-![Alt text](images/image-60.png)
+[![Alt text](images/image-60.png)](images/image-60.png){:target="_blank"}
 
 
 ## Reference

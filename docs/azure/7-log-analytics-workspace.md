@@ -21,7 +21,7 @@ As a `Cloud Engineer`, you have been asked to collect all the monitoring data, a
 
 The following diagram shows Log Analytics Workspace high level components used in this lab.
 
-![Alt text](images/image-78.png)
+[![Alt text](images/image-78.png)](images/image-78.png){:target="_blank"}
 
 <!-- <IMG  src="https://learn.microsoft.com/en-us/azure/azure-monitor/logs/media/data-platform-logs/logs-structure.png"  alt="Diagram that shows the Azure Monitor Logs structure." width=700px; height=300/> -->
 
@@ -400,8 +400,7 @@ resource_group_name = "rg-resourcegroup1-dev"
 
 Once azure resources are created, login into azure portal and validate new those new resources.
 
-
-![image.jpg](images/image-16.jpg)
+[![Alt text](images/image-16.jpg)](images/image-16.jpg){:target="_blank"}
 
 ### Task-5: Lock the resource group
 

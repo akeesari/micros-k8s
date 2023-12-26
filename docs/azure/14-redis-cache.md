@@ -51,7 +51,7 @@ In this exercise we will accomplish & learn how to implement following:
 
 The following diagram illustrates the high level architecture of redis usage:
 
-![Alt text](images/image-51.png)
+[![Alt text](images/image-51.png)](images/image-51.png){:target="_blank"}
 
 ## Prerequisites
 
@@ -235,13 +235,14 @@ azure cache for redis creation takes close to 30 mins.
 azurerm_redis_cache.redis[0]: Creation complete after 25m14s
 ```
 Azure Cache for Redis - Overview blade 
-![Alt text](images/image-40.png)
+[![Alt text](images/image-40.png)](images/image-40.png){:target="_blank"}
 
 Azure Cache for Redis - Console
-![Alt text](images/image-41.png)
+[![Alt text](images/image-41.png)](images/image-41.png){:target="_blank"}
 
 Azure Cache for Redis - Console command
-![Alt text](images/image-42.png)
+[![Alt text](images/image-42.png)](images/image-42.png){:target="_blank"}
+
 ## Task-3: Configure diagnostic settings for Azure Cache for Redis using terraform
 
 By configuring diagnostic settings, we can monitor and analyze the performance and behavior of the Azure Cache for Redis instance, helping us optimize its usage.
@@ -293,10 +294,10 @@ terraform apply dev-plan
 
 
 Azure Cache for Redis - Diagnostic settings from left nav
-![Alt text](images/image-43.png)
+[![Alt text](images/image-43.png)](images/image-43.png){:target="_blank"}
 
 Azure Cache for Redis - Diagnostic settings
-![Alt text](images/image-44.png)
+[![Alt text](images/image-44.png)](images/image-44.png){:target="_blank"}
 
 ## Securing an Azure Cache for Redis instance
 
@@ -357,7 +358,7 @@ terraform apply dev-plan
 
 Azure Cache for Redis - Private DNS zone
 
-![Alt text](images/image-45.png)
+[![Alt text](images/image-45.png)](images/image-45.png){:target="_blank"}
 
 ## Task-5: Create virtual network link to associate redis private DNS zone to vnet
 
@@ -402,10 +403,12 @@ terraform apply dev-plan
 Azure Cache for Redis - Private DNS zone - Virtual network links
 
 ![Alt text](images/image-46.png)
+[![Alt text](images/image-46.png)](images/image-46.png){:target="_blank"}
 
 Azure Cache for Redis - Private DNS zone - Virtual network links details
 
-![Alt text](images/image-47.png)
+[![Alt text](images/image-47.png)](images/image-47.png){:target="_blank"}
+
 By creating a virtual network link, we enable DNS resolution for the Redis Cache within our virtual network, allowing seamless communication.
 
 
@@ -463,13 +466,13 @@ terraform apply dev-plan
 
 Azure Cache for Redis - Private endpoint
 
-![Alt text](images/image-48.png)
+[![Alt text](images/image-48.png)](images/image-48.png){:target="_blank"}
 
 Azure Cache for Redis - Private endpoint
-![Alt text](images/image-49.png)
+[![Alt text](images/image-49.png)](images/image-49.png){:target="_blank"}
 
 Azure Cache for Redis - Private endpoint - Network interface
-![Alt text](images/image-50.png)
+[![Alt text](images/image-50.png)](images/image-50.png){:target="_blank"}
 
 By following these steps, we've secured your Azure Cache for Redis instance from public access. It's now only accessible through the private endpoint in our specified Virtual Network.
 

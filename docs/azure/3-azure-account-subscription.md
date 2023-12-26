@@ -16,8 +16,7 @@ In this lab you will learn how to create new azure account & new azure subscript
 
 **Azure Subscription Management Hierarchy**
 
-![image.jpg](images/image-38.jpg)
-
+[![Alt text](images/image-38.jpg)](images/image-38.jpg){:target="_blank"}
 
 ## Prerequisites
 

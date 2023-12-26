@@ -59,7 +59,7 @@ In this exercise we will accomplish & learn how to implement following:
 
 The following diagram illustrates the high level architecture of PostgreSQL - Flexible Server:
 
-![Alt text](images/image-62.png)
+[![Alt text](images/image-62.png)](images/image-62.png){:target="_blank"}
 
 ## Prerequisites
 
@@ -240,8 +240,7 @@ terraform apply dev-plan
 
 Azure PostgreSQL - Flexible Server - resource group
 
-![Alt text](images/image-63.jpg)
-
+[![Alt text](images/image-63.jpg)](images/image-63.jpg){:target="_blank"}
 
 ## Task-3: Create an Azure Virtual Network 
 
@@ -286,7 +285,7 @@ terraform apply dev-plan
 
 Azure PostgreSQL - Flexible Server - Virtual network
 
-![Alt text](images/image-64.jpg)
+[![Alt text](images/image-64.jpg)](images/image-64.jpg){:target="_blank"}
 
 ## Task-4: Create an Azure Subnet for PostgreSQL 
 
@@ -333,7 +332,7 @@ terraform apply dev-plan
 
 Azure PostgreSQL - Flexible Server - subnet
 
-![Alt text](images/image-65.jpg)
+[![Alt text](images/image-65.jpg)](images/image-65.jpg){:target="_blank"}
 
 
 ## Task-5: Create a Private DNS zone for PostgreSQL
@@ -374,7 +373,7 @@ terraform apply dev-plan
 
 Azure PostgreSQL - Flexible Server - Private DNS zone
 
-![Alt text](images/image-66.jpg)
+[![Alt text](images/image-66.jpg)](images/image-66.jpg){:target="_blank"}
 
 
 ## Task-6: Associate PostgreSQL Private DNS zone with virtual network
@@ -419,7 +418,7 @@ terraform apply dev-plan
 
 Azure PostgreSQL - Flexible Server - virtual_network_link
 
-![Alt text](images/image-67.jpg)
+[![Alt text](images/image-67.jpg)](images/image-67.jpg){:target="_blank"}
 
 
 ## Task-7: Generate PostgreSQL admin random password & store in Key Vault
@@ -466,7 +465,7 @@ terraform apply dev-plan
 Azure PostgreSQL - Flexible Server - PostgreSQL admin password
 
 
-![Alt text](images/image-68.jpg)
+[![Alt text](images/image-68.jpg)](images/image-68.jpg){:target="_blank"}
 
 ## Task-8: Create Azure PostgreSQL - Flexible Server using Terraform
 
@@ -521,12 +520,12 @@ terraform apply dev-plan
 
 Azure PostgreSQL - Flexible Server - Overview blade 
 
-![Alt text](images/image-69.jpg)
+[![Alt text](images/image-69.jpg)](images/image-69.jpg){:target="_blank"}
 
 
 Azure PostgreSQL - Flexible Server - Private DNS Zone
 
-![Alt text](images/image-70.jpg)
+[![Alt text](images/image-70.jpg)](images/image-70.jpg){:target="_blank"}
 
 ## Task-9: Configure Diagnostic Settings for Azure PostgreSQL - Flexible Server
 
@@ -625,7 +624,7 @@ terraform apply dev-plan
 
 Azure PostgreSQL - Flexible Server - Diagnostic Settings from left nav
 
-![Alt text](images/image-70.jpg)
+[![Alt text](images/image-70.jpg)](images/image-70.jpg){:target="_blank"}
 
 ## Task-10: Set a user or group as the AD administrator for a PostgreSQL Flexible Server
 
@@ -662,7 +661,7 @@ terraform apply dev-plan
 
 Azure PostgreSQL - Flexible Server - AD administrator 
 
-![Alt text](images/image-72.jpg)
+[![Alt text](images/image-72.jpg)](images/image-72.jpg){:target="_blank"}
 
 
 ## Task-11: Create new Databases in PostgreSQL Server
@@ -688,7 +687,7 @@ terraform apply dev-plan
 
 Azure PostgreSQL - Flexible Server - Databases
 
-![Alt text](images/image-73.jpg)
+[![Alt text](images/image-73.jpg)](images/image-73.jpg){:target="_blank"}
 
 
 ## Task-12: Create AD groups for database access

@@ -80,7 +80,7 @@ In this exercise we will accomplish & learn how to implement following:
 
 The following diagram illustrates the high level architecture of Azure Front Door & CDN:
 
-![Alt text](images/image-85.png)
+[![Alt text](images/image-85.png)](images/image-85.png){:target="_blank"}
 
 ## Prerequisites
 
@@ -353,7 +353,7 @@ terraform apply dev-plan
 ```
 Azure Front Door and CDN profile - Overview blade 
 
-![Alt text](images/image-80.png)
+[![Alt text](images/image-80.png)](images/image-80.png){:target="_blank"}
 
 ## Task-3: Create a Front Door Endpoint using Terraform.
 
@@ -398,7 +398,7 @@ terraform plan -out=dev-plan -var-file="./environments/dev-variables.tfvars"
 terraform apply dev-plan
 ```
 
-![Alt text](images/image-81.png)
+[![Alt text](images/image-81.png)](images/image-81.png){:target="_blank"}
 
 
 ## Task-4: Create a Front Door Origin Group using Terraform.
@@ -454,7 +454,7 @@ terraform plan -out=dev-plan -var-file="./environments/dev-variables.tfvars"
 terraform apply dev-plan
 ```
 
-![Alt text](images/image-82.png)
+[![Alt text](images/image-82.png)](images/image-82.png){:target="_blank"}
 
 
 ## Task-5: Create a Front Door Origin using Terraform.
@@ -514,7 +514,7 @@ terraform plan -out=dev-plan -var-file="./environments/dev-variables.tfvars"
 terraform apply dev-plan
 ```
 
-![Alt text](images/image-83.png)
+[![Alt text](images/image-83.png)](images/image-83.png){:target="_blank"}
 
 
 ## Task-6: Create custom domains for the Front Door using Terraform.

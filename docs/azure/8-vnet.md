@@ -27,7 +27,7 @@ In this exercise we will accomplish & learn how to implement following:
 
 Here is the reference architecture diagram used for creating virtual network with hub & spoke model.
 
-![image-74](images/image-74.png)
+[![Alt text](images/image-74.png)](images/image-74.png){:target="_blank"}
 
 <!-- ![image.png](/.attachments/image-343df72f-4d94-4b1e-bd0f-a2988b315dc4.png =500x300) -->
 
@@ -435,11 +435,12 @@ terraform apply dev-plan
 ```
 Address space
 
-![image.jpg](images/image-18.jpg)
+[![Alt text](images/image-18.jpg)](images/image-18.jpg){:target="_blank"}
 
 subnets
 
-![image.jpg](images/image-17.jpg)
+ [![Alt text](images/image-17.jpg)](images/image-17.jpg){:target="_blank"}
+
 
 ## Task-4: Create Spoke virtual network using terraform
 
@@ -561,11 +562,12 @@ terraform apply dev-plan
 
 Address space
 
-![image.jpg](images/image-19.jpg)
+ [![Alt text](images/image-19.jpg)](images/image-19.jpg){:target="_blank"}
 
 subnets
 
-![image.jpg](images/image-20.jpg)
+ [![Alt text](images/image-20.jpg)](images/image-20.jpg){:target="_blank"}
+
 
 ## Task-5: Create Diagnostics Settings for Networking
 
@@ -617,7 +619,8 @@ terraform plan -out=dev-plan -var-file="./environments/dev-variables.tfvars"
 terraform apply dev-plan
 ```
 
-![image.jpg](images/image-21.jpg)
+[![Alt text](images/image-21.jpg)](images/image-21.jpg){:target="_blank"}
+
 
 ## Task-6: Lock the resource group
 
@@ -651,11 +654,13 @@ terraform apply dev-plan
 ```
 list of resources in the vnet resource group
 
-![image.jpg](images/image-23.jpg)
+[![Alt text](images/image-23.jpg)](images/image-23.jpg){:target="_blank"}
+
 
 resource group lock.
 
-![image.jpg](images/image-22.jpg)
+[![Alt text](images/image-22.jpg)](images/image-22.jpg){:target="_blank"}
+
 
 Now our Virtual Network is created and ready to use. You can now deploy AKS, ACR and other resources within your Virtual Network, and configure their network settings as needed.
 

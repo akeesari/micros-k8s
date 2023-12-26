@@ -49,7 +49,7 @@ In this exercise we will accomplish & learn how to implement following:
 
 Here is the reference architecture diagram of Azure Kubernetes services.
 
-![Alt text](images/image-79.png)
+[![Alt text](images/image-79.png)](images/image-79.png){:target="_blank"}
 
 ## Prerequisites
   - Download & Install Terraform
@@ -711,7 +711,7 @@ terraform plan -out=dev-plan -var-file="./environments/dev-variables.tfvars"
 terraform apply dev-plan
 ```
 
-![image.jpg](images/image-29.jpg)
+[![Alt text](images/image-29.png)](images/image-29.png){:target="_blank"}
 
 **ssh_public_key**
 
@@ -869,13 +869,14 @@ terraform plan -out=dev-plan -var-file="./environments/dev-variables.tfvars"
 terraform apply dev-plan
 ```
 
-![image.jpg](images/image-30.jpg)
+[![Alt text](images/image-30.jpg)](images/image-30.jpg){:target="_blank"}
 
 ##  Task-6: Review AKS Cluster resource in the portal
 
 Now it time to review all the azure resource created in the given resource group. Login into the azure portal and select the resource group. you will notice following resource in the resource group you've selected.
 
-![image.jpg](images/image-31.jpg)
+[![Alt text](images/image-31.jpg)](images/image-31.jpg){:target="_blank"}
+
 
 **MC_ resource group**
 
@@ -889,14 +890,14 @@ It's worth noting that the MC_ resource group is managed by Azure and should not
 
 Here are the list of resource created automatically for you in the resource group:
 
-![image.jpg](images/image-33.jpg)
+[![Alt text](images/image-33.jpg)](images/image-33.jpg){:target="_blank"}
 
 
 ##  Task-7: Validate AKS cluster running Kubectl
 
 As a beginner the best way to start interacting AKS is selecting your cluster and click on connect in the overview blade, you will notice bunch of kubectl commands which you can use to start.
 
-![image.jpg](images/image-34.jpg)
+[![Alt text](images/image-34.jpg)](images/image-34.jpg){:target="_blank"}
 
 ``` sh
 # Azure Kubernetes Service Cluster User Role
@@ -1005,7 +1006,7 @@ terraform plan -out=dev-plan -var-file="./environments/dev-variables.tfvars"
 terraform apply dev-plan
 ```
 
-![image.jpg](images/image-32.jpg)
+[![Alt text](images/image-32.jpg)](images/image-32.jpg){:target="_blank"}
 
 ## Task-9: Lock the resource group
 
