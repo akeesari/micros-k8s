@@ -130,6 +130,7 @@
         - Task-8.1: Configure the Private DNS Zone
         - Task-8.2: Create a Virtual Network Link
         - Task-8.3: Create a Private Endpoint Using Terraform
+        - Task-8.4: Validate private link connection using `nslookup` or `dig`
 - [Lab-9: Create Azure Kubernetes Service (AKS) using terraform](../azure/11-aks.md)
     - Task-1: Define and declare AKS variables
     - Task-2: Create a resource group for AKS
@@ -158,6 +159,11 @@
     - Task-2: Create Azure Key Vault using Terraform
     - Task-3: Configure diagnostic settings for Azure Key Vault using terraform
     - Task-4: Configure access policy for developer in Azure Key Vault
+    - Task-5: Restrict Access Using Private Endpoint
+        - Task-5.1: Configure the Private DNS Zone
+        - Task-5.2: Create a Virtual Network Link
+        - Task-5.3: Create a Private Endpoint Using Terraform
+        - Task-5.4: Validate private link connection using `nslookup` or `dig`
 - [Lab-12: Create Azure Cache for Redis using Terraform](../azure/14-redis-cache.md)
     - Task-1: Define and declare Azure Cache for Redis variables
     - Task-2: Create Azure Cache for Redis using terraform

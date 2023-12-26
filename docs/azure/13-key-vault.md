@@ -31,6 +31,11 @@ In this exercise we will accomplish & learn how to implement following:
 - **Task-2:** Create Azure Key Vault using Terraform
 - **Task-3:** Configure diagnostic settings for Azure Key Vault using Terraform
 - **Task-4:** Configure access policy for developer in Azure Key Vault
+- **Task-5:** Restrict Access Using Private Endpoint
+- **Task-5.1:** Configure the Private DNS Zone
+- **Task-5.2:** Create a Virtual Network Link Association
+- **Task-5.3:** Create a Private Endpoint Using Terraform
+- **Task-5.4:** Validate private link connection using `nslookup` or `dig`
 
 ## Architecture diagram
 
@@ -447,7 +452,7 @@ terraform apply dev-plan
 
 Azure key vault - Azure Access Policies
 
-[![Alt text](images/image-4.png)](images/image-4.png){:target="_blank"}
+[![Alt text](images/kv/image-4.png)](images/kv/image-4.png){:target="_blank"}
 
 
 
@@ -604,11 +609,37 @@ Navigate to `Private endpoint -> DNS Configuration` to verify the Network Interf
 Navigate to `Network interface -> Overview` to verify the private IP address attached to properties.
 
 
+### Task-5.4: Validate private link connection using `nslookup` or `dig`
 
+Connecting from internal VM (private access):
+
+```sh
+nslookup privatelink.vaultcore.azure.net
+```
+output
+
+```sh
+# expect the private IP Address: 10.64.3.6
+```
+
+Connecting from external (public access):
+
+```sh
+nslookup privatelink.vaultcore.azure.net
+```
+
+output
+
+```sh
+# should not expect the private IP Address: 10.64.3.6
+```
 
 ## Reference
 - [Microsoft MSDN - Azure Key Vault documentation](https://learn.microsoft.com/en-us/azure/key-vault/general/){:target="_blank"}
 - [Terraform Registry - azurerm_key_vault](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/key_vault){:target="_blank"}
 - [Terraform Registry - azurerm_key_vault_access_policy](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/key_vault_access_policy){:target="_blank"}
 - [Terraform Registry - azurerm_monitor_diagnostic_setting](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/monitor_diagnostic_setting){:target="_blank"}
+- [Terraform Registry - azurerm_private_dns_zone](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/private_dns_zone){:target="_blank"}
+- [Terraform Registry - azurerm_private_dns_zone_virtual_network_link](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/private_dns_zone_virtual_network_link){:target="_blank"}
+- [Terraform Registry - azurerm_private_endpoint](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/private_endpoint){:target="_blank"}
 - [Azure Terraform Quickstart/101-key-vault-key](https://github.com/Azure/terraform/tree/master/quickstart/101-key-vault-key){:target="_blank"}

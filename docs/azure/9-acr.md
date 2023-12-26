@@ -41,13 +41,15 @@ In this exercise we will accomplish & learn how to implement following:
     - Task-8.1: Configure the Private DNS Zone
     - Task-8.2: Create a Virtual Network Link Association
     - Task-8.3: Create a Private Endpoint Using Terraform
+    - Task-8.4: Validate private link connection using `nslookup` or `dig`
     <!-- - Task-7.5: Push and pull Helm charts to an Azure container registry -->
 
 ## Architecture diagram
 
 Here is the reference architecture diagram of Azure container registry.
 
-[![Alt text](images/acr/image-0.png)](images/acr/image-0.png){:target="_blank"}
+[![Alt text](images/acr/image-12.png)](images/acr/image-12.png){:target="_blank"}
+
 
 <!-- Here is the reference architecture diagram from MSDN on registries, repositories, and container images and related artifacts.
 
@@ -499,6 +501,7 @@ To enhance security and limit access to an Azure Container Registry (ACR), you c
 
 Additionally, you can configure DNS settings for the registry's private endpoints, allowing clients and services in the network to access the registry using its fully qualified domain name, such as `myregistry.azurecr.io`.
 
+
 This section guides you through configuring a private endpoint for your ACR using Terraform. Note that this feature is available in the Premium container registry service tier.
 
 ### Task-8.1: Configure the Private DNS Zone
@@ -645,6 +648,109 @@ Navigate to `Network interface -> Overview` to verify the private IP address att
 
 [![Alt text](images/acr/image-5.png)](images/acr/image-5.png){:target="_blank"}
 
+### Task-8.4: Validate private link connection using `nslookup` or `dig`
+
+To validate the private link connection, connect to the `virtual machine` you set up in the virtual network. Run a utility such as `nslookup` or `dig` to look up the IP address of your registry over the private link. 
+
+This will ensures that the private link connection is successfully established and allows for the verification of the expected private IP address associated with the registry in the given virtual network.
+
+**Validate using `dig` example:**
+
+Positive test case connecting from internal vm (private access):
+
+Run the `dig` utility to look up the private IP address (`10.64.3.5`) of your registry over the private link:
+
+```wsl
+dig acr1dev.azurecr.io
+```
+
+output
+
+```sh
+
+; <<>> DiG 9.16.1-Ubuntu <<>> acr1dev.azurecr.io
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 31549
+;; flags: qr rd ad; QUERY: 1, ANSWER: 2, AUTHORITY: 0, ADDITIONAL: 0
+;; WARNING: recursion requested but not available
+
+;; QUESTION SECTION:
+;acr1dev.azurecr.io.                IN      A
+
+;; ANSWER SECTION:
+acr1dev.azurecr.io. 0       IN      CNAME   acr1dev.privatelink.azurecr.io.
+acr1dev.privatelink.azurecr.io. 0 IN A      10.64.3.5
+
+;; Query time: 10 msec
+;; SERVER: 172.30.80.1#53(172.30.80.1)
+;; WHEN: Tue Dec 26 14:57:14 UTC 2023
+;; MSG SIZE  rcvd: 160
+```
+
+Nagetive test case connecting from external (public access), compare this result with the public IP address in `dig` output for the same registry over a public endpoint:
+
+```wsl
+dig acr1dev.azurecr.io
+```
+output
+
+
+```sh
+; <<>> DiG 9.16.1-Ubuntu <<>> acr1dev.azurecr.io
+;; global options: +cmd
+acr1dev.azurecr.io. 0       IN      CNAME   acr1dev.privatelink.azurecr.io.
+acr1dev.privatelink.azurecr.io. 0 IN CNAME  ncus.fe.azcr.io.
+ncus.fe.azcr.io.        0       IN      CNAME   ncus-acr-reg.trafficmanager.net.
+ncus-acr-reg.trafficmanager.net. 0 IN   CNAME   r1029ncus.northcentralus.cloudapp.azure.com.
+r1029ncus.northcentralus.cloudapp.azure.com. 0 IN A 52.240.241.132
+
+;; Query time: 50 msec
+;; SERVER: 172.29.48.1#53(172.29.48.1)
+;; WHEN: Tue Dec 26 06:56:26 PST 2023
+;; MSG SIZE  rcvd: 380
+```
+
+
+**Validate using `nslookup` example:**
+
+Connecting from internal VM (private access):
+
+```sh
+nslookup acr1dev.azurecr.io
+```
+output
+
+```sh
+Server:         172.30.80.1
+Address:        172.30.80.1#53
+
+Non-authoritative answer:
+acr1dev.azurecr.io  canonical name = acr1dev.privatelink.azurecr.io.
+Name:   acr1dev.privatelink.azurecr.io
+Address: 10.64.3.5
+```
+
+Connecting from external (public access):
+
+```sh
+nslookup acr1dev.azurecr.io
+```
+
+output
+
+```sh
+Server:         172.29.48.1   
+Address:        172.29.48.1#53
+
+Non-authoritative answer:
+acr1dev.azurecr.io  canonical name = acr1dev.privatelink.azurecr.io.
+acr1dev.privatelink.azurecr.io      canonical name = ncus.fe.azcr.io.
+ncus.fe.azcr.io canonical name = ncus-acr-reg.trafficmanager.net.
+ncus-acr-reg.trafficmanager.net canonical name = r1029ncus.northcentralus.cloudapp.azure.com.
+Name:   r1029ncus.northcentralus.cloudapp.azure.com
+Address: 52.240.241.132
+```
 
 ## References
 - [Microsoft MSDN - Azure Container Registry documentation](https://learn.microsoft.com/en-us/azure/container-registry/){:target="_blank"}
@@ -660,8 +766,6 @@ Navigate to `Network interface -> Overview` to verify the private IP address att
 - [Terraform Registry - azurerm_private_dns_zone](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/private_dns_zone){:target="_blank"}
 - [Terraform Registry - azurerm_private_dns_zone_virtual_network_link](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/private_dns_zone_virtual_network_link){:target="_blank"}
 - [Terraform Registry - azurerm_private_endpoint](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/private_endpoint){:target="_blank"}
-
-
 - [Azure-Samples/private-aks-cluster-terraform-devop](https://github.com/Azure-Samples/private-aks-cluster-terraform-devops/blob/main/terraform/modules/container_registry/main.tf){:target="_blank"}
 
 <!-- 
