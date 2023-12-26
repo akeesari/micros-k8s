@@ -177,6 +177,7 @@ run terraform plan & apply and create new resource group.
 terraform plan -out=dev-plan -var-file="./environments/dev-variables.tfvars"
 terraform apply dev-plan
 ```
+[![Alt text](images/law/image-1.png)](images/law/image-1.png){:target="_blank"}
 
 ### Task-3: Create Log Analytics workspace using terraform
 
@@ -268,12 +269,12 @@ output "log_analytics_workspace_primary_shared_key" {
 ```
 #### Terraform validate
 
-```
+```sh
 terraform validate
 ```
 output
 
-```
+```sh
 Success! The configuration is valid.
 ```
 
@@ -282,7 +283,7 @@ run terraform plan & apply again here.
 
 #### Terraform plan 
 
-```
+```sh
 terraform plan -out=dev-plan -var-file="./environments/dev-variables.tfvars"
 ```
 
@@ -366,13 +367,13 @@ Changes to Outputs:
 
 #### terraform apply
 
-```
+```sh
 terraform apply dev-plan
 ```
 
 output
 
-```
+```sh
 azurerm_resource_group.workspace: Creating...
 azurerm_resource_group.workspace: Creation complete after 1s [id=/subscriptions/b635d52c-5170-4366-b262-cc12cba2d9be/resourceGroups/rg-workspace-dev]
 azurerm_log_analytics_workspace.workspace: Creating...
@@ -395,6 +396,8 @@ log_analytics_workspace_resource_group_name = "rg-workspace-dev"
 log_analytics_workspace_workspace_id = "d66de214-064b-4745-abcf-e8a8060fce1f"
 resource_group_name = "rg-resourcegroup1-dev"
 ```
+
+[![Alt text](images/law/image-2.png)](images/law/image-2.png){:target="_blank"}
 
 ### Task-4: Validate Log Analytics workspace in the Azure portal
 
@@ -436,6 +439,8 @@ run terraform plan & apply
 terraform plan -out=dev-plan -var-file="./environments/dev-variables.tfvars"
 terraform apply dev-plan
 ```
+
+[![Alt text](images/law/image-3.png)](images/law/image-3.png){:target="_blank"}
 
 That's it, now we've fully working azure Log analytics workspace which we are going to use for future labs.
 

@@ -542,6 +542,7 @@ terraform plan -out=dev-plan -var-file="./environments/dev-variables.tfvars"
 terraform apply dev-plan
 ```
 
+[![Alt text](images/aks/image-1.png)](images/aks/image-1.png){:target="_blank"}
 
 ## Task-3: Create AKS user assigned identity
 
@@ -711,7 +712,7 @@ terraform plan -out=dev-plan -var-file="./environments/dev-variables.tfvars"
 terraform apply dev-plan
 ```
 
-[![Alt text](images/image-29.png)](images/image-29.png){:target="_blank"}
+[![Alt text](images/aks/image-29.jpg)](images/aks/image-29.jpg){:target="_blank"}
 
 **ssh_public_key**
 

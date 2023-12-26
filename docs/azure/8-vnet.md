@@ -49,10 +49,10 @@ A hub and spoke virtual network architecture is a networking topology commonly u
 
 There are several benefits to using a hub and spoke virtual network architecture in Azure:
 
-- Scalability: The hub and spoke architecture is highly scalable and can be easily extended as the needs of the organization change.
-- Security: The centralized hub network can act as a secure boundary for the entire network, providing a single point of entry for traffic.
-- Simplified management: The hub and spoke architecture simplifies network management, making it easier to monitor and manage traffic between the various spoke networks.
-- Cost-effective: The hub and spoke architecture can help reduce costs by reducing the need for redundant networking infrastructure.
+- **Scalability**: The hub and spoke architecture is highly scalable and can be easily extended as the needs of the organization change.
+- **Security**: The centralized hub network can act as a secure boundary for the entire network, providing a single point of entry for traffic.
+- **Simplified management**: The hub and spoke architecture simplifies network management, making it easier to monitor and manage traffic between the various spoke networks.
+- **Cost-effective**: The hub and spoke architecture can help reduce costs by reducing the need for redundant networking infrastructure.
 
 In Azure the hub network is created first, followed by the spoke networks which are then connected to the hub network.
 
@@ -335,6 +335,7 @@ run terraform plan & apply
 terraform plan -out=dev-plan -var-file="./environments/dev-variables.tfvars"
 terraform apply dev-plan
 ```
+[![Alt text](images/image-17.0.png)](images/image-17.0.png){:target="_blank"}
 
 ## Task-3: Create Hub virtual network using terraform
 
