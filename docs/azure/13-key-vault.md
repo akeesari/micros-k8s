@@ -36,7 +36,7 @@ In this exercise we will accomplish & learn how to implement following:
 
 The following diagram illustrates the high level architecture of key vault usage:
 
-[![Alt text](images/image-61.png)](images/image-61.png){:target="_blank"}
+[![Alt text](images/kv/image-1.png)](images/kv/image-1.png){:target="_blank"}
 
 ## Prerequisites
 
@@ -350,7 +350,7 @@ terraform apply dev-plan
 
 Azure Key Vault - Overview blade 
 
-[![Alt text](images/image-58.png)](images/image-58.png){:target="_blank"}
+[![Alt text](images/kv/image-2.png)](images/kv/image-2.png){:target="_blank"}
 
 ## Task-3: Configure diagnostic settings for Azure Key Vault using terraform
 
@@ -405,13 +405,13 @@ terraform apply dev-plan
 
 Azure Key vault - Diagnostic settings from left nav
 
-[![Alt text](images/image-59.png)](images/image-59.png){:target="_blank"}
+[![Alt text](images/kv/image-3.png)](images/kv/image-3.png){:target="_blank"}
 
 ## Task-4: Configure access policy for developer in Azure Key Vault
 
 Azure Access Policies in Key Vault are essential for developer who is managing  & who can perform operations on the secrets, keys, and certificates stored in the Key Vault. 
 
-``` bash title="private_dns.tf"
+``` bash title="keyvault.tf"
 # provide access to the developer who is working on terraform for validation
 resource "azurerm_key_vault_access_policy" "access_policy_developer" {
   key_vault_id = azurerm_key_vault.kv.id
@@ -447,7 +447,163 @@ terraform apply dev-plan
 
 Azure key vault - Azure Access Policies
 
-[![Alt text](images/image-60.png)](images/image-60.png){:target="_blank"}
+[![Alt text](images/image-4.png)](images/image-4.png){:target="_blank"}
+
+
+
+## Task-5: Restrict Access Using Private Endpoint
+
+To enhance security and limit access to an Azure Key Vault , you can utilize private endpoints and Azure Private Link. This approach assigns virtual network private IP addresses to the Key Vault endpoints, ensuring that network traffic between clients on the virtual network and the Key vault's private endpoints traverses a secure path on the Microsoft backbone network, eliminating exposure from the public internet.
+
+Additionally, you can configure DNS settings for the Key vault's private endpoints, allowing clients and services in the network to access the Key vault using its fully qualified domain name, such as `privatelink.vaultcore.azure.net`.
+
+This section guides you through configuring a private endpoint for your Key Vault using Terraform.
+
+### Task-5.1: Configure the Private DNS Zone
+
+``` bash title="keyvault.tf"
+# Create private DNS zone for key vault
+resource "azurerm_private_dns_zone" "pdz_kv" {
+  name                = "privatelink.vaultcore.azure.net"
+  resource_group_name = azurerm_virtual_network.vnet.resource_group_name
+  tags                = merge(local.default_tags)
+
+  lifecycle {
+    ignore_changes = [
+      tags
+    ]
+  }
+  depends_on = [
+    azurerm_virtual_network.vnet
+  ]
+}
+```
+
+run terraform validate & format
+
+``` sh
+terraform validate
+terraform fmt
+```
+
+run terraform plan & apply
+
+``` sh
+terraform plan -out=dev-plan -var-file="./environments/dev-variables.tfvars"
+terraform apply dev-plan
+```
+
+Confirm the Private DNS zone configuration by navigating to `rg-vnet1-dev -> privatelink.azurecr.io -> Overview blade`.
+
+[![Alt text](images/kv/image-5.png)](images/kv/image-5.png){:target="_blank"}
+
+### Task-5.2: Create a Virtual Network Link Association
+
+``` bash title="keyvault.tf"
+
+# Create private virtual network link to spoke vnet
+resource "azurerm_private_dns_zone_virtual_network_link" "kv_pdz_vnet_link" {
+  name                  = "privatelink_to_${azurerm_virtual_network.vnet.name}"
+  resource_group_name   = azurerm_resource_group.vnet.name
+  virtual_network_id    = azurerm_virtual_network.vnet.id
+  private_dns_zone_name = azurerm_private_dns_zone.pdz_kv.name
+
+  lifecycle {
+    ignore_changes = [
+      tags
+    ]
+  }
+  depends_on = [
+    azurerm_resource_group.vnet,
+    azurerm_virtual_network.vnet,
+    azurerm_private_dns_zone.pdz_kv
+  ]
+}
+```
+
+run terraform validate & format
+
+``` sh
+terraform validate
+terraform fmt
+```
+
+run terraform plan & apply
+
+``` sh
+terraform plan -out=dev-plan -var-file="./environments/dev-variables.tfvars"
+terraform apply dev-plan
+```
+
+Confirm the Virtual network links configuration by navigating to `rg-vnet1-dev -> privatelink.azurecr.io -> Virtual network links`.
+
+[![Alt text](images/kv/image-6.png)](images/kv/image-6.png){:target="_blank"}
+
+
+### Task-5.3: Create a Private Endpoint Using Terraform
+
+``` bash title="keyvault.tf"
+
+# Create private endpoint for key vault
+resource "azurerm_private_endpoint" "pe_kv" {
+  name                            = lower("${var.private_endpoint_prefix}-${azurerm_key_vault.kv.name}")  
+  location            = azurerm_key_vault.kv.location
+  resource_group_name = azurerm_key_vault.kv.resource_group_name
+  subnet_id           = azurerm_subnet.jumpbox.id
+  tags                = merge(local.default_tags, var.kv_tags)
+
+  private_service_connection {
+    name                           = "pe-${azurerm_key_vault.kv.name}"    
+    private_connection_resource_id = azurerm_key_vault.kv.id
+    is_manual_connection           = false
+    subresource_names              = var.pe_kv_subresource_names
+    request_message                = try(var.request_message, null)
+  }
+
+  private_dns_zone_group {
+    name                 = "default" # var.pe_kv_private_dns_zone_group_name
+    private_dns_zone_ids = [azurerm_private_dns_zone.pdz_kv.id]
+  }
+
+  lifecycle {
+    ignore_changes = [
+      tags
+    ]
+  }
+  depends_on = [
+    azurerm_key_vault.kv,
+    azurerm_private_dns_zone.pdz_kv
+  ]
+}
+```
+
+run terraform validate & format
+
+``` sh
+terraform validate
+terraform fmt
+```
+
+run terraform plan & apply
+
+``` sh
+terraform plan -out=dev-plan -var-file="./environments/dev-variables.tfvars"
+terraform apply dev-plan
+```
+
+Confirm the endpoint configuration by navigating to `Key Vault -> Networking -> Private access` — you will see the new private endpoint details.
+
+Navigate to `Private endpoint -> Overview` to verify the Virtual network/subnet and Network interface.
+
+[![Alt text](images/kv/image-7.png)](images/kv/image-7.png){:target="_blank"}
+
+Navigate to `Private endpoint -> DNS Configuration` to verify the Network Interface and Configuration name.
+
+[![Alt text](images/kv/image-8.png)](images/kv/image-8.png){:target="_blank"}
+
+Navigate to `Network interface -> Overview` to verify the private IP address attached to properties.
+
+
 
 
 ## Reference

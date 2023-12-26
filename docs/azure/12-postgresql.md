@@ -337,7 +337,12 @@ Azure PostgreSQL - Flexible Server - subnet
 
 ## Task-5: Create a Private DNS zone for PostgreSQL
 
-Establish a private DNS zone specifically for your PostgreSQL Flexible Server. 
+Azure Private DNS offers a reliable and secure DNS service for your virtual network. It effectively manages and resolves domain names within the virtual network, eliminating the need for a custom DNS solution.
+
+When utilizing private network access in an Azure virtual network, it is mandatory to provide private DNS zone information for DNS resolution. For the creation of a new Azure Database for PostgreSQL Flexible Server with private network access, private DNS zones must be utilized during the configuration of flexible servers.
+
+In this lab, we will use terraform to create private DNS zones and incorporate them into the configuration of flexible servers with private access.
+
 
 ``` bash title="postgresql.tf"
 # Create private DNS zone for PostgreSQL 
@@ -630,7 +635,7 @@ Azure PostgreSQL - Flexible Server - Diagnostic Settings from left nav
 
 Specify an Azure AD user or group as the administrator for your PostgreSQL Flexible Server, allowing them to manage the server.
 
-``` bash title="private_dns.tf"
+``` bash title="postgresql.tf"
 # Set a user or group as the AD administrator for a PostgreSQL Flexible Server.
 data "azuread_group" "azuread_psql_admin_group" {
   display_name     = "psql-admin-group"
@@ -668,8 +673,23 @@ Azure PostgreSQL - Flexible Server - AD administrator
 
 Use Terraform to create new databases within your PostgreSQL Flexible Server, providing segregated spaces for each database
 
-``` bash title="private_dns.tf"
+``` bash title="postgresql.tf"
+# create databases in PostgreSQL Server
+variable "database_names" {
+  type    = list(string)
+  default = ["database1", "database2", "database3"]
+}
 
+resource "azurerm_postgresql_flexible_server_database" "psql_db" {
+  for_each  = { for name in var.database_names : name => name }
+  name      = each.key
+  server_id = azurerm_postgresql_flexible_server.psql.id
+  charset   = "utf8"
+  collation = "en_US.utf8"
+  depends_on = [
+    azurerm_postgresql_flexible_server.psql
+  ]
+}
 ```
 run terraform validate & format
 
@@ -694,7 +714,7 @@ Azure PostgreSQL - Flexible Server - Databases
 
 Establish Azure AD groups to manage access to your databases. This enhances security and simplifies permissions management.
 
-``` bash title="private_dns.tf"
+``` bash title="postgresql.tf"
 # Create azure ad groups for database access
 resource "azuread_group" "psql_ad_group" {
   for_each         = toset(["readonly", "readwrite", "administrators"])
