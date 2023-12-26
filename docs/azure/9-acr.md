@@ -37,13 +37,17 @@ In this exercise we will accomplish & learn how to implement following:
     - Task-7.2: Push image to registry
     - Task-7.3: Pull image from registry
     - Task-7.4: List container images
+- Task-8: Restrict Access Using Private Endpoint
+    - Task-8.1: Configure the Private DNS Zone
+    - Task-8.2: Create a Virtual Network Link Association
+    - Task-8.3: Create a Private Endpoint Using Terraform
     <!-- - Task-7.5: Push and pull Helm charts to an Azure container registry -->
 
 ## Architecture diagram
 
 Here is the reference architecture diagram of Azure container registry.
 
-![Alt text](images/image-75.png)
+![Alt text](images/acr/image-0.png)
 
 <!-- Here is the reference architecture diagram from MSDN on registries, repositories, and container images and related artifacts.
 
@@ -266,6 +270,7 @@ terraform plan -out=dev-plan -var-file="./environments/dev-variables.tfvars"
 terraform apply dev-plan
 ```
 
+![image.jpg](images/acr/image-1.png)
 
 ## Task-3: Create ACR user assigned identity
 
@@ -295,7 +300,7 @@ resource "azurerm_user_assigned_identity" "acr_identity" {
 
 ```
 
-![image.jpg](images/image-24.jpg)
+![image.jpg](images/acr/image-3.png)
 
 ## Task-4: Create Azure Container Registry (ACR) using terraform
 
@@ -355,7 +360,7 @@ terraform plan -out=dev-plan -var-file="./environments/dev-variables.tfvars"
 terraform apply dev-plan
 ```
 
-![image.jpg](images/image-25.jpg)
+![image.jpg](images/acr/image-2.png)
 
 ## Task-5: Create Diagnostics Settings for ACR
 
@@ -415,7 +420,7 @@ terraform plan -out=dev-plan -var-file="./environments/dev-variables.tfvars"
 terraform apply dev-plan
 ```
 
-![image.jpg](images/image-26.jpg)
+![image.jpg](images/acr/image-26.jpg)
 
 ## Task-6: Lock the resource group
 
@@ -451,7 +456,7 @@ terraform apply dev-plan
 ```
 list of resources in this ACR resource group
 
-![image.jpg](images/image-27.jpg)
+![image.jpg](images/acr/image-9.png)
 
 ## Task-7: Validate ACR resource
 
@@ -485,7 +490,7 @@ az acr repository list --name acr1dev
 
 for more information look into the az acr cheat-sheet [az-acr-cheat-sheet](./../miscellaneous/az-acr-cheat-sheet.md)
 
-![image.jpg](images/image-28.jpg)
+![image.jpg](images/acr/image-8.png)
 
 ## Task-8: Restrict Access Using Private Endpoint
 
@@ -532,7 +537,9 @@ terraform apply dev-plan
 
 Confirm the Private DNS zone configuration by navigating to `rg-vnet1-dev -> privatelink.azurecr.io -> Overview blade`.
 
-### Task-8.2: Create a Virtual Network Link
+![image.jpg](images/acr/image-11.png)
+
+### Task-8.2: Create a Virtual Network Link Association
 
 **acr.tf:**
 ```hcl
@@ -571,6 +578,8 @@ terraform apply dev-plan
 ```
 
 Confirm the Virtual network links configuration by navigating to `rg-vnet1-dev -> privatelink.azurecr.io -> Virtual network links`.
+
+![image.jpg](images/acr/image-10.png)
 
 ### Task-8.3: Create a Private Endpoint Using Terraform
 
@@ -632,6 +641,7 @@ Navigate to `Private endpoint -> DNS Configuration` to verify the Network Interf
 
 Navigate to `Network interface -> Overview` to verify the private IP address attached to properties.
 
+![image.jpg](images/acr/image-5.png)
 
 ## References
 - [Microsoft MSDN - Azure Container Registry documentation](https://learn.microsoft.com/en-us/azure/container-registry/){:target="_blank"}
