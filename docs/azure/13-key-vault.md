@@ -4,6 +4,7 @@ Azure Key Vault is a cloud service provided by Microsoft Azure that allows you t
 
 In this hands-on lab, I'll guide you through the process of creating an Azure Key Vault using Terraform. We'll set up diagnostic settings to monitor this resource effectively. also, we'll ensure that access policies are configured to allow developers access to the secrets stored in the Azure Key Vault.
 
+## Key Features
 Here are some key features of Azure Key Vault:
 
 1. **Secrets Management:** Azure Key Vault can be used to securely store and manage sensitive information such as API keys, passwords, and connection strings.
@@ -498,7 +499,7 @@ terraform plan -out=dev-plan -var-file="./environments/dev-variables.tfvars"
 terraform apply dev-plan
 ```
 
-Confirm the Private DNS zone configuration by navigating to `rg-vnet1-dev -> privatelink.azurecr.io -> Overview blade`.
+Confirm the Private DNS zone configuration
 
 [![Alt text](images/kv/image-5.png)](images/kv/image-5.png){:target="_blank"}
 
@@ -540,7 +541,7 @@ terraform plan -out=dev-plan -var-file="./environments/dev-variables.tfvars"
 terraform apply dev-plan
 ```
 
-Confirm the Virtual network links configuration by navigating to `rg-vnet1-dev -> privatelink.azurecr.io -> Virtual network links`.
+Confirm the Virtual network links configuration.
 
 [![Alt text](images/kv/image-6.png)](images/kv/image-6.png){:target="_blank"}
 

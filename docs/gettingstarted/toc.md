@@ -185,7 +185,18 @@
     - Task-9: Create DNS CNAME records in DNS Zone
     - Task-10: Configure diagnostic settings for CDN profile
     - Task-11: Apply lock on Front Door Profile
-- Lab-14: Create Storage Account using terraform
+- [Lab-14: Create Storage Account using terraform](../azure/16-storage-account.md)
+    - Task-1: Define and declare azure storage account variables
+    - Task-2: Create azure storage account using terraform
+    - Task-3: Create azure storage account container using terraform
+    - Task-4: Configure diagnostic settings for azure storage account using terraform
+    - Task-5: Configure diagnostic settings for azure storage account container using terraform
+    - Task-6: Create storage account's Files Share using terraform
+    - Task-7: Restrict Access Using Private Endpoint
+        - Task-7.1: Configure the Private DNS Zone
+        - Task-7.2: Create a Virtual Network Link Association
+        - Task-7.3: Create Private Endpoints for azure Storage
+        - Task-7.4: Validate private link connection using nslookup or dig
 - Lab-15: Create Azure Bastion Host using terraform
 - Lab-16: Create Virtual Machine (Jumpbox) using terraform
 - Lab-17: Configure Private Endpoint & Private Links using terraform

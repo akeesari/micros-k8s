@@ -189,7 +189,7 @@ nav:
     -  Create Azure Key Vault using Terraform: azure/13-key-vault.md
     -  Create Azure Cache for Redis using Terraform: azure/14-redis-cache.md
     -  Create Front Door and CDN profile using Terraform: azure/15-cdn-frontdoor.md
-    # -  Create Storage Account using Terraform: azure/16-storage-account.md
+    -  Create Storage Account using Terraform: azure/16-storage-account.md
   - Kubernetes:
     - Getting Started with Docker Container: kubernetes/0.getting-started.md
     - Prepare an application for Azure Kubernetes Service (AKS): kubernetes/1-prepare-app.md
