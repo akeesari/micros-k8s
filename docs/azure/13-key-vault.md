@@ -37,6 +37,7 @@ In this exercise we will accomplish & learn how to implement following:
 - **Task-5.2:** Create a Virtual Network Link Association
 - **Task-5.3:** Create a Private Endpoint Using Terraform
 - **Task-5.4:** Validate private link connection using `nslookup` or `dig`
+- **Task-6:** Created azure Key Vault secrets for sensitive information
 
 ## Architecture diagram
 
@@ -365,22 +366,31 @@ By configuring diagnostic settings, we can monitor and analyze the behavior of t
 ``` bash title="keyvault.tf"
 # create diagnostic setting for key vault
 resource "azurerm_monitor_diagnostic_setting" "diag_kv" {
-  name = "DiagnosticsSettings"
-  # log_analytics_destination_type = "AzureDiagnostics"
+  name                       = lower("${var.diag_prefix}-${azurerm_key_vault.kv.name}")
   target_resource_id         = azurerm_key_vault.kv.id
   log_analytics_workspace_id = azurerm_log_analytics_workspace.workspace.id
-
-  log {
+  enabled_log {
     category = "AuditEvent"
-    enabled  = true
+
+    retention_policy {
+      days    = 0
+      enabled = true
+    }
   }
-  log {
+  enabled_log {
     category = "AzurePolicyEvaluationDetails"
-    enabled  = false
+
+    retention_policy {
+      days    = 0
+      enabled = true
+    }
   }
+
   metric {
     category = "AllMetrics"
-    enabled  = false
+    retention_policy {
+      enabled = true
+    }
   }
   lifecycle {
     ignore_changes = [
@@ -638,6 +648,105 @@ output
 
 This process ensures that the private link connection is successfully established and allows expected private IP address associated with our resource in the private virtual network.
 
+## Task-6: Created azure Key Vault secrets for sensitive information
+
+Let's create some sample Azure Key Vault secrets for sensitive information related to our PostgreSQL databases and storage account. These secrets will be securely stored and can be accessed programmatically from microservices applications, ensuring robust security practices.
+
+Create Key Vault secrets for each sensitive information:
+
+**a. PostgreSQL Database Password**
+
+``` bash title="keyvault.tf"
+# generate random password for postgreSQL admin password
+resource "random_password" "psql_admin_password" {
+  length           = 20
+  special          = true
+  lower            = true
+  upper            = true
+  override_special = "!#$" //"!#$%&*()-_=+[]{}<>:?"
+}
+
+# Create key vault secret for postgres database password
+resource "azurerm_key_vault_secret" "secret_1" {
+  name         = "postgres-db-password"
+  value        = random_password.psql_admin_password.result
+  key_vault_id = azurerm_key_vault.kv.id
+  tags         = {}
+  depends_on = [
+    azurerm_key_vault.kv,
+  ]
+}
+```
+
+**b. PostgreSQL Database Hostname**
+
+``` bash title="keyvault.tf"
+# Create key vault secret for postgres database hostname
+resource "azurerm_key_vault_secret" "secret_2" {
+  name  = "postgres-db-hostname"
+  value = "psql-postgresql1-dev.postgres.database.azure.com"
+  # value        = "${azurerm_postgresql_flexible_server.psql.name}.postgres.database.azure.com"
+  key_vault_id = azurerm_key_vault.kv.id
+  tags         = {}
+  depends_on = [
+    azurerm_key_vault.kv,
+    # azurerm_postgresql_flexible_server.psql
+  ]
+}
+```
+
+**c. Database1 Connection String**
+
+``` bash title="keyvault.tf"
+# Create key vault secret for database1-connection-string
+resource "azurerm_key_vault_secret" "secret_3" {
+  name  = "database1-db-connection-string"
+  value = "User ID=postgres;Password=xxxxxx;Host=psql-postgresql1-dev.postgres.database.azure.com;database=database1;Port=5432;"
+  # value        = "User ID=postgres;Password=${azurerm_postgresql_flexible_server.psql.administrator_password};Host=${azurerm_postgresql_flexible_server.psql.name}.postgres.database.azure.com;database=database1;Port=5432;"
+  key_vault_id = azurerm_key_vault.kv.id
+  tags         = {}
+  depends_on = [
+    azurerm_key_vault.kv,
+    # azurerm_postgresql_flexible_server.psql
+  ]
+}
+```
+
+**d. Storage Account Access Key**
+
+``` bash title="keyvault.tf"
+# Create key vault secret for storage account accesskey
+resource "azurerm_key_vault_secret" "secret_4" {
+  name         = "storage-account-accesskey"
+  value        = azurerm_storage_account.st.primary_access_key
+  key_vault_id = azurerm_key_vault.kv.id
+  tags         = {}
+  depends_on = [
+    azurerm_key_vault.kv,
+    azurerm_storage_account.st
+  ]
+}
+```
+
+
+run terraform validate & format
+
+``` bash
+terraform validate
+terraform fmt
+```
+
+run terraform plan & apply
+
+``` bash
+terraform plan -out=dev-plan -var-file="./environments/dev-variables.tfvars"
+terraform apply dev-plan
+```
+
+Azure Key vault secrets:
+
+[![Alt text](images/kv/image-9.png)](images/kv/image-9.png){:target="_blank"}
+
 ## Reference
 - [Microsoft MSDN - Azure Key Vault documentation](https://learn.microsoft.com/en-us/azure/key-vault/general/){:target="_blank"}
 - [Terraform Registry - azurerm_key_vault](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/key_vault){:target="_blank"}
@@ -646,4 +755,5 @@ This process ensures that the private link connection is successfully establishe
 - [Terraform Registry - azurerm_private_dns_zone](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/private_dns_zone){:target="_blank"}
 - [Terraform Registry - azurerm_private_dns_zone_virtual_network_link](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/private_dns_zone_virtual_network_link){:target="_blank"}
 - [Terraform Registry - azurerm_private_endpoint](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/private_endpoint){:target="_blank"}
+- [Terraform Registry - azurerm_key_vault_secret](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/key_vault_secret){:target="_blank"}
 - [Azure Terraform Quickstart/101-key-vault-key](https://github.com/Azure/terraform/tree/master/quickstart/101-key-vault-key){:target="_blank"}

@@ -164,6 +164,7 @@
         - Task-5.2: Create a Virtual Network Link
         - Task-5.3: Create a Private Endpoint Using Terraform
         - Task-5.4: Validate private link connection using `nslookup` or `dig`
+    - Task-6: Created azure Key Vault secrets for sensitive information
 - [Lab-12: Create Azure Cache for Redis using Terraform](../azure/14-redis-cache.md)
     - Task-1: Define and declare Azure Cache for Redis variables
     - Task-2: Create Azure Cache for Redis using terraform

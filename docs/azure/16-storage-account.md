@@ -306,7 +306,6 @@ azure storage account container
 By configuring diagnostic settings, we can monitor and analyze the behavior of the azure storage account instance.
 
 ``` bash title="storage.tf"
-
 # Create diagnostic settings for Storage Account
 resource "azurerm_monitor_diagnostic_setting" "diag_st" {
   name                       = lower("${var.diag_prefix}-${azurerm_storage_account.st.name}")
@@ -315,7 +314,9 @@ resource "azurerm_monitor_diagnostic_setting" "diag_st" {
 
   metric {
     category = "Transaction"
-    enabled  = true
+    retention_policy {
+      enabled = true
+    }
   }
 
   lifecycle {
