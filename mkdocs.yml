@@ -189,7 +189,8 @@ nav:
     -  Create Azure Key Vault using Terraform: azure/13-key-vault.md
     -  Create Azure Cache for Redis using Terraform: azure/14-redis-cache.md
     -  Create Storage Account using Terraform: azure/15-storage-account.md
-    -  Create Azure Event hubs (Appachi Kafka) using Terraform: azure/16-event-hubs.md
+    -  Azure Event Hubs Introduction: azure/16-event-hubs-part-1.md
+    -  Create Azure Event Hubs using Terraform: azure/16-event-hubs-part-2.md
     -  Create Front Door and CDN profile using Terraform: azure/17-cdn-frontdoor.md
   - Kubernetes:
     - Getting Started with Docker Container: kubernetes/0.getting-started.md
