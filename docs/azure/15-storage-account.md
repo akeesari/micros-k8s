@@ -3,7 +3,9 @@
 
 Azure `Storage` is a cloud-based storage solution provided by Microsoft Azure, offering a scalable, secure, and highly available storage infrastructure for various types of data. Azure Storage allows users to store and retrieve data in the cloud using various storage services, and at the core of this storage ecosystem is the `Azure Storage Account`.
 
-In this hands-on lab, I'll guide you through the process of creating an azure storage account using Terraform. Additionally, we'll cover the creation of a Storage Account Container and the configuration of diagnostic settings.
+In this hands-on lab, I'll guide you through the process of creating an azure storage account using Terraform. we'll cover the creation of a storage account container and the configuration of diagnostic settings. setting up a files share, and enhancing security through the use of private endpoints.
+
+Through these tasks, you will gain practical experience on azure storage account.
 
 ## Key Features
 
@@ -42,7 +44,7 @@ In this exercise we will accomplish & learn how to implement following:
 - **Task-3:** Create azure storage account container using terraform
 - **Task-4:** Configure diagnostic settings for azure storage account using terraform
 - **Task-5:** Configure diagnostic settings for azure storage account container using terraform
-- **Task-6:** Create storage account's Files Share using terraform
+- **Task-6:** Create storage account's files share using terraform
 - **Task-7:** Restrict Access Using Private Endpoint
 - **Task-7.1:** Configure the Private DNS Zone
 - **Task-7.2:** Create a Virtual Network Link Association
@@ -64,11 +66,12 @@ Before proceeding with this lab, make sure you have the following prerequisites 
 3. Azure subscription.
 4. Visual Studio Code.
 5. Log Analytics workspace - for configuring diagnostic settings.
+6. Virtual Network with subnet - for configuring a private endpoint.
 7. Basic knowledge of terraform and Azure concepts.
 
 ## Implementation details
 
-Here's a step-by-step guide on how to create an azure storage account using Terraform
+Here's a step-by-step guide on how to create an azure storage account using terraform
 
 **login to Azure**
 
@@ -91,6 +94,29 @@ az account set -s "anji.keesari"
 ## Task-1: Define and declare azure storage account variables
 
 In this task, we will define and declare the necessary variables for creating the azure storage account resource. 
+
+This table presents the variables along with their descriptions, and default values:
+
+
+| Variable Name                     | Description                                                                                                      | Default Value                       |
+| --------------------------------- | ---------------------------------------------------------------------------------------------------------------- | ----------------------------------- |
+| storage_name                      | (Required) Specifies the name of the storage account                                                              | "storage1"                          |
+| storage_account_kind              | (Optional) Specifies the account kind of the storage account                                                      | "StorageV2"                         |
+| storage_access_tier               | (Optional) Defines the access tier for BlobStorage, FileStorage, and StorageV2 accounts. Valid options are Hot and Cool, defaults to Hot. | "Hot"                               |
+| storage_account_tier              | (Optional) Specifies the account tier of the storage account                                                      | "Standard"                          |
+| storage_allow_blob_public_access   | (Optional) Specifies the public access type for blob storage                                                      | false                               |
+| storage_replication_type          | (Optional) Specifies the replication type of the storage account                                                  | "LRS"                               |
+| storage_is_hns_enabled            | (Optional) Specifies whether Hierarchical Namespace (HNS) is enabled for the storage account                        | false                               |
+| storage_default_action            | Allow or disallow public access to all blobs or containers in the storage accounts. The default interpretation is true for this property. | "Allow"                             |
+| storage_ip_rules                  | Specifies IP rules for the storage account                                                                      | []                                  |
+| storage_virtual_network_subnet_ids | Specifies a list of resource ids for subnets                                                                    | []                                  |
+| storage_kind                      | (Optional) Specifies the kind of the storage account                                                            | ""                                  |
+| storage_container_name            | (Required) The name of the Container within the Blob Storage Account where Kafka messages should be captured     | "container1"                        |
+| storage_file_share_name           | (Required) The name of the File Share within the Storage Account where Files should be stored                    | "file-share-1"                      |
+| storage_tags                      | (Optional) Specifies the tags of the storage account                                                             | {}                                  |
+| pe_blob_subresource_names         | (Optional) Specifies subresource names to which the Private Endpoint can connect for Blob                         | ["blob"]                            |
+| pe_blob_private_dns_zone_group_name| (Required) Specifies the Name of the Private DNS Zone Group for Blob                                             | "BlobPrivateDnsZoneGroup"          |
+
 
 *Variable declaration:*
 
@@ -410,12 +436,12 @@ azure storage account container- diagnostic settings from left nav
 
 [![Alt text](images/storage/image-5.png)](images/storage/image-5.png){:target="_blank"}
 
-## Task-6: Create  storage account's `Files Share` using terraform
+## Task-6: Create  storage account's `files share` using terraform
 
 Azure Storage File Share is commonly used for scenarios such as file sharing among multiple VMs, storing configuration files, hosting application data, and providing a centralized location for shared content in the cloud.
 
 ``` bash title="storage.tf"
-# Create  storage account's `Files Share` using terraform
+# Create  storage account's `files share` using terraform
 resource "azurerm_storage_share" "azure_storage" {
   name                 = var.storage_file_share_name
   storage_account_name = azurerm_storage_account.st.name
@@ -448,7 +474,7 @@ terraform apply dev-plan
 
 To enhance security and limit access to an Azure storage account , you can utilize private endpoints and Azure Private Link. This approach assigns virtual network private IP addresses to the storage account endpoints, ensuring that network traffic between clients on the virtual network and the storage account's private endpoints traverses a secure path on the Microsoft backbone network, eliminating exposure from the public internet.
 
-Additionally, you can configure DNS settings for the storage account's private endpoints, allowing clients and services in the network to access the storage account using its fully qualified domain name, such as `privatelink.vaultcore.azure.net`.
+Additionally, you can configure DNS settings for the storage account's private endpoints, allowing clients and services in the network to access the storage account using its fully qualified domain name, such as `privatelink.blob.core.windows.net`.
 
 This section guides you through configuring a private endpoint for your storage account using Terraform.
 

@@ -41,6 +41,8 @@ In this exercise we will accomplish & learn how to implement following:
 - **Task-4.3:** Configure a private endpoint for Azure Cache for Redis using Terraform.
 - **Task-4.4:** Validate private link connection using `nslookup` or `dig`
 
+Through these tasks, you will gain practical experience on Azure Cache for Redis.
+
 ## Architecture diagram
 
 The following diagram illustrates the high level architecture of Azure Cache for Redis

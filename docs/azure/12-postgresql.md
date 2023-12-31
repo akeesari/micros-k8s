@@ -2,7 +2,7 @@
 
 Azure Database for PostgreSQL - Flexible Server is a fully managed database service on the Microsoft Azure cloud platform, designed to host PostgreSQL databases. It provides a scalable, secure, and cost-effective solution for deploying, managing, and scaling PostgreSQL-based applications.
 
-In this hands-on lab, I'll guide you through the process of creating an Azure PostgreSQL - Flexible Server using Terraform. We'll set up diagnostic settings to monitor this resource effectively.
+In this hands-on lab, I'll guide you through the process of creating an Azure PostgreSQL - Flexible Server using Terraform. We'll set up diagnostic settings to monitor this resource effectively and finally enhancing security through the use of private DNS zone.
 
 Key features of Azure Database for PostgreSQL - Flexible Server:
 
@@ -55,6 +55,8 @@ In this exercise we will accomplish & learn how to implement following:
 - **Task-11:** Create new Databases in PostgreSQL Server
 - **Task-12:** Create AD groups for database access
 
+Through these tasks, you will gain practical experience on Azure PostgreSQL - Flexible Server.
+
 ## Architecture diagram 
 
 The following diagram illustrates the high level architecture of PostgreSQL - Flexible Server:
@@ -70,6 +72,7 @@ Before proceeding with this lab, make sure you have the following prerequisites 
 3. Azure subscription.
 4. Visual Studio Code.
 5. Log Analytics workspace - for configuring diagnostic settings.
+6. Virtual Network with subnet
 7. Basic knowledge of Terraform and Azure concepts.
 
 ## Implementation details

@@ -46,6 +46,7 @@ In this exercise we will accomplish & learn how to implement following:
 - **Task-3:** Create Azure Application Gateway using Terraform
 - **Task-4:** Configure diagnostic settings for Application Gateway using Terraform
 
+Through these tasks, you will gain practical experience on Azure Application Gateway.
 
 ## Architecture diagram
 
@@ -63,7 +64,7 @@ Before proceeding with this lab, make sure you have the following prerequisites 
 4. Visual Studio Code.
 5. Log Analytics workspace - for configuring diagnostic settings.
 6. Virtual Network with subnet
-7. Basic knowledge of Terraform and Azure concepts.
+7. Basic knowledge of terraform and Azure concepts.
 
 ## Implementation details
 

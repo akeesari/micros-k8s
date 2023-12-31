@@ -44,6 +44,8 @@ In this exercise we will accomplish & learn how to implement following:
     - Task-8.4: Validate private link connection using `nslookup` or `dig`
     <!-- - Task-7.5: Push and pull Helm charts to an Azure container registry -->
 
+Through these tasks, you will gain practical experience on Azure Container Registry.
+
 ## Architecture diagram
 
 Here is the reference architecture diagram of Azure container registry.
@@ -65,8 +67,10 @@ reference- <https://learn.microsoft.com/en-us/azure/container-registry/container
   - Visual studio code
   - Azure DevOps Project & repo
   - Terraform Foundation
-  - Log Analytics workspace
-
+  - Log Analytics workspace - for configuring diagnostic settings.
+  - Virtual Network with subnet - for configuring a private endpoint.
+  - Basic knowledge of terraform and azure concepts.
+  
 ## Implementation details
 
 Open the terraform project folder in Visual Studio code and creating new file named `acr.tf` for Azure container registry specific azure resources;

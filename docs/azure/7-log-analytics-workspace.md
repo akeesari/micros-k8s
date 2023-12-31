@@ -36,6 +36,9 @@ In this exercise we will accomplish & learn following:
 - Task-4: Validate Log Analytics workspace in the portal
 - Task-5: Lock the Log Analytics workspace resource group
 
+Through these tasks, you will gain practical experience on azure Log Analytics workspace.
+
+
 This is our first azure resource that will be created using Terraform configuration, open the terraform folder in VS core and start creating new files or update existing files for Log Analytics specific resources to provision in azure cloud.
 
 

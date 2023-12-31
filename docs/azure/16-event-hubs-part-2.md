@@ -4,7 +4,7 @@
 
 Azure Event Hubs is a cloud-based, scalable data streaming platform provided by Microsoft Azure. It is designed to ingest and process large volumes of streaming data from various sources in real-time. Event Hubs is part of the Azure messaging services and is particularly well-suited for scenarios involving event-driven architectures and big data analytics.
 
-In this hands-on lab, I'll guide you through the process of creating an `Azure Event Hub namespace`, `Azure event hubs` using terraform.
+In this hands-on lab, I'll guide you through the process of creating an `Azure Event Hub namespace`, `Azure event hubs` using terraform and finally enhancing security through the use of private endpoints.
 
 ## Technical Scenario
 
@@ -72,7 +72,8 @@ Before proceeding with this lab, make sure you have the following prerequisites 
 3. Azure subscription.
 4. Visual Studio Code.
 5. Log Analytics workspace - for configuring diagnostic settings.
-7. Basic knowledge of terraform and Azure concepts.
+6. Virtual Network with subnet - for configuring a private endpoint.
+7. Basic knowledge of terraform and azure concepts.
 
 ## Implementation details
 

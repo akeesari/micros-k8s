@@ -45,6 +45,8 @@ In this exercise we will accomplish & learn how to implement following:
 - Task-8: Allow AKS Cluster access to Azure Container
 - Task-9: Lock AKS cluster resource group
 
+Through these tasks, you will gain practical experience on Azure Kubernetes Service (AKS).
+
 ## Architecture diagram
 
 Here is the reference architecture diagram of Azure Kubernetes services.
