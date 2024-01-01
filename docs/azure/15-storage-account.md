@@ -11,23 +11,23 @@ Through these tasks, you will gain practical experience on azure storage account
 
 Key Features of azure storage account includes:
 
-**Scalability:** azure storage accounts provide a highly scalable solution, enabling users to scale their storage needs as their data requirements grow. The storage capacity can dynamically scale up or down based on demand.
+- **Scalability:** azure storage accounts provide a highly scalable solution, enabling users to scale their storage needs as their data requirements grow. The storage capacity can dynamically scale up or down based on demand.
 
-**Durable and Highly Available:** Azure Storage ensures the durability and availability of data through redundancy. Data is replicated across multiple data centers to protect against hardware failures and ensure data integrity.
+- **Durable and Highly Available:** Azure Storage ensures the durability and availability of data through redundancy. Data is replicated across multiple data centers to protect against hardware failures and ensure data integrity.
 
-**Data Redundancy Options:** Users can choose redundancy options such as Locally Redundant Storage (LRS), Geo-Redundant Storage (GRS), Zone-Redundant Storage (ZRS), and more, depending on their specific needs for data redundancy and availability.
+- **Data Redundancy Options:** Users can choose redundancy options such as Locally Redundant Storage (LRS), Geo-Redundant Storage (GRS), Zone-Redundant Storage (ZRS), and more, depending on their specific needs for data redundancy and availability.
 
-**Blob Storage:** Azure Storage supports various data types, and Blob Storage is designed for storing large amounts of unstructured data, such as documents, images, videos, and logs.
+- **Blob Storage:** Azure Storage supports various data types, and Blob Storage is designed for storing large amounts of unstructured data, such as documents, images, videos, and logs.
 
-**File Storage:** Azure Storage provides a fully managed file share in the cloud, accessible via the Server Message Block (SMB) protocol. This is ideal for organizations that need a scalable file share that can be accessed from multiple virtual machines.
+- **File Storage:** Azure Storage provides a fully managed file share in the cloud, accessible via the Server Message Block (SMB) protocol. This is ideal for organizations that need a scalable file share that can be accessed from multiple virtual machines.
 
-**Table Storage:** A NoSQL data store for semi-structured data, Azure Table Storage is suitable for applications that require high-speed access to large amounts of data.
+- **Table Storage:** A NoSQL data store for semi-structured data, Azure Table Storage is suitable for applications that require high-speed access to large amounts of data.
 
-**Queue Storage:** Azure Queue Storage is a message queuing service that enables communication between application components. It provides a scalable message queue for asynchronous processing.
+- **Queue Storage:** Azure Queue Storage is a message queuing service that enables communication between application components. It provides a scalable message queue for asynchronous processing.
 
-**Security and Access Control:** Azure Storage offers robust security features, including encryption at rest, encryption in transit, and role-based access control (RBAC) to manage access permissions.
+- **Security and Access Control:** Azure Storage offers robust security features, including encryption at rest, encryption in transit, and role-based access control (RBAC) to manage access permissions.
 
-**Integration with Azure Services:** Azure Storage seamlessly integrates with various Azure services, making it a central component for applications deployed in the Azure cloud.
+- **Integration with Azure Services:** Azure Storage seamlessly integrates with various Azure services, making it a central component for applications deployed in the Azure cloud.
 
 In the context of Microservices architecture and Azure Kubernetes Service (AKS), azure storage account plays a pivotal role in providing scalable and reliable storage solutions for the diverse data requirements of microservices-based applications. 
 
@@ -55,7 +55,7 @@ In this exercise we will accomplish & learn how to implement following:
 
 The following diagram illustrates the high level architecture of Storage Account usage:
 
-<!-- [![Alt text](images/storage/image-1.png)](images/storage/image-1.png){:target="_blank"} -->
+[![Alt text](images/storage/image-1.png)](images/storage/image-1.png){:target="_blank"}
 
 ## Prerequisites
 
