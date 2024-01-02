@@ -174,7 +174,7 @@
         - Task-4.2: Create virtual network link to associate redis private DNS zone to vnet
         - Task-4.3: Configure private endpoint for Azure Cache for Redis using terraform
         - Task-4.4: Validate private link connection using `nslookup` or `dig`  
-- [Lab-13: Create Front Door and CDN profile using Terraform](../azure/15-cdn-frontdoor.md)
+- [Lab-13: Create Front Door and CDN profile using Terraform](../azure/17-cdn-frontdoor.md)
     - Task-1: Define and Declare Azure Front Door & CDN variables.
     - Task-2: Create a Front Door CDN profile using Terraform.
     - Task-3: Create a Front Door Endpoint using Terraform.
@@ -186,7 +186,7 @@
     - Task-9: Create DNS CNAME records in DNS Zone
     - Task-10: Configure diagnostic settings for CDN profile
     - Task-11: Apply lock on Front Door Profile
-- [Lab-14: Create Storage Account using terraform](../azure/16-storage-account.md)
+- [Lab-14: Create Storage Account using terraform](../azure/15-storage-account.md)
     - Task-1: Define and declare azure storage account variables
     - Task-2: Create azure storage account using terraform
     - Task-3: Create azure storage account container using terraform
@@ -198,7 +198,40 @@
         - Task-7.2: Create a Virtual Network Link Association
         - Task-7.3: Create Private Endpoints for azure Storage
         - Task-7.4: Validate private link connection using nslookup or dig
-- Lab-15: Create Azure Bastion Host using terraform
+- [Lab-15: Azure Event Hubs for Apache Kafka Introduction Part-1](../azure/16-event-hubs-part-1.md)
+    - What is Azure Event Hub?
+    - Components of Azure Event Hubs
+    - Why Azure Event Hubs?
+    - Can you explain Apache Kafka on Azure Event Hubs?
+    - Azure Event Hubs vs Apache Kafka
+    - What is Azure Event Hubs namespace?
+    - What are Partitions?
+    - What are Shared Access Policies?
+    - What are Event publishers?
+    - What are Event consumers?
+    - What is Event retention?
+    - Explain Capture events:
+    - Consumer groups
+    - Application groups
+    - What is Avro format in Apache Kafka?
+    - What is Azure Schema Registry?
+- [Lab-15: Create Azure Event Hubs for Apache Kafka using Terraform Part-2](../azure/16-event-hubs-part-2.md)
+    - Task-1: Define and declare azure event hubs variables.
+    - Task-2: Create storage account resources using terraform.
+    - Task-3: Create Kafka azure event hubs namespace.
+    - Task-4: Create diagnostic settings for event hub namespace.
+    - Task-5: Shared access policies for event hub namespace Level
+        - Task-5.1: Create shared access policy rule for listen.
+        - Task-5.2: Create shared access policy rule for send.
+        - Task-5.3: Create shared access policy rule for manage.
+    - Task-6: Restrict access using private endpoint & virtual network.
+        - Task-6.1: Configure the private DNS zone
+        - Task-6.2: Create a virtual network link association
+        - Task-6.3: Create private endpoints for azure event hubs
+        - Task-6.4: Validate private link connection using nslookup or dig
+    - Task-7: Create azure event hubs or Kafka topics.
+
+
 - Lab-16: Create Virtual Machine (Jumpbox) using terraform
 - Lab-17: Configure Private Endpoint & Private Links using terraform
 - Lab-18: Azure DNS setup
