@@ -57,9 +57,11 @@ In this exercise we will accomplish & learn how to implement following:
 
 ## Architecture diagram
 
-The following diagram illustrates the high level architecture of azure event hubs
+The following diagram illustrates the key components of azure event hubs architecture
 
-<IMG  src="https://learn.microsoft.com/en-us/azure/event-hubs/media/event-hubs-about/event_hubs_architecture.png"  alt="Event Hubs"/>
+[![Alt text](images/event-hubs/image-1.png)](images/event-hubs/image-1.png){:target="_blank"}
+
+<!-- <IMG  src="https://learn.microsoft.com/en-us/azure/event-hubs/media/event-hubs-about/event_hubs_architecture.png"  alt="Event Hubs"/> -->
 
 <!-- [![Alt text](images/event-hubs/image-1.png)](images/event-hubs/image-1.png){:target="_blank"} -->
 

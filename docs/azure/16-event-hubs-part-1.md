@@ -76,7 +76,7 @@ Azure Schema Registry is a feature of Azure Event Hubs that offers a centralized
 
 4. **Schema-Driven Serialization Frameworks:** The registry supports schema-driven serialization frameworks, such as Apache Avro. This approach involves moving serialization metadata into shared schemas, which can help reduce the per-message overhead. Unlike tagged formats such as JSON, each message doesn't need to carry metadata, as the schema provides the necessary type information and field names.
 
-[![Alt text](images/event-hubs/image-4.png)](images/event-hubs/image-4.png){:target="_blank"}
+<!-- [![Alt text](images/event-hubs/image-4.png)](images/event-hubs/image-4.png){:target="_blank"} -->
 
 ## What is Azure Event Hubs namespace?
 
@@ -147,7 +147,7 @@ Here are the key points:
 
 Event Hubs Capture enables you to automatically capture the streaming data in Event Hubs and save it to your choice of either a Blob storage account, or an Azure Data Lake Storage account. You can enable capture from the Azure portal, and specify a minimum size and time window to perform the capture. Using Event Hubs Capture, you specify your own Azure Blob Storage account and container, or Azure Data Lake Storage account, one of which is used to store the captured data. Captured data is written in the Apache Avro format.
 
-[![Alt text](images/event-hubs/image-3.png)](images/event-hubs/image-3.png){:target="_blank"}
+<!-- [![Alt text](images/event-hubs/image-3.png)](images/event-hubs/image-3.png){:target="_blank"} -->
 
 ## What are Partitions:
 
