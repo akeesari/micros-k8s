@@ -216,7 +216,7 @@ nav:
     - Create Pipeline for ASP.NET Core MVC Project : devops/pipelines/3-pipeline-aspnet-app.md
 
   - Argo CD: 
-        - Argo CD Introduction: argocd/argocd-intro.md
+        - Introduction to Argo CD: argocd/argocd-intro.md
         - Install Argo CD: argocd/install-argocd.md
         - Install Argo CD CLI: argocd/install-argocd-cli.md
         - Registering an AKS Cluster with Argo CD: argocd/register-cluster.md
@@ -224,7 +224,7 @@ nav:
         - Create new ArgoCD Project: argocd/argocd-project.md
         - Create new Repository in ArgoCD: argocd/argocd-repo.md
   - Helm Charts:
-        - Helm chart Introduction: helmchart/1-introduction.md
+        - Introduction to Helm Charts: helmchart/1-introduction.md
         - Create your first Helm chart: helmchart/2-create-helm.md
         - Frequently used Helm commands details: helmchart/3-helm-cmds.md
         - Create Helm chart for Microservices: helmchart/4-helm-microservices.md    

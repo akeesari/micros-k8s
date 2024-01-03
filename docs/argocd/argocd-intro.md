@@ -1,20 +1,12 @@
+# Chapter 5: Argo CD
+
 ## Introduction
 
-One of my goals is to simplify the development, deployment, and scaling of complex applications and to bring the full power of Kubernetes to all projects. 
-
-`ArgoCD` is one of the tools introduced to reach the goals.
+One of my goals is to simplify the development, deployment, and scaling of complex applications and to bring the full power of Kubernetes to all projects. `ArgoCD` is one of the tools introduced to reach the goals.
 
 With ArgoCD, developers can create application manifests and store them in a Git repository. They can then use ArgoCD to deploy those manifests to a Kubernetes cluster, and it will continuously monitor and reconcile the live environment with the desired state defined in Git.
 
-ArgoCD is a declarative and GitOps-based tool that provides a few features like:
-
-- Rollback and history of all changes
-- Role-based access control
-- Infrastructure as code
-- Automated and manual deployment
-- Automated error detection and recovery
-  
-It is designed to work seamlessly with other popular Kubernetes tools such as Helm and Kustomize and can be used to automate the deployment of complex, multi-tier applications across multiple clusters and namespaces.
+In this section, we'll take a simple approach to understand Argo CD. We'll explore what it is, how it works, and why it's so useful. Whether you're a tech pro or just starting out, this article aims to explain Argo CD in a way that makes sense. Let's dive in and discover how Argo CD can simplify the way you deploy and manage your applications, especially if you're using Kubernetes.
 
 ## Objective
 
@@ -31,7 +23,10 @@ In this exercise we will accomplish & learn following:
 - ArgoCD supports tools
 
 
-In this chapter we are going to understand the core concepts of ArgoCD before actually doing any labs. 
+
+Before we explore into hands-on labs, let's lay the groundwork by exploring the fundamental concepts of ArgoCD. Our journey begins with a close look at GitOps, providing a solid understanding before we explore into the specifics of ArgoCD. This foundational knowledge will help for upcoming exercises in practical labs. Let's start by understanding the key principles of GitOps before looking ourselves in to ArgoCD.
+
+
 ## What is GitOps?
 
 GitOps is a modern software development and deployment methodology that uses Git as the single source of truth for the desired state of the system. In GitOps, all configuration changes and updates to the system are made through Git commits and pull requests. This makes it easy to track changes, collaborate with other developers, and manage deployments at scale.
@@ -42,12 +37,12 @@ GitOps is a modern software development and deployment methodology that uses Git
 - Declarative configuration
 - Git as the single source of truth
 - Continuous deployment
+- Rollback Capabilities:
 - Observability
 - Security
 
- GitOps is a powerful methodology that can help organizations improve their development and deployment workflows, increase reliability, and reduce the risk of errors and downtime.
 
-## GitOps core Components
+## Core components of GitOps
 
 The core components of GitOps include:
 
@@ -60,7 +55,7 @@ The core components of GitOps include:
 - **Security:** Security best practices such as RBAC and secrets management are used to secure the system. 
 
 GitOps architecture is designed to promote automation, repeatability, and reliability in the software development and deployment process. By using a GitOps approach, organizations can improve their ability to deliver high-quality software at scale.
-
+<!-- 
 ## GitOps Operators
 
 GitOps operators are a type of operator that automate GitOps workflows. They enable organizations to implement GitOps principles in their Kubernetes environments, allowing developers to manage infrastructure and application deployments using Git repositories.
@@ -72,14 +67,16 @@ Some popular GitOps operators include:
 - Jenkins X
 - Keel
 
-GitOps operators simplify and automate GitOps workflows, enabling organizations to improve efficiency and reliability in their development and deployment processes.
+GitOps operators simplify and automate GitOps workflows, enabling organizations to improve efficiency and reliability in their development and deployment processes. -->
 
 now let's start talking about ArgoCD here.
 
 
 ## What is ArgoCD?
 
-ArgoCD is a GitOps-based continuous delivery tool for Kubernetes applications. It helps to manage and synchronize application deployments with the desired state specified in the Git repository. ArgoCD allows developers to version control their application configuration and use Git as a single source of truth for deployments, ensuring that the desired state of the applications in the cluster always matches the desired state defined in Git.
+Argo CD is an open-source declarative GitOps continuous delivery tool designed for Kubernetes. It helps to manage and synchronize application deployments with the desired state specified in the Git repository. ArgoCD allows developers to version control their application configuration and use Git as a single source of truth for deployments, ensuring that the desired state of the applications in the cluster always matches the desired state defined in Git.
+
+Argo CD has gained popularity in the Kubernetes ecosystem due to its simplicity, flexibility, and strong adherence to GitOps practices. It provides a robust solution for managing and automating the continuous delivery of applications in Kubernetes clusters.
 
 ## How ArgoCD works?
 
@@ -125,9 +122,9 @@ By using ArgoCD, organizations can ensure consistent, reliable, and automated de
 - Scenario-1
 - Scenario-2 -->
 
-## Key Features of ArgoCD
+## Key features of ArgoCD
 
-ArgoCD offers several key features:
+ArgoCD comes with a rich set of features that make it a powerful tool for continuous delivery and GitOps workflows in Kubernetes. Here are some key features of ArgoCD:
 
 1. **GitOps:** ArgoCD uses Git as the single source of truth for your application deployments, ensuring that the desired state of your applications in the cluster always matches the desired state defined in Git.
 1. **Continuous monitoring and synchronization:** ArgoCD continuously monitors the state of your applications and compares it to the desired state in Git. When a difference is detected, ArgoCD performs a sync operation to bring the live cluster into the desired state.
@@ -140,9 +137,10 @@ Custom resource validation: ArgoCD can validate the custom resource definitions 
 
 These features make ArgoCD a powerful tool for managing and deploying applications in a Kubernetes cluster in a GitOps-based manner.
 
-## ArgoCD Architecture Components
+## ArgoCD architecture components
 
-ArgoCD architecture consists of the following components:
+
+ArgoCD's architecture consists several components that work together to facilitate continuous delivery and GitOps workflows. Here are the key components of ArgoCD:
 
 - **API server:** The API server is the central component of ArgoCD architecture. It provides a REST API that allows users to manage the lifecycle of applications deployed in Kubernetes clusters.
 - **Application controller:** The application controller is responsible for monitoring the Git repository for changes to the desired state and reconciling them with the current state of the cluster. It deploys, updates, and deletes resources in the cluster to match the desired state.
@@ -150,10 +148,24 @@ ArgoCD architecture consists of the following components:
 - **Redis cache:** Redis is used as an in-memory cache to store application and cluster state information. This helps to improve the performance of the application controller by reducing the number of API requests to the Kubernetes cluster.
 - **Prometheus metrics server:** Prometheus is used to collect and store metrics related to the performance and health of the ArgoCD application. These metrics can be used to monitor the application and identify potential issues.
 - **Web UI:** ArgoCD provides a web-based UI that allows users to view the state of the Kubernetes environment, manage applications, and perform other administrative tasks.
-- **Dex authentication server:** Dex is used to provide single sign-on (SSO) authentication for ArgoCD. It supports multiple identity providers, including GitHub, GitLab, and Google.
+- **Dex authentication server:** Dex is used to provide single sign-on (SSO) authentication for ArgoCD. It supports multiple identity providers, including azure active directory, GitHub, GitLab, and Google.
 - **RBAC:** ArgoCD supports role-based access control (RBAC) to control access to resources and operations within the Kubernetes cluster.
 
 The components of ArgoCD architecture work together to automate the deployment and management of applications in Kubernetes environments. By leveraging GitOps principles, ArgoCD helps to ensure that the desired state of the environment is always in sync with the actual state of the cluster, reducing the likelihood of errors and improving the overall efficiency of the software development lifecycle.
+
+```mermaid
+graph TD
+  subgraph clusterArgoCD
+    API_Server -->|Manages state| Application_Controller
+    Application_Controller -->|Triggers synchronization| Repository_Server
+    Repository_Server -->|Fetches configurations| Git_Repository
+    Application_Controller -->|Optional: Manages sets| Application_Set_Controller
+    API_Server -->|Optional: Authentication| Dex
+    API_Server -->|Optional: Caching| Redis
+    API_Server -->|Optional: Metrics| Metrics_Server
+    API_Server -->|Optional: Logging| Log_Collector
+  end
+```
 
 ## ArgoCD supports tools
 
