@@ -218,7 +218,7 @@ nav:
   - Argo CD: 
         - Introduction to Argo CD: argocd/1-argocd-intro.md
         - Install Argo CD in Kubernetes: argocd/2-install-argocd.md
-        - Install Argo CD CLI: argocd/install-argocd-cli.md
+        - Install & Interact with ArgoCD CLI: argocd/3-install-argocd-cli.md
         - Registering an AKS Cluster with Argo CD: argocd/register-cluster.md
         - Deploy your first application with Argo CD: argocd/deploy-app.md
         - Create new ArgoCD Project: argocd/argocd-project.md

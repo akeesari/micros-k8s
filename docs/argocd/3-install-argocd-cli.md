@@ -1,4 +1,6 @@
 
+# Install & Interact with ArgoCD CLI
+
 ## Introduction
 
 Argo CD, a powerful GitOps continuous delivery tool for Kubernetes, provides two interfaces for interacting with its server: the Argo CD Command-Line Interface (CLI) and the Argo CD web UI. In this guide, we will focus on installing the Argo CD CLI.
