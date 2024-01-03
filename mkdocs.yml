@@ -216,8 +216,8 @@ nav:
     - Create Pipeline for ASP.NET Core MVC Project : devops/pipelines/3-pipeline-aspnet-app.md
 
   - Argo CD: 
-        - Introduction to Argo CD: argocd/argocd-intro.md
-        - Install Argo CD: argocd/install-argocd.md
+        - Introduction to Argo CD: argocd/1-argocd-intro.md
+        - Install Argo CD in Kubernetes: argocd/2-install-argocd.md
         - Install Argo CD CLI: argocd/install-argocd-cli.md
         - Registering an AKS Cluster with Argo CD: argocd/register-cluster.md
         - Deploy your first application with Argo CD: argocd/deploy-app.md
