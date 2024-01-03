@@ -289,17 +289,14 @@
 - Create Pipeline for Database deployment
 
 **Chapter 5: Argo CD - Deployments to Kubernetes**
-
-- ArgoCD Introduction
-    - Introduction
+- [Getting started with Argo CD](../argocd/argocd-intro.md)
     - What is GitOps?
-    - GitOps core Components
-    - GitOps Operators
+    - Core components of GitOps
     - What is ArgoCD?
     - How ArgoCD works?
     - Why do we need to use ArgoCD?
-    - Key Features of ArgoCD
-    - ArgoCD Architecture Components
+    - Key features of ArgoCD
+    - ArgoCD architecture components
     - ArgoCD supports tools
 - Install ArgoCD
     - Step-1: Configure Terraform providers

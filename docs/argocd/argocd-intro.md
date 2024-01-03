@@ -1,4 +1,4 @@
-# Chapter 5: Argo CD
+# Chapter 5: Getting Started Argo CD
 
 ## Introduction
 
@@ -13,16 +13,13 @@ In this section, we'll take a simple approach to understand Argo CD. We'll explo
 In this exercise we will accomplish & learn following:
 
 - What is GitOps?
-- GitOps core Components
-- GitOps Operators
+- Core components of GitOps
 - What is ArgoCD?
 - How ArgoCD works?
 - Why do we need to use ArgoCD?
-- Key Features of ArgoCD
-- ArgoCD architecture Components
+- Key features of ArgoCD
+- ArgoCD architecture components
 - ArgoCD supports tools
-
-
 
 Before we explore into hands-on labs, let's lay the groundwork by exploring the fundamental concepts of ArgoCD. Our journey begins with a close look at GitOps, providing a solid understanding before we explore into the specifics of ArgoCD. This foundational knowledge will help for upcoming exercises in practical labs. Let's start by understanding the key principles of GitOps before looking ourselves in to ArgoCD.
 
