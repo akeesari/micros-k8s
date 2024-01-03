@@ -1,9 +1,9 @@
 
 ## Introduction
 
-Before installing ArgoCD CLI, let's try to understand the difference between Argo CD CLI and Argo CD web UI
+Argo CD, a powerful GitOps continuous delivery tool for Kubernetes, provides two interfaces for interacting with its server: the Argo CD Command-Line Interface (CLI) and the Argo CD web UI. In this guide, we will focus on installing the Argo CD CLI.
 
-The Argo CD CLI and Argo CD web UI are two different interfaces for interacting with an Argo CD server. Here are some differences between the two:
+Before delving into the installation process, let's distinguish between the Argo CD CLI and the Argo CD web UI. 
 
 **Argo CD CLI:**
 
@@ -25,17 +25,31 @@ The Argo CD CLI and Argo CD web UI are two different interfaces for interacting 
 You, as a `DevSecOps Engineer`, have been tasked with setting up the **Argo CD CLI** on your local environment. This will empower you to utilize the Argo CD CLI for local Kubernetes cluster management, especially when the Argo CD Web UI interface encounters issues or limitations.
 
 
-## Implementation Details
+## Objective
 
 In this exercise we will accomplish & learn how to implement following:
 
-**Step 1:** Install Argo CD CLI
+- **Step 1:** Install Argo CD CLI
+- **Step 2.** Access the Argo CD API Server
+- **Step 3.** Login to Argo CD
+- **Step 4.** Logout Argo CD
 
-**Step 2.** Access the Argo CD API Server
 
-**Step 3.** Login to Argo CD
+## Prerequisites
 
-**Step 4.** Logout Argo CD
+Before proceeding with the installation of Argo CD CLI, ensure you have the following prerequisites in place:
+
+1. **Azure Subscription:** [Sign up for an Azure subscription](https://azure.microsoft.com/en-us/free/), if not already done.
+
+3. **Azure CLI:** [Install Azure CLI](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli) for Azure service interaction.
+
+4. **Kubectl:** [Install and set up kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl-windows/) for managing Kubernetes clusters.
+
+5. **Kubernetes Cluster:** Ensure you have a running Kubernetes cluster available for ArgoCD deployment.
+
+6. **Argo CD Server:** Confirm that the Argo CD server is deployed and accessible in your Kubernetes cluster.
+
+7. **Access Permissions:** Verify that you have the necessary permissions to access and manage resources within the Kubernetes cluster. This includes permissions to deploy and update applications.
 
 ## Step 1.Install Argo CD CLI
 
@@ -150,9 +164,9 @@ Password:
 Context '20.124.172.79' updated
 ```
 
-Note: 
-- keyboard copy paste was not working on command prompt, so I've right clicked on the mouse to enter the correct password here.
-- also make sure that you keep the password in the notepad before start this lab, Install ArgoCD lab has command to get the admin password.
+!!! Note
+    keyboard copy paste was not working on command prompt, so I've right clicked on the mouse to enter the correct password here.
+    also make sure that you keep the password in the notepad before start this lab, Install ArgoCD lab has command to get the admin password.
 
 now let's verify the argocd cli login is working as expected by running following commands.
 
