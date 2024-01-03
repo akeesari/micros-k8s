@@ -87,6 +87,7 @@ Argo CD can be deployed on Azure Kubernetes Service (AKS) using either YAML mani
 
 Helm, a Kubernetes package manager, facilitates the installation of Argo CD, providing an efficient and manageable deployment. To enhance automation and maintain Infrastructure as Code (IaC) principles, we'll deploy the Helm chart using terraform. Let's explore the step-by-step process:
 
+[![Alt text](images/image-12.png)](images/image-12.png){:target="_blank"}
 
 ## Technical Scenario
 

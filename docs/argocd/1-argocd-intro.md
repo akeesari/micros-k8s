@@ -84,7 +84,8 @@ ArgoCD follows the GitOps pattern of using Git repositories as the source of tru
 - helm charts
 - Plain directory of YAML/json manifests
 
-![image.jpg](images/image-1.png)
+[![Alt text](images/image-1.png)](images/image-1.png){:target="_blank"}
+
 <!-- ![image.png](/.attachments/image-abc39e0e-6ef7-4d7b-b6b9-f45e8cb3238b.png) -->
 
 ArgoCD works by continuously monitoring the desired state of applications defined in Git, and comparing that to the actual state of the applications in a target Kubernetes cluster. It uses this comparison to perform automated sync operations that bring the live cluster into the desired state.
