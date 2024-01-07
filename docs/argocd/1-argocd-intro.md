@@ -1,4 +1,7 @@
-# Chapter 5: Getting Started Argo CD
+# **Chapter 5: Argo CD**
+___
+
+# Introduction to Argo CD
 
 ## Introduction
 

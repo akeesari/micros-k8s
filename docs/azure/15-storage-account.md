@@ -29,7 +29,7 @@ Key Features of azure storage account includes:
 
 - **Integration with Azure Services:** Azure Storage seamlessly integrates with various Azure services, making it a central component for applications deployed in the Azure cloud.
 
-In the context of Microservices architecture and Azure Kubernetes Service (AKS), azure storage account plays a pivotal role in providing scalable and reliable storage solutions for the diverse data requirements of microservices-based applications. 
+In the context of Microservices architecture and Azure Kubernetes Service (AKS), azure storage account plays a pivotal role in providing scalable and reliable storage solutions for the diverse data requirements of containerized microservices-based applications. 
 
 ## Technical Scenario
 

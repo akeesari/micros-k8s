@@ -1,6 +1,6 @@
-To host and deploy the microservices and databases created in the first chapter, we will utilize various Azure resources. These resources will be provisioned using the Infrastructure as Code (IaC) tool, Terraform. Additionally, we will explore the deployment process using Azure DevOps pipelines, Helm charts, and ArgoCD.
+To host and deploy the containerized microservices and databases created in the first chapter, we will utilize various Azure resources. These resources will be provisioned using the Infrastructure as Code (IaC) tool, Terraform. Additionally, we will explore the deployment process using Azure DevOps pipelines, Helm charts, and ArgoCD.
 
-We will establish a scalable and resilient infrastructure for hosting our microservices applications. The combination of Azure resources, Terraform for infrastructure provisioning, Azure DevOps pipelines for deployment automation, Helm charts for application packaging, and ArgoCD for continuous delivery simplifies the management and deployment of our Microservices Architecture.
+We will establish a scalable and resilient infrastructure for hosting our containerized microservices applications. The combination of Azure resources, Terraform for infrastructure provisioning, Azure DevOps pipelines for deployment automation, Helm charts for application packaging, and ArgoCD for continuous delivery simplifies the management and deployment of our Microservices Architecture.
 
 Let's look into the details of each component and explore how they come together to create a robust and efficient Microservices Architecture on Azure Kubernetes Service (AKS).
 

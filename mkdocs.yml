@@ -162,6 +162,8 @@ nav:
     - Lab Format: gettingstarted/lab-format.md    
   - Microservices:
       - Getting started with Microservices : microservices/0.gettingstarted.md
+      - Getting started with Docker : microservices/0-docker.md
+      - Getting started with Dev Containers : microservices/0-dev-containers.md
       - Create Microservice-1 : microservices/1.aspnet-api.md
       - Create Microservice-2 : microservices/2.node-api.md      
       # - MicroFrontend Overview : microservices/microfrontend.md

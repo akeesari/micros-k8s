@@ -1,6 +1,9 @@
 <!-- # Module 2: Infrastructure as Code (IaC) -->
 
-# Chapter-2: Azure Cloud
+# **Chapter-2: Azure Cloud**
+___
+
+# Infrastructure as Code (IaC)
 
 ## Overview
 This is the second chapter of the book, In this second chapter you will learn on how to create the infrastructure in azure cloud, the azure resources created as part of this chapter will be used for deploying our microservices applications created in chapter-1.

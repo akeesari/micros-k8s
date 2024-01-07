@@ -1,4 +1,6 @@
-# Chapter 5: Helm Charts
+# **Chapter 5: Helm Charts**
+___
+# Introduction to Helm Charts
 
 ## Introduction
 

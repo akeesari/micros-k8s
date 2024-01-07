@@ -1,6 +1,6 @@
 ## Introduction
 
-Azure Key Vault is a cloud service provided by Microsoft Azure that allows you to securely store and manage sensitive information such as secrets, encryption keys, and certificates. It provides a centralized and secure storage location for managing application secrets, connection strings, passwords, and cryptographic keys used in microservices applications and services.
+Azure Key Vault is a cloud service provided by Microsoft Azure that allows you to securely store and manage sensitive information such as secrets, encryption keys, and certificates. It provides a centralized and secure storage location for managing application secrets, connection strings, passwords, and cryptographic keys used in containerized microservices applications and services.
 
 In this hands-on lab, I'll guide you through the process of creating an Azure Key Vault using Terraform. We'll set up diagnostic settings to monitor this resource effectively. also, we'll ensure that access policies are configured to allow developers access to the secrets stored in the Azure Key Vault and finally enhancing security through the use of private endpoints.
 
@@ -653,7 +653,7 @@ This process ensures that the private link connection is successfully establishe
 
 ## Task-6: Created azure Key Vault secrets for sensitive information
 
-Let's create some sample Azure Key Vault secrets for sensitive information related to our PostgreSQL databases and storage account. These secrets will be securely stored and can be accessed programmatically from microservices applications, ensuring robust security practices.
+Let's create some sample Azure Key Vault secrets for sensitive information related to our PostgreSQL databases and storage account. These secrets will be securely stored and can be accessed programmatically from containerized microservices applications, ensuring robust security practices.
 
 Create Key Vault secrets for each sensitive information:
 

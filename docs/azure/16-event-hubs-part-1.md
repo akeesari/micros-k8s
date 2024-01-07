@@ -51,7 +51,7 @@ The following diagram illustrates the key components of azure event hubs archite
 Here are some key reasons why Azure Event Hubs is a good choice for handling massive streams of events and data:
 
 1. **Real-time Data Streaming:**
-   Azure Event Hubs serves as the  real-time data streaming from the legacy system to our new microservices. This  ensuring that our organization stays responsive and adaptive to dynamic data changes.
+   Azure Event Hubs serves as the  real-time data streaming from the legacy system to our new containerized microservices. This  ensuring that our organization stays responsive and adaptive to dynamic data changes.
 
 2. **Event-driven Architecture:**
    Leveraging Azure Event Hubs enables us to embrace an event-driven architecture. This approach allows us to decouple components, ensuring that each microservice can independently consume data events relevant to its specific business domain.

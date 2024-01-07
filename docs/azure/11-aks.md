@@ -1042,7 +1042,7 @@ terraform plan -out=dev-plan -var-file="./environments/dev-variables.tfvars"
 terraform apply dev-plan
 ```
 
-That's it! You now have a new AKS cluster deployed in Azure and ready for deploying deployment YAML files for your Microservices.
+That's it! You now have a new AKS cluster deployed in Azure and ready for deploying deployment YAML files for your containerized microservices.
 
 ## Reference
 - [Microsoft MSDN - Azure Kubernetes Service (AKS) documentation](https://learn.microsoft.com/en-us/azure/aks/){:target="_blank"}

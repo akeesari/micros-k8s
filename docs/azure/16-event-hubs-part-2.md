@@ -17,7 +17,7 @@ As a `Cloud Architect`, I have been tasked with designing a robust solution for 
 
 - **Microservices Architecture**: Our new platform is composed of multiple microservices, each dedicated to specific business functionalities. These microservices are meticulously designed to be loosely coupled and independently deployable, aligning with best practices in modern software architecture.
 
-- **Azure Event Hubs Integration**: To enable real-time data streaming from the legacy system to the new microservices, we have strategically chosen azure event hubs as our central event streaming platform.
+- **Azure Event Hubs Integration**: To enable real-time data streaming from the legacy system to the new containerized microservices, we have strategically chosen azure event hubs as our central event streaming platform.
 
 - **Publisher Applications** (Legacy System): Publisher applications play a pivotal role in this migration by handling the responsibility of publishing data events to dedicated event hubs within azure event hubs. Each publisher application corresponds to a specific data domain or entity type, ensuring a granular and organized approach to data migration.
 
