@@ -1,8 +1,5 @@
-<!-- # Module 2: Infrastructure as Code (IaC) -->
-
-# **Chapter-2: Azure Cloud**
+**<h1>Chapter-2: Azure Cloud</h1>**
 ___
-
 # Infrastructure as Code (IaC)
 
 ## Overview

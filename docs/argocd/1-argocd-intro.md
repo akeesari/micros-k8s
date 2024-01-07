@@ -1,6 +1,5 @@
-# **Chapter 5: Argo CD**
+**<h1>Chapter-5: Argo CD</h1>**
 ___
-
 # Introduction to Argo CD
 
 ## Introduction

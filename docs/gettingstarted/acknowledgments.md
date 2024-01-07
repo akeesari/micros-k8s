@@ -12,4 +12,6 @@ Finally, I would like to thank the readers of this book for their interest and s
 
 Thank you all for your contributions and support.
 
+Warm regards,
+
 Anji Keesari
