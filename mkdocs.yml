@@ -165,7 +165,7 @@ nav:
       - Docker Concepts : microservices/0-docker.md
       - Developing applications inside a Dev Containers : microservices/0-dev-containers.md
       - Create your first microservice with .NET Core : microservices/1.aspnet-api.md
-      - Create your first microservice with Node JS : microservices/2.node-api.md      
+      - Create your second microservice with Node JS : microservices/2.node-api.md      
       # - MicroFrontend Overview : microservices/microfrontend.md
       - Create your first website using .NET Core MVC : microservices/3.aspnet-app.md      
       - Create your second website using React JS : microservices/4.react-app.md      
