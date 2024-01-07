@@ -1,5 +1,4 @@
-<!-- **<h1>Chapter 5: Helm Charts<h1>** -->
-**<h1>Chapter-5: Helm Charts</h1>**
+**<h2>Chapter-5: Helm: Managing Kubernetes Deployments</h2>**
 ___
 # Introduction to Helm Charts
 

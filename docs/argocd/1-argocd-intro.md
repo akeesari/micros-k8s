@@ -1,4 +1,4 @@
-**<h1>Chapter-5: Argo CD</h1>**
+**<h2>Chapter-5: ArgoCD: Continuous Deployment for Kubernetes</h2>**
 ___
 # Introduction to Argo CD
 

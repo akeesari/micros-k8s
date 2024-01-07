@@ -1,11 +1,12 @@
 ## Overview 
 
-In this module, we will explore the fundamental concepts of `Dev Containers` to establish a solid understanding before we start on practical labs focused on containerized microservices in the upcoming module.
+In the ever-changing world of software development, it's essential to keep development environments consistent and simple. This helps teams collaborate smoothly and ensures efficient coding. That's where Dev Containers come in and change the traditional development setups by turning them into dev container development.
 
-## Dev Containers
+In this article, we're going to explore the basics of Dev Containers. We'll find out what they are?, why the .devcontainer folder is so important?, how Dev Containers works? and finally learn developing applications inside a Dev Container.
 
-"Dev Containers" typically refers to a development environment concept that is defined and managed as code, specifically for use with Visual Studio Code (VS Code). It allows developers to define the tools, runtime, and dependencies required for a project or application in a container configuration file. This enables consistent and reproducible development environments across different machines.
+## What is Dev Containers?
 
+Development containers, or dev containers, are Docker containers that are specifically configured to provide a fully featured development environment. This enables consistent and reproducible development environments across different machines.
 
 Using Dev Containers can significantly enhance the development experience by eliminating the setup overhead, ensuring consistency, and simplifying collaboration across teams. It aligns well with modern development practices, especially in scenarios where teams are distributed, and projects may have diverse dependencies and requirements.
 
@@ -187,3 +188,133 @@ services:
 - Services are connected to the default network for communication.
 - Dependencies are specified using the `depends_on` key, ensuring that services wait for others to start before launching.
 
+## docker-compose commands
+
+Below are some commonly used Docker Compose commands:
+
+**Starts services**
+
+```bash
+docker-compose up
+```
+
+Starts the services defined in your `docker-compose.yml` file. It creates and starts containers as specified in the configuration.
+
+
+```bash
+docker-compose up -d
+```
+
+Starts the services in the background (detached mode).
+
+**Stops services**
+
+```bash
+docker-compose down
+```
+Stops and removes containers, networks, volumes, and other services defined in your `docker-compose.yml` file.
+
+
+```bash
+docker-compose down -v
+```
+Stops and removes containers, networks, volumes, and other services while also removing volumes.
+    
+
+```bash
+docker-compose down --volumes --rmi all
+```
+Stops and removes containers, networks, volumes, and other services, while also removing volumes and images.    
+
+```bash
+docker-compose stop
+```
+
+Stops the services defined in your `docker-compose.yml` file without removing them.
+
+**Lists the containers**
+
+```bash
+docker-compose ps
+```
+
+Lists the containers that are part of your Docker Compose setup, showing their status.
+    
+```bash
+docker-compose ps -a
+```
+Lists all containers, including stopped ones, that are part of your Docker Compose setup.
+
+**Displays log**
+
+```bash
+docker-compose logs
+```
+Displays log output from services. You can use the `-f` option to follow the logs in real-time.
+
+```bash
+docker-compose logs webserver
+```
+
+Displays logs for a specific service.
+
+**Executes a command**
+
+```bash
+docker-compose exec webserver ls -l
+```
+Executes a command in a running service container.
+
+**Builds services**
+
+```bash
+docker-compose build
+```
+Builds or rebuilds services defined in your `docker-compose.yml` file.
+
+
+**Restarts services**
+
+```bash
+docker-compose restart
+```
+Restarts services.
+
+
+**Displays configuration**
+
+```bash
+docker-compose config
+```
+Validates and displays the configuration of your `docker-compose.yml` file.
+
+**Pauses services**
+
+```bash
+docker-compose pause
+```
+Pauses all services. Containers remain running, but they stop processing requests.
+
+```bash
+docker-compose unpause
+```
+Unpauses services after they have been paused.
+
+```bash
+docker-compose top
+```
+Displays the running processes of a service.
+
+**Scales service**
+
+```bash
+docker-compose scale webserver=3
+```
+Scales a service to the specified number of instances.
+
+**Display events**
+
+```bash
+docker-compose events
+```
+Streams real-time events from your services.

@@ -1,4 +1,4 @@
-**<h1>Chapter-2: Azure Cloud</h1>**
+**<h2>Chapter-2: Create Azure Infrastructure with Terraform</h2>**
 ___
 # Infrastructure as Code (IaC)
 
