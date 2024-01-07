@@ -318,3 +318,6 @@ Scales a service to the specified number of instances.
 docker-compose events
 ```
 Streams real-time events from your services.
+
+
+For more comprehensive details on Docker commands, please refer to the [Docker Commands Cheat Sheet](https://anjikeesari.com/developertools/cheatsheets/docker-cheat-sheet/){:target='_blank'} on our website.
