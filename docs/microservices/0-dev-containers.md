@@ -118,7 +118,171 @@ Here are some key benefits of a local development setup using Microsoft's DevCon
 
     Docker Compose may be utilized to define and manage multi-container environments locally. It simplifies the orchestration of multiple containers needed for the complete development setup.
 
-## Local developmet environment setup with Dev Container
+## Local development environment setup with Dev Container
+
+ In this guide, I'll walk through the step-by-step process of setting up a local development environment using Dev Containers.
+
+## Prerequisites
+
+Before we begin, make sure you have the following prerequisites installed on your machine:
+
+- [Visual Studio Code](https://code.visualstudio.com/download){:target='_blank'}
+- A Project in Azure DevOps [optional]
+- Git client tool [optional]
+
+## Step 1: Install Docker
+
+**Windows:**
+
+Download Docker Desktop:
+
+   - Visit the [Docker Desktop for Windows](https://www.docker.com/products/docker-desktop){:target='_blank'} page.
+   - Click on the "Download for Windows" button.
+   - Follow the on-screen instructions to download the installer.
+
+Install Docker Desktop:
+
+   - Run the installer that you downloaded.
+   - Follow the installation wizard, accepting the default options.
+   - The installer may require you to restart your computer.
+
+Enable Hyper-V (Windows 10 Pro/Enterprise):
+
+   - If you're running Windows 10 Pro or Enterprise, Docker Desktop will use Hyper-V for virtualization. Ensure that Hyper-V is enabled in the Windows Features.
+
+Start Docker Desktop:
+
+   - Once installed, start Docker Desktop from the Start Menu.
+   - The Docker icon will appear in the system tray when Docker Desktop is running.
+
+**macOS:**
+
+Download Docker Desktop:
+
+   - Visit the [Docker Desktop for Mac](https://www.docker.com/products/docker-desktop){:target='_blank'} page.
+   - Click on the "Download for Mac" button.
+   - Follow the on-screen instructions to download the installer.
+
+Install Docker Desktop:
+
+   - Run the installer that you downloaded.
+   - Drag the Docker icon to the Applications folder.
+   - Launch Docker from Applications.
+
+Start Docker Desktop:
+
+   - Once installed, Docker Desktop should start automatically.
+   - The Docker icon will appear in the menu bar when Docker Desktop is running.
+
+**Verify Docker install:**
+
+To verify that Docker is installed correctly, open a terminal and run the following command:
+
+```bash
+docker --version
+
+# or
+docker version
+```
+
+If you notice this, it indicates that your Docker is not in a running status.
+
+```sh
+error during connect: this error may indicate that the docker daemon is not running: Get "http://%2F%2F.%2Fpipe%2Fdocker_engine/v1.24/version": open //./pipe/docker_engine: The system cannot find the file specified.
+Client:
+ Cloud integration: v1.0.35
+ Version:           24.0.2
+ API version:       1.43
+ Go version:        go1.20.4
+ Git commit:        cb74dfc
+ Built:             Thu May 25 21:53:15 2023
+ OS/Arch:           windows/amd64
+ Context:           default
+```
+
+After Docker desktop is started and if everything is set up correctly, you should see following message indicating that your Docker installation is working.
+
+```sh
+Client:
+ Cloud integration: v1.0.35 
+ Version:           24.0.2  
+ API version:       1.43    
+ Go version:        go1.20.4
+ Git commit:        cb74dfc
+ Built:             Thu May 25 21:53:15 2023
+ OS/Arch:           windows/amd64
+ Context:           default
+
+Server: Docker Desktop 4.21.1 (114176)
+ Engine:
+  Version:          24.0.2
+  API version:      1.43 (minimum version 1.12)
+  Go version:       go1.20.4
+  Git commit:       659604f
+  Built:            Thu May 25 21:52:17 2023
+  OS/Arch:          linux/amd64
+  Experimental:     false
+ containerd:
+  Version:          1.6.21
+  GitCommit:        3dce8eb055cbb6872793272b4f20ed16117344f8
+ runc:
+  Version:          1.1.7
+  GitCommit:        v1.1.7-0-g860f061
+ docker-init:
+  Version:          0.19.0
+  GitCommit:        de40ad0
+```
+
+
+Docker is now installed on your machine, and you can start using it to containerize your applications.
+
+## Step 2: Install the remote - containers extension
+
+Open Visual Studio Code and navigate to the Extensions view by clicking on the Extensions icon in the Activity Bar on the side of the window (or press `Ctrl+Shift+X`). Search for "Remote - Containers" and install the extension provided by Microsoft.
+
+[![Alt text](images/image-1.png)](images/image-1.png){:target="_blank"}
+
+## Step 3: Create a new project or open an existing one
+
+Create a new project or open an existing one in Visual Studio Code.
+
+## Step 4: Add Dev Container configuration to a project
+
+In the root of your project, create a folder named `.devcontainer` if it doesn't already exist. Inside this folder, create a file named `devcontainer.json`. This file will contain the configuration for your Dev Container.
+
+Here is a basic example for a Node.js project:
+
+```json
+// .devcontainer/devcontainer.json
+{
+  "name": "Node.js Dev Container",
+  "image": "node:14",
+  "extensions": ["dbaeumer.vscode-eslint"],
+  "forwardPorts": [3000],
+  "settings": {
+    "terminal.integrated.shell.linux": "/bin/bash"
+  }
+}
+```
+
+Adjust the configuration according to your project's requirements and dependencies.
+
+## Step 5: Running a project in a dev container
+
+Reopen a project in a container
+
+
+When you choose to "Reopen in Container" in Visual Studio Code, it triggers the Remote - Containers extension to rebuild and reopen your project within a containerized environment. 
+
+Open the Command Palette (`Ctrl+Shift+P`), type "Reopen in Container," and select the option to rebuild the project inside the Dev Container.
+
+
+## Step 6: Verify the Setup
+
+Once the container is built and the project is reopened, verify that your development environment is running smoothly inside the Dev Container.
+
+Now that your local development environment is containerized, you can start coding with the confidence that everyone on your team will have a consistent setup.
+
 
 ## Sample `docker-compose.yml` 
 
