@@ -1,8 +1,7 @@
 ## Overview
 
-In the ever-changing world of software development, maintaining consistent and simple development environments is essential. This practice facilitates smooth collaboration within teams and ensures efficient coding. This is where Dev Containers come into play, transforming traditional development setups into a containerized development environment.
 
-In this article, we will explore the fundamentals of Dev Containers. We'll delve into what they are, why the .devcontainer folder is crucial, how Dev Containers work, and ultimately, we'll learn how to develop applications inside a Dev Container.
+In this article, we will explore the fundamentals of `Dev Containers`. We'll try to understand what they are, why the `.devcontainer` folder is crucial, how Dev Containers work, and ultimately, we'll learn how to develop applications inside a Dev Container.
 
 ## What is Dev Containers?
 
