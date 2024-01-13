@@ -28,7 +28,7 @@ Before we explore into hands-on labs, let's lay the groundwork by exploring the 
 
 ## What is GitOps?
 
-GitOps is a modern software development and deployment methodology that uses Git as the single source of truth for the desired state of the system. In GitOps, all configuration changes and updates to the system are made through Git commits and pull requests. This makes it easy to track changes, collaborate with other developers, and manage deployments at scale.
+GitOps is a modern application development and deployment methodology that uses Git as the single source of truth for the desired state of the system. In GitOps, all configuration changes and updates to the system are made through Git commits and pull requests. This makes it easy to track changes, collaborate with other developers, and manage deployments at scale.
 
  **GitOps principles**
 

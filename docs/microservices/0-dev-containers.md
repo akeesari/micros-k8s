@@ -7,7 +7,7 @@ In this article, we will explore the fundamentals of `Dev Containers`. We'll try
 
 `Development containers`, or `dev containers` also known as `Remote Container`, are Docker containers that are specifically configured to provide a fully featured development environment. This enables consistent and reproducible development environments across different machines.
 
-Using Dev Containers can significantly enhance the development experience by eliminating the setup overhead, ensuring consistency, and simplifying collaboration across teams. It aligns well with modern development practices, especially in scenarios where teams are distributed, and projects may have diverse dependencies and requirements.
+Using Dev Containers can significantly enhance the development experience by eliminating the setup overhead, ensuring consistency, and simplifying collaboration across teams. 
 
 ## What is `.devcontainer` folder ?
 
@@ -128,112 +128,11 @@ Before we begin, make sure you have the following prerequisites installed on you
 - [Visual Studio Code](https://code.visualstudio.com/download){:target='_blank'}
 - A Project in Azure DevOps [optional]
 - Git client tool [optional]
+- Install Docker
 
 ## Step 1: Install Docker
 
-**Windows:**
-
-Download Docker Desktop:
-
-   - Visit the [Docker Desktop for Windows](https://www.docker.com/products/docker-desktop){:target='_blank'} page.
-   - Click on the "Download for Windows" button.
-   - Follow the on-screen instructions to download the installer.
-
-Install Docker Desktop:
-
-   - Run the installer that you downloaded.
-   - Follow the installation wizard, accepting the default options.
-   - The installer may require you to restart your computer.
-
-Enable Hyper-V (Windows 10 Pro/Enterprise):
-
-   - If you're running Windows 10 Pro or Enterprise, Docker Desktop will use Hyper-V for virtualization. Ensure that Hyper-V is enabled in the Windows Features.
-
-Start Docker Desktop:
-
-   - Once installed, start Docker Desktop from the Start Menu.
-   - The Docker icon will appear in the system tray when Docker Desktop is running.
-
-**macOS:**
-
-Download Docker Desktop:
-
-   - Visit the [Docker Desktop for Mac](https://www.docker.com/products/docker-desktop){:target='_blank'} page.
-   - Click on the "Download for Mac" button.
-   - Follow the on-screen instructions to download the installer.
-
-Install Docker Desktop:
-
-   - Run the installer that you downloaded.
-   - Drag the Docker icon to the Applications folder.
-   - Launch Docker from Applications.
-
-Start Docker Desktop:
-
-   - Once installed, Docker Desktop should start automatically.
-   - The Docker icon will appear in the menu bar when Docker Desktop is running.
-
-**Verify Docker install:**
-
-To verify that Docker is installed correctly, open a terminal and run the following command:
-
-```bash
-docker --version
-
-# or
-docker version
-```
-
-If you notice this, it indicates that your Docker is not in a running status.
-
-```sh
-error during connect: this error may indicate that the docker daemon is not running: Get "http://%2F%2F.%2Fpipe%2Fdocker_engine/v1.24/version": open //./pipe/docker_engine: The system cannot find the file specified.
-Client:
- Cloud integration: v1.0.35
- Version:           24.0.2
- API version:       1.43
- Go version:        go1.20.4
- Git commit:        cb74dfc
- Built:             Thu May 25 21:53:15 2023
- OS/Arch:           windows/amd64
- Context:           default
-```
-
-After Docker desktop is started and if everything is set up correctly, you should see following message indicating that your Docker installation is working.
-
-```sh
-Client:
- Cloud integration: v1.0.35 
- Version:           24.0.2  
- API version:       1.43    
- Go version:        go1.20.4
- Git commit:        cb74dfc
- Built:             Thu May 25 21:53:15 2023
- OS/Arch:           windows/amd64
- Context:           default
-
-Server: Docker Desktop 4.21.1 (114176)
- Engine:
-  Version:          24.0.2
-  API version:      1.43 (minimum version 1.12)
-  Go version:       go1.20.4
-  Git commit:       659604f
-  Built:            Thu May 25 21:52:17 2023
-  OS/Arch:          linux/amd64
-  Experimental:     false
- containerd:
-  Version:          1.6.21
-  GitCommit:        3dce8eb055cbb6872793272b4f20ed16117344f8
- runc:
-  Version:          1.1.7
-  GitCommit:        v1.1.7-0-g860f061
- docker-init:
-  Version:          0.19.0
-  GitCommit:        de40ad0
-```
-
-
-Docker is now installed on your machine, and you can start using it to containerize your applications.
+The installation of Docker was discussed in our previous lab - [Install Docker](./0-docker/#install-docker)
 
 ## Step 2: Install the remote - containers extension
 
@@ -483,6 +382,10 @@ Streams real-time events from your services.
 
 
 For more comprehensive details on Docker commands, please refer to the [Docker Commands Cheat Sheet](https://anjikeesari.com/developertools/cheatsheets/docker-cheat-sheet/){:target='_blank'} on our website.
+
+## Conclusion
+
+Developing applications inside a Dev Container offers a consistent, isolated, and reproducible development environment, streamlining your development workflow. With Docker and VS Code's Remote - Containers extension, you can quickly set up and manage Dev Containers, ensuring that your team works in agreement with the same development environment. This approach simplifies onboarding, enhances collaboration, and minimizes environment-related issues, allowing you to focus on building application development.
 
 ## References
 
