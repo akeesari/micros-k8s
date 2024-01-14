@@ -172,7 +172,7 @@ nav:
       # - Create Website-3 : microservices/5.blazor-app.md
       - Create Your First database with SQL server : microservices/6.sqlserver-db.md
       - Create Your Second database with PostgreSQL : microservices/7.postgresql-db.md
-      - Running Keycloak in a Docker Container : microservices/8.keycloak.md
+      - Running Keycloak application in a Docker Container : microservices/8.keycloak.md
       # - Running Drupal in a Docker Container : microservices/9.drupal.md
   - Azure (IaC):
     - Infrastructure as Code (IaC): azure/1-iac.md

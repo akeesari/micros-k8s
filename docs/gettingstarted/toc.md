@@ -20,8 +20,8 @@
 - [Lab-7: Create your Second Containerized Website using React JS](../microservices/4.react-app.md)
 - [Lab-8: Create your First Database with SQL Server](../microservices/6.sqlserver-db.md)
 - [Lab-9: Create a Container for executing PostgreSQL Database scripts](../microservices/7.postgresql-db.md)
-- [Lab-10: Running Keycloak in a Docker Container](../microservices/8.keycloak.md.md)
-- [Lab-11: Running Drupal in a Docker Container](../microservices/9.drupal.md-db.md)
+- [Lab-10: Running Keycloak in a Docker Container](../microservices/8.keycloak.md)
+- [Lab-11: Running Drupal in a Docker Container](../microservices/9.drupal.md)
 
 [**Chapter-2: Create Azure Infrastructure with Terraform**](../azure/1-iac.md)
 
