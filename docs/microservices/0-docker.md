@@ -196,3 +196,9 @@ For more comprehensive details on Docker commands, please refer to the [Docker C
 ## Conclusion
 
 Docker and containerization have changed the way we build and use application development. Now that you understand the basics of Docker, you're ready to dive deeper. Docker is straightforward and flexible, making it a great tool for developers. It ensures that your application works the same way in different situations, keeps things separate, and easily grows with your needs. So, go ahead and start your journey with containers.
+
+## References
+
+- [Getting started guide](https://docs.docker.com/get-started/){:target="_blank"}
+- [Docker images](https://hub.docker.com/search?q=){:target="_blank"}
+

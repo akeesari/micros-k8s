@@ -161,17 +161,19 @@ nav:
     - Introduction: gettingstarted/introduction.md    
     - Lab Format: gettingstarted/lab-format.md    
   - Microservices:
-      - Getting started with Microservices : microservices/0.gettingstarted.md
-      - Getting Started with Docker & Containerization : microservices/0-docker.md
-      - Developing applications inside a Dev Containers : microservices/0-dev-containers.md
-      - Create your first microservice with .NET Core : microservices/1.aspnet-api.md
-      - Create your second microservice with Node JS : microservices/2.node-api.md      
+      - Getting Started with Microservices : microservices/0.gettingstarted.md
+      - Exploring Docker Fundamentals : microservices/0-docker.md
+      - Developing Applications inside a Dev Containers : microservices/0-dev-containers.md
+      - Create Your First Microservice with .NET Core : microservices/1.aspnet-api.md
+      - Create Your Second Microservice with Node JS : microservices/2.node-api.md      
       # - MicroFrontend Overview : microservices/microfrontend.md
-      - Create your first website using .NET Core MVC : microservices/3.aspnet-app.md      
-      - Create your second website using React JS : microservices/4.react-app.md      
+      - Create Your First Website using .NET Core MVC : microservices/3.aspnet-app.md      
+      - Create Your Second Website using React JS : microservices/4.react-app.md      
       # - Create Website-3 : microservices/5.blazor-app.md
-      - Create your first database with SQL server : microservices/6.sqlserver-db.md
-      - Create your second database with PostgreSQL : microservices/7.postgresql-db.md
+      - Create Your First database with SQL server : microservices/6.sqlserver-db.md
+      - Create Your Second database with PostgreSQL : microservices/7.postgresql-db.md
+      - Running Keycloak in a Docker Container : microservices/8.keycloak.md
+      # - Running Drupal in a Docker Container : microservices/9.drupal.md
   - Azure (IaC):
     - Infrastructure as Code (IaC): azure/1-iac.md
     - Microservices Architecture on AKS: azure/1-microservices-architecture-on-aks.md
@@ -213,7 +215,7 @@ nav:
     - Upgrade or Resize node pools in AKS : kubernetes/aks-upgrade-nodepool.md
   - Azure DevOps:
     - Azure DevOps Overview : devops/1-devops-overview.md
-    - Create your first service connection : devops/pipelines/1-service-connections.md
+    - Create Your First service connection : devops/pipelines/1-service-connections.md
     - Create Pipeline for .NET Core Web API : devops/pipelines/2-pipeline-aspnet-api.md
     - Create Pipeline for ASP.NET Core MVC Project : devops/pipelines/3-pipeline-aspnet-app.md
 
@@ -222,12 +224,12 @@ nav:
         - Install Argo CD in Kubernetes: argocd/2-install-argocd.md
         - Install & Interact with ArgoCD CLI: argocd/3-install-argocd-cli.md
         - Registering an AKS Cluster with Argo CD: argocd/register-cluster.md
-        - Deploy your first application with Argo CD: argocd/deploy-app.md
+        - Deploy Your First application with Argo CD: argocd/deploy-app.md
         - Create new ArgoCD Project: argocd/argocd-project.md
         - Create new Repository in ArgoCD: argocd/argocd-repo.md
   - Helm Charts:
         - Introduction to Helm Charts: helmchart/1-introduction.md
-        - Create your first Helm chart: helmchart/2-create-helm.md
+        - Create Your First Helm chart: helmchart/2-create-helm.md
         - Frequently used Helm commands details: helmchart/3-helm-cmds.md
         - Create Helm chart for Microservices: helmchart/4-helm-microservices.md    
   # - Contact:

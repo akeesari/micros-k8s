@@ -11,15 +11,17 @@
 
 [**Chapter-1: Building Containerized Microservices**](../microservices/0.gettingstarted.md)
 
-- [Lab-1: Getting started with Microservices](../microservices/0.gettingstarted.md)
-- [Lab-2: Docker Concepts](../microservices/0-docker.md)
-- [Lab-3: Developing applications inside a Dev Containers](../microservices/0-dev-containers/)
-- [Lab-4: Create your first containerized microservice with .NET Core](../microservices/1.aspnet-api.md)
-- [Lab-5: Create your second containerized microservice with Node JS](../microservices/2.node-api.md)
-- [Lab-6: Create your first containerized website using ASP.NET Core MVC](../microservices/3.aspnet-app.md)
-- [Lab-7: Create your second containerized website using React JS](../microservices/4.react-app.md)
-- [Lab-8: Create your first database with SQL server](../microservices/6.sqlserver-db.md)
-- [Lab-9: Create a container for executing PostgreSQL database scripts](../microservices/7.postgresql-db.md)
+- [Lab-1: Getting Started with Microservices](../microservices/0.gettingstarted.md)
+- [Lab-2: Exploring Docker Fundamentals](../microservices/0-docker.md)
+- [Lab-3: Developing Applications inside a Dev Containers](../microservices/0-dev-containers/)
+- [Lab-4: Create your First Containerized Microservice with .NET Core](../microservices/1.aspnet-api.md)
+- [Lab-5: Create your Second Containerized Microservice with Node JS](../microservices/2.node-api.md)
+- [Lab-6: Create your First Containerized Website using ASP.NET Core MVC](../microservices/3.aspnet-app.md)
+- [Lab-7: Create your Second Containerized Website using React JS](../microservices/4.react-app.md)
+- [Lab-8: Create your First Database with SQL Server](../microservices/6.sqlserver-db.md)
+- [Lab-9: Create a Container for executing PostgreSQL Database scripts](../microservices/7.postgresql-db.md)
+- [Lab-10: Running Keycloak in a Docker Container](../microservices/8.keycloak.md.md)
+- [Lab-11: Running Drupal in a Docker Container](../microservices/9.drupal.md-db.md)
 
 [**Chapter-2: Create Azure Infrastructure with Terraform**](../azure/1-iac.md)
 
@@ -91,7 +93,7 @@
     - Step 3. Login to ArgoCD
     - Step 4. Logout ArgoCD
 - Registering an AKS Cluster with ArgoCD
-- Deploy your first application with ArgoCD
+- Deploy your First application with ArgoCD
     - Task-1: Creating ArgoCD application using ArgoCD CLI
     - Task-2: Creating ArgoCD application using ArgoCD UI
     - Task-3: Creating ArgoCD application using YAML manifest
@@ -110,7 +112,7 @@
 - Install Argocd helm charts without terraform
 - Install Argocd CLI
 - Create new Project & Repositories
-- Create or deploy your first argocd application
+- Create or deploy your First argocd application
 - Registering an AKS Cluster with Argo CD
 - Create project / folder structure for Argo CD
 - Create Kubernetes deployment in Argo CD
