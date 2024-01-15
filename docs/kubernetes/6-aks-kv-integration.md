@@ -215,7 +215,7 @@ csi-secrets-store-provider-azure-tpb4j   1/1     Running   0          3h52m
 
 ## Step-2: Craete access policy in Azure Key Vault for AKS cluster
 
-Granting the necessary permissions for the Kubernetes cluster to access secrets in the Key Vault is a crucial step in securing your applications. There are multiple approaches to achieve this, such as using Helm charts, Azure Command-Line Interface (az) commands, or Azure Active Directory (AAD) pod identity. In this guide, we'll focus on granting access to the Azure Kubernetes Service (AKS) Virtual Machine Scale Set (VMSS) identity, when I tried with AAD pod identity I've encountered couple of issues therefore I am selecting VMSS identity here.
+Granting the necessary permissions for the Kubernetes cluster to access secrets in the Key Vault is a crucial step in securing your applications. There are multiple approaches to achieve this, such as using Helm charts, Azure Command-Line Interface (az) commands, or Azure Active Directory (AAD) pod identity. In this lab, we'll focus on granting access to the Azure Kubernetes Service (AKS) Virtual Machine Scale Set (VMSS) identity, when I tried with AAD pod identity I've encountered couple of issues therefore I am selecting VMSS identity here.
 
 
 Manual Steps: Enable Managed Service Identity (MSI) for the AKS VMSS.

@@ -1,6 +1,6 @@
 ## Introduction
 
-Azure Cache for Redis is a fully managed, in-memory data store that offers high throughput and low-latency access to cached data. In this guide, we'll utilize Terraform's Infrastructure as Code (IaC) capabilities to provision and configure an Azure Cache for Redis resource.
+Azure Cache for Redis is a fully managed, in-memory data store that offers high throughput and low-latency access to cached data. In this lab, we'll utilize Terraform's Infrastructure as Code (IaC) capabilities to provision and configure an Azure Cache for Redis resource.
 
 In this lab, I will walk through the steps to create an Azure Cache for Redis using Terraform. I'll also configure diagnostic settings to monitor its performance effectively. To ensure the security of our Azure Cache for Redis, I'll establish a private endpoint, thereby securing it from public access. Finally, we'll validate these resources within the Azure portal to confirm that everything is functioning as expected.
 

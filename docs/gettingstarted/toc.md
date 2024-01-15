@@ -13,15 +13,15 @@
 
 - [Lab-1: Getting Started with Microservices](../microservices/0.gettingstarted.md)
 - [Lab-2: Getting Started with Docker](../microservices/0-docker-getting-started.md)
-- [Lab-3: Developing Applications inside a Dev Containers](../microservices/0-dev-containers/)
+- [Lab-3: Developing Applications inside a Dev Containers](../microservices/0-dev-containers.md/)
 - [Lab-4: Create your First Containerized Microservice with .NET Core](../microservices/1.aspnet-api.md)
 - [Lab-5: Create your Second Containerized Microservice with Node JS](../microservices/2.node-api.md)
 - [Lab-6: Create your First Containerized Website using ASP.NET Core MVC](../microservices/3.aspnet-app.md)
 - [Lab-7: Create your Second Containerized Website using React JS](../microservices/4.react-app.md)
 - [Lab-8: Create your First Database with SQL Server](../microservices/6.sqlserver-db.md)
 - [Lab-9: Create a Container for executing PostgreSQL Database scripts](../microservices/7.postgresql-db.md)
-- [Lab-10: Running Keycloak in a Docker Container](../microservices/8.keycloak.md.md)
-- [Lab-11: Running Drupal in a Docker Container](../microservices/9.drupal.md-db.md)
+- [Lab-10: Running Keycloak in a Docker Container](../microservices/8.keycloak.md)
+- [Lab-11: Running Drupal in a Docker Container](../microservices/9.drupal.md)
 
 [**Chapter-2: Create Azure Infrastructure with Terraform**](../azure/1-iac.md)
 

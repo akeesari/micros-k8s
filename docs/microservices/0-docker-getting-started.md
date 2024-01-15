@@ -37,7 +37,6 @@ docker --version
 docker -v
 ```
 
-
 ## Step 1: Get the Sample Application
 
 To begin, you'll need a sample application to work with. You can either use an existing application or create a simple one. 
