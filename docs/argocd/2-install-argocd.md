@@ -83,7 +83,7 @@ Understanding the trade-offs between Non-High Availability and High Availability
 
 **Install ArgCDd using YAML manifest vs helm charts?**
 
-Argo CD can be deployed on Azure Kubernetes Service (AKS) using either YAML manifests or Helm charts. In this guide, we'll leverage the Helm chart approach due to its simplicity and streamlined installation process.
+Argo CD can be deployed on Azure Kubernetes Service (AKS) using either YAML manifests or Helm charts. In this lab, we'll leverage the Helm chart approach due to its simplicity and streamlined installation process.
 
 Helm, a Kubernetes package manager, facilitates the installation of Argo CD, providing an efficient and manageable deployment. To enhance automation and maintain Infrastructure as Code (IaC) principles, we'll deploy the Helm chart using terraform. Let's explore the step-by-step process:
 
