@@ -161,6 +161,7 @@ nav:
     - Introduction: gettingstarted/introduction.md    
     - Lab Format: gettingstarted/lab-format.md    
   - Microservices:
+      - Chapter-1 Building Containerized Microservices : microservices/chapter-1.md
       - Getting Started with Microservices : microservices/0.gettingstarted.md
       - Getting Started with Docker: microservices/0-docker-getting-started.md
       - Create Your First Microservice with .NET Core : microservices/1.aspnet-api.md

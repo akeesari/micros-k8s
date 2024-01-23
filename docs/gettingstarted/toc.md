@@ -68,7 +68,7 @@
 - Create Pipeline for React JS website
 - Create Pipeline for Database deployment
 
-**Chapter 5: Argo CD - Deployments to Kubernetes**
+**Chapter 5: Argo CD - Continuous Deployment and GitOps**
 
 - [Getting started with Argo CD](../argocd/argocd-intro.md)
     - What is GitOps?
@@ -121,7 +121,7 @@
 - Automatically create multiple applications in Argo CD
 - Argo CD Cheat-Sheet -->
   
-**Chapter 6: Helm-Charts - Deployments to Kubernetes**
+**Chapter 6: Helm-Charts - Managing Kubernetes Deployments**
 
 - Install Cert-Manager & Let's Encrypt helm charts on Kubernetes
 - Install argocd helm chart using terraform
