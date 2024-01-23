@@ -163,7 +163,6 @@ nav:
   - Microservices:
       - Getting Started with Microservices : microservices/0.gettingstarted.md
       - Getting Started with Docker: microservices/0-docker-getting-started.md
-      - Developing Applications inside a Dev Containers : microservices/0-dev-containers.md
       - Create Your First Microservice with .NET Core : microservices/1.aspnet-api.md
       - Create Your Second Microservice with Node JS : microservices/2.node-api.md      
       # - MicroFrontend Overview : microservices/microfrontend.md
