@@ -19,7 +19,10 @@ site_description: >-
 # Configuration
 theme:
   name: material # readthedocs
-  custom_dir: overrides
+  custom_dir: docs/overrides
+  # 404 page
+  static_templates:
+    - 404.html
   # nav_style: dark
   shortcuts:
       help: 191    # ?
@@ -64,7 +67,9 @@ theme:
       toggle:
         icon: material/toggle-switch
         name: Switch to light mode
-  
+  icon:  # from .icons path. Add to theme override for custom logo.
+    logo: ak-logo  # top left header logo  
+  favicon: assets/ak-logo.ico #browser tab logo
   extra_css:
       - css/custom.css
 
