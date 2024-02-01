@@ -30,7 +30,7 @@ Here is the high-level list of labs we will cover in Chapter 1:
 
 **Lab-9: Create a Container for executing PostgreSQL Database scripts** - PostgreSQL is another popular database choice. This lab guides you through running PostgreSQL in a docker container and executing scripts. You'll understand how to work with different database engines within containers.
 
-**Lab-10: Running Keycloak in a Docker Container** - External services play a importent role in microservices. In this lab, we'll run Keycloak, an identity and access management system, in a Docker container. You'll configure and interact with Keycloak within the containerized environment.
+**Lab-10: Running Keycloak in a Docker Container** - External services play a important role in microservices. In this lab, we'll run Keycloak, an identity and access management system, in a Docker container. You'll configure and interact with Keycloak within the containerized environment.
 
 **Lab-11: Running Drupal in a Docker Container** - Continuing with external services, we'll set up Drupal, a content management system, in a Docker container. You'll explore how to work with content management systems within containers.
 
