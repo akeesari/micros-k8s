@@ -169,14 +169,14 @@ nav:
       - Chapter-1 Building Containerized Microservices : microservices/chapter-1.md
       - Getting Started with Microservices : microservices/0.gettingstarted.md
       - Getting Started with Docker: microservices/0-docker-getting-started.md
-      - Create Your First Microservice with .NET Core : microservices/1.aspnet-api.md
-      - Create Your Second Microservice with Node JS : microservices/2.node-api.md      
+      - Containerize a .NET Core (Web API) Application : microservices/1.aspnet-api.md
+      - Containerize a Node.js Application: microservices/2.node-api.md      
       # - MicroFrontend Overview : microservices/microfrontend.md
-      - Create Your First Website using .NET Core MVC : microservices/3.aspnet-app.md      
-      - Create Your Second Website using React JS : microservices/4.react-app.md      
+      - Containerize a .NET Core MVC Application : microservices/3.aspnet-app.md      
+      - Containerize a React.js Application : microservices/4.react-app.md      
       # - Create Website-3 : microservices/5.blazor-app.md
-      - Create Your First database with SQL server : microservices/6.sqlserver-db.md
-      - Create Your Second database with PostgreSQL : microservices/7.postgresql-db.md
+      - Create Your First Database with SQL server : microservices/6.sqlserver-db.md
+      - Create Your Second Database with PostgreSQL : microservices/7.postgresql-db.md
       - Running Keycloak application in a Docker Container : microservices/8.keycloak.md
       # - Running Drupal in a Docker Container : microservices/9.drupal.md
   - Azure (IaC):
