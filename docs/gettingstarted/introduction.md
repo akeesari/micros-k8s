@@ -9,7 +9,7 @@ Throughout this book, I will guide you step by step, providing detailed instruct
 
 The implementation guide within this book serves as your reference architecture for creating, deploying, and managing your microservices architecture with Azure Kubernetes Services (AKS) using ArgoCD and Helm's CI/CD DevOps process. You will learn how to create multiple microservice applications with different technology stacks, containerize these microservices, push them to Azure Container Registry (ACR), and finally deploy them to Azure Kubernetes Service (AKS). Additionally, you will gain a comprehensive understanding of deploying microservice applications to AKS using ArgoCD and Helm Charts.
 
-Get ready to embark on a journey of mastering microservice deployment on Kubernetes with ArgoCD and Helm. Let's dive in and unlock the true potential of cloud-native development!
+Get ready to embark on a journey of mastering microservice deployment on Kubernetes with ArgoCD and Helm. Let's look into the true potential of cloud-native development!
 
 ## Organization of this Book:
 
@@ -23,7 +23,7 @@ Throughout the exercises, we will create microservices using different technolog
 
 **Chapter 2: Create Azure Infrastructure with Terraform** 
 
-In this second chapter, "Create Azure Infrastructure with Terraform," we dive into Infrastructure as Code (IaC) and the benefits it brings. Focusing on Terraform as our IaC tool, we explore its setup and address the crucial task of hosting containerized microservices applications.
+In this second chapter, "Create Azure Infrastructure with Terraform," we look into Infrastructure as Code (IaC) and the benefits it brings. Focusing on Terraform as our IaC tool, we explore its setup and address the crucial task of hosting containerized microservices applications.
 
 Using Terraform, I guide you through the creation of essential Azure cloud resources. These include a Log Analytics workspace, Virtual Network, Azure Container Registry (ACR), Application Gateway, Azure Kubernetes Service, Azure PostgreSQL Database, Azure Key Vault, Azure Redis Cache, Azure Storage Account, Azure Event Hubs, and the setup of Front Door and CDN profiles. The goal is to automate the infrastructure creation process comprehensively, adhering to best practices in infrastructure management.
 
@@ -35,7 +35,7 @@ This chapter also covered the issuance of Let's Encrypt SSL Certificates to enha
 
 **Chapter 4: Microservices CI/CD with Azure DevOps**
 
-In the fourth chapter, "Microservices CI/CD with Azure DevOps," we will dive into the world of DevOps and its relevance to microservices. We will discuss DevOps best practices and outline a CI/CD (Continuous Integration/Continuous Delivery/Deployment) strategy specifically tailored for microservices on Kubernetes. Furthermore, you will learn how to create DevOps pipelines for each of your microservices applications, ensuring streamlined and automated software delivery.
+In the fourth chapter, "Microservices CI/CD with Azure DevOps," we will look into the world of DevOps and its relevance to microservices. We will discuss DevOps best practices and outline a CI/CD (Continuous Integration/Continuous Delivery/Deployment) strategy specifically tailored for microservices on Kubernetes. Furthermore, you will learn how to create DevOps pipelines for each of your microservices applications, ensuring streamlined and automated software delivery.
 
 **Chapter 5: Helm: Managing Kubernetes Deployments**
 

@@ -8,7 +8,7 @@ One of my goals is to simplify the development, deployment, and scaling of compl
 
 With ArgoCD, developers can create application manifests and store them in a Git repository. They can then use ArgoCD to deploy those manifests to a Kubernetes cluster, and it will continuously monitor and reconcile the live environment with the desired state defined in Git.
 
-In this section, we'll take a simple approach to understand Argo CD. We'll explore what it is, how it works, and why it's so useful. Whether you're a tech pro or just starting out, this article aims to explain Argo CD in a way that makes sense. Let's dive in and discover how Argo CD can simplify the way you deploy and manage your applications, especially if you're using Kubernetes.
+In this section, we'll take a simple approach to understand Argo CD. We'll explore what it is, how it works, and why it's so useful. Whether you're a tech pro or just starting out, this article aims to explain Argo CD in a way that makes sense. Let's look into it and discover how Argo CD can simplify the way you deploy and manage your applications, especially if you're using Kubernetes.
 
 ## Objective
 

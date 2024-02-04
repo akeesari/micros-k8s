@@ -7,7 +7,7 @@ ___
 
 Welcome to the fourth module of our series. In this module, we will look into fundamental concepts and establish a robust CI/CD pipeline using Azure DevOps. Specifically, we will explore Blue-Green deployment, Canary releases, and CI/CD strategies required for microservices on Kubernetes. Additionally, we will leverage tools like Helm and Argo CD. By the end of this module, you will have a clear understanding of how to create a comprehensive CI & CD pipeline architecture for deploying our Microservices into an AKS cluster.
 
-Before we dive into Azure DevOps CI & CD strategies, let's lay a solid foundation by revisiting some core DevOps concepts.
+Before we look into Azure DevOps CI & CD strategies, let's lay a solid foundation by revisiting some core DevOps concepts.
 
 ## What is CI/CD?
 

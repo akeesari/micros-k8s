@@ -315,7 +315,7 @@ After applying, you'll see that Terraform has added the cert-manager namespace. 
 
 ## Step-3: Install cert-manager helm chart using terraform
 
-Now, let's dive into installing the cert-manager Helm chart into your AKS cluster using Terraform. Here's the step-by-step process:
+Now, let's look into installing the cert-manager Helm chart into your AKS cluster using Terraform. Here's the step-by-step process:
 
 **1. Add the Helm repository**
 

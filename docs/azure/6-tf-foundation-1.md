@@ -4,7 +4,7 @@ Welcome to Part 1 of the Terraform Foundation lab. In this lab, we will set up t
 
 The Terraform `Terraform Management` environment setup is a one-time activity that lays the foundation for automating infrastructure provisioning using Infrastructure as Code (IaC) principles. Once this setup is completed, you will be ready to create various Azure resources using Terraform in an automated and consistent manner.
 
-Let's dive in and get started with setting up the Terraform Management environment!
+Let's get started with setting up the Terraform Management environment!
 
 ## Technical Scenario
 
