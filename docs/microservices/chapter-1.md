@@ -11,7 +11,7 @@ By the end of this chapter, you will have a solid foundation in docker, microser
 
 ## Hands-On Labs
 
-Here is the high-level list of labs we will cover in Chapter 1:
+Here is the high-level list of labs we will cover in this chapter:
 
 
 **Lab-1: Getting Started with Microservices** - In this lab, we'll introduce you to the concept of microservices and explain their importance in modern application development. You'll gain a high-level understanding of microservices architecture and its benefits.
@@ -28,7 +28,7 @@ Here is the high-level list of labs we will cover in Chapter 1:
 
 **Lab-8: Create your First Database with SQL Server** - Databases are an essential part of microservices. In this lab, we'll set up a SQL Server database within a container. You'll learn how to create and connect to containerized databases.
 
-**Lab-9: Create a Container for executing PostgreSQL Database scripts** - PostgreSQL is another popular database choice. This lab guides you through running PostgreSQL in a docker container and executing scripts. You'll understand how to work with different database engines within containers.
+**Lab-9: Create your Second Database with PostgreSQL** - PostgreSQL is another popular database choice. This lab guides you through running PostgreSQL in a docker container and executing scripts. You'll understand how to work with different database engines within containers.
 
 **Lab-10: Running Keycloak application in a Docker Container** - External services play a important role in microservices. In this lab, we'll run Keycloak application, an identity and access management system, in a Docker container. You'll configure and interact with Keycloak within the containerized environment.
 
