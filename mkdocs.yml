@@ -141,10 +141,49 @@ extra:
       </style>
 plugins:
   - search
-  # - awesome-pages
-     # Adding the pdf-export plugin
-  # - pdf-export:
-  #     combined: true
+  # # https://pypi.org/project/mkdocs-with-pdf/
+  # - with-pdf:
+  #     author: ANJI KEESARI
+  #     copyright: Copyright © 2024 Anji Keesari
+  #     #
+  #     cover: true
+  #     back_cover: true
+  #     cover_title: "Building Microservices with Containers"
+  #     cover_subtitle: "A Practical Guide"
+  #     # custom_template_path: TEMPLATES PATH
+  #     #
+  #     toc_title: "Building Microservices with Containers"
+  #     #heading_shift: false
+  #     #toc_level: 3
+  #     #ordered_chapter_level: 2
+  #     #excludes_children:
+  #     #    - 'release-notes/:upgrading'
+  #     #    - 'release-notes/:changelog'
+  #     #
+  #     exclude_pages:
+  #        - 'Home/'
+  #        - 'gettingstarted/'
+  #        - 'azure/'
+  #        - 'kubernetes/'
+  #        - 'devops/'
+  #        - 'argocd/'
+  #        - 'helmchart/'
+  #     #convert_iframe:
+  #     #    - src: IFRAME SRC
+  #     #      img: POSTER IMAGE URL
+  #     #      text: ALTERNATE TEXT
+  #     #    - src: ...
+  #     #two_columns_level: 3
+  #     #
+  #     #render_js: true
+  #     #headless_chrome_path: headless-chromium
+  #     #
+  #     #output_path: any-place/document.pdf
+  #     #enabled_if_env: ENABLE_PDF_EXPORT
+  #     #
+  #     #debug_html: true
+  #     #show_anchors: true
+  #     #verbose: true
 hide:
   - footer
 # google_analytics: ["UA-118407822-1", "kubernetes.github.io"]
@@ -166,7 +205,8 @@ nav:
     - Introduction: gettingstarted/introduction.md    
     - Lab Format: gettingstarted/lab-format.md    
   - Microservices:
-      - Chapter-1 Building Containerized Microservices : microservices/chapter-1.md
+      # - TOC : microservices/toc.md
+      - Building Containerized Microservices : microservices/chapter-1.md
       - Getting Started with Microservices : microservices/0.gettingstarted.md
       - Getting Started with Docker: microservices/0-docker-getting-started.md
       - Containerize a .NET Core Web API : microservices/1.aspnet-api.md

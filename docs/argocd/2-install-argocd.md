@@ -66,7 +66,7 @@ In a High Availability installation, Argo CD is deployed across multiple instanc
   
 - **Enhanced Fault Tolerance:** The redundancy of nodes enhances fault tolerance, making the system resilient to individual node failures.
 
-- **Critical for Production Environments:** High Availability installations are crucial for production environments where uninterrupted service and minimal downtime are paramount.
+- **Critical for Production Environments:** High Availability installations are crucial for production environments where uninterrupted service and minimal downtime are most important.
 
 **Considerations for Choosing Installation Type:**
 

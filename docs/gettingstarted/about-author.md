@@ -10,7 +10,7 @@ Anji has a passion for teaching and sharing his knowledge with others. He has wr
 
 With his extensive knowledge and experience in Kubernetes, ArgoCD, and Helm, Anji is the perfect author for this book on `Build and Deploy Microservices Applications on a Kubernetes using ArgoCD and Helm`. His passion for teaching and his ability to explain complex concepts in simple terms will make this book a valuable resource for readers of all levels of expertise.
 
-Anji has recently been actively involved in developing multi-tenant applications, focusing on infrastructure automation. He leverages tools such as Terraform and Azure DevOps to streamline processes, aiming to set up new environments efficiently within a remarkable timeframe.
+<!-- Anji has recently been actively involved in developing multi-tenant applications, focusing on infrastructure automation. He leverages tools such as Terraform and Azure DevOps to streamline processes, aiming to set up new environments efficiently within a remarkable timeframe. -->
 
 Throughout his career, Anji have worked with various companies in diverse domains such as Banking, Healthcare, and Finance, across countries such as India, UK, and US. He is dedicated to making a significant impact in his workplace and helping others along the way.
 
