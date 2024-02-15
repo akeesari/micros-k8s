@@ -141,7 +141,7 @@ extra:
       </style>
 plugins:
   - search
-  # # https://pypi.org/project/mkdocs-with-pdf/
+  # https://pypi.org/project/mkdocs-with-pdf/
   # - with-pdf:
   #     author: ANJI KEESARI
   #     copyright: Copyright © 2024 Anji Keesari
@@ -155,7 +155,7 @@ plugins:
   #     toc_title: "Building Microservices with Containers"
   #     #heading_shift: false
   #     #toc_level: 3
-  #     #ordered_chapter_level: 2
+  #     ordered_chapter_level: 2
   #     #excludes_children:
   #     #    - 'release-notes/:upgrading'
   #     #    - 'release-notes/:changelog'
@@ -205,10 +205,15 @@ nav:
     - Introduction: gettingstarted/introduction.md    
     - Lab Format: gettingstarted/lab-format.md    
   - Microservices:
-      # - TOC : microservices/toc.md
-      - Building Containerized Microservices : microservices/chapter-1.md
+      - Book Cover : microservices/book-cover.md
+      - Table of Contents : microservices/toc.md
+      - About the Author: microservices/about-author.md      
+      - Acknowledgments: microservices/acknowledgments.md      
+      - Introduction: microservices/introduction.md  
+      # - Building Containerized Microservices : microservices/chapter-1.md
       - Getting Started with Microservices : microservices/0.gettingstarted.md
       - Getting Started with Docker: microservices/0-docker-getting-started.md
+      - Docker Fundamentals: microservices/docker-fundamentals.md
       - Containerize a .NET Core Web API : microservices/1.aspnet-api.md
       - Containerize a Node.js API: microservices/2.node-api.md      
       # - MicroFrontend Overview : microservices/microfrontend.md
