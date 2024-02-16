@@ -278,9 +278,10 @@ nav:
         - Create new ArgoCD Project: argocd/argocd-project.md
         - Create new Repository in ArgoCD: argocd/argocd-repo.md
   - Helm Charts:
-        - Introduction to Helm Charts: helmchart/1-introduction.md
-        - Create Your First Helm chart: helmchart/2-create-helm.md
+        - Introduction to Helmcharts: helmchart/1-introduction.md
+        - Create Your First Helmchart: helmchart/2-create-helm.md
         - Frequently used Helm commands details: helmchart/3-helm-cmds.md
-        - Create Helm chart for Microservices: helmchart/4-helm-microservices.md    
+        - Create Helmchart for Microservices: helmchart/4-helm-microservices.md    
+        # - Install Helmchart in AKS using Terraform: helmchart/5-install-pgadmin4.md    
   # - Contact:
   #   - Contact: contact.md
