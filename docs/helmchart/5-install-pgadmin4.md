@@ -1,4 +1,4 @@
-# Install Pgadmin4 in Azure Kubernetes Services (AKS) with Helmchart using Terraform
+# Install pgadmin4 in Azure Kubernetes Services (AKS) with Helmchart using Terraform
 
 ## Introduction
 
@@ -28,23 +28,27 @@ pgAdmin was created to help PostgreSQL users get the most out of their database.
 
 In this exercise we will accomplish & learn how to implement following:
 
-- **Step 1:** Setup terraform configure for Pgadmin4 Install
-- **Step 2.** Create a new namespace for Pgadmin4
-- **Step 3.** Install Pgadmin4 helmchart using terraform
-- **Step 4.** Setup SSO for Pgadmin4
-- **Step 5.** Verify Pgadmin4 resources in AKS Cluster
-- **Step 6.** Access Pgadmin4 locally - port forwarding
-- **Step 7.** Pgadmin4 login with localhost
+- **Step 1:** Setup terraform configure for pgadmin4 Install
+- **Step 2.** Create a new namespace for pgadmin4
+- **Step 3.** Install pgadmin4 helmchart using terraform
+- **Step 4.** Verify pgadmin4 resources in AKS
+- **Step 5.** Verify pgadmin4 resources in AKS Cluster
+- **Step 6.** Access pgadmin4 locally - port forwarding
+- **Step 7.** Configure Ingress for pgadmin4
+- **Step 8.** Troubleshooting
+
+By following these steps, you will have a securely configured pgAdmin4 instance running in AKS, accessible for database management tasks.
 
 ## Prerequisites
 
-Before proceeding with the installation of Pgadmin4 in AKS using terraform, ensure you have the following prerequisites in place:
+Before proceeding with the installation of pgadmin4 in AKS using terraform, ensure you have the following prerequisites in place:
 
-- Azure subscription - <https://azure.microsoft.com/en-us/free/>
-- Install and configure Terraform - <https://www.terraform.io/downloads>
-- Install azure CLI - <https://learn.microsoft.com/en-us/cli/azure/install-azure-cli>
-- Install and set up kubectl - <https://kubernetes.io/docs/tasks/tools/install-kubectl-windows/>
-- AKS cluster - Ensure you have a running Kubernetes cluster available for Pgadmin4 deployment
+- [Azure subscription](https://azure.microsoft.com/en-us/free/){:target="_blank"}
+- [Download and Install Terraform](https://www.terraform.io/downloads){:target="_blank"}
+- [Install azure CLI](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli){:target="_blank"}
+- [Install and set up kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl-windows/){:target="_blank"}
+- AKS cluster - Ensure you have a running Kubernetes cluster available for pgadmin4 deployment
+- An Ingress controller installed in your cluster (e.g., application-gateway, nginx-ingress)
 <!-- - Setup Ingress controller in AKS
 - Cert-Manager and Let's Encrypt Setup on AKS 
 - A registered domain
@@ -60,9 +64,9 @@ Before proceeding with the installation of Pgadmin4 in AKS using terraform, ensu
 
 4. **Kubectl:** [Install and set up kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl-windows/) for managing Kubernetes clusters.
 
-5. **Kubernetes Cluster:** Ensure you have a running Kubernetes cluster available for Pgadmin4 deployment.
+5. **Kubernetes Cluster:** Ensure you have a running Kubernetes cluster available for pgadmin4 deployment.
 
-6. **Git Repository:** Maintain a Git repository storing manifests for your applications, serving as Pgadmin4's deployment source. -->
+6. **Git Repository:** Maintain a Git repository storing manifests for your applications, serving as pgadmin4's deployment source. -->
 
 ## Implementation Details
 
@@ -103,7 +107,7 @@ kubectl get no
 kubectl get namespace -A
 ```
 
-## Step-1: Setup terraform configure for Pgadmin4 Install
+## Step-1: Setup terraform configure for pgadmin4 Install
 
 Launch Visual Studio Code and open your current terraform repository to begin working on your terraform configuration.
 
@@ -177,34 +181,49 @@ provider "kubectl" {
 ```
 
 
+**Setting Up pgadmin4 Locally Using Helm Charts**
 
-**Setting Up Pgadmin4 Locally Using Helm Charts**
+pgadmin4 can be installed using various methods. Here I will walk through downloading the pgadmin4 Helmchart source code from a Git repository and running it locally from Visual studio code to install it on an AKS cluster.
 
-Pgadmin4 can be installed using various methods. In this guide, we will walk through downloading the Pgadmin4 Helmchart source code from a Git repository and running it locally from Visual Studio Code to install it on an AKS cluster.
+Downloading pgadmin4 Helmcharts source code
 
-Downloading Pgadmin4 Helmcharts Source Code
+1. Clone the Repository: Clone the Helmchart repository from the following Git repository: [rowanruseler/helm-charts](https://github.com/rowanruseler/helm-charts){:target="_blank"}. This repository contains the necessary Helm chart for deploying pgadmin4.
 
-1. Clone the Repository: Begin by cloning the Helmchart repository from the following Git repository: [rowanruseler/helm-charts](https://github.com/rowanruseler/helm-charts){:target="_blank"}. This repository contains the necessary Helm charts for deploying Pgadmin4.
+2. Access pgadmin4 Charts: Navigate to the `pgadmin4` folder within the Helmcharts repository.  URL: [pgadmin4 Helm Chart](https://github.com/rowanruseler/helm-charts/tree/master/charts/pgadmin4){:target="_blank"}.  This folder will contain all pgadmin4 source code and configurations.
 
-2. Access Pgadmin4 Charts: Navigate to the `pgadmin4` folder within the Helmcharts repository. You can do this by accessing the following URL: [Pgadmin4 Helm Chart](https://github.com/rowanruseler/helm-charts/tree/master/charts/pgadmin4){:target="_blank"}.
+3. Configuration Files: Within the `pgadmin4` folder, you will notice the `values.yaml` - this file stores configuration settings for pgadmin4.
+ either create a separate file named `pgadmin4.yaml` or use `values.yaml` to store configuration settings.
 
-3. Organize Your Project: For better management, create a new folder named `pgadmin4` within your Terraform project directory. This folder will contain all Pgadmin4 source code and configurations.
+4. Customizing pgadmin4 Configuration: Once the files are set up, customize pgadmin4 according to your requirements:
 
-4. Configuration Files: Within the `pgadmin4` folder, either create a separate file named `pgadmin4.yaml` or use `values.yaml` to store configuration settings.
+**Change-1:** Configure Extra Secret Mounts, see the difference before and after:
 
-Customizing Pgadmin4 Configuration
+```sh
+extraSecretMounts:
+  - name: config-local
+    secret: pgadmin4-config
+    subPath: config_local.py
+    mountPath: "/pgadmin4/config_local.py"
+    readOnly: true
+  # - name: pgpassfile
+  #   secret: pgpassfile
+  #   subPath: pgpassfile
+  #   mountPath: "/var/lib/pgadmin/storage/pgadmin/file.pgpass"
+  #   readOnly: true
+```
 
-Once the files are set up, customize Pgadmin4 according to your requirements:
+<!-- ![alt text](image-3.png) -->
 
-Change-1: Configure Extra Secret Mounts
+**Change-2:** Update Email & Password
 
-![Change-1 Configuration](image.png)
+```sh
+env:
+  # can be email or nickname
+  email: <your-emailaddress>
+  password: <your-password>
+```
 
-Change-2: Update Email & Password
-
-![Change-2 Configuration](image.png)
-
-Change-3: Update config_local.py File
+**Change-3:** Update config_local.py File
 
 Edit the `config_local.py` file to configure Single Sign-On (SSO) settings for later use:
 
@@ -229,7 +248,7 @@ OAUTH2_CONFIG = [
 ]
 ```
 
-Update Chart.yaml
+**Change-4:** Update Chart.yaml
 
 If required, update the `appVersion` field in the `Chart.yaml` file to reflect any changes made to the application version.
 
@@ -240,16 +259,16 @@ After completing the setup, your folder structure should resemble the following:
 ```
 terraform_project/
 └── pgadmin4/
-    ├── pgadmin4.yaml
+    ├── values.yaml
     ├── config_local.py
     ├── Chart.yaml
     └── ...
 ```
 
 
-## Step-2: Create namespace for Pgadmin4
+## Step-2: Create namespace for pgadmin4
 
-Create a separate namespace for Pgadmin4 where all pgadmin4 related resources will be created. let's create a new file called pgadmin4.tf and copy the following configuration.
+Create a separate namespace for pgadmin4 where all pgadmin4 related resources will be created. let's create a new file called pgadmin4.tf and copy the following configuration.
 
 ``` tf title="pgadmin4.tf"
 resource "kubernetes_namespace" "pgadmin4" {  
@@ -271,6 +290,10 @@ run terraform plan
 ``` sh
 terraform plan -out=dev-plan -var-file="./environments/dev-variables.tfvars"
 ```
+
+[![Alt text](images/pgadmin4/image-1.png)](images/pgadmin4/image-1.png){:target="_blank"}
+
+
 output
 
 ``` sh
@@ -288,11 +311,11 @@ Apply complete! Resources: 1 added, 0 changed, 0 destroyed.
 Outputs:
 ```
 
-## Step-3: Install Pgadmin4 helmchart using terraform
+## Step-3: Install pgadmin4 helmchart using terraform
 
-Visit the official Pgadmin4 Helm chart on the ArtifactHUB website: [Pgadmin4 Helm Chart](https://artifacthub.io/packages/helm/runix/pgadmin4){:target="_blank"}.
+Visit the official pgadmin4 Helm chart on the ArtifactHUB website: [pgadmin4 Helm Chart](https://artifacthub.io/packages/helm/runix/pgadmin4){:target="_blank"}.
 
-Click on the "Install" button to retrieve the necessary details for the Pgadmin4 Helmchart installation.
+Click on the "Install" button to retrieve the necessary details for the pgadmin4 Helmchart installation.
 
 ``` sh
 repository = "https://helm.runix.net"
@@ -303,24 +326,21 @@ version    = "1.23.3"
 ``` tf title="pgadmin4.tf"
 # Install pgadmin4 helm chart using terraform
 resource "helm_release" "pgadmin4" {
-  count      = var.pgadmin4
   name       = "pgadmin4"
   repository = "https://helm.runix.net"
   chart      = "pgadmin4"
-  version    = "1.13.6"
-  namespace  = kubernetes_namespace.pgadmin4[0].metadata.0.name
+  version    = "1.23.3"  
+  namespace = kubernetes_namespace.pgadmin4.metadata.0.name
   values = [
     "${file("pgadmin4/pgadmin4.yaml")}"
   ]
 
-  # set {
-  #   name  = "env.email"
-  #   value = "chart@domain.com"
-  # }
-  # set {
-  #   name  = "env.password"
-  #   value = data.azurerm_key_vault_secret.pgadmin4_admin_pwd.value
-  # }
+  lifecycle {
+    ignore_changes = [
+      # values,
+      version
+    ]
+  }
   depends_on = [
     kubernetes_namespace.pgadmin4
   ]
@@ -338,31 +358,359 @@ output
 ``` sh
 Plan: 1 to add, 0 to change, 0 to destroy.
 ```
+[![Alt text](images/pgadmin4/image-2.png)](images/pgadmin4/image-2.png){:target="_blank"}
 
 run terraform apply
 
-```
+```sh
 terraform apply dev-plan
 ```
 ``` sh
-helm_release.argocd: Creating...
-helm_release.argocd: Still creating... [10s elapsed]
-helm_release.argocd: Still creating... [20s elapsed]
-helm_release.argocd: Still creating... [30s elapsed]
-helm_release.argocd: Still creating... [40s elapsed]
-helm_release.argocd: Still creating... [50s elapsed]
-helm_release.argocd: Still creating... [1m0s elapsed]
-helm_release.argocd: Creation complete after 1m5s [id=argocd]
+helm_release.pgadmin4: Creating...
+helm_release.pgadmin4: Still creating... [10s elapsed]
+helm_release.pgadmin4: Still creating... [20s elapsed]
+helm_release.pgadmin4: Still creating... [30s elapsed]
+helm_release.pgadmin4: Still creating... [40s elapsed]
+helm_release.pgadmin4: Still creating... [50s elapsed]
+helm_release.pgadmin4: Still creating... [1m0s elapsed]
+helm_release.pgadmin4: Creation complete after 1m5s [id=pgadmin4]
 
 Apply complete! Resources: 1 added, 0 changed, 0 destroyed.
 
 Outputs
 ```
 
+!!!note
+    Even though the Helm install was completed successfully, I noticed that the pod was not visible in the AKS cluster. I had to manually execute the following command to view the pod in the AKS cluster.
 
-## Step-4. Setup SSO for Pgadmin4
+```sh
+helm upgrade pgadmin4 runix/pgadmin4 -n pgadmin4
+```
 
-Create Pgadmin4 oauth2 YAML file for SSO
+output
+```sh
+Release "pgadmin4" has been upgraded. Happy Helming!
+NAME: pgadmin4
+LAST DEPLOYED: Fri Feb 16 12:10:15 2024
+NAMESPACE: pgadmin4
+STATUS: deployed
+REVISION: 7
+NOTES:
+1. Get the application URL by running these commands:
+  export POD_NAME=$(kubectl get pods --namespace pgadmin4 -l "app.kubernetes.io/name=pgadmin4,app.kubernetes.io/instance=pgadmin4" -o jsonpath="{.items[0].metadata.name}")
+  echo "Visit http://127.0.0.1:8080 to use your application"
+  kubectl port-forward $POD_NAME 8080:80
+```
+
+commands for direct install:
+
+```sh
+helm install my-release runix/pgadmin4 --set env.password=SuperSecret
+helm install my-release runix/pgadmin4 -f values.yaml
+```
+
+## Step 4. Verify pgadmin4 resources in AKS
+
+Validate to make sure all the deployments / services created and running as expected. 
+
+Run the following `kubectl` commands to verify the pgadmin4 installation in the AKS cluster.
+
+```sh
+kubectl get all -n pgadmin4
+# or
+kubectl get all,configmaps,secrets -n pgadmin4
+```
+
+or
+
+```sh
+kubectl get namespace pgadmin4
+kubectl get deployments -n pgadmin4
+kubectl get pods -n pgadmin4
+kubectl get services -n pgadmin4
+```
+
+expected output
+
+```sh
+NAME                            READY   STATUS    RESTARTS   AGE
+pod/pgadmin4-765c7ffd6d-6jmr9   1/1     Running   0          5h11m        
+
+NAME               TYPE        CLUSTER-IP    EXTERNAL-IP   PORT(S)   AGE  
+service/pgadmin4   ClusterIP   10.25.44.90   <none>        80/TCP    5h24m
+
+NAME                       READY   UP-TO-DATE   AVAILABLE   AGE
+deployment.apps/pgadmin4   1/1     1            1           5h24m
+
+NAME                                  DESIRED   CURRENT   READY   AGE     
+replicaset.apps/pgadmin4-57d4c6955d   0         0         0       5h24m   
+replicaset.apps/pgadmin4-765c7ffd6d   1         1         1       5h14m 
+```
+
+```sh
+kubectl get configmaps -n pgadmin4
+```
+
+```sh
+NAME               DATA   AGE
+kube-root-ca.crt   1      6h48m
+```
+
+```sh
+kubectl get secrets -n pgadmin4
+```
+
+```sh
+pgadmin4                         Opaque               1      5h26m
+pgadmin4-config                  Opaque               1      5h42m
+sh.helm.release.v1.pgadmin4.v1   helm.sh/release.v1   1      6h20m
+sh.helm.release.v1.pgadmin4.v2   helm.sh/release.v1   1      6h10m
+sh.helm.release.v1.pgadmin4.v3   helm.sh/release.v1   1      5h47m
+sh.helm.release.v1.pgadmin4.v4   helm.sh/release.v1   1      5h35m
+sh.helm.release.v1.pgadmin4.v5   helm.sh/release.v1   1      5h34m
+sh.helm.release.v1.pgadmin4.v6   helm.sh/release.v1   1      5h27m
+sh.helm.release.v1.pgadmin4.v7   helm.sh/release.v1   1      5h26m
+```
+
+```sh
+kubectl get ingress -n pgadmin4
+```
+
+```
+No resources found in argocd namespace.
+```
+
+## Step-6. Access pgadmin4 locally - port forwarding
+
+
+To perform local login testing for pgadmin4, you can use port forwarding. Here are the steps:
+
+
+```sh
+kubectl port-forward service/pgadmin4 -n pgadmin4 8080:80
+```
+
+```sh
+Forwarding from 127.0.0.1:8080 -> 8080
+Forwarding from [::1]:8080 -> 8080
+Handling connection for 8080
+```
+Access the pgadmin4 web interface by visiting <http://localhost:8080> in your web browser.
+
+[![Alt text](images/pgadmin4/image-3.png)](images/pgadmin4/image-3.png){:target="_blank"}
+
+After Login > Dashboard
+
+[![Alt text](images/pgadmin4/image-4.png)](images/pgadmin4/image-4.png){:target="_blank"}
+
+
+The port forwarding can be stopped by cancelling the command with CTRL + C.
+
+login with following credentials
+
+```sh
+username: anjkeesari@gmail.com
+Password: StrongPassword@
+```
+
+## Step-7. Configure Ingress for pgadmin4
+
+Create an Ingress resource to expose pgAdmin 4 URL use the following yaml manifest 
+(pgadmin4-ingress.yaml):
+
+```sh title="pgadmin4-ingress.yaml"
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: pgadmin4
+  annotations:
+    kubernetes.io/ingress.class: azure/application-gateway
+    appgw.ingress.kubernetes.io/health-probe-status-codes: "200-499"
+    cert-manager.io/cluster-issuer: letsencrypt
+    cert-manager.io/acme-challenge-type: http01
+spec:
+  tls:
+  - hosts:
+    - dev.pgadmin.mydomain.net
+    secretName: tls-secret
+  rules:
+    - host: dev.pgadmin.mydomain.net
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: pgadmin4
+                port:   
+                  number: 80
+status:
+  loadBalancer:
+    ingress:
+      - ip: 20.125.213.106
+      
+# kubectl apply -f pgadmin4-ingress.yaml -n pgadmin4
+
+```
+
+**Deploy Ingress** YAML file using terraform
+
+```sh
+# Create pgadmin4 ingress file
+data "kubectl_file_documents" "pgadmin4_ingress" {
+  content = file("pgadmin4/pgadmin4-ingress.yaml")
+}
+
+# Apply pgadmin4 ingress file
+resource "kubectl_manifest" "pgadmin4_ingress" {
+  for_each  = data.kubectl_file_documents.pgadmin4_ingress.manifests
+  yaml_body = each.value
+  depends_on = [
+    data.kubectl_file_documents.pgadmin4_ingress
+  ]
+}
+```
+Apply the Ingress resource by running terraform plan & apply 
+
+```sh
+terraform plan -out=dev-plan -var-file="./environments/dev-variables.tfvars"
+terraform apply dev-plan
+```
+
+Ensure all resources are correctly deployed and running:
+
+```sh
+kubectl get deployments,services,ingress -n pgadmin4
+```
+
+**Update DNS Records**
+
+After setting up Ingress, you need to ensure that the domain name you've chosen for pgAdmin 4 points to your Ingress controller's IP address. Here's how to add a new record set in your public DNS zone:
+
+Look for a service that exposes an external IP address. This is the IP address you'll use in your DNS configuration.
+
+Add DNS record & create a new record set
+
+**Verify DNS Propagation**
+
+Before accessing pgAdmin 4, ensure that the DNS changes have propagated and that your domain name resolves to the correct IP address. You can use tools like `nslookup` or `dig` for this purpose.
+
+```sh
+nslookup pgadmin.yourdomain.com
+```
+
+```sh
+Server:  UnKnown
+Address:  192.168.1.1
+
+Non-authoritative answer:
+Name:    dev.pgadmin.mydomain.com
+Address:  20.125.213.200
+```
+
+```sh
+dig pgadmin.yourdomain.com
+```
+
+Check the output to ensure that the domain resolves to the external IP address of your Ingress controller.
+
+
+## Step-8. Troubleshooting
+
+If you're unable to access pgAdmin4 or face issues:
+
+- **Check Ingress Rules**: Ensure your Ingress resource is correctly configured to route traffic to the pgAdmin 4 service.
+- **Verify Pod & Service**: Ensure the pgAdmin4 pod and service is running.
+- **Logs**: Check the logs of your pgAdmin4 pod and Ingress controller for any errors or warnings.
+
+Following these steps should help you test and verify that your pgAdmin4 URL is set up correctly and that the application is accessible over the internet.
+
+Helm chart troubleshooting details
+
+
+```sh
+helm repo list
+helm ls -aA
+helm list --namespace pgadmin4
+```
+
+**helm upgrade**
+
+```sh
+helm install pgadmin4 runix/pgadmin4 --set env.email=<your-email> --set env.password=<your-password> --namespace=<your-namespace> --create-namespace
+helm upgrade pgadmin4 runix/pgadmin4 -f .\pgadmin4\pgadmin4.yaml --create-namespace -n pgadmin4
+helm upgrade pgadmin4 runix/pgadmin4 -f .\pgadmin4\pgadmin4.yaml -n pgadmin4
+```
+
+
+```sh
+Release "pgadmin4" has been upgraded. Happy Helming!
+NAME: pgadmin4
+LAST DEPLOYED: Mon Dec  5 07:09:32 2022
+NAMESPACE: pgadmin4
+STATUS: deployed
+REVISION: 11
+NOTES:
+1. Get the application URL by running these commands:
+  export POD_NAME=$(kubectl get pods --namespace pgadmin4 -l "app.kubernetes.io/name=pgadmin4,app.kubernetes.io/instance=pgadmin4" -o jsonpath="{.items[0].metadata.name}")
+  echo "Visit http://127.0.0.1:8080 to use your application"
+  kubectl port-forward $POD_NAME 8080:80
+```
+
+```sh
+helm history pgadmin4 -n pgadmin4
+```
+
+
+**helm rollback**
+
+```sh
+helm rollback pgadmin4 10 
+```
+
+```sh
+Rollback was a success! Happy Helming!
+```
+
+**helm uninstall**
+
+```sh
+helm uninstall pgadmin4 -n pgadmin4
+```
+
+**pod logs**
+
+```sh
+kubectl logs pods/pgadmin4-765c7ffd6d-6jmr9 -n pgadmin4
+```
+
+```sh
+postfix/postlog: starting the Postfix mail system
+[2024-02-16 20:23:15 +0000] [1] [INFO] Starting gunicorn 20.1.0
+[2024-02-16 20:23:15 +0000] [1] [INFO] Listening at: http://[::]:80 (1)
+[2024-02-16 20:23:15 +0000] [1] [INFO] Using worker: gthread
+[2024-02-16 20:23:15 +0000] [88] [INFO] Booting worker with pid: 88
+::ffff:10.64.4.10 - - [16/Feb/2024:20:24:09 +0000] "GET /misc/ping HTTP/1.1" 200 4 "-" "kube-probe/1.27"
+::ffff:10.64.4.10 - - [16/Feb/2024:20:24:09 +0000] "GET /misc/ping HTTP/1.1" 200 4 "-" "kube-probe/1.27"
+::ffff:10.64.4.10 - - [16/Feb/2024:20:25:09 +0000] "GET /misc/ping HTTP/1.1" 200 4 "-" "kube-probe/1.27"
+::ffff:10.64.4.10 - - [16/Feb/2024:20:28:09 +0000] "GET /misc/ping HTTP/1.1" 200 4 "-" "kube-probe/1.27"
+```
+
+## Reference
+
+Here is the list of all the resources used while working on this setup 
+
+- [pgAdmin home page](https://www.pgadmin.org/){:target="_blank"}
+- [Helm Provider for Terraform](https://github.com/hashicorp/terraform-provider-helm){:target="_blank"}
+- [Explore > dpage/pgadmin4](https://hub.docker.com/r/dpage/pgadmin4/tags){:target="_blank"} - get the latest Docker image from here.
+- [pgadmin4 Helm Chart](https://artifacthub.io/packages/helm/runix/pgadmin4)
+- [pgadmin4 Helm Chart - Github](https://github.com/rowanruseler/helm-charts/tree/master/charts/pgadmin4/examples) - Helpful for SSO setup
+- [pgadmin4 Documentation](https://www.pgadmin.org/docs/pgadmin4/6.15/index.html) 
+
+<!-- 
+## Step-8. Setup SSO for pgadmin4
+
+Create pgadmin4 oauth2 YAML file for SSO
 
 oauth2-config.yaml
 
@@ -432,131 +780,16 @@ terraform plan & apply at this stage
 ```
 terraform plan -out=dev-plan -var-file="./environments/dev-variables.tfvars"
 terraform apply dev-plan
-```
-
-
-## Step 5. Verify Pgadmin4 resources in AKS.
-
-Validate to make sure all the deployments / services created and running as expected. 
-
-Run the following `kubectl` commands to verify the pgadmin4 installation in the AKS cluster.
-
-```sh
-kubectl get all --namespace pgadmin4
-# or
-kubectl get all,configmaps,secrets -n pgadmin4
-```
-
-or
-
-```sh
-kubectl get namespace pgadmin4
-kubectl get deployments -n pgadmin4
-kubectl get pods -n pgadmin4
-kubectl get services -n pgadmin4
-```
-
-expected output
-
-```sh
-NAME                            READY   STATUS    RESTARTS   AGE
-pod/pgadmin4-65f9ff74f6-xbscn   1/1     Running   0          12d
-
-NAME               TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)   AGE
-service/pgadmin4   ClusterIP   10.25.181.231   <none>        80/TCP    18d
-
-NAME                       READY   UP-TO-DATE   AVAILABLE   AGE
-deployment.apps/pgadmin4   1/1     1            1           18d
-
-NAME                                  DESIRED   CURRENT   READY   AGE
-replicaset.apps/pgadmin4-65f9ff74f6   1         1         1       18d
-
-NAME                         DATA   AGE
-configmap/kube-root-ca.crt   1      25d
-
-NAME                                    TYPE                 DATA   AGE
-secret/pgadmin4                         Opaque               1      18d
-secret/pgadmin4-config                  Opaque               1      25d
-secret/sh.helm.release.v1.pgadmin4.v1   helm.sh/release.v1   1      25d
-secret/sh.helm.release.v1.pgadmin4.v2   helm.sh/release.v1   1      18d
-secret/sh.helm.release.v1.pgadmin4.v3   helm.sh/release.v1   1      18d
-secret/sh.helm.release.v1.pgadmin4.v4   helm.sh/release.v1   1      18d
-secret/tls-secret                       kubernetes.io/tls    2      18d
-```
-
-```kubectl get configmaps -n argocd```
-
-```
-NAME                        DATA   AGE
-argocd-cm                   6      3m6s
-argocd-cmd-params-cm        29     3m6s
-argocd-gpg-keys-cm          0      3m6s
-argocd-notifications-cm     1      3m6s
-argocd-rbac-cm              3      3m6s
-argocd-ssh-known-hosts-cm   1      3m6s
-argocd-tls-certs-cm         0      3m6s
-kube-root-ca.crt            1      11m
-```
-```kubectl get secrets -n argocd```
-```
-NAME                           TYPE                 DATA   AGE
-argocd-initial-admin-secret    Opaque               1      3m7s
-argocd-notifications-secret    Opaque               0      3m23s
-argocd-secret                  Opaque               5      3m23s
-sh.helm.release.v1.argocd.v1   helm.sh/release.v1   1      3m24s
-```
-
-```kubectl get ingress -n argocd```
-
-output
-
-```
-No resources found in argocd namespace.
-```
-
-## Step-6. Access Pgadmin4 locally - port forwarding
-
-
-To perform local login testing for Pgadmin4, you can use port forwarding. Here are the steps:
-
-1. Connect to your AKS cluster using kubectl
-2. Forward the Pgadmin4 server port to your local machine:
-
-```sh
-kubectl port-forward service/pgadmin4 -n pgadmin4 8080:80
-```
-output
-
-```sh
-Forwarding from 127.0.0.1:8080 -> 8080
-Forwarding from [::1]:8080 -> 8080
-Handling connection for 8080
-```
-1. Access the Pgadmin4 web interface by visiting <https://localhost:8080> in your web browser.
-!!! Note
-    Use this URL for before patching - <https://localhost:8080>
-    Use this URL for after patching - <http://localhost:8080/>
-
-![image.jpg](images/image-2.jpg)
-
-The port forwarding can be stopped by cancelling the command with CTRL + C.
-
-
-login with following credentials
-
-```
-anjkeesari@gmail.com
-
-StrongPassword@
-```
-
+``` 
 
 **Trouble Shooting**
 
 
 in case Login with Microsoft button is missing or workload not created then run the following from helmcharts repo.
 
-```
+```sh
+helm install pgadmin4 runix/pgadmin4 --set env.email=<your-email> --set env.password=<your-password> --namespace=<your-namespace> --create-namespace
+
 helm upgrade pgadmin4 runix/pgadmin4 -f .\pgadmin4\pgadmin4.yaml --create-namespace -n pgadmin4
 ```
 
@@ -575,159 +808,4 @@ NOTES:
   echo "Visit http://127.0.0.1:8080 to use your application"
   kubectl port-forward $POD_NAME 8080:80
 ```
-
-
-
-## Step-7. Create Ingress YAML file for pgadmin4 Url
-
-```sh
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: pgadmin4
-  annotations:
-    kubernetes.io/ingress.class: azure/application-gateway
-    appgw.ingress.kubernetes.io/health-probe-status-codes: "200-499"
-    cert-manager.io/cluster-issuer: letsencrypt
-    cert-manager.io/acme-challenge-type: http01
-spec:
-  tls:
-  - hosts:
-    - dev.pgadmin.mydomain.net
-    secretName: tls-secret
-  rules:
-    - host: dev.pgadmin.mydomain.net
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: pgadmin4
-                port:   
-                  number: 80
-status:
-  loadBalancer:
-    ingress:
-      - ip: 20.125.213.106
-      
-# kubectl apply -f pgadmin4-ingress.yaml -n pgadmin4
-
-```
-terraform plan & apply 
-
-```
-terraform plan -out=dev-plan -var-file="./environments/dev-variables.tfvars"
-terraform apply dev-plan
-```
-
-
-## Step-8. Deploy Ingress YAML file for pgadmin4 Url
-
-```sh
-# Create pgadmin4 ingress file
-data "kubectl_file_documents" "pgadmin4_ingress" {
-  content = file("pgadmin4/pgadmin4-ingress.yaml")
-}
-
-# Apply pgadmin4 ingress file
-resource "kubectl_manifest" "pgadmin4_ingress" {
-  for_each  = data.kubectl_file_documents.pgadmin4_ingress.manifests
-  yaml_body = each.value
-  depends_on = [
-    data.kubectl_file_documents.pgadmin4_ingress
-  ]
-}
-```
-
-## Step-9:. Add new record set in public DNS Zone
-
-![image.png](/.attachments/image-bc663684-fb87-46b4-bbc2-0d588214b221.png)
-
-## Step-10: Test the pgadmin4 Url
-
-Test the pgadmin4 Url with default credentials
-
-https://dev.pgadmin.mydomain.net/login
-```
-chart@domain.com - default email address
-
-SuperSecret - default password can be found in AKS->configuration->Secrets-pgadmin4 (opaque)
-```
-![image.png](/.attachments/image-f3d482ee-d839-487d-ab78-1a7cd63132c9.png)
-
-
-**Single Sign on testing**
-
-click on login with Microsoft->enter corp credentials->
-
-**Redirect URIs**
-Update the URL here for SSO
-
-![image.png](/.attachments/image-b6fe5862-811a-4b48-9e20-ce36ab4885d9.png)
-
-
-Helm Chart troubleshooting details
-
-
-**helm get info cmd**
-
-```
-helm repo list
-helm ls -aA
-helm list --namespace pgadmin4
-helm history pgadmin4 -n pgadmin4
-```
-
-**helm upgrade**
-
-```
-helm upgrade pgadmin4 runix/pgadmin4 -f .\pgadmin4\pgadmin4.yaml -n pgadmin4
-```
-output
-
-```sh
-Release "pgadmin4" has been upgraded. Happy Helming!
-NAME: pgadmin4
-LAST DEPLOYED: Mon Dec  5 07:09:32 2022
-NAMESPACE: pgadmin4
-STATUS: deployed
-REVISION: 11
-NOTES:
-1. Get the application URL by running these commands:
-  export POD_NAME=$(kubectl get pods --namespace pgadmin4 -l "app.kubernetes.io/name=pgadmin4,app.kubernetes.io/instance=pgadmin4" -o jsonpath="{.items[0].metadata.name}")
-  echo "Visit http://127.0.0.1:8080 to use your application"
-  kubectl port-forward $POD_NAME 8080:80
-```
-**helm rollback**
-
-```sh
-helm rollback pgadmin4 10 
-```
-output
-
-```
-PS C:\Source\Repos\helmcharts\appservices> helm rollback helm-release-ewm30 251
-Rollback was a success! Happy Helming!
-```
-**helm uninstall**
-
-```
-helm uninstall pgadmin4 -n pgadmin4
-```
-
-
-## Reference
-
-here is the list of all the resources used while working on this technical story 
-
-- [pgAdmin home page](https://www.pgadmin.org/){:target="_blank"}
-- [Helm Provider for Terraform](https://github.com/hashicorp/terraform-provider-helm){:target="_blank"}
-<!-- 
-- https://artifacthub.io/ - artifacthub for searching charts 
-- https://artifacthub.io/packages/helm/runix/pgadmin4 - pgadmin4 Helm Chart
-- https://github.com/rowanruseler/helm-charts/tree/master/charts/pgadmin4/examples - example for SSO
-- https://www.pgadmin.org/docs/pgadmin4/6.15/index.html - documentation
-- https://www.pgadmin.org/docs/pgadmin4/6.15/oauth2.html# - SSO
-- https://github.com/rowanruseler/helm-charts/tree/master/charts/pgadmin4 - looks like this is the latest git repo
-- https://www.postgresql.org/ftp/pgadmin/pgadmin4/v6.16/ -->
+-->

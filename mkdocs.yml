@@ -282,6 +282,6 @@ nav:
         - Create Your First Helmchart: helmchart/2-create-helm.md
         - Frequently used Helm commands details: helmchart/3-helm-cmds.md
         - Create Helmchart for Microservices: helmchart/4-helm-microservices.md    
-        # - Install Helmchart in AKS using Terraform: helmchart/5-install-pgadmin4.md    
+        - Install pgadmin4 in AKS: helmchart/5-install-pgadmin4.md    
   # - Contact:
   #   - Contact: contact.md
