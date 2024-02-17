@@ -3,10 +3,10 @@
 ## Introduction
 
 
-PostgreSQL is a powerful, open-source object-relational database management system (ORDBMS) that we use in most of our Microservices Architecture. Managing databases is always crucial in any development environment. PgAdmin4 plays a very important role here in managing the PostgreSQL database.
+PostgreSQL is a powerful, open-source object-relational database management system (ORDBMS) that we use in most of our microservices architecture. Managing databases is always crucial in any development environment. PgAdmin4 plays a very important role here in managing the PostgreSQL database.
 
 
-In this article, we'll explore how to set up pgAdmin4 on a Kubernetes cluster, specifically using Azure Kubernetes Service (AKS). We'll use tools like Helmcharts and Terraform to make the deployment process smooth and manageable. By the end, you'll have a clear understanding of how to deploy pgAdmin4 effectively using IaC tools, making database management in your Kubernetes environment. 
+In this session, we'll explore how to set up pgAdmin4 on a Azure Kubernetes Service (AKS). We'll use tools like Helmcharts and Terraform to make the deployment process smooth and manageable. By end of this session, you'll have a clear understanding of how to deploy pgAdmin4 effectively using IaC tools, making database management in your Kubernetes environment. 
 
 
 **pgAdmin**
