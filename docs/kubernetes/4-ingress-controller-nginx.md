@@ -47,7 +47,7 @@ Ensure that you have a Kubernetes cluster up and running along with following:
 - Install and setup kubectl - <https://kubernetes.io/docs/tasks/tools/install-kubectl-windows/>
 - Install Helm client
 - Azure Container Registry (ACR) [Create Azure Container Registry (ACR) using terraform](../azure/9-acr.md)
-- Azure Kubernetes Service (AKS) [Create Azure Kubernetes Service (AKS) using terraform](../azure/10-aks.md)
+- Azure Kubernetes Service (AKS) [Create Azure Kubernetes Service (AKS) using terraform](../azure/11-aks.md)
 
 ## Objective
 

@@ -237,4 +237,4 @@ REVISION        UPDATED                         STATUS          CHART           
 ```
 ## Helm Cheat Sheet
 
-For more information about Helm commands look into the [Helm Cheat Sheet](../../miscellaneous/helm-cheat-sheet.md).
+For more information about Helm commands look into the [Helm Cheat Sheet](https://anjikeesari.com/developertools/cheatsheets/helm-cheat-sheet/){:target='_blank'}.

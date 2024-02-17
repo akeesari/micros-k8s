@@ -16,7 +16,7 @@ Before you begin, make sure you have the following prerequisites:
 
 4. **Docker:** You'll need Docker installed to build container images for your application.
 5. **Azure Container Registry (ACR)** [Create Azure Container Registry (ACR) using terraform](../azure/9-acr.md)
-6. **Azure Kubernetes Service (AKS)** [Create Azure Kubernetes Service (AKS) using terraform](../azure/10-aks.md)
+6. **Azure Kubernetes Service (AKS)** [Create Azure Kubernetes Service (AKS) using terraform](../azure/11-aks.md)
 
 ## Objective
 

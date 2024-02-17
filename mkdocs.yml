@@ -4,7 +4,7 @@
 site_name: Microservices with Kubernetes (Developer User Guide)
 site_url: https://akeesari.github.io/micros-k8s/
 # repo_url: https://github.com/akeesari/microservices-with-k8s
-edit_uri: edit/main/docs/
+# edit_uri: edit/main/docs/
 
 # Author details
 site_author: Anji Keesari
@@ -18,6 +18,7 @@ site_description: >-
 
 # Configuration
 theme:
+  logo: assets/logo.png
   name: material # readthedocs
   custom_dir: docs/overrides
   # 404 page
@@ -191,7 +192,7 @@ hide:
 
 # copyright   
 copyright: |
-  Copyright &copy; 2023 <a href="akeesari.github.io/mkdocs"  target="_blank" rel="noopener">Anji Keesari</a>
+  Copyright &copy; 2023 <a href="https://anjikeesari.com/"  target="_blank" rel="noopener">Anji Keesari</a>
 
 
 # Page tree

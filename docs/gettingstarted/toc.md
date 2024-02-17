@@ -70,7 +70,7 @@
 
 **Chapter 5: Argo CD - Continuous Deployment and GitOps**
 
-- [Getting started with Argo CD](../argocd/argocd-intro.md)
+- [Getting started with Argo CD](../argocd/1-argocd-intro.md)
     - What is GitOps?
     - Core components of GitOps
     - What is ArgoCD?

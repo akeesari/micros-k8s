@@ -1,7 +1,7 @@
 To deploying an application to Azure Kubernetes Service (AKS) involves several steps. Here's an overview of the process:
 
 
-1. **Create an AKS cluster:** The first step is to create an AKS cluster on Azure if you haven't already. This can be done through the Azure portal or using Azure CLI or terraform. [Create Azure Kubernetes Service (AKS) using terraform](../azure/10-aks.md)
+1. **Create an AKS cluster:** The first step is to create an AKS cluster on Azure if you haven't already. This can be done through the Azure portal or using Azure CLI or terraform. [Create Azure Kubernetes Service (AKS) using terraform](../azure/11-aks.md)
 
 1. **Prepare an application for AKS deployment:** Next step is to prepare an application for AKS deployment, here you will create ACR and push the Docker container image to  Azure Container Registry (ACR). [Prepare an application for Azure Kubernetes Service (AKS)](1-prepare-app.md)
 

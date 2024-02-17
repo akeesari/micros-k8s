@@ -289,7 +289,7 @@
 - Create Pipeline for Database deployment
 
 **Chapter 5: Argo CD - Deployments to Kubernetes**
-- [Getting started with Argo CD](../argocd/argocd-intro.md)
+- [Getting started with Argo CD](../argocd/1-argocd-intro.md)
     - What is GitOps?
     - Core components of GitOps
     - What is ArgoCD?

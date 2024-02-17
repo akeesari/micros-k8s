@@ -494,7 +494,7 @@ az acr login --name acr1dev
 az acr repository list --name acr1dev
 ```
 
-for more information look into the az acr cheat-sheet [az-acr-cheat-sheet](./../miscellaneous/az-acr-cheat-sheet.md)
+for more information look into the az acr cheat-sheet [az-acr-cheat-sheet](https://anjikeesari.com/developertools/cheatsheets/az-acr-cheat-sheet/){:target="_blank"}
 
 [![Alt text](images/acr/image-8.png)](images/acr/image-8.png){:target="_blank"}
 
