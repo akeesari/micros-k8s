@@ -206,15 +206,15 @@ nav:
     - Introduction: gettingstarted/introduction.md    
     - Lab Format: gettingstarted/lab-format.md    
   - Microservices:
-      - Book Cover : microservices/book-cover.md
-      - Table of Contents : microservices/toc.md
-      - About the Author: microservices/about-author.md      
-      - Acknowledgments: microservices/acknowledgments.md      
-      - Introduction: microservices/introduction.md  
+      # - Book Cover : microservices/book-cover.md
+      # - Table of Contents : microservices/toc.md
+      # - About the Author: microservices/about-author.md      
+      # - Acknowledgments: microservices/acknowledgments.md      
+      # - Introduction: microservices/introduction.md  
       # - Building Containerized Microservices : microservices/chapter-1.md
       - Getting Started with Microservices : microservices/0.gettingstarted.md
       - Getting Started with Docker: microservices/0-docker-getting-started.md
-      - Docker Fundamentals: microservices/docker-fundamentals.md
+      # - Docker Fundamentals: microservices/docker-fundamentals.md
       - Containerize a .NET Core Web API : microservices/1.aspnet-api.md
       - Containerize a Node.js API: microservices/2.node-api.md      
       # - MicroFrontend Overview : microservices/microfrontend.md
@@ -269,7 +269,6 @@ nav:
     - Create Your First service connection : devops/pipelines/1-service-connections.md
     - Create Pipeline for .NET Core Web API : devops/pipelines/2-pipeline-aspnet-api.md
     - Create Pipeline for ASP.NET Core MVC Project : devops/pipelines/3-pipeline-aspnet-app.md
-
   - Argo CD: 
         - Introduction to Argo CD: argocd/1-argocd-intro.md
         - Install Argo CD in Kubernetes: argocd/2-install-argocd.md

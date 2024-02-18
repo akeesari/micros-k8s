@@ -60,83 +60,28 @@
 
 **Chapter 4: Azure DevOps - Build & Release Pipelines**
 
-- Azure DevOps Overview
-- Create new service connections
-- Create Pipeline for .NET Core Web API
-- Create Pipeline for ASP.NET Core Website
-- Create Pipeline for Node JS API
-- Create Pipeline for React JS website
-- Create Pipeline for Database deployment
+- [Azure DevOps Overview](../devops/1-devops-overview.md)
+- [Create new service connections](../devops/pipelines/1-service-connections.md)
+- [Create Pipeline for .NET Core Web API](../devops/pipelines/2-pipeline-aspnet-api.md)
+- [Create Pipeline for ASP.NET Core Website](../devops/pipelines/3-pipeline-aspnet-app.md)
+<!-- - [Create Pipeline for Node JS API]
+- [Create Pipeline for React JS website]
+- [Create Pipeline for Database deployment] -->
 
 **Chapter 5: Argo CD - Continuous Deployment and GitOps**
 
 - [Getting started with Argo CD](../argocd/1-argocd-intro.md)
-    - What is GitOps?
-    - Core components of GitOps
-    - What is ArgoCD?
-    - How ArgoCD works?
-    - Why do we need to use ArgoCD?
-    - Key features of ArgoCD
-    - ArgoCD architecture components
-    - ArgoCD supports tools
-- Install ArgoCD
-    - Step-1: Configure Terraform providers
-    - Step-2: Create namespace for ArgoCD
-    - Step-3: Install argocd in AKS with helm-chart using terraform
-    - Step 4. Verify ArgoCD resources in AKS.
-    - Step-5. port forwarding for login screen
-    - Step-6. ArgoCD login with localhost
-- Install ArgoCD CLI
-    - Step 1.Install ArgoCD CLI
-    - Step 2. Access the ArgoCD API Server
-    - Step 3. Login to ArgoCD
-    - Step 4. Logout ArgoCD
-- Registering an AKS Cluster with ArgoCD
-- Deploy your First application with ArgoCD
-    - Task-1: Creating ArgoCD application using ArgoCD CLI
-    - Task-2: Creating ArgoCD application using ArgoCD UI
-    - Task-3: Creating ArgoCD application using YAML manifest
-- Create new ArgoCD Project
-- Create new Repository in ArgoCD
-- Helm-Charts Introduction
-    - Introduction
-    - What is Helm Chart?
-    - When do we need to use helm chart?
-    - key features of Helm
-    - How it works?
-    - Explain Helm Architecture
-
-<!-- - Overview
-- Install Argocd helm charts using terraform
-- Install Argocd helm charts without terraform
-- Install Argocd CLI
-- Create new Project & Repositories
-- Create or deploy your First argocd application
-- Registering an AKS Cluster with Argo CD
-- Create project / folder structure for Argo CD
-- Create Kubernetes deployment in Argo CD
-- Create Kubernetes service in Argo CD
-- Create Kustomization in Argo CD
-- Create Ingress in Argo CD
-- Automatically create multiple applications in Argo CD
-- Argo CD Cheat-Sheet -->
+- [Install Argo CD in AKS with helm chart using terraform](../argocd/2-install-argocd.md)
+- [Install & Interact with ArgoCD CLI](../argocd/3-install-argocd-cli.md)
+- [Registering an AKS Cluster with Argo CD](../argocd/register-cluster.md)
+- [Deploy Your First application with Argo CD](../argocd/deploy-app.md)
+- [Create new ArgoCD Project](../argocd/argocd-project.md)
+- [Create new Repository in ArgoCD](../argocd/argocd-repo.md)
   
 **Chapter 6: Helm-Charts - Managing Kubernetes Deployments**
 
-- Install Cert-Manager & Let's Encrypt helm charts on Kubernetes
-- Install argocd helm chart using terraform
-- Install pgadmin4 helm chart using terraform
-- Install minio helm chart using terraform
-- Helm hooks examples in Kubernetes
-<!--   
-**Chapter 7: Miscellaneous - Commands & cheat-sheets**
+- [Introduction to Helm Charts](../helmchart/1-introduction.md)
+- [Create Your First Helmchart](../helmchart/2-create-helm.md)
+- [Frequently used Helm commands details](../helmchart/3-helm-cmds.md)
+- [Create Helmchart for Microservices](../helmchart/4-helm-microservices.md)
 
-- Git cheat-sheet
-- Docker cheat-sheet
-- Terraform cheat-sheet
-- CLI cheat-sheet
-- Kubectl cheat-sheet
-- Helm cheat-sheet
-- ArgoCD cheat-sheet
-- az acr Cheat Sheet 
--->
