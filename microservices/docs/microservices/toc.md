@@ -1,4 +1,4 @@
-# Table of Contents
+# **Table of Contents**
 
 - [About the Author](../microservices/about-author.md)
 - [Acknowledgments](../microservices/acknowledgments.md)

@@ -1,4 +1,4 @@
-# **Exploring Docker Fundamentals**
+# **Chapter-2: Exploring Docker Fundamentals**
 
 ## Overview 
 

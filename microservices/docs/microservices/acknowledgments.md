@@ -1,4 +1,4 @@
-# Acknowledgments
+# **Acknowledgments**
 
 Writing a book is a collaborative effort, and I could not have done it without the help and support of many people.
 

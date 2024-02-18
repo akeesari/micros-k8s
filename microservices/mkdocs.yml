@@ -141,49 +141,25 @@ extra:
       </style>
 plugins:
   - search
-  # https://pypi.org/project/mkdocs-with-pdf/
-  # - with-pdf:
-  #     author: ANJI KEESARI
-  #     copyright: Copyright © 2024 Anji Keesari
-  #     #
-  #     cover: true
-  #     back_cover: true
-  #     cover_title: "Building Microservices with Containers"
-  #     cover_subtitle: "A Practical Guide"
-  #     # custom_template_path: TEMPLATES PATH
-  #     #
-  #     toc_title: "Building Microservices with Containers"
-  #     #heading_shift: false
-  #     #toc_level: 3
-  #     ordered_chapter_level: 2
-  #     #excludes_children:
-  #     #    - 'release-notes/:upgrading'
-  #     #    - 'release-notes/:changelog'
-  #     #
-  #     exclude_pages:
-  #        - 'Home/'
-  #        - 'gettingstarted/'
-  #        - 'azure/'
-  #        - 'kubernetes/'
-  #        - 'devops/'
-  #        - 'argocd/'
-  #        - 'helmchart/'
-  #     #convert_iframe:
-  #     #    - src: IFRAME SRC
-  #     #      img: POSTER IMAGE URL
-  #     #      text: ALTERNATE TEXT
-  #     #    - src: ...
-  #     #two_columns_level: 3
-  #     #
-  #     #render_js: true
-  #     #headless_chrome_path: headless-chromium
-  #     #
-  #     #output_path: any-place/document.pdf
-  #     #enabled_if_env: ENABLE_PDF_EXPORT
-  #     #
-  #     #debug_html: true
-  #     #show_anchors: true
-  #     #verbose: true
+  - print-site:
+      add_to_navigation: true
+      print_page_title: 'Print'
+      add_print_site_banner: false
+      # Table of contents
+      add_table_of_contents: false
+      toc_title: 'Table of Contents'
+      toc_depth: 3
+      # Content-related
+      add_full_urls: false
+      enumerate_headings: false
+      enumerate_figures: false
+      add_cover_page: false
+      cover_page_template: ""
+      path_to_pdf: ""
+      include_css: true
+      enabled: true
+      exclude:
+        - index.md
 hide:
   - footer
 # google_analytics: ["UA-118407822-1", "kubernetes.github.io"]
