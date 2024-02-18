@@ -1,0 +1,216 @@
+# Copyright (c) 2023 Anji Keesari <anjkeesari@gmail.com>
+
+# Project information
+site_name: Building Microservices with Containers (A Practical Guide)
+site_url: https://akeesari.github.io/micros-k8s/
+# repo_url: https://github.com/akeesari/microservices-with-k8s
+# edit_uri: edit/main/docs/
+
+# Author details
+site_author: Anji Keesari
+site_description: >-
+  Building Microservices with Containers (A Practical Guide)  
+
+# # Repository details
+# repo_name: akeesari.github.io/mkdocs/
+# repo_url: https://akeesari.github.io/mkdocs/
+
+# Configuration
+theme:
+  logo: assets/logo.png
+  name: material # readthedocs
+  custom_dir: docs/overrides
+  # 404 page
+  static_templates:
+    - 404.html
+  # nav_style: dark
+  shortcuts:
+      help: 191    # ?
+      next: 78     # n
+      previous: 80 # p
+      search: 83   # s
+  features:
+  - content.code.copy
+  - content.code.annotate
+  # - content.tabs.link
+  # - header.autohide
+  # - navigation.expand
+  - navigation.indexes
+  - navigation.footer
+  - content.tooltips
+  - navigation.tabs
+  # - navigation.tabs.sticky
+  - navigation.sections
+  - navigation.expand
+  # - toc.integrate
+  - navigation.top
+  - navigation.instant
+  - navigation.tracking
+  - header.autohide
+  - search.highlight
+  - search.share
+  - search.suggest
+  - toc.follow
+  
+  language: en
+  
+  # use_directory_urls: true
+
+  palette: 
+    # Palette toggle for light mode
+    - scheme: default
+      toggle:
+        icon: material/toggle-switch-off-outline 
+        name: Switch to dark mode
+    # Palette toggle for dark mode
+    - scheme: slate
+      toggle:
+        icon: material/toggle-switch
+        name: Switch to light mode
+  icon:  # from .icons path. Add to theme override for custom logo.
+    logo: ak-logo  # top left header logo  
+  favicon: assets/ak-logo.ico #browser tab logo
+  extra_css:
+      - css/custom.css
+
+  extra_javascript:
+  - javascripts/extra.js
+  - javascripts/mathjax.js
+  - https://polyfill.io/v3/polyfill.min.js #?features=es6
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets:
+      check_paths: true
+  - admonition
+  - abbr
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.betterem:
+      smart_enable: all
+  - footnotes
+  - pymdownx.details
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          # format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed
+  - pymdownx.mark
+  - pymdownx.critic
+  - pymdownx.caret
+  - pymdownx.keys
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.tilde
+  - attr_list
+  - md_in_html
+  - def_list
+  - meta
+  - md_in_html
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - tables
+  # - toc:                 
+  #     permalink: true
+
+extra:
+  analytics:
+    provider: google
+    property: G-KR7ZFHXJM1
+  social:
+    - icon: fontawesome/brands/github-alt
+      link: https://github.com
+    - icon: fontawesome/brands/twitter
+      link: https://twitter.com
+    - icon: fontawesome/brands/linkedin
+      link: https://linkedin.com/in
+    - icon: fontawesome/brands/instagram
+      link: https://www.instagram.com/
+
+  footer: |
+      <style>
+        .md-footer {
+          display: none;
+        }
+      </style>
+plugins:
+  - search
+  # https://pypi.org/project/mkdocs-with-pdf/
+  # - with-pdf:
+  #     author: ANJI KEESARI
+  #     copyright: Copyright © 2024 Anji Keesari
+  #     #
+  #     cover: true
+  #     back_cover: true
+  #     cover_title: "Building Microservices with Containers"
+  #     cover_subtitle: "A Practical Guide"
+  #     # custom_template_path: TEMPLATES PATH
+  #     #
+  #     toc_title: "Building Microservices with Containers"
+  #     #heading_shift: false
+  #     #toc_level: 3
+  #     ordered_chapter_level: 2
+  #     #excludes_children:
+  #     #    - 'release-notes/:upgrading'
+  #     #    - 'release-notes/:changelog'
+  #     #
+  #     exclude_pages:
+  #        - 'Home/'
+  #        - 'gettingstarted/'
+  #        - 'azure/'
+  #        - 'kubernetes/'
+  #        - 'devops/'
+  #        - 'argocd/'
+  #        - 'helmchart/'
+  #     #convert_iframe:
+  #     #    - src: IFRAME SRC
+  #     #      img: POSTER IMAGE URL
+  #     #      text: ALTERNATE TEXT
+  #     #    - src: ...
+  #     #two_columns_level: 3
+  #     #
+  #     #render_js: true
+  #     #headless_chrome_path: headless-chromium
+  #     #
+  #     #output_path: any-place/document.pdf
+  #     #enabled_if_env: ENABLE_PDF_EXPORT
+  #     #
+  #     #debug_html: true
+  #     #show_anchors: true
+  #     #verbose: true
+hide:
+  - footer
+# google_analytics: ["UA-118407822-1", "kubernetes.github.io"]
+
+
+# copyright   
+copyright: |
+  Copyright &copy; 2024 <a href="https://anjikeesari.com/"  target="_blank" rel="noopener">Anji Keesari</a>
+
+
+# Page tree
+nav:
+  - Home:
+    - Home: index.md        
+  - Microservices:
+    - Table of Contents : microservices/toc.md
+    - About the Author: microservices/about-author.md      
+    - Acknowledgments: microservices/acknowledgments.md      
+    - Introduction: microservices/introduction.md  
+    - Getting Started with Microservices : microservices/0.gettingstarted.md
+    - Docker Fundamentals: microservices/docker-fundamentals.md
+    - Getting Started with Docker: microservices/0-docker-getting-started.md    
+    - Containerize a .NET Core Web API : microservices/1.aspnet-api.md
+    - Containerize a Node.js API: microservices/2.node-api.md      
+    - Containerize a .NET Core MVC Application : microservices/3.aspnet-app.md      
+    - Containerize a React.js Application : microservices/4.react-app.md      
+    - Create Your First Database with SQL server : microservices/6.sqlserver-db.md
+    - Create Your Second Database with PostgreSQL : microservices/7.postgresql-db.md
+    - Running Keycloak application in a Docker Container : microservices/8.keycloak.md
+    - Running Drupal Website in a Docker Container : microservices/9.drupal.md
