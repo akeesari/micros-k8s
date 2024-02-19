@@ -1,2 +1,2 @@
 # 
-![book-cover.png](../assets/book-cover/microservices.png)
+![book-cover.png](../assets/book-cover.png)
