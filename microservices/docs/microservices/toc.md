@@ -101,3 +101,7 @@
     - [Step-3: Create Docker Compose file](../microservices/9.drupal.md#step-3-create-docker-compose-file)
     - [Step-4: Build Drupal locally](../microservices/9.drupal.md#step-4-build-drupal-locally)
     - [Step-4.3: Run Drupal Container locally](../microservices/9.drupal.md#step-43-run-drupal-container-locally)
+- [Appendix:](../microservices/git-cheat-sheet.md)
+    - [Appendix-A: Git Cheat Sheet](../microservices/git-cheat-sheet.md)
+    - [Appendix-B: Docker Cheat Sheet](../microservices/docker-cheat-sheet.md)
+    - [Appendix-C: Dockerfile Cheat Sheet](../microservices/dockerfile-cheat-sheet.md)

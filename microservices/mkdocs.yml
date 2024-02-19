@@ -175,6 +175,7 @@ nav:
   - Home:
     - Home: index.md        
   - Microservices:
+    - Book Cover : microservices/book-cover.md
     - Table of Contents : microservices/toc.md
     - About the Author: microservices/about-author.md      
     - Acknowledgments: microservices/acknowledgments.md      
@@ -190,3 +191,6 @@ nav:
     - Create Your Second Database with PostgreSQL : microservices/7.postgresql-db.md
     - Running Keycloak application in a Docker Container : microservices/8.keycloak.md
     - Running Drupal Website in a Docker Container : microservices/9.drupal.md
+    - Git Cheat Sheet: microservices/git-cheat-sheet.md
+    - Docker Cheat Sheet: microservices/docker-cheat-sheet.md  
+    - Dockerfile Cheat Sheet: microservices/dockerfile-cheat-sheet.md        
