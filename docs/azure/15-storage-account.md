@@ -55,7 +55,7 @@ In this exercise we will accomplish & learn how to implement following:
 
 The following diagram illustrates the high level architecture of Storage Account usage:
 
-[![Alt text](images/storage/image-1.png)](images/storage/image-1.png){:target="_blank"}
+[![Alt text](images/storage/image-1.png){:style="border: 1px solid black; border-radius: 10px;"}](images/storage/image-1.png){:target="_blank"}
 
 ## Prerequisites
 
@@ -289,7 +289,7 @@ terraform apply dev-plan
 
 azure storage account - Overview blade 
 
-[![Alt text](images/storage/image-2.png)](images/storage/image-2.png){:target="_blank"}
+[![Alt text](images/storage/image-2.png){:style="border: 1px solid black; border-radius: 10px;"}](images/storage/image-2.png){:target="_blank"}
 
 
 ## Task-3: Create azure storage account `container` using terraform
@@ -323,9 +323,9 @@ terraform apply dev-plan
 
 azure storage account container
 
-[![Alt text](images/storage/image-3.png)](images/storage/image-3.png){:target="_blank"}
+[![Alt text](images/storage/image-3.png){:style="border: 1px solid black; border-radius: 10px;"}](images/storage/image-3.png){:target="_blank"}
 
-[![Alt text](images/storage/image-3.1.png)](images/storage/image-3.1.png){:target="_blank"}
+[![Alt text](images/storage/image-3.1.png){:style="border: 1px solid black; border-radius: 10px;"}](images/storage/image-3.1.png){:target="_blank"}
 
 ## Task-4: Configure diagnostic settings for azure storage account using terraform
 
@@ -374,7 +374,7 @@ terraform apply dev-plan
 
 azure storage account - diagnostic settings from left nav
 
-[![Alt text](images/storage/image-4.png)](images/storage/image-4.png){:target="_blank"}
+[![Alt text](images/storage/image-4.png){:style="border: 1px solid black; border-radius: 10px;"}](images/storage/image-4.png){:target="_blank"}
 
 ## Task-5: Configure diagnostic settings for azure storage account container using terraform
 
@@ -434,7 +434,7 @@ terraform apply dev-plan
 
 azure storage account container- diagnostic settings from left nav
 
-[![Alt text](images/storage/image-5.png)](images/storage/image-5.png){:target="_blank"}
+[![Alt text](images/storage/image-5.png){:style="border: 1px solid black; border-radius: 10px;"}](images/storage/image-5.png){:target="_blank"}
 
 ## Task-6: Create  storage account's `files share` using terraform
 
@@ -466,9 +466,9 @@ terraform plan -out=dev-plan -var-file="./environments/dev-variables.tfvars"
 terraform apply dev-plan
 ```
 
-[![Alt text](images/storage/image-6.png)](images/storage/image-6.png){:target="_blank"}
+[![Alt text](images/storage/image-6.png){:style="border: 1px solid black; border-radius: 10px;"}](images/storage/image-6.png){:target="_blank"}
 
-[![Alt text](images/storage/image-6.1.png)](images/storage/image-6.1.png){:target="_blank"}
+[![Alt text](images/storage/image-6.1.png){:style="border: 1px solid black; border-radius: 10px;"}](images/storage/image-6.1.png){:target="_blank"}
 
 ## Task-7: Restrict access using Private Endpoint
 
@@ -514,7 +514,7 @@ terraform apply dev-plan
 
 Confirm the private DNS zone configuration.
 
-[![Alt text](images/storage/image-7.png)](images/storage/image-7.png){:target="_blank"}
+[![Alt text](images/storage/image-7.png){:style="border: 1px solid black; border-radius: 10px;"}](images/storage/image-7.png){:target="_blank"}
 
 ### Task-7.2: Create a Virtual Network Link Association
 
@@ -555,7 +555,7 @@ terraform apply dev-plan
 
 Confirm the Virtual network links configuration.
 
-[![Alt text](images/storage/image-8.png)](images/storage/image-8.png){:target="_blank"}
+[![Alt text](images/storage/image-8.png){:style="border: 1px solid black; border-radius: 10px;"}](images/storage/image-8.png){:target="_blank"}
 
 
 ### Task-7.3: Create Private Endpoints for azure Storage
@@ -610,11 +610,11 @@ run terraform plan & apply
 terraform plan -out=dev-plan -var-file="./environments/dev-variables.tfvars"
 terraform apply dev-plan
 ```
-[![Alt text](images/storage/image-9.png)](images/storage/image-9.png){:target="_blank"}
+[![Alt text](images/storage/image-9.png){:style="border: 1px solid black; border-radius: 10px;"}](images/storage/image-9.png){:target="_blank"}
 
-[![Alt text](images/storage/image-9.1.png)](images/storage/image-9.1.png){:target="_blank"}
+[![Alt text](images/storage/image-9.1.png){:style="border: 1px solid black; border-radius: 10px;"}](images/storage/image-9.1.png){:target="_blank"}
 
-[![Alt text](images/storage/image-9.2.png)](images/storage/image-9.2.png){:target="_blank"}
+[![Alt text](images/storage/image-9.2.png){:style="border: 1px solid black; border-radius: 10px;"}](images/storage/image-9.2.png){:target="_blank"}
 
 ### Task-7.4: Validate private link connection using `nslookup` or `dig`
 

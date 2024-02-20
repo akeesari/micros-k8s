@@ -19,7 +19,7 @@ With IaC, infrastructure is defined using either Terraform, YAML or JSON, which 
 
 The following diagram shows the high level architecture of IaC process.
 
-![image.jpg](images/image-35.jpg)
+[![Alt text](images/image-35.jpg){:style="border: 1px solid black; border-radius: 10px;"}](images/image-35.jpg){:target="_blank"}
 
 ## Benefits of IaC
 

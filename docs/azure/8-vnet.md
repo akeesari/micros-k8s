@@ -27,7 +27,7 @@ In this exercise we will accomplish & learn how to implement following:
 
 Here is the reference architecture diagram used for creating virtual network with hub & spoke model.
 
-[![Alt text](images/image-74.png)](images/image-74.png){:target="_blank"}
+[![Alt text](images/image-74.png){:style="border: 1px solid black; border-radius: 10px;"}](images/image-74.png){:target="_blank"}
 
 <!-- ![image.png](/.attachments/image-343df72f-4d94-4b1e-bd0f-a2988b315dc4.png =500x300) -->
 
@@ -336,7 +336,7 @@ run terraform plan & apply
 terraform plan -out=dev-plan -var-file="./environments/dev-variables.tfvars"
 terraform apply dev-plan
 ```
-[![Alt text](images/image-17.0.png)](images/image-17.0.png){:target="_blank"}
+[![Alt text](images/image-17.0.png){:style="border: 1px solid black; border-radius: 10px;"}](images/image-17.0.png){:target="_blank"}
 
 ## Task-3: Create Hub virtual network using terraform
 
@@ -437,11 +437,11 @@ terraform apply dev-plan
 ```
 Address space
 
-[![Alt text](images/image-18.jpg)](images/image-18.jpg){:target="_blank"}
+[![Alt text](images/image-18.jpg){:style="border: 1px solid black; border-radius: 10px;"}](images/image-18.jpg){:target="_blank"}
 
 subnets
 
- [![Alt text](images/image-17.jpg)](images/image-17.jpg){:target="_blank"}
+ [![Alt text](images/image-17.jpg){:style="border: 1px solid black; border-radius: 10px;"}](images/image-17.jpg){:target="_blank"}
 
 
 ## Task-4: Create Spoke virtual network using terraform
@@ -564,11 +564,11 @@ terraform apply dev-plan
 
 Address space
 
- [![Alt text](images/image-19.jpg)](images/image-19.jpg){:target="_blank"}
+ [![Alt text](images/image-19.jpg){:style="border: 1px solid black; border-radius: 10px;"}](images/image-19.jpg){:target="_blank"}
 
 subnets
 
- [![Alt text](images/image-20.jpg)](images/image-20.jpg){:target="_blank"}
+ [![Alt text](images/image-20.jpg){:style="border: 1px solid black; border-radius: 10px;"}](images/image-20.jpg){:target="_blank"}
 
 
 ## Task-5: Create Diagnostics Settings for Networking
@@ -621,7 +621,7 @@ terraform plan -out=dev-plan -var-file="./environments/dev-variables.tfvars"
 terraform apply dev-plan
 ```
 
-[![Alt text](images/image-21.jpg)](images/image-21.jpg){:target="_blank"}
+[![Alt text](images/image-21.jpg){:style="border: 1px solid black; border-radius: 10px;"}](images/image-21.jpg){:target="_blank"}
 
 
 ## Task-6: Lock the resource group
@@ -656,12 +656,12 @@ terraform apply dev-plan
 ```
 list of resources in the vnet resource group
 
-[![Alt text](images/image-23.jpg)](images/image-23.jpg){:target="_blank"}
+[![Alt text](images/image-23.jpg){:style="border: 1px solid black; border-radius: 10px;"}](images/image-23.jpg){:target="_blank"}
 
 
 resource group lock.
 
-[![Alt text](images/image-22.jpg)](images/image-22.jpg){:target="_blank"}
+[![Alt text](images/image-22.jpg){:style="border: 1px solid black; border-radius: 10px;"}](images/image-22.jpg){:target="_blank"}
 
 
 Now our Virtual Network is created and ready to use. You can now deploy AKS, ACR and other resources within your Virtual Network, and configure their network settings as needed.

@@ -61,11 +61,11 @@ Password- nJYQaAQnb8wldLZ9
 ```
 By default you will notice the application is **outofsync** status, we have to enable the auto-sync policy which is present inside the APP DETAILS by clicking on this demo application. after the Login to argocd.
 
-![image.jpg](images/image-7.jpg)
+[![Alt text](images/image-7.jpg){:style="border: 1px solid black; border-radius: 10px;"}](images/image-7.jpg){:target="_blank"}
 
 Detailed view of the application 
 
-![image.jpg](images/image-8.jpg)
+[![Alt text](images/image-8.jpg){:style="border: 1px solid black; border-radius: 10px;"}](images/image-8.jpg){:target="_blank"}
 
 ## Task-2: Creating argocd application using argocd UI
 
@@ -85,14 +85,14 @@ To create an application with Argo CD using the Web UI, follow these steps:
 - Wait for Argo CD to synchronize your application with the target Kubernetes cluster. You can monitor the synchronization progress by clicking on the application in the Argo CD web UI.
 - Once your application is synchronized, you can view its status and perform additional actions such as rolling back to a previous version, scaling up or down, or deploying to additional environments.
   
-<IMG  src="https://argo-cd.readthedocs.io/en/stable/assets/new-app.png"  alt="+ new app button"/>
-<IMG  src="https://argo-cd.readthedocs.io/en/stable/assets/app-ui-information.png"  alt="app information"/>
-<IMG  src="https://argo-cd.readthedocs.io/en/stable/assets/connect-repo.png"  alt="connect repo"/>
-<IMG  src="https://argo-cd.readthedocs.io/en/stable/assets/destination.png"  alt="destination"/>
+<IMG  src="https://argo-cd.readthedocs.io/en/stable/assets/new-app.png" style="border: 1px solid black; border-radius: 10px;" alt="+ new app button"/>
+<IMG  src="https://argo-cd.readthedocs.io/en/stable/assets/app-ui-information.png" style="border: 1px solid black; border-radius: 10px;" alt="app information"/>
+<IMG  src="https://argo-cd.readthedocs.io/en/stable/assets/connect-repo.png" style="border: 1px solid black; border-radius: 10px;" alt="connect repo"/>
+<IMG  src="https://argo-cd.readthedocs.io/en/stable/assets/destination.png" style="border: 1px solid black; border-radius: 10px;" alt="destination"/>
 
-![image.jpg](images/image-9.jpg)
+[![Alt text](images/image-9.jpg){:style="border: 1px solid black; border-radius: 10px;"}](images/image-9.jpg){:target="_blank"}
 
-<IMG  src="https://argo-cd.readthedocs.io/en/stable/assets/guestbook-tree.png"  alt="view app"/>
+<IMG  src="https://argo-cd.readthedocs.io/en/stable/assets/guestbook-tree.png"  alt="view app" style="border: 1px solid black; border-radius: 10px;"/>
 
 
 That's it! You have now created an Argo CD application using the web UI. You can use the web UI to manage and monitor your applications, as well as perform other tasks such as configuring continuous delivery pipelines or integrating with external tools.

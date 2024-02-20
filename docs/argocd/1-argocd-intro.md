@@ -86,7 +86,7 @@ ArgoCD follows the GitOps pattern of using Git repositories as the source of tru
 - helm charts
 - Plain directory of YAML/json manifests
 
-[![Alt text](images/image-1.png)](images/image-1.png){:target="_blank"}
+[![Alt text](images/image-1.png){:style="border: 1px solid black; border-radius: 10px;"}](images/image-1.png){:target="_blank"}
 
 <!-- ![image.png](/.attachments/image-abc39e0e-6ef7-4d7b-b6b9-f45e8cb3238b.png) -->
 

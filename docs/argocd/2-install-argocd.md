@@ -87,7 +87,7 @@ Argo CD can be deployed on Azure Kubernetes Service (AKS) using either YAML mani
 
 Helm, a Kubernetes package manager, facilitates the installation of Argo CD, providing an efficient and manageable deployment. To enhance automation and maintain Infrastructure as Code (IaC) principles, we'll deploy the Helm chart using terraform. Let's explore the step-by-step process:
 
-[![Alt text](images/image-12.png)](images/image-12.png){:target="_blank"}
+[![Alt text](images/image-12.png){:style="border: 1px solid black; border-radius: 10px;"}](images/image-12.png){:target="_blank"}
 
 ## Technical Scenario
 
@@ -469,7 +469,8 @@ Handling connection for 8080
     Use this URL for before patching - <https://localhost:8080>
     Use this URL for after patching - <http://localhost:8080/>
 
-![image.jpg](images/image-2.jpg)
+[![Alt text](images/image-2.jpg){:style="border: 1px solid black; border-radius: 10px;"}](images/image-2.jpg){:target="_blank"}
+
 
 !!! Note
     The port forwarding can be stopped by cancelling the command with CTRL + C.
@@ -505,7 +506,8 @@ Password- nJYQaAQnb8wldLZ9
 ```
 once you are able to successfully login into ArgoCD you will see the following screen.
 
-![image.jpg](images/image-3.jpg)
+[![Alt text](images/image-3.jpg){:style="border: 1px solid black; border-radius: 10px;"}](images/image-3.jpg){:target="_blank"}
+
 
 **Change the password**
 
@@ -516,7 +518,8 @@ To change the password in Argo CD, you can login to argocd portal -> user Info -
 
 <!-- Test1234t -->
 
-![image.jpg](images/image-4.jpg)
+[![Alt text](images/image-4.jpg){:style="border: 1px solid black; border-radius: 10px;"}](images/image-4.jpg){:target="_blank"}
+
 
 **Change the password using Kubectl** 
 

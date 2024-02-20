@@ -49,7 +49,7 @@ In this exercise we will accomplish & learn how to implement following:
 
 The following diagram illustrates the key components of azure event hubs architecture
 
-[![Alt text](images/event-hubs/image-1.png)](images/event-hubs/image-1.png){:target="_blank"}
+[![Alt text](images/event-hubs/image-1.png){:style="border: 1px solid black; border-radius: 10px;"}](images/event-hubs/image-1.png){:target="_blank"}
 
 <!-- <IMG  src="https://learn.microsoft.com/en-us/azure/event-hubs/media/event-hubs-about/event_hubs_architecture.png"  alt="Event Hubs"/> -->
 
@@ -244,7 +244,7 @@ terraform plan -out=dev-plan -var-file="./environments/dev-variables.tfvars"
 terraform apply dev-plan
 ```
 
-[![Alt text](images/event-hubs/image-5.png)](images/event-hubs/image-5.png){:target="_blank"}
+[![Alt text](images/event-hubs/image-5.png){:style="border: 1px solid black; border-radius: 10px;"}](images/event-hubs/image-5.png){:target="_blank"}
 
 ## Task-4: Create diagnostic settings for event hub namespace
 
@@ -307,15 +307,15 @@ terraform plan -out=dev-plan -var-file="./environments/dev-variables.tfvars"
 terraform apply dev-plan
 ```
 
-[![Alt text](images/event-hubs/image-6.png)](images/event-hubs/image-6.png){:target="_blank"}
+[![Alt text](images/event-hubs/image-6.png){:style="border: 1px solid black; border-radius: 10px;"}](images/event-hubs/image-6.png){:target="_blank"}
 
 Diagnostic settings details:
 
-[![Alt text](images/event-hubs/image-6.1.png)](images/event-hubs/image-6.1.png){:target="_blank"}
+[![Alt text](images/event-hubs/image-6.1.png){:style="border: 1px solid black; border-radius: 10px;"}](images/event-hubs/image-6.1.png){:target="_blank"}
 
 ## Task-5: Shared access policies for event hub namespace Level
 
-[![Alt text](images/event-hubs/image-7.png)](images/event-hubs/image-7.png){:target="_blank"}
+[![Alt text](images/event-hubs/image-7.png){:style="border: 1px solid black; border-radius: 10px;"}](images/event-hubs/image-7.png){:target="_blank"}
 
 ### Task-5.1: Create shared access policy rule for listen
 
@@ -345,7 +345,7 @@ terraform plan -out=dev-plan -var-file="./environments/dev-variables.tfvars"
 terraform apply dev-plan
 ```
 
-[![Alt text](images/event-hubs/image-8.png)](images/event-hubs/image-8.png){:target="_blank"}
+[![Alt text](images/event-hubs/image-8.png){:style="border: 1px solid black; border-radius: 10px;"}](images/event-hubs/image-8.png){:target="_blank"}
 
 ### Task-5.2: Create shared access policy rule for send
 
@@ -375,7 +375,7 @@ terraform plan -out=dev-plan -var-file="./environments/dev-variables.tfvars"
 terraform apply dev-plan
 ```
 
-[![Alt text](images/event-hubs/image-9.png)](images/event-hubs/image-9.png){:target="_blank"}
+[![Alt text](images/event-hubs/image-9.png){:style="border: 1px solid black; border-radius: 10px;"}](images/event-hubs/image-9.png){:target="_blank"}
 
 ### Task-5.3: Create shared access policy rule for manage
 
@@ -405,13 +405,13 @@ terraform plan -out=dev-plan -var-file="./environments/dev-variables.tfvars"
 terraform apply dev-plan
 ```
 
-[![Alt text](images/event-hubs/image-10.png)](images/event-hubs/image-10.png){:target="_blank"}
+[![Alt text](images/event-hubs/image-10.png){:style="border: 1px solid black; border-radius: 10px;"}](images/event-hubs/image-10.png){:target="_blank"}
 
 ## Task-6: Restrict access using private endpoint & virtual network
 
 To enhance security and limit access to an Azure Event Hubs namespace, you can utilize private endpoints and Azure Private Link. This approach assigns virtual network private IP addresses to the Azure Event Hubs namespace endpoints, ensuring that network traffic between clients on the virtual network and the Azure Event Hubs namespace's private endpoints traverses a secure path on the Microsoft backbone network, eliminating exposure from the public internet.
 
-[![Alt text](images/event-hubs/image-13.png)](images/event-hubs/image-13.png){:target="_blank"}
+[![Alt text](images/event-hubs/image-13.png){:style="border: 1px solid black; border-radius: 10px;"}](images/event-hubs/image-13.png){:target="_blank"}
 
 ### Task-6.1: Configure the private DNS zone
 
@@ -447,7 +447,7 @@ terraform plan -out=dev-plan -var-file="./environments/dev-variables.tfvars"
 terraform apply dev-plan
 ```
 
-[![Alt text](images/event-hubs/image-11.png)](images/event-hubs/image-11.png){:target="_blank"}
+[![Alt text](images/event-hubs/image-11.png){:style="border: 1px solid black; border-radius: 10px;"}](images/event-hubs/image-11.png){:target="_blank"}
 
 ### Task-6.2: Create a virtual network link association
 
@@ -486,7 +486,7 @@ terraform plan -out=dev-plan -var-file="./environments/dev-variables.tfvars"
 terraform apply dev-plan
 ```
 
-[![Alt text](images/event-hubs/image-12.png)](images/event-hubs/image-12.png){:target="_blank"}
+[![Alt text](images/event-hubs/image-12.png){:style="border: 1px solid black; border-radius: 10px;"}](images/event-hubs/image-12.png){:target="_blank"}
 
 ### Task-6.3: Create private endpoints for azure event hubs
 
@@ -541,11 +541,11 @@ terraform apply dev-plan
 ```
 
 
-[![Alt text](images/event-hubs/image-14.png)](images/event-hubs/image-14.png){:target="_blank"}
+[![Alt text](images/event-hubs/image-14.png){:style="border: 1px solid black; border-radius: 10px;"}](images/event-hubs/image-14.png){:target="_blank"}
 
-[![Alt text](images/event-hubs/image-15.png)](images/event-hubs/image-15.png){:target="_blank"}
+[![Alt text](images/event-hubs/image-15.png){:style="border: 1px solid black; border-radius: 10px;"}](images/event-hubs/image-15.png){:target="_blank"}
 
-[![Alt text](images/event-hubs/image-16.png)](images/event-hubs/image-16.png){:target="_blank"}
+[![Alt text](images/event-hubs/image-16.png){:style="border: 1px solid black; border-radius: 10px;"}](images/event-hubs/image-16.png){:target="_blank"}
 
 ### Task-6.4: Validate private link connection using nslookup or dig
 
@@ -608,7 +608,7 @@ terraform plan -out=dev-plan -var-file="./environments/dev-variables.tfvars"
 terraform apply dev-plan
 ```
 
-[![Alt text](images/event-hubs/image-17.png)](images/event-hubs/image-17.png){:target="_blank"}
+[![Alt text](images/event-hubs/image-17.png){:style="border: 1px solid black; border-radius: 10px;"}](images/event-hubs/image-17.png){:target="_blank"}
 
 ## Reference
 - [Microsoft MSDN - Azure Event Hubs documentation](https://learn.microsoft.com/en-us/azure/event-hubs/){:target="_blank"}

@@ -21,7 +21,7 @@ As a `Cloud Engineer`, you have been asked to collect all the monitoring data, a
 
 The following diagram shows Log Analytics Workspace high level components used in this lab.
 
-[![Alt text](images/image-78.png)](images/image-78.png){:target="_blank"}
+[![Alt text](images/image-78.png){:style="border: 1px solid black; border-radius: 10px;"}](images/image-78.png){:target="_blank"}
 
 <!-- <IMG  src="https://learn.microsoft.com/en-us/azure/azure-monitor/logs/media/data-platform-logs/logs-structure.png"  alt="Diagram that shows the Azure Monitor Logs structure." width=700px; height=300/> -->
 
@@ -180,7 +180,7 @@ run terraform plan & apply and create new resource group.
 terraform plan -out=dev-plan -var-file="./environments/dev-variables.tfvars"
 terraform apply dev-plan
 ```
-[![Alt text](images/law/image-1.png)](images/law/image-1.png){:target="_blank"}
+[![Alt text](images/law/image-1.png){:style="border: 1px solid black; border-radius: 10px;"}](images/law/image-1.png){:target="_blank"}
 
 ### Task-3: Create Log Analytics workspace using terraform
 
@@ -400,13 +400,13 @@ log_analytics_workspace_workspace_id = "d66de214-064b-4745-abcf-e8a8060fce1f"
 resource_group_name = "rg-resourcegroup1-dev"
 ```
 
-[![Alt text](images/law/image-2.png)](images/law/image-2.png){:target="_blank"}
+[![Alt text](images/law/image-2.png){:style="border: 1px solid black; border-radius: 10px;"}](images/law/image-2.png){:target="_blank"}
 
 ### Task-4: Validate Log Analytics workspace in the Azure portal
 
 Once azure resources are created, login into azure portal and validate new those new resources.
 
-[![Alt text](images/image-16.jpg)](images/image-16.jpg){:target="_blank"}
+[![Alt text](images/image-16.jpg){:style="border: 1px solid black; border-radius: 10px;"}](images/image-16.jpg){:target="_blank"}
 
 ### Task-5: Lock the resource group
 
@@ -443,7 +443,7 @@ terraform plan -out=dev-plan -var-file="./environments/dev-variables.tfvars"
 terraform apply dev-plan
 ```
 
-[![Alt text](images/law/image-3.png)](images/law/image-3.png){:target="_blank"}
+[![Alt text](images/law/image-3.png){:style="border: 1px solid black; border-radius: 10px;"}](images/law/image-3.png){:target="_blank"}
 
 That's it, now we've fully working azure Log analytics workspace which we are going to use for future labs.
 

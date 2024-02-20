@@ -43,7 +43,7 @@ Here are the key components:
 
 The following diagram illustrates the key components of azure event hubs architecture
 
-[![Alt text](images/event-hubs/image-1.png)](images/event-hubs/image-1.png){:target="_blank"}
+[![Alt text](images/event-hubs/image-1.png){:style="border: 1px solid black; border-radius: 10px;"}](images/event-hubs/image-1.png){:target="_blank"}
 
 
 ## Why Azure Event Hubs?
@@ -123,7 +123,7 @@ This table provides a concise overview of the key differences between Azure Even
 
 
 
-<!-- [![Alt text](images/event-hubs/image-4.png)](images/event-hubs/image-4.png){:target="_blank"} -->
+<!-- [![Alt text](images/event-hubs/image-4.png){:style="border: 1px solid black; border-radius: 10px;"}](images/event-hubs/image-4.png){:target="_blank"} -->
 
 ## What is Azure Event Hubs namespace?
 

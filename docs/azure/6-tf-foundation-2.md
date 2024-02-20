@@ -38,7 +38,7 @@ The objective of this lab is to accomplish the following tasks in order to set u
 
 The following diagram illustrates the essential components used to run Terraform configuration setup in this lab.
 
-[![Alt text](images/image-35.jpg)](images/image-35.jpg){:target="_blank"}
+[![Alt text](images/image-35.jpg){:style="border: 1px solid black; border-radius: 10px;"}](images/image-35.jpg){:target="_blank"}
 
 
 ## Implementation details
@@ -352,7 +352,7 @@ commands will detect it and remind you to do so if necessary.
 
 You will notice this new folder created when you run `terraform init` command executed
 
-[![Alt text](images/image-4.jpg)](images/image-4.jpg){:target="_blank"}
+[![Alt text](images/image-4.jpg){:style="border: 1px solid black; border-radius: 10px;"}](images/image-4.jpg){:target="_blank"}
 
 Also see the folder structure of the terraform project.
 
@@ -498,7 +498,7 @@ Login into azure portal and validate azure resources created from terraform conf
 
 Finally commit terraform source code to git repo before start next module.
 
-[![Alt text](images/image-5.jpg)](images/image-5.jpg){:target="_blank"}
+[![Alt text](images/image-5.jpg){:style="border: 1px solid black; border-radius: 10px;"}](images/image-5.jpg){:target="_blank"}
 
 ```
 git add .
@@ -510,7 +510,7 @@ git push --set-upstream origin develop
 
 Azure storage account container should have two files created and stored the terraform state file in JSON format.
 
-[![Alt text](images/image-15.jpg)](images/image-15.jpg){:target="_blank"}
+[![Alt text](images/image-15.jpg){:style="border: 1px solid black; border-radius: 10px;"}](images/image-15.jpg){:target="_blank"}
 
 
 We are fully ready with terraform development for creating any azure resources using this foundation, we are going to learn more about terraform configuration while creating new azure resources in the future labs.

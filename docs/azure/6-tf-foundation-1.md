@@ -47,7 +47,7 @@ In this exercise, our objective is to accomplish the following tasks and gain a 
 
 The following diagram illustrates the essential components used in the Terraform management setup in this lab.
 
-[![Alt text](images/image-39.jpg)](images/image-39.jpg){:target="_blank"}
+[![Alt text](images/image-39.jpg){:style="border: 1px solid black; border-radius: 10px;"}](images/image-39.jpg){:target="_blank"}
 
 ## Implementation details
 
@@ -79,7 +79,7 @@ For example:
 - `scripts` - you can use this repo for managing all kinds of scripts like PowerShell, Bash and CLI etc..
 - `bicep` - you can use this repo for Microsoft Bicep scripts etc..
 
-[![Alt text](images/image-1.jpg)](images/image-1.jpg){:target="_blank"}
+[![Alt text](images/image-1.jpg){:style="border: 1px solid black; border-radius: 10px;"}](images/image-1.jpg){:target="_blank"}
 
 
 ## Task-2: Create a new Azure DevOps Repo for terraform
@@ -100,13 +100,13 @@ Here are the steps to create a new Git repository in Azure DevOps:
 
 for example: 
 
-[![Alt text](images/image-2.png)](images/image-2.png){:target="_blank"}
+[![Alt text](images/image-2.jpg){:style="border: 1px solid black; border-radius: 10px;"}](images/image-2.jpg){:target="_blank"}
 
 - Initialize the main branch with a README or gitignore
 
 - Create new feature branch (develop) from main
 
-[![Alt text](images/image-3.jpg)](images/image-3.jpg){:target="_blank"}
+[![Alt text](images/image-3.jpg){:style="border: 1px solid black; border-radius: 10px;"}](images/image-3.jpg){:target="_blank"}
 
 
 ## Task-3: Clone the git repo
@@ -234,7 +234,7 @@ az ad app show --id <APP_ID> --query "appId"
 az account show --query "tenantId"
 ```
 
-[![Alt text](images/image-7.jpg)](images/image-7.jpg){:target="_blank"}
+[![Alt text](images/image-7.jpg){:style="border: 1px solid black; border-radius: 10px;"}](images/image-7.jpg){:target="_blank"}
 
 ## Task-6: Create new resource group
 
@@ -255,7 +255,7 @@ For example:
 az group create -n "rg-tfmgmt-dev"-l "east us"
 ```
 
-[![Alt text](images/image-8.jpg)](images/image-8.jpg){:target="_blank"}
+[![Alt text](images/image-8.jpg){:style="border: 1px solid black; border-radius: 10px;"}](images/image-8.jpg){:target="_blank"}
 
 
 ## Task-7: Create new storage account & container
@@ -276,7 +276,7 @@ For example:
 az storage account create -n "tfmgmtstates" -g "rg-tfmgmt-dev" -l "east us" --sku "Standard_LRS"
 
 ```
-[![Alt text](images/image-9.jpg)](images/image-9.jpg){:target="_blank"}
+[![Alt text](images/image-9.jpg){:style="border: 1px solid black; border-radius: 10px;"}](images/image-9.jpg){:target="_blank"}
 
 We also need blob container for storing terraform state files, Let's create new storage account container using az cli here
 
@@ -285,7 +285,7 @@ az storage container create --name <CONTAINER_NAME> --account-name <ACCOUNT_NAME
 az storage container create -n "terraformstates" --account-name "tfmgmtstates" --account-key "koB5PQEGX5pEHVAWsyM0efP3aeFsuNhw8dzRXvqrLXXcD12VEIC4HkhNnwDAGWUJcZWb8Q3C8yxZ+AStXGHDGQ=="
 ```
 
-[![Alt text](images/image-10.jpg)](images/image-10.jpg){:target="_blank"}
+[![Alt text](images/image-10.jpg){:style="border: 1px solid black; border-radius: 10px;"}](images/image-10.jpg){:target="_blank"}
 
 ## Task-8: Create new Key vault 
 
@@ -299,7 +299,7 @@ az keyvault create -n "kv-tfstates-dev" -g "rg-tfmgmt-dev" -l "east us"
 
 ```
 
-[![Alt text](images/image-11.jpg)](images/image-11.jpg){:target="_blank"}
+[![Alt text](images/image-11.jpg){:style="border: 1px solid black; border-radius: 10px;"}](images/image-11.jpg){:target="_blank"}
 
 ##  Task-9: Create secrets in Key Vault 
 
@@ -321,7 +321,7 @@ az keyvault secret set --vault-name "kv-tfstates-dev" --name "tf-tenant-id" --va
 az keyvault secret set --vault-name "kv-tfstates-dev" --name "tf-access-key" --value "1115PQEGX5pEHVAWsyM0efP3aeFsuNhw8dzRXvqrLXXcD12VEIC4HkhNnwDAGWUJcZWb8Q3C8yxZ+AStXGHDG222"
 ```
 
-[![Alt text](images/image-12.jpg)](images/image-12.jpg){:target="_blank"}
+[![Alt text](images/image-12.jpg){:style="border: 1px solid black; border-radius: 10px;"}](images/image-12.jpg){:target="_blank"}
 
 
 Make sure to store sensitive information, such as passwords or access keys, as secrets in the Azure Key Vault to maintain security and compliance.
@@ -342,7 +342,7 @@ For example:
 az keyvault set-policy --name "kv-tfstates-dev" --object-id "a68e4529-b584-43c6-9ffd-4ca681da9efc" --secret-permissions get list --key-permissions get list
 ```
 
-[![Alt text](images/image-6.jpg)](images/image-6.jpg){:target="_blank"}
+[![Alt text](images/image-6.jpg){:style="border: 1px solid black; border-radius: 10px;"}](images/image-6.jpg){:target="_blank"}
 
 
 ##  Task-11: Configure Service Principal Role Assignment
@@ -367,7 +367,7 @@ Note:- make sure that you will get the service principle object id here instead 
 service principle object id will be found in `Enterprise Application`
 
 
-[![Alt text](images/image-13.jpg)](images/image-13.jpg){:target="_blank"}
+[![Alt text](images/image-13.jpg){:style="border: 1px solid black; border-radius: 10px;"}](images/image-13.jpg){:target="_blank"}
 
 
 That it! now you've setup terraform management for running your terraform configuration.
@@ -674,7 +674,7 @@ Write-Host "SUCCESS!" -ForegroundColor 'Green'
 
 The final step in terraform management is to make sure that all the azure resources are created as expected, let's quickly review them manually. 
 
-[![Alt text](images/image-14.jpg)](images/image-14.jpg){:target="_blank"}
+[![Alt text](images/image-14.jpg){:style="border: 1px solid black; border-radius: 10px;"}](images/image-14.jpg){:target="_blank"}
 
 
 ## References

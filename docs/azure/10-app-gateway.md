@@ -52,7 +52,7 @@ Through these tasks, you will gain practical experience on Azure Application Gat
 
 The following diagram illustrates the high level architecture of Application Gateway components:
 
-[![Alt text](images/image-52.png)](images/image-52.png){:target="_blank"}
+[![Alt text](images/image-52.png){:style="border: 1px solid black; border-radius: 10px;"}](images/image-52.png){:target="_blank"}
 
 ## Prerequisites
 
@@ -252,7 +252,7 @@ terraform apply dev-plan
 
 Azure Application Gateway - Public IP address
 
-[![Alt text](images/image-53.png)](images/image-53.png){:target="_blank"}
+[![Alt text](images/image-53.png){:style="border: 1px solid black; border-radius: 10px;"}](images/image-53.png){:target="_blank"}
 
 
 ## Task-3: Create Azure Application Gateway using Terraform
@@ -398,15 +398,15 @@ terraform apply dev-plan
 
 Application gateway - Overview blade 
 
-[![Alt text](images/image-54.png)](images/image-54.png){:target="_blank"}
+[![Alt text](images/image-54.png){:style="border: 1px solid black; border-radius: 10px;"}](images/image-54.png){:target="_blank"}
 
 Application gateway - Configuration
 
-[![Alt text](images/image-55.png)](images/image-55.png){:target="_blank"}
+[![Alt text](images/image-55.png){:style="border: 1px solid black; border-radius: 10px;"}](images/image-55.png){:target="_blank"}
 
 Application gateway - Web application firewall (WAF)
 
-[![Alt text](images/image-56.png)](images/image-56.png){:target="_blank"}
+[![Alt text](images/image-56.png){:style="border: 1px solid black; border-radius: 10px;"}](images/image-56.png){:target="_blank"}
 
 ## Task-4: Configure diagnostic settings for Application Gateway using terraform
 
@@ -480,7 +480,7 @@ terraform apply dev-plan
 
 Application gateway - Diagnostic settings
 
-[![Alt text](images/image-57.png)](images/image-57.png){:target="_blank"}
+[![Alt text](images/image-57.png){:style="border: 1px solid black; border-radius: 10px;"}](images/image-57.png){:target="_blank"}
 
 
 ## Reference

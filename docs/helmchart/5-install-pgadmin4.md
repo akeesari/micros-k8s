@@ -291,7 +291,7 @@ run terraform plan
 terraform plan -out=dev-plan -var-file="./environments/dev-variables.tfvars"
 ```
 
-[![Alt text](images/pgadmin4/image-1.png)](images/pgadmin4/image-1.png){:target="_blank"}
+[![Alt text](images/pgadmin4/image-1.png){:style="border: 1px solid black; border-radius: 10px;"}](images/pgadmin4/image-1.png){:target="_blank"}
 
 
 output
@@ -358,7 +358,7 @@ output
 ``` sh
 Plan: 1 to add, 0 to change, 0 to destroy.
 ```
-[![Alt text](images/pgadmin4/image-2.png)](images/pgadmin4/image-2.png){:target="_blank"}
+[![Alt text](images/pgadmin4/image-2.png){:style="border: 1px solid black; border-radius: 10px;"}](images/pgadmin4/image-2.png){:target="_blank"}
 
 run terraform apply
 
@@ -497,11 +497,11 @@ Handling connection for 8080
 ```
 Access the pgadmin4 web interface by visiting <http://localhost:8080> in your web browser.
 
-[![Alt text](images/pgadmin4/image-3.png)](images/pgadmin4/image-3.png){:target="_blank"}
+[![Alt text](images/pgadmin4/image-3.png){:style="border: 1px solid black; border-radius: 10px;"}](images/pgadmin4/image-3.png){:target="_blank"}
 
 After Login > Dashboard
 
-[![Alt text](images/pgadmin4/image-4.png)](images/pgadmin4/image-4.png){:target="_blank"}
+[![Alt text](images/pgadmin4/image-4.png){:style="border: 1px solid black; border-radius: 10px;"}](images/pgadmin4/image-4.png){:target="_blank"}
 
 
 The port forwarding can be stopped by cancelling the command with CTRL + C.

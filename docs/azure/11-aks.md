@@ -51,7 +51,7 @@ Through these tasks, you will gain practical experience on Azure Kubernetes Serv
 
 Here is the reference architecture diagram of Azure Kubernetes services.
 
-[![Alt text](images/image-79.png)](images/image-79.png){:target="_blank"}
+[![Alt text](images/image-79.png){:style="border: 1px solid black; border-radius: 10px;"}](images/image-79.png){:target="_blank"}
 
 ## Prerequisites
   - Download & Install Terraform
@@ -544,7 +544,7 @@ terraform plan -out=dev-plan -var-file="./environments/dev-variables.tfvars"
 terraform apply dev-plan
 ```
 
-[![Alt text](images/aks/image-1.png)](images/aks/image-1.png){:target="_blank"}
+[![Alt text](images/aks/image-1.png){:style="border: 1px solid black; border-radius: 10px;"}](images/aks/image-1.png){:target="_blank"}
 
 ## Task-3: Create AKS user assigned identity
 
@@ -714,7 +714,7 @@ terraform plan -out=dev-plan -var-file="./environments/dev-variables.tfvars"
 terraform apply dev-plan
 ```
 
-[![Alt text](images/aks/image-29.jpg)](images/aks/image-29.jpg){:target="_blank"}
+[![Alt text](images/aks/image-29.jpg){:style="border: 1px solid black; border-radius: 10px;"}](images/aks/image-29.jpg){:target="_blank"}
 
 **ssh_public_key**
 
@@ -872,13 +872,13 @@ terraform plan -out=dev-plan -var-file="./environments/dev-variables.tfvars"
 terraform apply dev-plan
 ```
 
-[![Alt text](images/image-30.jpg)](images/image-30.jpg){:target="_blank"}
+[![Alt text](images/image-30.jpg){:style="border: 1px solid black; border-radius: 10px;"}](images/image-30.jpg){:target="_blank"}
 
 ##  Task-6: Review AKS Cluster resource in the portal
 
 Now it time to review all the azure resource created in the given resource group. Login into the azure portal and select the resource group. you will notice following resource in the resource group you've selected.
 
-[![Alt text](images/image-31.jpg)](images/image-31.jpg){:target="_blank"}
+[![Alt text](images/image-31.jpg){:style="border: 1px solid black; border-radius: 10px;"}](images/image-31.jpg){:target="_blank"}
 
 
 **MC_ resource group**
@@ -893,14 +893,14 @@ It's worth noting that the MC_ resource group is managed by Azure and should not
 
 Here are the list of resource created automatically for you in the resource group:
 
-[![Alt text](images/image-33.jpg)](images/image-33.jpg){:target="_blank"}
+[![Alt text](images/image-33.jpg){:style="border: 1px solid black; border-radius: 10px;"}](images/image-33.jpg){:target="_blank"}
 
 
 ##  Task-7: Validate AKS cluster running Kubectl
 
 As a beginner the best way to start interacting AKS is selecting your cluster and click on connect in the overview blade, you will notice bunch of kubectl commands which you can use to start.
 
-[![Alt text](images/image-34.jpg)](images/image-34.jpg){:target="_blank"}
+[![Alt text](images/image-34.jpg){:style="border: 1px solid black; border-radius: 10px;"}](images/image-34.jpg){:target="_blank"}
 
 ``` sh
 # Azure Kubernetes Service Cluster User Role
@@ -1009,7 +1009,7 @@ terraform plan -out=dev-plan -var-file="./environments/dev-variables.tfvars"
 terraform apply dev-plan
 ```
 
-[![Alt text](images/image-32.jpg)](images/image-32.jpg){:target="_blank"}
+[![Alt text](images/image-32.jpg){:style="border: 1px solid black; border-radius: 10px;"}](images/image-32.jpg){:target="_blank"}
 
 ## Task-9: Lock the resource group
 

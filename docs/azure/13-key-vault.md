@@ -45,7 +45,7 @@ Through these tasks, you will gain practical experience on Azure Key Vault.
 
 The following diagram illustrates the high level architecture of key vault usage:
 
-[![Alt text](images/kv/image-1.png)](images/kv/image-1.png){:target="_blank"}
+[![Alt text](images/kv/image-1.png){:style="border: 1px solid black; border-radius: 10px;"}](images/kv/image-1.png){:target="_blank"}
 
 ## Prerequisites
 
@@ -360,7 +360,7 @@ terraform apply dev-plan
 
 Azure Key Vault - Overview blade 
 
-[![Alt text](images/kv/image-2.png)](images/kv/image-2.png){:target="_blank"}
+[![Alt text](images/kv/image-2.png){:style="border: 1px solid black; border-radius: 10px;"}](images/kv/image-2.png){:target="_blank"}
 
 ## Task-3: Configure diagnostic settings for Azure Key Vault using terraform
 
@@ -424,7 +424,7 @@ terraform apply dev-plan
 
 Azure Key vault - Diagnostic settings from left nav
 
-[![Alt text](images/kv/image-3.png)](images/kv/image-3.png){:target="_blank"}
+[![Alt text](images/kv/image-3.png){:style="border: 1px solid black; border-radius: 10px;"}](images/kv/image-3.png){:target="_blank"}
 
 ## Task-4: Configure access policy for developer in Azure Key Vault
 
@@ -466,7 +466,7 @@ terraform apply dev-plan
 
 Azure key vault - Azure Access Policies
 
-[![Alt text](images/kv/image-4.png)](images/kv/image-4.png){:target="_blank"}
+[![Alt text](images/kv/image-4.png){:style="border: 1px solid black; border-radius: 10px;"}](images/kv/image-4.png){:target="_blank"}
 
 
 
@@ -514,7 +514,7 @@ terraform apply dev-plan
 
 Confirm the Private DNS zone configuration
 
-[![Alt text](images/kv/image-5.png)](images/kv/image-5.png){:target="_blank"}
+[![Alt text](images/kv/image-5.png){:style="border: 1px solid black; border-radius: 10px;"}](images/kv/image-5.png){:target="_blank"}
 
 ### Task-5.2: Create a Virtual Network Link Association
 
@@ -556,7 +556,7 @@ terraform apply dev-plan
 
 Confirm the Virtual network links configuration.
 
-[![Alt text](images/kv/image-6.png)](images/kv/image-6.png){:target="_blank"}
+[![Alt text](images/kv/image-6.png){:style="border: 1px solid black; border-radius: 10px;"}](images/kv/image-6.png){:target="_blank"}
 
 
 ### Task-5.3: Create a Private Endpoint Using Terraform
@@ -614,11 +614,11 @@ Confirm the endpoint configuration by navigating to `Key Vault -> Networking -> 
 
 Navigate to `Private endpoint -> Overview` to verify the Virtual network/subnet and Network interface.
 
-[![Alt text](images/kv/image-7.png)](images/kv/image-7.png){:target="_blank"}
+[![Alt text](images/kv/image-7.png){:style="border: 1px solid black; border-radius: 10px;"}](images/kv/image-7.png){:target="_blank"}
 
 Navigate to `Private endpoint -> DNS Configuration` to verify the Network Interface and Configuration name.
 
-[![Alt text](images/kv/image-8.png)](images/kv/image-8.png){:target="_blank"}
+[![Alt text](images/kv/image-8.png){:style="border: 1px solid black; border-radius: 10px;"}](images/kv/image-8.png){:target="_blank"}
 
 Navigate to `Network interface -> Overview` to verify the private IP address attached to properties.
 
@@ -748,7 +748,7 @@ terraform apply dev-plan
 
 Azure Key vault secrets:
 
-[![Alt text](images/kv/image-9.png)](images/kv/image-9.png){:target="_blank"}
+[![Alt text](images/kv/image-9.png){:style="border: 1px solid black; border-radius: 10px;"}](images/kv/image-9.png){:target="_blank"}
 
 ## Reference
 - [Microsoft MSDN - Azure Key Vault documentation](https://learn.microsoft.com/en-us/azure/key-vault/general/){:target="_blank"}

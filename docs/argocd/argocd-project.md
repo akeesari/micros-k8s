@@ -81,8 +81,8 @@ In this exercise we will accomplish & learn how to `Create a new project in Argo
 8. (Optional) Set up SSO or RBAC for the project.
 9. Click "Create" to create the new project.
 
-![image.jpg](images/image-10.jpg)
+[![Alt text](images/image-10.jpg){:style="border: 1px solid black; border-radius: 10px;"}](images/image-10.jpg){:target="_blank"}
 
-![image.jpg](images/image-11.jpg)
+[![Alt text](images/image-11.jpg){:style="border: 1px solid black; border-radius: 10px;"}](images/image-11.jpg){:target="_blank"}
 
 Once the project is created, you can use it to manage and deploy applications. You can add applications to the project by either connecting to a Git repository or adding them manually.

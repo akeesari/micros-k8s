@@ -10,11 +10,11 @@ The high-level architecture of the Azure resources, which serves as a reference 
 
 **Azure High Level Architecture**
 
-[![Alt text](images/image-36.jpg)](images/image-36.jpg){:target="_blank"}
+[![Alt text](images/image-36.jpg){:style="border: 1px solid black; border-radius: 10px;"}](images/image-36.jpg){:target="_blank"}
 
 **DevOps High Level Architecture**
 
-[![Alt text](images/image-37.jpg)](images/image-37.jpg){:target="_blank"}
+[![Alt text](images/image-37.jpg){:style="border: 1px solid black; border-radius: 10px;"}](images/image-37.jpg){:target="_blank"}
 
 ## Azure Reference Architecture Components
 

@@ -68,7 +68,7 @@ Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManage
 ``` sh
 choco install argocd-cli
 ```
-![image.jpg](images/image-5.jpg)
+[![Alt text](images/image-5.jpg){:style="border: 1px solid black; border-radius: 10px;"}](images/image-5.jpg){:target="_blank"}
 1. Wait for the installation to complete. Chocolatey will automatically download and install the latest version of the Argo CD CLI.
 1. Verify that the Argo CD CLI is installed correctly by running the following command:
 ``` sh
@@ -148,7 +148,7 @@ argocd-server                      LoadBalancer   10.25.115.123   20.124.172.79 
 ```
 now you can browse the argocd with new public IP address.
 
-![image.jpg](images/image-6.jpg)
+[![Alt text](images/image-6.jpg){:style="border: 1px solid black; border-radius: 10px;"}](images/image-6.jpg){:target="_blank"}
 
 ## Step 3. Login to Argo CD
 
