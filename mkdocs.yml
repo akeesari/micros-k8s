@@ -264,6 +264,7 @@ nav:
     - Kubernetes Pod troubleshooting : kubernetes/pod-troubleshooting.md    
     - Create a new user node pool in AKS : kubernetes/aks-create-nodepool.md
     - Upgrade or Resize node pools in AKS : kubernetes/aks-upgrade-nodepool.md
+    # - Monitor AKS Cluster with Azure Managed Prometheus and Grafana : kubernetes/aks-monitoring.md
   - Azure DevOps:
     - Azure DevOps Overview : devops/1-devops-overview.md
     - Create Your First service connection : devops/pipelines/1-service-connections.md
@@ -283,5 +284,6 @@ nav:
         - Frequently used Helm commands details: helmchart/3-helm-cmds.md
         - Create Helmchart for Microservices: helmchart/4-helm-microservices.md    
         - Install pgadmin4 in AKS: helmchart/5-install-pgadmin4.md    
+        - Install Grafana in AKS: helmchart/6-install-grafana.md    
   # - Contact:
   #   - Contact: contact.md
