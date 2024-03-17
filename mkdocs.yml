@@ -285,5 +285,6 @@ nav:
         - Create Helmchart for Microservices: helmchart/4-helm-microservices.md    
         - Install pgadmin4 in AKS: helmchart/5-install-pgadmin4.md    
         - Install Grafana in AKS: helmchart/6-install-grafana.md    
+        - Install Grafana Loki-Stack in AKS: helmchart/7-install-grafana-loki-stack.md    
   # - Contact:
   #   - Contact: contact.md
