@@ -1,10 +1,10 @@
-# Install Redis Cache Helmchart in Azure Kubernetes Services (AKS)
+# Install Redis Helmchart in Azure Kubernetes Services (AKS)
 
 ## Introduction
 
-In the microservices and cloud-native applications, efficient data management is crucial for maintaining performance and scalability. Redis, an open-source, in-memory data structure store, is commonly used for data caching. Azure Kubernetes Service (AKS) offers a robust platform for deploying and managing containerized applications, including Redis caches.
+In the microservices and cloud-native applications, efficient data caching is crucial for maintaining performance of the application. Redis, an open-source, in-memory data structure store, is commonly used for data caching. Azure Kubernetes Service (AKS) offers a robust platform for deploying and managing containerized applications, including Redis caches.
 
-This article will guide you through the process of installing Redis Cache using Helm charts in Azure Kubernetes Services (AKS). Helm is a package manager for Kubernetes that simplifies the deployment and management of applications.
+This article will guide you through the process of installing Redis instances using Helm charts in Azure Kubernetes Services (AKS). Helm is a package manager for Kubernetes that simplifies the deployment and management of applications.
 
 ## Objective
 
@@ -12,10 +12,10 @@ The objective of this tutorial is to demonstrate how to deploy Redis Cache in an
 
 - **Step 1:** Login into Azure
 - **Step 2.** Connect to AKS Cluster
-- **Step 3.** Add Redis Cache Helm Repository
-- **Step 4.** Install Redis Cache Helmchart
-- **Step 5.** Verify Redis Cache Resources in AKS
-- **Step 6.** Get Redis Cache password
+- **Step 3.** Add Redis Helm Repository
+- **Step 4.** Install Redis  Helmchart
+- **Step 5.** Verify Redis Resources in AKS
+- **Step 6.** Get Redis password
 - **Step 7.** Connect using  redis-cli tool
 - **Step 8.** Uninstalling the Chart
 
@@ -69,9 +69,11 @@ kubectl get no
 kubectl get namespace -A
 ```
 
-## Step 3: Add Redis Cache Helm Repository
+## Step 3: Add Redis Helm Repository
 
-Before installing Redis Cache, you need to add the Helm repository for Redis Cache, here I am using bitnami helm chart.
+Before installing Redis Cache, you need to add the Helm repository for Redis Cache, here I am using bitnami `Redis Helm Chart`.
+
+There are two available Helm Charts: the `Redis Helm Chart` and the `Redis Cluster Helm Chart`. You can find more details [here](https://artifacthub.io/packages/helm/bitnami/redis) and choose whichever is the right choice for you.
 
 ```bash
 helm repo list
@@ -89,9 +91,9 @@ helm list --namespace redis
 NAME    NAMESPACE       REVISION        UPDATED                                 STATUS          CHART           APP VERSION
 ```
 
-## Step 4: Install Redis Cache Helmchart
+## Step 4: Install Redis Helmchart
 
-Now, you can install Redis Cache using Helmchart. Execute the following command:
+Now, you can install Redis using Helmchart. Execute the following command:
 
 Let's first see the values, this will allow you to see what is getting installed in your AKS cluster.
 
@@ -162,9 +164,39 @@ WARNING: There are "resources" sections in the chart not set. Using "resourcesPr
 ```
 [![Alt text](images/redis/image-1.png){:style="border: 1px solid black; border-radius: 10px;"}](images/redis/image-1.png){:target="_blank"}
 
-## Step 5: Verify Redis Cache Resources in AKS
 
-To verify that Redis Cache has been successfully installed, you can list the Kubernetes resources:
+**Install Redis Helmchart using Terraform**
+
+If you are looking for a fully automated way to set up Redis using Terraform, you can use the following piece of code. Make sure you have set up your Terraform environment correctly on your system.
+
+```hcl
+
+# create a new namespace for redis
+resource "kubernetes_namespace" "redis" {
+  metadata {
+    name = "redis"
+  }
+}
+
+# Install REDIS (bitnami) helm chart using terraform
+resource "helm_release" "redis" {
+  name       = "redis"
+  namespace  = kubernetes_namespace.redis.metadata.0.name
+  chart      = "redis"
+  repository = "https://charts.bitnami.com/bitnami"
+  version    = "18.0.0"
+  depends_on = [
+    kubernetes_namespace.redis,
+    azurerm_kubernetes_cluster.aks
+  ]
+}
+```
+
+This Terraform configuration installs the Redis (Bitnami) Helm chart in the "redis" namespace. Adjust the configuration according to your specific requirements and environment setup.
+
+## Step 5: Verify Redis Resources in AKS
+
+To verify that Redis has been successfully installed, you can list the Kubernetes resources:
 
 
 ```bash
@@ -204,7 +236,7 @@ statefulset.apps/redis-replicas   3/3     4m37s
 
 You should see Redis Cache pods and services running in your cluster.
 
-## Step 6: Access / Get Redis Cache password
+## Step 6: Get Redis password
 
 To get your password run:
 
@@ -229,7 +261,7 @@ output
 Bu0zgY9CRH
 ```
 
-## Step 7: Connecting Redis Cache with redis-cli
+## Step 7: Connecting Redis with redis-cli
 
 Connecting Redis Cache with `redis-cli` allows you to interact with the Redis server directly from the command line. redis-cli is a command-line interface utility provided by Redis that enables you to execute various commands against the Redis server.
 
@@ -425,6 +457,7 @@ cluster_enabled:0
 
 # Keyspac
 ```
+
 ## Step 8: Uninstalling the Chart
 
 Once you're done experimenting, you can delete the Redis Cache deployment and associated resources:
@@ -432,7 +465,9 @@ Once you're done experimenting, you can delete the Redis Cache deployment and as
 To uninstall/delete the redis helm deployment run:
 
 ```sh
+helm list --namespace redis
 helm delete redis -n redis
+kubectl delete namespace redis
 ```
 The command removes all the Kubernetes components associated with the chart and deletes the release.
 
