@@ -187,8 +187,8 @@ You have successfully installed Grafana using Helmchart in Azure Kubernetes Serv
 
 ## Reference
 
-- [Azure Kubernetes Service Documentation](https://docs.microsoft.com/en-us/azure/aks/)
-- [Helm Documentation](https://helm.sh/docs/)
-- [Grafana Helm Chart Repository](https://grafana.github.io/helm-charts)
-- [Kubernetes Documentation](https://kubernetes.io/docs/)
-- [Azure CLI Documentation](https://docs.microsoft.com/en-us/cli/azure/)
+- [Azure Kubernetes Service Documentation](https://docs.microsoft.com/en-us/azure/aks/){:target='_blank'}
+- [Helm Documentation](https://helm.sh/docs/){:target='_blank'}
+- [Grafana Helm Chart Repository](https://grafana.github.io/helm-charts){:target='_blank'}
+- [Kubernetes Documentation](https://kubernetes.io/docs/){:target='_blank'}
+- [Azure CLI Documentation](https://docs.microsoft.com/en-us/cli/azure/){:target='_blank'}

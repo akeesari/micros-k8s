@@ -477,9 +477,9 @@ In this tutorial, you learned how to deploy Redis Cache in Azure Kubernetes Serv
 
 ## Reference
 
-- [Run scalable and resilient Redis with AKS](https://techcommunity.microsoft.com/t5/apps-on-azure-blog/run-scalable-and-resilient-redis-with-kubernetes-and-azure/ba-p/3247956)
-- [helm/charts](https://github.com/helm/charts/tree/master/stable/redis)
-- [Bitnami package for Redis](https://artifacthub.io/packages/helm/bitnami/redis)
+- [Run scalable and resilient Redis with AKS](https://techcommunity.microsoft.com/t5/apps-on-azure-blog/run-scalable-and-resilient-redis-with-kubernetes-and-azure/ba-p/3247956){:target='_blank'}
+- [helm/charts](https://github.com/helm/charts/tree/master/stable/redis){:target='_blank'}
+- [Bitnami package for Redis](https://artifacthub.io/packages/helm/bitnami/redis){:target='_blank'}
 
 <!-- 
 - https://medium.com/@thanawitsupinnapong/setting-up-redis-in-kubernetes-with-helm-and-manual-persistent-volume-f1d52fa1919f 

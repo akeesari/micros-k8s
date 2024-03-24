@@ -703,9 +703,9 @@ Here is the list of all the resources used while working on this setup
 - [pgAdmin home page](https://www.pgadmin.org/){:target="_blank"}
 - [Helm Provider for Terraform](https://github.com/hashicorp/terraform-provider-helm){:target="_blank"}
 - [Explore > dpage/pgadmin4](https://hub.docker.com/r/dpage/pgadmin4/tags){:target="_blank"} - get the latest Docker image from here.
-- [pgadmin4 Helm Chart](https://artifacthub.io/packages/helm/runix/pgadmin4)
-- [pgadmin4 Helm Chart - Github](https://github.com/rowanruseler/helm-charts/tree/master/charts/pgadmin4/examples) - Helpful for SSO setup
-- [pgadmin4 Documentation](https://www.pgadmin.org/docs/pgadmin4/6.15/index.html) 
+- [pgadmin4 Helm Chart](https://artifacthub.io/packages/helm/runix/pgadmin4){:target='_blank'}
+- [pgadmin4 Helm Chart - Github](https://github.com/rowanruseler/helm-charts/tree/master/charts/pgadmin4/examples){:target='_blank'} - Helpful for SSO setup
+- [pgadmin4 Documentation](https://www.pgadmin.org/docs/pgadmin4/6.15/index.html) {:target='_blank'}
 
 <!-- 
 ## Step-8. Setup SSO for pgadmin4

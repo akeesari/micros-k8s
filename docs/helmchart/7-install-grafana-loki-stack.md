@@ -287,5 +287,5 @@ You have successfully installed Grafana Loki-Stack using Helmchart in Azure Kube
 
 ## Reference
 
-- [Grafana Loki-Stack Helm Chart Repository](https://artifacthub.io/packages/helm/grafana/loki-stack)
-- [Getting started with Azure Kubernetes Service and Loki](https://techcommunity.microsoft.com/t5/apps-on-azure-blog/getting-started-with-azure-kubernetes-service-and-loki/ba-p/3406880)
+- [Grafana Loki-Stack Helm Chart Repository](https://artifacthub.io/packages/helm/grafana/loki-stack){:target='_blank'}
+- [Getting started with Azure Kubernetes Service and Loki](https://techcommunity.microsoft.com/t5/apps-on-azure-blog/getting-started-with-azure-kubernetes-service-and-loki/ba-p/3406880){:target='_blank'}
