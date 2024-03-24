@@ -1,18 +1,5 @@
 # Install Grafana Helmchart in Azure Kubernetes Services (AKS)
 
-<!-- create article on "Install Grafana Helmchart in Azure Kubernetes Services (AKS)"
-please cover following topics
-Introduction
-Prerequisites
-Step-1: Login into Azure 
-Step-2: Connect to AKS Cluster
-Step-3: Add Grafana Helm Repository
-Step-4: Install Grafana Helmchart
-Step-5: Verify Grafana resources in AKS
-Step-6: Access Grafana Dashboard Locally
-Step-7: Configure Ingress for Grafana
-Conclusion
-Reference -->
 
 ## Introduction
 
