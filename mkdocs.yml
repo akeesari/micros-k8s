@@ -266,7 +266,8 @@ nav:
     - Upgrade or Resize node pools in AKS : kubernetes/aks-upgrade-nodepool.md
     - Monitoring:
       - Monitor AKS Cluster Introduction : kubernetes/monitoring/introduction.md
-      # - Monitor AKS Cluster with Azure Managed Prometheus and Grafana : kubernetes/monitoring/aks-monitoring-intro.md
+      - Create an Azure Monitoring Workspace Using Terraform : kubernetes/monitoring/monitor-workspace.md
+      - Create an Azure Managed Grafana workspace Using Terraform : kubernetes/monitoring/grafana-workspace.md
   - Azure DevOps:
     - Azure DevOps Overview : devops/1-devops-overview.md
     - Create Your First service connection : devops/pipelines/1-service-connections.md

@@ -100,7 +100,7 @@ Here are the steps to create a new Git repository in Azure DevOps:
 
 for example: 
 
-[![Alt text](images/image-2.jpg){:style="border: 1px solid black; border-radius: 10px;"}](images/image-2.jpg){:target="_blank"}
+[![Alt text](images/image-2.png){:style="border: 1px solid black; border-radius: 10px;"}](images/image-2.png){:target="_blank"}
 
 - Initialize the main branch with a README or gitignore
 

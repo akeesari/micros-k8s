@@ -1,6 +1,6 @@
-# Monitor AKS with Azure Managed Services for Prometheus & Grafana
+# **Monitor AKS with Azure Managed Services for Prometheus & Grafana**
 
-## Introduction
+## **Introduction**
 
 Monitoring is essential for effectively managing Kubernetes clusters and ensuring the smooth operation of applications within them. By implementing robust monitoring, organizations can:
 
@@ -14,7 +14,7 @@ Azure Monitor simplifies Kubernetes monitoring with a comprehensive suite of too
 - **Container Insights**: Provides detailed telemetry data, including performance metrics and logs, offering visibility into workloads on Azure Kubernetes Service (AKS).  
 - **Managed Grafana**: Offers customizable and visually appealing dashboards, empowering teams to make data-driven decisions.  
 
-## Architecture Diagram
+## **Architecture Diagram**
 
 The following diagram shows the high level architecture of monitor AKS with azure managed services for Prometheus & Grafana
 
@@ -23,7 +23,7 @@ The following diagram shows the high level architecture of monitor AKS with azur
 Before enabling monitoring in AKS, understanding the key open-source tools, Prometheus and Grafana, is crucial as they form the backbone of many Kubernetes monitoring solutions.
 
 
-## Prometheus
+## **Prometheus**
 Prometheus is a widely adopted open-source monitoring and alerting system, well-suited for cloud-native environments like Kubernetes. Initially developed by SoundCloud, it is now part of the Cloud Native Computing Foundation (CNCF).
 
 Key Features:
@@ -35,7 +35,7 @@ Key Features:
 - **Alerting**: Built-in rules trigger notifications based on specific conditions.  
 
 
-## Grafana
+## **Grafana**
 
 Grafana is a leading open-source visualization and analytics platform that integrates seamlessly with a wide range of data sources, including Prometheus.
 
@@ -46,10 +46,10 @@ Key Features:
 - **Alerting**: Provides robust alerting mechanisms that integrate with tools like Slack, PagerDuty, or email.  
 
 
-## Azure Managed Services for Monitoring
+## **Azure Managed Services for Monitoring**
 Azure enhances Kubernetes monitoring by providing managed services that extend popular open-source tools like Prometheus and Grafana.
 
-### Azure Managed Prometheus
+### **Azure Managed Prometheus**
 Azure offers Prometheus as a fully managed service through Azure Monitor, removing the need for manual infrastructure management.
 
 Key Features:
@@ -61,12 +61,13 @@ Key Features:
 - **Seamless Integration**: Works with Azure services, including AKS and Azure Managed Grafana.  
 - **Comprehensive Analysis**: Query metrics using PromQL or visualize them in Metrics Explorer and Grafana.  
 
+For more detailed information about Prometheus and its capabilities, refer to the [official Azure documentation](https://learn.microsoft.com/en-us/azure/azure-monitor/essentials/prometheus-metrics-overview).
 
-### Azure Monitor Workspace
+### **Azure Monitor Workspace**
 
 Azure Monitor workspaces store metric data collected by Azure Monitor, focusing primarily on Prometheus metrics.
 
-Key Differences:
+Difference Between Azure Monitor Workspace and Log Analytics Workspace:
 
 | Feature                 | Azure Monitor Workspace       | Log Analytics Workspace       |
 |-------------------------|-------------------------------|--------------------------------|
@@ -77,8 +78,10 @@ Key Differences:
 
 **Note**: Azure Monitor workspaces currently focus on Prometheus metrics but aim to unify storage for all Azure Monitor-collected metrics.
 
+To explore more about Azure Monitor workspace capabilities, visit the [official documentation](https://learn.microsoft.com/en-us/azure/azure-monitor/essentials/azure-monitor-workspace-overview/).
 
-### Azure Managed Grafana Workspace
+
+### **Azure Managed Grafana Workspace**
 
 Azure Managed Grafana Workspace offers a fully managed Grafana service, allowing teams to visualize and analyze monitoring data without managing infrastructure.
 
@@ -89,6 +92,8 @@ Key Features:
 - **Pre-Built Dashboards**: Provides curated dashboards for common use cases.  
 - **Azure AD Integration**: Secure access with role-based permissions via Azure Active Directory (Azure AD).  
 - **Custom Visualization**: Supports a wide range of visualization plugins and custom dashboards.  
+
+To explore more about Azure managed workspace capabilities, visit the [official documentation](https://learn.microsoft.com/en-us/azure/managed-grafana/overview/).
 
 
 **Workspaces and Features**
