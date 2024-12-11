@@ -264,7 +264,9 @@ nav:
     - Kubernetes Pod troubleshooting : kubernetes/pod-troubleshooting.md    
     - Create a new user node pool in AKS : kubernetes/aks-create-nodepool.md
     - Upgrade or Resize node pools in AKS : kubernetes/aks-upgrade-nodepool.md
-    # - Monitor AKS Cluster with Azure Managed Prometheus and Grafana : kubernetes/aks-monitoring.md
+    - Monitoring:
+      - Monitor AKS Cluster Introduction : kubernetes/monitoring/introduction.md
+      # - Monitor AKS Cluster with Azure Managed Prometheus and Grafana : kubernetes/monitoring/aks-monitoring-intro.md
   - Azure DevOps:
     - Azure DevOps Overview : devops/1-devops-overview.md
     - Create Your First service connection : devops/pipelines/1-service-connections.md
