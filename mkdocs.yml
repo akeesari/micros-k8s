@@ -291,5 +291,6 @@ nav:
         - Install Grafana Loki-Stack in AKS: helmchart/7-install-grafana-loki-stack.md    
         - Install Redis in AKS: helmchart/8-install-redis.md    
         - Install Minio in AKS: helmchart/9-install-minio.md    
+        - Install ADCS Issuer in AKS: helmchart/10-install-adcs-issuer.md    
   # - Contact:
   #   - Contact: contact.md
