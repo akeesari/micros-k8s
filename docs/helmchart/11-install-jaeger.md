@@ -132,24 +132,24 @@ Customize the values.yaml file for OpenTelemetry Integration later.
 
 ```sh
 # before 
-cassandra: false
-# after
 cassandra: true
+# after
+cassandra: false
 
 # before 
-allInOne:
-  enabled: true
-
-# after
 allInOne:
   enabled: false
 
-# before 
-storage:  
-  type: memory 
 # after
+allInOne:
+  enabled: true
+
+# before 
 storage:  
   type: cassandra
+# after
+storage:  
+  type: memory
 
 # before 
 agent:
@@ -160,25 +160,25 @@ agent:
 
 # before 
 collector:
-  enabled: false
+  enabled: true
 
 # after
 collector:
-  enabled: true
+  enabled: false
 
 # before 
 query:
-  enabled: false
+  enabled: true
 # after
 query:
-  enabled: true
+  enabled: false
 ```
 
 
 Install : use this command if you need to create namespace along with helm install
 
 ```bash
-helm install jaeger jaegertracing/jaeger -n jaeger --create-namespace --version 3.4.1 --values jaeger\values.yaml
+helm install jaeger jaegertracing/jaeger -n jaeger --create-namespace --version 3.4.1 --values jaeger1\values.yaml
 ```
 
 Upgrade : use this command if you already have namespace created
@@ -207,7 +207,7 @@ To begin with, we’ll define a few Terraform variables that will control whethe
     
     variable "jaeger_version" {
       type    = string
-      default = "3.4.0"
+      default = "3.4.1"
     }
 
 *   `jaeger_enabled`: This boolean variable allows you to control whether Jaeger should be installed. Set it to `true` to install Jaeger, or `false` to skip the installation.
@@ -245,7 +245,7 @@ Now, we will use the `helm_release` resource in Terraform to install the Jaeger 
       version    = var.jaeger_version
       namespace  = kubernetes_namespace.jaeger[0].metadata.0.name
       values = [
-        "jaeger/values.yaml"
+        "jaeger1/values.yaml"
       ]
       depends_on = [
         azurerm_kubernetes_cluster.aks,
@@ -267,10 +267,12 @@ Now, we will use the `helm_release` resource in Terraform to install the Jaeger 
 Once you’ve defined your Terraform configuration, you can run the following commands to apply the changes and install Jaeger in your Kubernetes cluster.
 
     terraform init
+    terraform plan
     terraform apply
     
 
 *   `terraform init`: Initializes your Terraform configuration.
+*   `terraform plan`: plan your Terraform configuration.
 *   `terraform apply`: Applies the configuration, provisioning the Jaeger Helm chart on your Kubernetes cluster.
 
 ## **Step 6: Verify Jaeger Resources in AKS**
@@ -412,22 +414,18 @@ In this setup:
 Given that we're using **OpenTelemetry** along with **Jaeger**, the `values.yaml` customizations should reflect the fact that OpenTelemetry will handle the tracing and then forward it to Jaeger.
 Here’s the corrected and aligned configuration:
 
-**1. Enable Cassandra as Storage for Jaeger**
-
-You still need to configure Jaeger to use **Cassandra** as a storage backend if you're aiming for production-level scale.
+**1. Disable Cassandra Storage for Jaeger**
 
     # before 
-    cassandra: false
-    # after 
     cassandra: true
+    # after 
+    cassandra: false
     
 
-Explanation: You're enabling **Cassandra** as the persistent backend for Jaeger, which will handle the storage of the trace data collected via **OpenTelemetry**.
+Explanation: By default, Jaeger is configured to use Cassandra as its storage backend. However, in an OpenTelemetry setup, you might not want to use Cassandra due to scalability or configuration complexities, especially in a simple setup. For OpenTelemetry, we are likely configuring Jaeger to use a more lightweight storage solution (such as memory) instead of Cassandra, or you may have already set up an external storage solution for OpenTelemetry traces (like Elasticsearch, or other cloud-native backends). Disabling Cassandra is necessary to avoid unnecessary resource usage and conflicts.
 
 
-**2. Disable All-in-One Jaeger Mode**
-
-Since you're using **OpenTelemetry** for collection and **Jaeger** for storage/visualization, the modular mode is more appropriate than the all-in-one configuration.
+**2. Enable All-in-One Jaeger Mode**
 
     # before 
     allInOne:
@@ -438,12 +436,10 @@ Since you're using **OpenTelemetry** for collection and **Jaeger** for storage/v
       enabled: false
     
 
-Explanation:  Disabling the all-in-one setup means that Jaeger's components (collector, query, etc.) will be deployed separately. This gives you more control and scalability, especially when dealing with microservices.
+Explanation: In the default setup, Jaeger runs in a distributed fashion, with separate components for the agent, collector, and query services. In contrast, when integrating Jaeger with OpenTelemetry in a simpler environment (such as for development, testing, or small-scale usage), you often use the all-in-one deployment. This enables Jaeger's agent, collector, and query components to run together in a single pod, which simplifies the setup and eliminates the need for complex network configurations between components. This change is particularly useful when deploying Jaeger for OpenTelemetry in a Kubernetes environment where managing multiple components as separate pods can introduce unnecessary complexity.
 
 
-**3. Change Jaeger’s Storage Backend to Cassandra**
-
-You are integrating Jaeger with **OpenTelemetry**, and you need to make sure that Jaeger’s storage backend is properly set to **Cassandra** to handle the large volumes of trace data.
+**3. Use In-Memory Storage (instead of Cassandra)**
 
     # before 
     storage:  
@@ -453,12 +449,10 @@ You are integrating Jaeger with **OpenTelemetry**, and you need to make sure tha
       type: cassandra
     
 
-Explanation:   The **memory** backend was the default for testing, but for production workloads, **Cassandra** is a more reliable and scalable solution.
+Explanation:   OpenTelemetry usually works with simpler backends, particularly during testing or smaller environments. In-memory storage is a lightweight and easy-to-use storage option, where traces are stored temporarily in memory. This is ideal when working with OpenTelemetry for short-term or small-scale trace collection without the overhead of persistent storage like Cassandra. By using memory storage, traces will not be saved long-term, but it helps avoid setting up complex storage backends and simplifies the deployment, especially in development or evaluation environments.
 
 
 **4. Disable Jaeger Agent**
-
-Since the **OpenTelemetry Collector** will be receiving traces and forwarding them to Jaeger, the **Jaeger agent** is no longer needed. The **OpenTelemetry Collector** will handle the trace collection.
 
     # before 
     agent:
@@ -469,7 +463,7 @@ Since the **OpenTelemetry Collector** will be receiving traces and forwarding th
       enabled: false
     
 
-Explanation:   Disabling the Jaeger agent ensures that the **OpenTelemetry Collector** is the sole component responsible for collecting and forwarding trace data to Jaeger.
+Explanation: The Jaeger agent is typically used to collect traces from client applications and forward them to the Jaeger collector. In an OpenTelemetry setup, OpenTelemetry Collector usually takes over the role of the agent. Therefore, disabling Jaeger's native agent is essential because OpenTelemetry already provides an agent (the OpenTelemetry Collector) that performs this functionality. This change ensures that there is no conflict or duplication of trace collection tasks, and that the OpenTelemetry Collector properly handles trace data.
 
 
 **5. Enable Jaeger Collector**
@@ -478,15 +472,14 @@ Now that you’re disabling the Jaeger agent, you need to ensure that the **Jaeg
 
     # before 
     collector:
-      enabled: false
+      enabled: true
     
     # after
     collector:
-      enabled: true
+      enabled: false
     
 
-Explanation:   The **Jaeger collector** is required to collect and store the trace data forwarded from the **OpenTelemetry Collector**.
-*   It’s important to have this component enabled to handle the data collection, processing, and export to the backend.
+Explanation: allInOne covers this
 
 
 **6. Enable Jaeger Query UI**
@@ -495,14 +488,14 @@ The **Jaeger query UI** is essential for visualizing trace data, and it should b
 
     # before 
     query:
-      enabled: false
+      enabled: true
     
     # after
     query:
-      enabled: true
+      enabled: false
     
 
-Explanation:  Enabling the query UI allows you to access and explore the traces in Jaeger, providing insights into your microservices' performance.
+Explanation: allInOne covers this
 
 ## **Step 10: Uninstalling the Chart**
 
@@ -537,6 +530,7 @@ Jaeger is a powerful tool for gaining observability into your microservices arch
 -   [Jaeger Official Documentation](https://www.jaegertracing.io/docs/)
 -   [Helm Documentation](https://helm.sh/docs/)
 -   [Terraform Helm Provider](https://registry.terraform.io/providers/hashicorp/helm/latest/docs)
+-   [troubleshooting](https://www.jaegertracing.io/docs/1.23/troubleshooting/)
 
 
 <!-- here is the list of all the resources used while working on this technical story 

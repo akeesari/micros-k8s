@@ -293,5 +293,6 @@ nav:
         - Install Minio in AKS: helmchart/9-install-minio.md
         - Install ADCS Issuer in AKS: helmchart/10-install-adcs-issuer.md
         - Install Jaeger in AKS: helmchart/11-install-jaeger.md
+        - Install OpenTelemetry Operator in AKS: helmchart/12-install-otel-operator.md
   # - Contact:
   #   - Contact: contact.md
