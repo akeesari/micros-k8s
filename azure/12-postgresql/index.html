@@ -1,0 +1,3991 @@
+<!-- Elements added to main will be displayed on all pages -->
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Build and Deploy Microservices on Kubernetes using ArgoCD & Helm Azure and Azure DevOps Pipelines.">
+      
+      
+        <meta name="author" content="Anji Keesari">
+      
+      
+        <link rel="canonical" href="https://akeesari.github.io/micros-k8s/azure/12-postgresql/">
+      
+      
+        <link rel="prev" href="../11-aks/">
+      
+      
+        <link rel="next" href="../13-key-vault/">
+      
+      
+      <link rel="icon" href="../../assets/ak-logo.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.12">
+    
+    
+      
+        <title>Create Azure PostgreSQL - Flexible Server using terraform - Microservices with Kubernetes (Developer User Guide)</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.2afb09e1.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function e(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],e("js",new Date),e("config","G-KR7ZFHXJM1"),document.addEventListener("DOMContentLoaded",(function(){document.forms.search&&document.forms.search.query.addEventListener("blur",(function(){this.value&&e("event","search",{search_term:this.value})}));document$.subscribe((function(){var t=document.forms.feedback;if(void 0!==t)for(var a of t.querySelectorAll("[type=submit]"))a.addEventListener("click",(function(a){a.preventDefault();var n=document.location.pathname,d=this.getAttribute("data-md-value");e("event","feedback",{page:n,data:d}),t.firstElementChild.disabled=!0;var r=t.querySelector(".md-feedback__note [data-md-value='"+d+"']");r&&(r.hidden=!1)})),t.hidden=!1})),location$.subscribe((function(t){e("config","G-KR7ZFHXJM1",{page_path:t.pathname})}))}));var t=document.createElement("script");t.async=!0,t.src="https://www.googletagmanager.com/gtag/js?id=G-KR7ZFHXJM1",document.getElementById("__analytics").insertAdjacentElement("afterEnd",t)}</script>
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#introduction" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Microservices with Kubernetes (Developer User Guide)" class="md-header__button md-logo" aria-label="Microservices with Kubernetes (Developer User Guide)" data-md-component="logo">
+      
+  <img src="../../assets/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Microservices with Kubernetes (Developer User Guide)
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Create Azure PostgreSQL - Flexible Server using terraform
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6m0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4M7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../.." class="md-tabs__link">
+          
+  
+  
+    
+  
+  Home
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../gettingstarted/toc/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Getting started
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../microservices/0.gettingstarted/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Microservices
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../1-iac/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Azure (IaC)
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../kubernetes/0.getting-started/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Kubernetes
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../devops/1-devops-overview/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Azure DevOps
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../argocd/1-argocd-intro/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Argo CD
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../helmchart/1-introduction/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Helm Charts
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Microservices with Kubernetes (Developer User Guide)" class="md-nav__button md-logo" aria-label="Microservices with Kubernetes (Developer User Guide)" data-md-component="logo">
+      
+  <img src="../../assets/logo.png" alt="logo">
+
+    </a>
+    Microservices with Kubernetes (Developer User Guide)
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_1" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../.." class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            Home
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Getting started
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Getting started
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../gettingstarted/toc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Table of Contents
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../gettingstarted/about-author/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    About the Author
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../gettingstarted/acknowledgments/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Acknowledgments
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../gettingstarted/introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Introduction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../gettingstarted/lab-format/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lab Format
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Microservices
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Microservices
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../microservices/0.gettingstarted/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Getting Started with Microservices
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../microservices/0-docker-getting-started/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Getting Started with Docker
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../microservices/1.aspnet-api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Containerize a .NET Core Web API
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../microservices/2.node-api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Containerize a Node.js API
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../microservices/3.aspnet-app/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Containerize a .NET Core MVC Application
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../microservices/4.react-app/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Containerize a React.js Application
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../microservices/6.sqlserver-db/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Create Your First Database with SQL server
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../microservices/7.postgresql-db/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Create Your Second Database with PostgreSQL
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../microservices/8.keycloak/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Running Keycloak application in a Docker Container
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../microservices/9.drupal/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Running Drupal Website in a Docker Container
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    Azure (IaC)
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Azure (IaC)
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1-iac/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Infrastructure as Code (IaC)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1-microservices-architecture-on-aks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Microservices Architecture on AKS
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../3-azure-account-subscription/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Azure Account & Subscription Management
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../6-tf-foundation-1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Setup Terraform Foundation Part-1
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../6-tf-foundation-2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Setup Terraform Foundation Part-2
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../7-log-analytics-workspace/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Create Log Analytics Workspace using terraform
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../8-vnet/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Create Virtual Network using terraform
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../9-acr/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Create Azure Container Registry (ACR) using terraform
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10-app-gateway/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Create Azure Application Gateway using terraform
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../11-aks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Create Azure Kubernetes Service (AKS) using terraform
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Create Azure PostgreSQL - Flexible Server using terraform
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Create Azure PostgreSQL - Flexible Server using terraform
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Introduction
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#technical-scenario" class="md-nav__link">
+    <span class="md-ellipsis">
+      Technical Scenario
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#objective" class="md-nav__link">
+    <span class="md-ellipsis">
+      Objective
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#architecture-diagram" class="md-nav__link">
+    <span class="md-ellipsis">
+      Architecture diagram
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prerequisites
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#implementation-details" class="md-nav__link">
+    <span class="md-ellipsis">
+      Implementation details
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#task-1-define-and-declare-postgresql-flexible-server-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      Task-1: Define and declare PostgreSQL - Flexible Server variables
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#task-2-create-an-azure-resource-group-for-postgresql" class="md-nav__link">
+    <span class="md-ellipsis">
+      Task-2: Create an Azure resource group for PostgreSQL
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#task-3-create-an-azure-virtual-network" class="md-nav__link">
+    <span class="md-ellipsis">
+      Task-3: Create an Azure Virtual Network
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#task-4-create-an-azure-subnet-for-postgresql" class="md-nav__link">
+    <span class="md-ellipsis">
+      Task-4: Create an Azure Subnet for PostgreSQL
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#task-5-create-a-private-dns-zone-for-postgresql" class="md-nav__link">
+    <span class="md-ellipsis">
+      Task-5: Create a Private DNS zone for PostgreSQL
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#task-6-associate-postgresql-private-dns-zone-with-virtual-network" class="md-nav__link">
+    <span class="md-ellipsis">
+      Task-6: Associate PostgreSQL Private DNS zone with virtual network
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#task-7-generate-postgresql-admin-random-password-store-in-key-vault" class="md-nav__link">
+    <span class="md-ellipsis">
+      Task-7: Generate PostgreSQL admin random password &amp; store in Key Vault
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#task-8-create-azure-postgresql-flexible-server-using-terraform" class="md-nav__link">
+    <span class="md-ellipsis">
+      Task-8: Create Azure PostgreSQL - Flexible Server using Terraform
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#task-9-configure-diagnostic-settings-for-azure-postgresql-flexible-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      Task-9: Configure Diagnostic Settings for Azure PostgreSQL - Flexible Server
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#task-10-set-a-user-or-group-as-the-ad-administrator-for-a-postgresql-flexible-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      Task-10: Set a user or group as the AD administrator for a PostgreSQL Flexible Server
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#task-11-create-new-databases-in-postgresql-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      Task-11: Create new Databases in PostgreSQL Server
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#task-12-create-ad-groups-for-database-access" class="md-nav__link">
+    <span class="md-ellipsis">
+      Task-12: Create AD groups for database access
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      Reference
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../13-key-vault/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Create Azure Key Vault using Terraform
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../14-redis-cache/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Create Azure Cache for Redis using Terraform
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../15-storage-account/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Create Storage Account using Terraform
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../16-event-hubs-part-1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Azure Event Hubs Introduction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../16-event-hubs-part-2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Create Azure Event Hubs using Terraform
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../17-cdn-frontdoor/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Create Front Door and CDN profile using Terraform
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Kubernetes
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Kubernetes
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../kubernetes/0.getting-started/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Getting Started with Docker Container
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../kubernetes/1-prepare-app/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Prepare an application for Azure Kubernetes Service (AKS)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../kubernetes/2-deploy-api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Deploying an .NET Core API to Azure Kubernetes Service (AKS)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../kubernetes/2-deploy-app/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Deploying an ASP.NET Core MVC to Azure Kubernetes Service (AKS)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../kubernetes/3-working-with-aks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Working with AKS cluster using kubectl
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../kubernetes/4-ingress-controller-nginx/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Setup NGINX ingress controller in AKS using Terraform
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../kubernetes/4.1-ingress-controller-agic/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Setup Application Gateway ingress controller (AGIC) in AKS using Terraform
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../kubernetes/5-cert-manager/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Setup Cert-Manager in AKS using Terraform
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../kubernetes/5.1-issue-cert/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Issue the Let's Encrypt SSL Certificate to the Website
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../kubernetes/5.2-cert-troubleshooting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Troubleshooting Problems with Let's Encrypt Certificates
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../kubernetes/6-aks-kv-integration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Integrating Azure Key Vault with AKS using Terraform
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../kubernetes/pod-troubleshooting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Kubernetes Pod troubleshooting
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../kubernetes/aks-create-nodepool/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Create a new user node pool in AKS
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../kubernetes/aks-upgrade-nodepool/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Upgrade or Resize node pools in AKS
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5_15" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_15" id="__nav_5_15_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Monitoring
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_15_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_15">
+            <span class="md-nav__icon md-icon"></span>
+            Monitoring
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../kubernetes/monitoring/introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Monitor AKS Cluster Introduction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../kubernetes/monitoring/monitor-workspace/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Create an Azure Monitoring Workspace Using Terraform
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../kubernetes/monitoring/grafana-workspace/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Create an Azure Managed Grafana workspace Using Terraform
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Azure DevOps
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Azure DevOps
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../devops/1-devops-overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Azure DevOps Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../devops/pipelines/1-service-connections/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Create Your First service connection
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../devops/pipelines/2-pipeline-aspnet-api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Create Pipeline for .NET Core Web API
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../devops/pipelines/3-pipeline-aspnet-app/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Create Pipeline for ASP.NET Core MVC Project
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Argo CD
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            Argo CD
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../argocd/1-argocd-intro/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Introduction to Argo CD
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../argocd/2-install-argocd/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Install Argo CD in Kubernetes
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../argocd/3-install-argocd-cli/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Install & Interact with ArgoCD CLI
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../argocd/register-cluster/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Registering an AKS Cluster with Argo CD
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../argocd/deploy-app/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Deploy Your First application with Argo CD
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../argocd/argocd-project/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Create new ArgoCD Project
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../argocd/argocd-repo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Create new Repository in ArgoCD
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Helm Charts
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            Helm Charts
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../helmchart/1-introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Introduction to Helmcharts
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../helmchart/2-create-helm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Create Your First Helmchart
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../helmchart/3-helm-cmds/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Frequently used Helm commands details
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../helmchart/4-helm-microservices/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Create Helmchart for Microservices
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../helmchart/5-install-pgadmin4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Install pgadmin4 in AKS
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../helmchart/6-install-grafana/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Install Grafana in AKS
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../helmchart/7-install-grafana-loki-stack/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Install Grafana Loki-Stack in AKS
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../helmchart/8-install-redis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Install Redis in AKS
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../helmchart/9-install-minio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Install Minio in AKS
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../helmchart/10-install-adcs-issuer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Install ADCS Issuer in AKS
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../helmchart/11-install-jaeger/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Install Jaeger in AKS
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../helmchart/12-install-otel-operator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Install OpenTelemetry Operator in AKS
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Introduction
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#technical-scenario" class="md-nav__link">
+    <span class="md-ellipsis">
+      Technical Scenario
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#objective" class="md-nav__link">
+    <span class="md-ellipsis">
+      Objective
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#architecture-diagram" class="md-nav__link">
+    <span class="md-ellipsis">
+      Architecture diagram
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prerequisites
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#implementation-details" class="md-nav__link">
+    <span class="md-ellipsis">
+      Implementation details
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#task-1-define-and-declare-postgresql-flexible-server-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      Task-1: Define and declare PostgreSQL - Flexible Server variables
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#task-2-create-an-azure-resource-group-for-postgresql" class="md-nav__link">
+    <span class="md-ellipsis">
+      Task-2: Create an Azure resource group for PostgreSQL
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#task-3-create-an-azure-virtual-network" class="md-nav__link">
+    <span class="md-ellipsis">
+      Task-3: Create an Azure Virtual Network
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#task-4-create-an-azure-subnet-for-postgresql" class="md-nav__link">
+    <span class="md-ellipsis">
+      Task-4: Create an Azure Subnet for PostgreSQL
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#task-5-create-a-private-dns-zone-for-postgresql" class="md-nav__link">
+    <span class="md-ellipsis">
+      Task-5: Create a Private DNS zone for PostgreSQL
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#task-6-associate-postgresql-private-dns-zone-with-virtual-network" class="md-nav__link">
+    <span class="md-ellipsis">
+      Task-6: Associate PostgreSQL Private DNS zone with virtual network
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#task-7-generate-postgresql-admin-random-password-store-in-key-vault" class="md-nav__link">
+    <span class="md-ellipsis">
+      Task-7: Generate PostgreSQL admin random password &amp; store in Key Vault
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#task-8-create-azure-postgresql-flexible-server-using-terraform" class="md-nav__link">
+    <span class="md-ellipsis">
+      Task-8: Create Azure PostgreSQL - Flexible Server using Terraform
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#task-9-configure-diagnostic-settings-for-azure-postgresql-flexible-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      Task-9: Configure Diagnostic Settings for Azure PostgreSQL - Flexible Server
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#task-10-set-a-user-or-group-as-the-ad-administrator-for-a-postgresql-flexible-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      Task-10: Set a user or group as the AD administrator for a PostgreSQL Flexible Server
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#task-11-create-new-databases-in-postgresql-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      Task-11: Create new Databases in PostgreSQL Server
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#task-12-create-ad-groups-for-database-access" class="md-nav__link">
+    <span class="md-ellipsis">
+      Task-12: Create AD groups for database access
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      Reference
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+  <h1>Create Azure PostgreSQL - Flexible Server using terraform</h1>
+
+<h2 id="introduction">Introduction</h2>
+<p>Azure Database for PostgreSQL - Flexible Server is a fully managed database service on the Microsoft Azure cloud platform, designed to host PostgreSQL databases. It provides a scalable, secure, and cost-effective solution for deploying, managing, and scaling PostgreSQL-based applications.</p>
+<p>In this hands-on lab, I'll guide you through the process of creating an Azure PostgreSQL - Flexible Server using Terraform. We'll set up diagnostic settings to monitor this resource effectively and finally enhancing security through the use of private DNS zone.</p>
+<p>Key features of Azure Database for PostgreSQL - Flexible Server:</p>
+<ol>
+<li>
+<p><strong>Managed Service:</strong> It is a fully managed database service, meaning Microsoft Azure takes care of routine database management tasks, allowing developers to focus on building applications.</p>
+</li>
+<li>
+<p><strong>Open Source Compatibility:</strong> Based on the popular open-source PostgreSQL database engine, ensuring compatibility with PostgreSQL and support for a wide range of PostgreSQL features.</p>
+</li>
+<li>
+<p><strong>Scalability:</strong> Offers flexible compute and storage configurations to scale resources based on application requirements, providing the ability to scale up or down as needed.</p>
+</li>
+<li>
+<p><strong>High Availability:</strong> Provides built-in high availability with automatic backups and the ability to restore to any point in time within the retention period.</p>
+</li>
+<li>
+<p><strong>Security Features:</strong></p>
+<ul>
+<li>Supports Azure Active Directory authentication for enhanced security.</li>
+<li>Enables data encryption in transit and at rest.</li>
+<li>Firewall rules and Virtual Network Service Endpoints enhance network security.</li>
+</ul>
+</li>
+<li>
+<p><strong>Automatic Patching:</strong> Azure handles routine maintenance tasks, including software patching, ensuring that the database is up-to-date and secure.</p>
+</li>
+<li>
+<p><strong>Monitoring and Diagnostics:</strong> Integration with Azure Monitor provides real-time performance monitoring, diagnostics, and insights into the database's health and performance.</p>
+</li>
+<li>
+<p><strong>Geo-replication:</strong> Allows for setting up read replicas in different Azure regions for improved read scalability and disaster recovery.</p>
+</li>
+<li>
+<p><strong>Flexible Deployment Options:</strong> Supports deploying databases across different Azure regions and availability zones for better performance and fault tolerance.</p>
+</li>
+<li>
+<p><strong>Developer Tools Integration:</strong> Seamless integration with popular developer tools and frameworks, making it easy for developers to work with their preferred tools.</p>
+</li>
+<li>
+<p><strong>Cost Management:</strong> Provides cost-effective pricing models based on the chosen configuration, allowing users to optimize costs based on their application needs.</p>
+</li>
+<li>
+<p><strong>Compatibility with Azure Services:</strong> Integrates with other Azure services, such as Azure Logic Apps, Azure Functions, and more, for building end-to-end solutions.</p>
+</li>
+</ol>
+<h2 id="technical-scenario">Technical Scenario</h2>
+<p>As a <code>Cloud Architect</code>, the task is to design and implement a database solution that aligns with the principles of microservices architecture. The solution should be robust, scalable, cost-effective, and includes key considerations such as scalability, high availability, security, geo-replication, and seamless integration with microservices.</p>
+<h2 id="objective">Objective</h2>
+<p>In this exercise we will accomplish &amp; learn how to implement following:</p>
+<ul>
+<li><strong>Task-1:</strong> Define and declare PostgreSQL - Flexible Server variables</li>
+<li><strong>Task-2:</strong> Create an Azure resource group for PostgreSQL</li>
+<li><strong>Task-3:</strong> Create or use existing Virtual Network </li>
+<li><strong>Task-4:</strong> Create a subnet for PostgreSQL</li>
+<li><strong>Task-5:</strong> Create private DNS zone for PostgreSQL </li>
+<li><strong>Task-6:</strong> Associate PostgreSQL Private DNS zone with virtual network</li>
+<li><strong>Task-7:</strong> Generate PostgreSQL admin random password &amp; store in Key Vault</li>
+<li><strong>Task-8:</strong> Create Azure PostgreSQL - Flexible Server using Terraform</li>
+<li><strong>Task-9:</strong> Configure Diagnostic settings for PostgreSQL - Flexible Server</li>
+<li><strong>Task-10:</strong> Set a user or group as the AD administrator for a PostgreSQL Flexible Server.</li>
+<li><strong>Task-11:</strong> Create new Databases in PostgreSQL Server</li>
+<li><strong>Task-12:</strong> Create AD groups for database access</li>
+</ul>
+<p>Through these tasks, you will gain practical experience on Azure PostgreSQL - Flexible Server.</p>
+<h2 id="architecture-diagram">Architecture diagram</h2>
+<p>The following diagram illustrates the high level architecture of PostgreSQL - Flexible Server:</p>
+<p><a href="../images/image-62.png" target="_blank"><img alt="Alt text" src="../images/image-62.png" style="border: 1px solid black; border-radius: 10px;" /></a></p>
+<h2 id="prerequisites">Prerequisites</h2>
+<p>Before proceeding with this lab, make sure you have the following prerequisites in place:</p>
+<ol>
+<li>Download and Install Terraform.</li>
+<li>Download and Install Azure CLI.</li>
+<li>Azure subscription.</li>
+<li>Visual Studio Code.</li>
+<li>Log Analytics workspace - for configuring diagnostic settings.</li>
+<li>Virtual Network with subnet</li>
+<li>Basic knowledge of Terraform and Azure concepts.</li>
+</ol>
+<h2 id="implementation-details">Implementation details</h2>
+<p>Here's a step-by-step guide on how to create an Azure PostgreSQL - Flexible Server using Terraform</p>
+<p><strong>login to Azure</strong></p>
+<p>Verify that you are logged into the right Azure subscription before start anything in visual studio code</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># Login to Azure</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>az<span class="w"> </span>login<span class="w"> </span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="c1"># Shows current Azure subscription</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>az<span class="w"> </span>account<span class="w"> </span>show
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="c1"># Lists all available Azure subscriptions</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>az<span class="w"> </span>account<span class="w"> </span>list
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="c1"># Sets Azure subscription to desired subscription using ID</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>az<span class="w"> </span>account<span class="w"> </span><span class="nb">set</span><span class="w"> </span>-s<span class="w"> </span><span class="s2">&quot;anji.keesari&quot;</span>
+</span></code></pre></div>
+<h2 id="task-1-define-and-declare-postgresql-flexible-server-variables">Task-1: Define and declare PostgreSQL - Flexible Server variables</h2>
+<p>In this task, we will define and declare the necessary variables for creating the Azure PostgreSQL - Flexible Server resource. These variables will be used to specify the resource settings and customize the values according to our requirements in each environment.</p>
+<p>This table presents the variables along with their descriptions, data types, and default values:</p>
+<table>
+<thead>
+<tr>
+<th>Variable Name</th>
+<th>Description</th>
+<th>Type</th>
+<th>Default Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>psql_prefix</code></td>
+<td>Prefix of the PostgreSQL server name that's combined with the name of the PostgreSQL server</td>
+<td><code>string</code></td>
+<td><code>"psql"</code></td>
+</tr>
+<tr>
+<td><code>psql_rg_name</code></td>
+<td>(Required) The name of the Resource Group where the PostgreSQL Flexible Server should exist</td>
+<td><code>string</code></td>
+<td><code>"rg-postgresql-dev"</code></td>
+</tr>
+<tr>
+<td><code>psql_location</code></td>
+<td>(Required) The Azure Region where the PostgreSQL Flexible Server should exist</td>
+<td><code>string</code></td>
+<td><code>"East US"</code></td>
+</tr>
+<tr>
+<td><code>psql_name</code></td>
+<td>(Required) The name which should be used for this PostgreSQL Flexible Server</td>
+<td><code>string</code></td>
+<td><code>"psql-postgresql1-dev"</code></td>
+</tr>
+<tr>
+<td><code>psql_sku_name</code></td>
+<td>(Optional) The SKU Name for the PostgreSQL Flexible Server</td>
+<td><code>string</code></td>
+<td><code>"GP_Standard_D2s_v3"</code></td>
+</tr>
+<tr>
+<td><code>psql_tags</code></td>
+<td>(Optional) A mapping of tags which should be assigned to the PostgreSQL Flexible Server</td>
+<td><code>map(any)</code></td>
+<td><code>{}</code></td>
+</tr>
+<tr>
+<td><code>psql_admin_password</code></td>
+<td>(Optional) Admin password of the PostgreSQL server</td>
+<td><code>string</code></td>
+<td><code>"Test1234t"</code></td>
+</tr>
+<tr>
+<td><code>psql_admin_login</code></td>
+<td>(Optional) Admin username of the PostgreSQL server</td>
+<td><code>string</code></td>
+<td><code>"postgres"</code></td>
+</tr>
+<tr>
+<td><code>psql_version</code></td>
+<td>(Optional) The version of PostgreSQL Flexible Server to use</td>
+<td><code>string</code></td>
+<td><code>"15"</code></td>
+</tr>
+<tr>
+<td><code>psql_storage_mb</code></td>
+<td>(Optional) The max storage allowed for the PostgreSQL Flexible Server</td>
+<td><code>string</code></td>
+<td><code>"262144"</code></td>
+</tr>
+<tr>
+<td><code>postgresql_configurations</code></td>
+<td>(Optional) PostgreSQL configurations to enable</td>
+<td><code>map(string)</code></td>
+<td>See the default value in the code</td>
+</tr>
+</tbody>
+</table>
+<p><em>Variable declaration:</em></p>
+<div class="language-bash highlight"><span class="filename">variables.tf</span><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>//<span class="w"> </span><span class="o">==========================</span><span class="w"> </span><span class="nv">PostgreSQL</span><span class="w"> </span><span class="o">==========================</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>variable<span class="w"> </span><span class="s2">&quot;psql_prefix&quot;</span><span class="w"> </span><span class="o">{</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">  </span><span class="nb">type</span><span class="w">        </span><span class="o">=</span><span class="w"> </span>string
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">  </span><span class="nv">default</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;psql&quot;</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">  </span><span class="nv">description</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Prefix of the PostgreSQL server name that&#39;s combined with name of the PostgreSQL server.&quot;</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="o">}</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>variable<span class="w"> </span><span class="s2">&quot;psql_rg_name&quot;</span><span class="w"> </span><span class="o">{</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="w">  </span><span class="nv">description</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;(Required) The name of the Resource Group where the PostgreSQL Flexible Server should exist.&quot;</span>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="w">  </span><span class="nb">type</span><span class="w">        </span><span class="o">=</span><span class="w"> </span>string
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="w">  </span><span class="nv">default</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;rg-postgresql-dev&quot;</span>
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="o">}</span>
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>variable<span class="w"> </span><span class="s2">&quot;psql_location&quot;</span><span class="w"> </span><span class="o">{</span>
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="w">  </span><span class="nv">description</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;(Required) The Azure Region where the PostgreSQL Flexible Server should exist.&quot;</span>
+</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="w">  </span><span class="nb">type</span><span class="w">        </span><span class="o">=</span><span class="w"> </span>string
+</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="w">  </span><span class="nv">default</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;East US&quot;</span>
+</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="o">}</span>
+</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>variable<span class="w"> </span><span class="s2">&quot;psql_name&quot;</span><span class="w"> </span><span class="o">{</span>
+</span><span id="__span-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a><span class="w">  </span><span class="nv">description</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;(Required) The name which should be used for this PostgreSQL Flexible Server.&quot;</span>
+</span><span id="__span-1-20"><a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a><span class="w">  </span><span class="nb">type</span><span class="w">        </span><span class="o">=</span><span class="w"> </span>string
+</span><span id="__span-1-21"><a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a><span class="w">  </span><span class="nv">default</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;psql-postgresql1-dev&quot;</span>
+</span><span id="__span-1-22"><a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a><span class="o">}</span>
+</span><span id="__span-1-23"><a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a>variable<span class="w"> </span><span class="s2">&quot;psql_sku_name&quot;</span><span class="w"> </span><span class="o">{</span>
+</span><span id="__span-1-24"><a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a><span class="w">  </span><span class="nv">description</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;(Optional) The SKU Name for the PostgreSQL Flexible Server. The name of the SKU, follows the tier + name pattern (e.g. B_Standard_B1ms, GP_Standard_D2s_v3, MO_Standard_E4s_v3). &quot;</span>
+</span><span id="__span-1-25"><a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a><span class="w">  </span><span class="nb">type</span><span class="w">        </span><span class="o">=</span><span class="w"> </span>string
+</span><span id="__span-1-26"><a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a><span class="w">  </span><span class="nv">default</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;GP_Standard_D2s_v3&quot;</span>
+</span><span id="__span-1-27"><a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a>
+</span><span id="__span-1-28"><a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a><span class="w">  </span>validation<span class="w"> </span><span class="o">{</span>
+</span><span id="__span-1-29"><a id="__codelineno-1-29" name="__codelineno-1-29" href="#__codelineno-1-29"></a><span class="w">    </span><span class="nv">condition</span><span class="w">     </span><span class="o">=</span><span class="w"> </span>contains<span class="o">([</span><span class="s2">&quot;B_Standard_B1ms&quot;</span>,<span class="w"> </span><span class="s2">&quot;GP_Standard_D2s_v3&quot;</span>,<span class="w"> </span><span class="s2">&quot;MO_Standard_E4s_v3&quot;</span><span class="o">]</span>,<span class="w"> </span>var.psql_sku_name<span class="o">)</span>
+</span><span id="__span-1-30"><a id="__codelineno-1-30" name="__codelineno-1-30" href="#__codelineno-1-30"></a><span class="w">    </span><span class="nv">error_message</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;The value of the sku name property of the PostgreSQL is invalid.&quot;</span>
+</span><span id="__span-1-31"><a id="__codelineno-1-31" name="__codelineno-1-31" href="#__codelineno-1-31"></a><span class="w">  </span><span class="o">}</span>
+</span><span id="__span-1-32"><a id="__codelineno-1-32" name="__codelineno-1-32" href="#__codelineno-1-32"></a><span class="o">}</span>
+</span><span id="__span-1-33"><a id="__codelineno-1-33" name="__codelineno-1-33" href="#__codelineno-1-33"></a>variable<span class="w"> </span><span class="s2">&quot;psql_tags&quot;</span><span class="w"> </span><span class="o">{</span>
+</span><span id="__span-1-34"><a id="__codelineno-1-34" name="__codelineno-1-34" href="#__codelineno-1-34"></a><span class="w">  </span><span class="nv">description</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;(Optional) A mapping of tags which should be assigned to the PostgreSQL Flexible Server.&quot;</span>
+</span><span id="__span-1-35"><a id="__codelineno-1-35" name="__codelineno-1-35" href="#__codelineno-1-35"></a><span class="w">  </span><span class="nb">type</span><span class="w">        </span><span class="o">=</span><span class="w"> </span>map<span class="o">(</span>any<span class="o">)</span>
+</span><span id="__span-1-36"><a id="__codelineno-1-36" name="__codelineno-1-36" href="#__codelineno-1-36"></a><span class="w">  </span><span class="nv">default</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="o">{}</span>
+</span><span id="__span-1-37"><a id="__codelineno-1-37" name="__codelineno-1-37" href="#__codelineno-1-37"></a><span class="o">}</span>
+</span><span id="__span-1-38"><a id="__codelineno-1-38" name="__codelineno-1-38" href="#__codelineno-1-38"></a>variable<span class="w"> </span><span class="s2">&quot;psql_admin_password&quot;</span><span class="w"> </span><span class="o">{</span>
+</span><span id="__span-1-39"><a id="__codelineno-1-39" name="__codelineno-1-39" href="#__codelineno-1-39"></a><span class="w">  </span><span class="nv">description</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;(Optional) Admin password of the PostgreSQL server&quot;</span>
+</span><span id="__span-1-40"><a id="__codelineno-1-40" name="__codelineno-1-40" href="#__codelineno-1-40"></a><span class="w">  </span><span class="nb">type</span><span class="w">        </span><span class="o">=</span><span class="w"> </span>string
+</span><span id="__span-1-41"><a id="__codelineno-1-41" name="__codelineno-1-41" href="#__codelineno-1-41"></a><span class="w">  </span><span class="nv">default</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Test1234t&quot;</span>
+</span><span id="__span-1-42"><a id="__codelineno-1-42" name="__codelineno-1-42" href="#__codelineno-1-42"></a><span class="o">}</span>
+</span><span id="__span-1-43"><a id="__codelineno-1-43" name="__codelineno-1-43" href="#__codelineno-1-43"></a>variable<span class="w"> </span><span class="s2">&quot;psql_admin_login&quot;</span><span class="w"> </span><span class="o">{</span>
+</span><span id="__span-1-44"><a id="__codelineno-1-44" name="__codelineno-1-44" href="#__codelineno-1-44"></a><span class="w">  </span><span class="nv">description</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;(Optional) Admin username of the PostgreSQL server&quot;</span>
+</span><span id="__span-1-45"><a id="__codelineno-1-45" name="__codelineno-1-45" href="#__codelineno-1-45"></a><span class="w">  </span><span class="nb">type</span><span class="w">        </span><span class="o">=</span><span class="w"> </span>string
+</span><span id="__span-1-46"><a id="__codelineno-1-46" name="__codelineno-1-46" href="#__codelineno-1-46"></a><span class="w">  </span><span class="nv">default</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;postgres&quot;</span>
+</span><span id="__span-1-47"><a id="__codelineno-1-47" name="__codelineno-1-47" href="#__codelineno-1-47"></a><span class="o">}</span>
+</span><span id="__span-1-48"><a id="__codelineno-1-48" name="__codelineno-1-48" href="#__codelineno-1-48"></a>variable<span class="w"> </span><span class="s2">&quot;psql_version&quot;</span><span class="w"> </span><span class="o">{</span>
+</span><span id="__span-1-49"><a id="__codelineno-1-49" name="__codelineno-1-49" href="#__codelineno-1-49"></a><span class="w">  </span><span class="nv">description</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;(Optional) The version of PostgreSQL Flexible Server to use. Possible values are 11,12, 13, 14 and 15. Required when create_mode is Default.&quot;</span>
+</span><span id="__span-1-50"><a id="__codelineno-1-50" name="__codelineno-1-50" href="#__codelineno-1-50"></a><span class="w">  </span><span class="nb">type</span><span class="w">        </span><span class="o">=</span><span class="w"> </span>string
+</span><span id="__span-1-51"><a id="__codelineno-1-51" name="__codelineno-1-51" href="#__codelineno-1-51"></a><span class="w">  </span><span class="nv">default</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;15&quot;</span>
+</span><span id="__span-1-52"><a id="__codelineno-1-52" name="__codelineno-1-52" href="#__codelineno-1-52"></a><span class="w">  </span>validation<span class="w"> </span><span class="o">{</span>
+</span><span id="__span-1-53"><a id="__codelineno-1-53" name="__codelineno-1-53" href="#__codelineno-1-53"></a><span class="w">    </span><span class="nv">condition</span><span class="w">     </span><span class="o">=</span><span class="w"> </span>contains<span class="o">([</span><span class="s2">&quot;11&quot;</span>,<span class="w"> </span><span class="s2">&quot;12&quot;</span>,<span class="w"> </span><span class="s2">&quot;13&quot;</span>,<span class="w"> </span><span class="s2">&quot;14&quot;</span>,<span class="w"> </span><span class="s2">&quot;15&quot;</span><span class="o">]</span>,<span class="w"> </span>var.psql_version<span class="o">)</span>
+</span><span id="__span-1-54"><a id="__codelineno-1-54" name="__codelineno-1-54" href="#__codelineno-1-54"></a><span class="w">    </span><span class="nv">error_message</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;The value of the version property of the PostgreSQL is invalid.&quot;</span>
+</span><span id="__span-1-55"><a id="__codelineno-1-55" name="__codelineno-1-55" href="#__codelineno-1-55"></a><span class="w">  </span><span class="o">}</span>
+</span><span id="__span-1-56"><a id="__codelineno-1-56" name="__codelineno-1-56" href="#__codelineno-1-56"></a><span class="o">}</span>
+</span><span id="__span-1-57"><a id="__codelineno-1-57" name="__codelineno-1-57" href="#__codelineno-1-57"></a>variable<span class="w"> </span><span class="s2">&quot;psql_storage_mb&quot;</span><span class="w"> </span><span class="o">{</span>
+</span><span id="__span-1-58"><a id="__codelineno-1-58" name="__codelineno-1-58" href="#__codelineno-1-58"></a><span class="w">  </span><span class="nv">description</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;(Optional) The max storage allowed for the PostgreSQL Flexible Server. Possible values are 32768, 65536, 131072, 262144, 524288, 1048576, 2097152, 4193280, 4194304, 8388608, 16777216 and 33553408.&quot;</span>
+</span><span id="__span-1-59"><a id="__codelineno-1-59" name="__codelineno-1-59" href="#__codelineno-1-59"></a><span class="w">  </span><span class="nb">type</span><span class="w">        </span><span class="o">=</span><span class="w"> </span>string
+</span><span id="__span-1-60"><a id="__codelineno-1-60" name="__codelineno-1-60" href="#__codelineno-1-60"></a><span class="w">  </span><span class="nv">default</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;262144&quot;</span>
+</span><span id="__span-1-61"><a id="__codelineno-1-61" name="__codelineno-1-61" href="#__codelineno-1-61"></a><span class="o">}</span>
+</span><span id="__span-1-62"><a id="__codelineno-1-62" name="__codelineno-1-62" href="#__codelineno-1-62"></a>variable<span class="w"> </span><span class="s2">&quot;postgresql_configurations&quot;</span><span class="w"> </span><span class="o">{</span>
+</span><span id="__span-1-63"><a id="__codelineno-1-63" name="__codelineno-1-63" href="#__codelineno-1-63"></a><span class="w">  </span><span class="nv">description</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;PostgreSQL configurations to enable.&quot;</span>
+</span><span id="__span-1-64"><a id="__codelineno-1-64" name="__codelineno-1-64" href="#__codelineno-1-64"></a><span class="w">  </span><span class="nb">type</span><span class="w">        </span><span class="o">=</span><span class="w"> </span>map<span class="o">(</span>string<span class="o">)</span>
+</span><span id="__span-1-65"><a id="__codelineno-1-65" name="__codelineno-1-65" href="#__codelineno-1-65"></a><span class="w">  </span><span class="nv">default</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">{</span>
+</span><span id="__span-1-66"><a id="__codelineno-1-66" name="__codelineno-1-66" href="#__codelineno-1-66"></a><span class="w">    </span><span class="s2">&quot;pgbouncer.enabled&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;true&quot;</span>,
+</span><span id="__span-1-67"><a id="__codelineno-1-67" name="__codelineno-1-67" href="#__codelineno-1-67"></a><span class="w">    </span><span class="s2">&quot;azure.extensions&quot;</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;PG_TRGM&quot;</span>
+</span><span id="__span-1-68"><a id="__codelineno-1-68" name="__codelineno-1-68" href="#__codelineno-1-68"></a><span class="w">  </span><span class="o">}</span>
+</span><span id="__span-1-69"><a id="__codelineno-1-69" name="__codelineno-1-69" href="#__codelineno-1-69"></a><span class="o">}</span>
+</span></code></pre></div>
+<p><em>Variable Definition:</em></p>
+<div class="language-bash highlight"><span class="filename">dev-variables.tfvars</span><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># PostgreSQL</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="nv">psql_rg_name</span><span class="w">                        </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Postgresql&quot;</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="nv">psql_name</span><span class="w">                           </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Postgresql1&quot;</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="nv">psql_sku_name</span><span class="w">                       </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;GP_Standard_D2s_v3&quot;</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="nv">psql_admin_login</span><span class="w">                    </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;postgres&quot;</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="nv">psql_admin_password</span><span class="w">                 </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Test1234t&quot;</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="nv">psql_version</span><span class="w">                        </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;13&quot;</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="nv">psql_storage_mb</span><span class="w">                     </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;262144&quot;</span>
+</span></code></pre></div>
+<h2 id="task-2-create-an-azure-resource-group-for-postgresql">Task-2: Create an Azure resource group for PostgreSQL</h2>
+<p>Create a dedicated Azure Resource Group to logically group and manage the resources related to your PostgreSQL Flexible Server.</p>
+<div class="language-bash highlight"><span class="filename">postgresql.tf</span><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1"># Create an Azure resource group for PostgreSQL</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>resource<span class="w"> </span><span class="s2">&quot;azurerm_resource_group&quot;</span><span class="w"> </span><span class="s2">&quot;rg_psql&quot;</span><span class="w"> </span><span class="o">{</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">  </span><span class="nv">name</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">var</span><span class="p">.rg_prefix</span><span class="si">}</span><span class="s2">-</span><span class="si">${</span><span class="nv">var</span><span class="p">.psql_rg_name</span><span class="si">}</span><span class="s2">-</span><span class="si">${</span><span class="nv">local</span><span class="p">.environment</span><span class="si">}</span><span class="s2">&quot;</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">  </span><span class="nv">location</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>var.psql_location
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">  </span><span class="nv">tags</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>merge<span class="o">(</span>local.default_tags,
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">    </span><span class="o">{</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="w">      </span><span class="s2">&quot;CreatedBy&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Anji.Keesari&quot;</span>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="w">  </span><span class="o">})</span>
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="w">  </span>lifecycle<span class="w"> </span><span class="o">{</span>
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="w">    </span><span class="nv">ignore_changes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">[</span>
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="w">      </span>tags,
+</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="w">    </span><span class="o">]</span>
+</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="w">  </span><span class="o">}</span>
+</span><span id="__span-3-14"><a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a><span class="o">}</span>
+</span></code></pre></div>
+<p>run terraform validate &amp; format</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>terraform<span class="w"> </span>validate
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>terraform<span class="w"> </span>fmt
+</span></code></pre></div>
+<p>run terraform plan &amp; apply</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>terraform<span class="w"> </span>plan<span class="w"> </span>-out<span class="o">=</span>dev-plan<span class="w"> </span>-var-file<span class="o">=</span><span class="s2">&quot;./environments/dev-variables.tfvars&quot;</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>terraform<span class="w"> </span>apply<span class="w"> </span>dev-plan
+</span></code></pre></div>
+<p>Azure PostgreSQL - Flexible Server - resource group</p>
+<p><a href="../images/image-63.jpg" target="_blank"><img alt="Alt text" src="../images/image-63.jpg" style="border: 1px solid black; border-radius: 10px;" /></a></p>
+<h2 id="task-3-create-an-azure-virtual-network">Task-3: Create an Azure Virtual Network</h2>
+<p>Decide whether to use an existing Virtual Network or create a new one. A Virtual Network provides the network infrastructure for PostgreSQL Flexible Server.</p>
+<div class="language-bash highlight"><span class="filename">postgresql.tf</span><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1"># Create spoke virtual network</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>resource<span class="w"> </span><span class="s2">&quot;azurerm_virtual_network&quot;</span><span class="w"> </span><span class="s2">&quot;vnet&quot;</span><span class="w"> </span><span class="o">{</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">  </span><span class="nv">name</span><span class="w">                </span><span class="o">=</span><span class="w"> </span>lower<span class="o">(</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">var</span><span class="p">.vnet_prefix</span><span class="si">}</span><span class="s2">-</span><span class="si">${</span><span class="nv">var</span><span class="p">.spoke_vnet_name</span><span class="si">}</span><span class="s2">-</span><span class="si">${</span><span class="nv">local</span><span class="p">.environment</span><span class="si">}</span><span class="s2">&quot;</span><span class="o">)</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="w">  </span><span class="nv">address_space</span><span class="w">       </span><span class="o">=</span><span class="w"> </span>var.spoke_vnet_address_space
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="w">  </span><span class="nv">resource_group_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>azurerm_resource_group.vnet.name
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="w">  </span><span class="nv">location</span><span class="w">            </span><span class="o">=</span><span class="w"> </span>azurerm_resource_group.vnet.location
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="w">  </span><span class="nv">tags</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>merge<span class="o">(</span>local.default_tags,
+</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="w">    </span><span class="o">{</span>
+</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="w">      </span><span class="s2">&quot;CreatedBy&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Anji.Keesari&quot;</span>
+</span><span id="__span-6-11"><a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a><span class="w">  </span><span class="o">})</span>
+</span><span id="__span-6-12"><a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a><span class="w">  </span>lifecycle<span class="w"> </span><span class="o">{</span>
+</span><span id="__span-6-13"><a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a><span class="w">    </span><span class="nv">ignore_changes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">[</span>
+</span><span id="__span-6-14"><a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a><span class="w">      </span><span class="c1"># tags,</span>
+</span><span id="__span-6-15"><a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a><span class="w">    </span><span class="o">]</span>
+</span><span id="__span-6-16"><a id="__codelineno-6-16" name="__codelineno-6-16" href="#__codelineno-6-16"></a><span class="w">  </span><span class="o">}</span>
+</span><span id="__span-6-17"><a id="__codelineno-6-17" name="__codelineno-6-17" href="#__codelineno-6-17"></a><span class="w">  </span><span class="nv">depends_on</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">[</span>
+</span><span id="__span-6-18"><a id="__codelineno-6-18" name="__codelineno-6-18" href="#__codelineno-6-18"></a><span class="w">    </span>azurerm_resource_group.vnet,
+</span><span id="__span-6-19"><a id="__codelineno-6-19" name="__codelineno-6-19" href="#__codelineno-6-19"></a><span class="w">  </span><span class="o">]</span>
+</span><span id="__span-6-20"><a id="__codelineno-6-20" name="__codelineno-6-20" href="#__codelineno-6-20"></a><span class="o">}</span>
+</span></code></pre></div>
+<p>run terraform validate &amp; format</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>terraform<span class="w"> </span>validate
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>terraform<span class="w"> </span>fmt
+</span></code></pre></div>
+<p>run terraform plan &amp; apply</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>terraform<span class="w"> </span>plan<span class="w"> </span>-out<span class="o">=</span>dev-plan<span class="w"> </span>-var-file<span class="o">=</span><span class="s2">&quot;./environments/dev-variables.tfvars&quot;</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>terraform<span class="w"> </span>apply<span class="w"> </span>dev-plan
+</span></code></pre></div>
+<p>Azure PostgreSQL - Flexible Server - Virtual network</p>
+<p><a href="../images/image-64.jpg" target="_blank"><img alt="Alt text" src="../images/image-64.jpg" style="border: 1px solid black; border-radius: 10px;" /></a></p>
+<h2 id="task-4-create-an-azure-subnet-for-postgresql">Task-4: Create an Azure Subnet for PostgreSQL</h2>
+<p>Create a subnet within the chosen Virtual Network to host your PostgreSQL Flexible Server. This is a dedicated subnet of the network for PostgreSQL Flexible Server..</p>
+<div class="language-bash highlight"><span class="filename">postgresql.tf</span><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>//<span class="w"> </span>Create<span class="w"> </span>a<span class="w"> </span>subnet<span class="w"> </span><span class="k">for</span><span class="w"> </span>PostgreSQL
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>resource<span class="w"> </span><span class="s2">&quot;azurerm_subnet&quot;</span><span class="w"> </span><span class="s2">&quot;psql&quot;</span><span class="w"> </span><span class="o">{</span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="w">  </span><span class="nv">name</span><span class="w">                                          </span><span class="o">=</span><span class="w"> </span>lower<span class="o">(</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">var</span><span class="p">.subnet_prefix</span><span class="si">}</span><span class="s2">-</span><span class="si">${</span><span class="nv">var</span><span class="p">.psql_subnet_name</span><span class="si">}</span><span class="s2">&quot;</span><span class="o">)</span>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="w">  </span><span class="nv">resource_group_name</span><span class="w">                           </span><span class="o">=</span><span class="w"> </span>azurerm_virtual_network.vnet.resource_group_name
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="w">  </span><span class="nv">virtual_network_name</span><span class="w">                          </span><span class="o">=</span><span class="w"> </span>azurerm_virtual_network.vnet.name
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="w">  </span><span class="nv">address_prefixes</span><span class="w">                              </span><span class="o">=</span><span class="w"> </span><span class="o">[</span>var.psql_address_prefixes<span class="o">]</span>
+</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="w">  </span><span class="nv">private_endpoint_network_policies_enabled</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span>
+</span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a><span class="w">  </span><span class="nv">private_link_service_network_policies_enabled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span>
+</span><span id="__span-9-9"><a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a><span class="w">  </span><span class="nv">service_endpoints</span><span class="w">                             </span><span class="o">=</span><span class="w"> </span><span class="o">[</span><span class="s2">&quot;Microsoft.Storage&quot;</span><span class="o">]</span>
+</span><span id="__span-9-10"><a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a><span class="w">  </span>delegation<span class="w"> </span><span class="o">{</span>
+</span><span id="__span-9-11"><a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a><span class="w">    </span><span class="nv">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;fs&quot;</span>
+</span><span id="__span-9-12"><a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a><span class="w">    </span>service_delegation<span class="w"> </span><span class="o">{</span>
+</span><span id="__span-9-13"><a id="__codelineno-9-13" name="__codelineno-9-13" href="#__codelineno-9-13"></a><span class="w">      </span><span class="nv">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Microsoft.DBforPostgreSQL/flexibleServers&quot;</span>
+</span><span id="__span-9-14"><a id="__codelineno-9-14" name="__codelineno-9-14" href="#__codelineno-9-14"></a><span class="w">      </span><span class="nv">actions</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">[</span>
+</span><span id="__span-9-15"><a id="__codelineno-9-15" name="__codelineno-9-15" href="#__codelineno-9-15"></a><span class="w">        </span><span class="s2">&quot;Microsoft.Network/virtualNetworks/subnets/join/action&quot;</span>,
+</span><span id="__span-9-16"><a id="__codelineno-9-16" name="__codelineno-9-16" href="#__codelineno-9-16"></a><span class="w">      </span><span class="o">]</span>
+</span><span id="__span-9-17"><a id="__codelineno-9-17" name="__codelineno-9-17" href="#__codelineno-9-17"></a><span class="w">    </span><span class="o">}</span>
+</span><span id="__span-9-18"><a id="__codelineno-9-18" name="__codelineno-9-18" href="#__codelineno-9-18"></a><span class="w">  </span><span class="o">}</span>
+</span><span id="__span-9-19"><a id="__codelineno-9-19" name="__codelineno-9-19" href="#__codelineno-9-19"></a><span class="w">  </span><span class="nv">depends_on</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">[</span>
+</span><span id="__span-9-20"><a id="__codelineno-9-20" name="__codelineno-9-20" href="#__codelineno-9-20"></a><span class="w">    </span>azurerm_virtual_network.vnet
+</span><span id="__span-9-21"><a id="__codelineno-9-21" name="__codelineno-9-21" href="#__codelineno-9-21"></a><span class="w">  </span><span class="o">]</span>
+</span><span id="__span-9-22"><a id="__codelineno-9-22" name="__codelineno-9-22" href="#__codelineno-9-22"></a><span class="o">}</span>
+</span></code></pre></div>
+<p>run terraform validate &amp; format</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>terraform<span class="w"> </span>validate
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>terraform<span class="w"> </span>fmt
+</span></code></pre></div>
+<p>run terraform plan &amp; apply</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>terraform<span class="w"> </span>plan<span class="w"> </span>-out<span class="o">=</span>dev-plan<span class="w"> </span>-var-file<span class="o">=</span><span class="s2">&quot;./environments/dev-variables.tfvars&quot;</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>terraform<span class="w"> </span>apply<span class="w"> </span>dev-plan
+</span></code></pre></div>
+<p>Azure PostgreSQL - Flexible Server - subnet</p>
+<p><a href="../images/image-65.jpg" target="_blank"><img alt="Alt text" src="../images/image-65.jpg" style="border: 1px solid black; border-radius: 10px;" /></a></p>
+<h2 id="task-5-create-a-private-dns-zone-for-postgresql">Task-5: Create a Private DNS zone for PostgreSQL</h2>
+<p>Azure Private DNS offers a reliable and secure DNS service for your virtual network. It effectively manages and resolves domain names within the virtual network, eliminating the need for a custom DNS solution.</p>
+<p>When utilizing private network access in an Azure virtual network, it is mandatory to provide private DNS zone information for DNS resolution. For the creation of a new Azure Database for PostgreSQL Flexible Server with private network access, private DNS zones must be utilized during the configuration of flexible servers.</p>
+<p>In this lab, we will use terraform to create private DNS zones and incorporate them into the configuration of flexible servers with private access.</p>
+<div class="language-bash highlight"><span class="filename">postgresql.tf</span><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="c1"># Create private DNS zone for PostgreSQL </span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>resource<span class="w"> </span><span class="s2">&quot;azurerm_private_dns_zone&quot;</span><span class="w"> </span><span class="s2">&quot;psql_dns_zone&quot;</span><span class="w"> </span><span class="o">{</span>
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="w">  </span><span class="nv">name</span><span class="w">                </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">var</span><span class="p">.psql_prefix</span><span class="si">}</span><span class="s2">-</span><span class="si">${</span><span class="nv">var</span><span class="p">.psql_name</span><span class="si">}</span><span class="s2">-</span><span class="si">${</span><span class="nv">local</span><span class="p">.environment</span><span class="si">}</span><span class="s2">.private.postgres.database.azure.com&quot;</span>
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="w">  </span><span class="nv">resource_group_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>azurerm_virtual_network.vnet.resource_group_name
+</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a><span class="w">  </span><span class="nv">tags</span><span class="w">                </span><span class="o">=</span><span class="w"> </span>merge<span class="o">(</span>local.default_tags,<span class="w"> </span>var.psql_tags<span class="o">)</span>
+</span><span id="__span-12-6"><a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a><span class="w">  </span>lifecycle<span class="w"> </span><span class="o">{</span>
+</span><span id="__span-12-7"><a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a><span class="w">    </span><span class="nv">ignore_changes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">[</span>
+</span><span id="__span-12-8"><a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a><span class="w">      </span><span class="c1"># tags</span>
+</span><span id="__span-12-9"><a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a><span class="w">    </span><span class="o">]</span>
+</span><span id="__span-12-10"><a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a><span class="w">  </span><span class="o">}</span>
+</span><span id="__span-12-11"><a id="__codelineno-12-11" name="__codelineno-12-11" href="#__codelineno-12-11"></a><span class="w">  </span><span class="nv">depends_on</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">[</span>
+</span><span id="__span-12-12"><a id="__codelineno-12-12" name="__codelineno-12-12" href="#__codelineno-12-12"></a><span class="w">    </span>azurerm_virtual_network.vnet
+</span><span id="__span-12-13"><a id="__codelineno-12-13" name="__codelineno-12-13" href="#__codelineno-12-13"></a><span class="w">  </span><span class="o">]</span>
+</span><span id="__span-12-14"><a id="__codelineno-12-14" name="__codelineno-12-14" href="#__codelineno-12-14"></a><span class="o">}</span>
+</span></code></pre></div>
+<p>run terraform validate &amp; format</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>terraform<span class="w"> </span>validate
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>terraform<span class="w"> </span>fmt
+</span></code></pre></div>
+<p>run terraform plan &amp; apply</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>terraform<span class="w"> </span>plan<span class="w"> </span>-out<span class="o">=</span>dev-plan<span class="w"> </span>-var-file<span class="o">=</span><span class="s2">&quot;./environments/dev-variables.tfvars&quot;</span>
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>terraform<span class="w"> </span>apply<span class="w"> </span>dev-plan
+</span></code></pre></div>
+<p>Azure PostgreSQL - Flexible Server - Private DNS zone</p>
+<p><a href="../images/image-66.jpg" target="_blank"><img alt="Alt text" src="../images/image-66.jpg" style="border: 1px solid black; border-radius: 10px;" /></a></p>
+<h2 id="task-6-associate-postgresql-private-dns-zone-with-virtual-network">Task-6: Associate PostgreSQL Private DNS zone with virtual network</h2>
+<p>Associate the private DNS zone you created with the Virtual Network. This ensures that DNS queries for your PostgreSQL resources are resolved within the network.</p>
+<div class="language-bash highlight"><span class="filename">postgresql.tf</span><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="c1"># Associate PostgreSQL Private DNS zone with virtual network</span>
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>resource<span class="w"> </span><span class="s2">&quot;azurerm_private_dns_zone_virtual_network_link&quot;</span><span class="w"> </span><span class="s2">&quot;psql_dns_zone_vnet_associate&quot;</span><span class="w"> </span><span class="o">{</span>
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="w">  </span><span class="nv">name</span><span class="w">                  </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;link_to_</span><span class="si">${</span><span class="nv">azurerm_virtual_network</span><span class="p">.vnet.name</span><span class="si">}</span><span class="s2">&quot;</span>
+</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span class="w">  </span><span class="nv">resource_group_name</span><span class="w">   </span><span class="o">=</span><span class="w"> </span>azurerm_virtual_network.vnet.resource_group_name
+</span><span id="__span-15-5"><a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a><span class="w">  </span><span class="nv">private_dns_zone_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>azurerm_private_dns_zone.psql_dns_zone.name
+</span><span id="__span-15-6"><a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a><span class="w">  </span><span class="nv">virtual_network_id</span><span class="w">    </span><span class="o">=</span><span class="w"> </span>azurerm_virtual_network.vnet.id
+</span><span id="__span-15-7"><a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a>
+</span><span id="__span-15-8"><a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a><span class="w">  </span><span class="nv">tags</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>merge<span class="o">(</span>local.default_tags,var.psql_tags<span class="o">)</span>
+</span><span id="__span-15-9"><a id="__codelineno-15-9" name="__codelineno-15-9" href="#__codelineno-15-9"></a><span class="w">  </span>lifecycle<span class="w"> </span><span class="o">{</span>
+</span><span id="__span-15-10"><a id="__codelineno-15-10" name="__codelineno-15-10" href="#__codelineno-15-10"></a><span class="w">    </span><span class="nv">ignore_changes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">[</span>
+</span><span id="__span-15-11"><a id="__codelineno-15-11" name="__codelineno-15-11" href="#__codelineno-15-11"></a><span class="w">      </span><span class="c1"># tags</span>
+</span><span id="__span-15-12"><a id="__codelineno-15-12" name="__codelineno-15-12" href="#__codelineno-15-12"></a><span class="w">    </span><span class="o">]</span>
+</span><span id="__span-15-13"><a id="__codelineno-15-13" name="__codelineno-15-13" href="#__codelineno-15-13"></a><span class="w">  </span><span class="o">}</span>
+</span><span id="__span-15-14"><a id="__codelineno-15-14" name="__codelineno-15-14" href="#__codelineno-15-14"></a>
+</span><span id="__span-15-15"><a id="__codelineno-15-15" name="__codelineno-15-15" href="#__codelineno-15-15"></a><span class="w">  </span><span class="nv">depends_on</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">[</span>
+</span><span id="__span-15-16"><a id="__codelineno-15-16" name="__codelineno-15-16" href="#__codelineno-15-16"></a><span class="w">    </span>azurerm_virtual_network.vnet,
+</span><span id="__span-15-17"><a id="__codelineno-15-17" name="__codelineno-15-17" href="#__codelineno-15-17"></a><span class="w">    </span>azurerm_private_dns_zone.psql_dns_zone
+</span><span id="__span-15-18"><a id="__codelineno-15-18" name="__codelineno-15-18" href="#__codelineno-15-18"></a><span class="w">  </span><span class="o">]</span>
+</span><span id="__span-15-19"><a id="__codelineno-15-19" name="__codelineno-15-19" href="#__codelineno-15-19"></a><span class="o">}</span>
+</span></code></pre></div>
+<p>run terraform validate &amp; format</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>terraform<span class="w"> </span>validate
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>terraform<span class="w"> </span>fmt
+</span></code></pre></div>
+<p>run terraform plan &amp; apply</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>terraform<span class="w"> </span>plan<span class="w"> </span>-out<span class="o">=</span>dev-plan<span class="w"> </span>-var-file<span class="o">=</span><span class="s2">&quot;./environments/dev-variables.tfvars&quot;</span>
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>terraform<span class="w"> </span>apply<span class="w"> </span>dev-plan
+</span></code></pre></div>
+<p>Azure PostgreSQL - Flexible Server - virtual_network_link</p>
+<p><a href="../images/image-67.jpg" target="_blank"><img alt="Alt text" src="../images/image-67.jpg" style="border: 1px solid black; border-radius: 10px;" /></a></p>
+<h2 id="task-7-generate-postgresql-admin-random-password-store-in-key-vault">Task-7: Generate PostgreSQL admin random password &amp; store in Key Vault</h2>
+<p>In this task, we will generate a random strong password for the PostgreSQL admin. The password will be securely stored in Azure Key Vault, ensuring that it remains confidential and can be accessed programmatically when needed.</p>
+<div class="language-bash highlight"><span class="filename">postgresql.tf</span><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="c1"># Generate PostgreSQL admin random password</span>
+</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>resource<span class="w"> </span><span class="s2">&quot;random_password&quot;</span><span class="w"> </span><span class="s2">&quot;psql_admin_password&quot;</span><span class="w"> </span><span class="o">{</span>
+</span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a><span class="w">  </span><span class="nv">length</span><span class="w">           </span><span class="o">=</span><span class="w"> </span><span class="m">20</span>
+</span><span id="__span-18-4"><a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a><span class="w">  </span><span class="nv">special</span><span class="w">          </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span>
+</span><span id="__span-18-5"><a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a><span class="w">  </span><span class="nv">lower</span><span class="w">            </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span>
+</span><span id="__span-18-6"><a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a><span class="w">  </span><span class="nv">upper</span><span class="w">            </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span>
+</span><span id="__span-18-7"><a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a><span class="w">  </span><span class="nv">override_special</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;!#</span>$<span class="s2">&quot;</span>
+</span><span id="__span-18-8"><a id="__codelineno-18-8" name="__codelineno-18-8" href="#__codelineno-18-8"></a><span class="o">}</span>
+</span><span id="__span-18-9"><a id="__codelineno-18-9" name="__codelineno-18-9" href="#__codelineno-18-9"></a>
+</span><span id="__span-18-10"><a id="__codelineno-18-10" name="__codelineno-18-10" href="#__codelineno-18-10"></a><span class="c1"># Store PostgreSQL admin password in Azuure Key Vault</span>
+</span><span id="__span-18-11"><a id="__codelineno-18-11" name="__codelineno-18-11" href="#__codelineno-18-11"></a>resource<span class="w"> </span><span class="s2">&quot;azurerm_key_vault_secret&quot;</span><span class="w"> </span><span class="s2">&quot;psql_admin_password&quot;</span><span class="w"> </span><span class="o">{</span>
+</span><span id="__span-18-12"><a id="__codelineno-18-12" name="__codelineno-18-12" href="#__codelineno-18-12"></a><span class="w">  </span><span class="nv">name</span><span class="w">         </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;postgres-db-password&quot;</span>
+</span><span id="__span-18-13"><a id="__codelineno-18-13" name="__codelineno-18-13" href="#__codelineno-18-13"></a><span class="w">  </span><span class="nv">value</span><span class="w">        </span><span class="o">=</span><span class="w"> </span>random_password.psql_admin_password.result
+</span><span id="__span-18-14"><a id="__codelineno-18-14" name="__codelineno-18-14" href="#__codelineno-18-14"></a><span class="w">  </span><span class="nv">key_vault_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>azurerm_key_vault.kv.id
+</span><span id="__span-18-15"><a id="__codelineno-18-15" name="__codelineno-18-15" href="#__codelineno-18-15"></a><span class="w">  </span><span class="nv">tags</span><span class="w">         </span><span class="o">=</span><span class="w"> </span><span class="o">{}</span>
+</span><span id="__span-18-16"><a id="__codelineno-18-16" name="__codelineno-18-16" href="#__codelineno-18-16"></a><span class="w">  </span><span class="nv">depends_on</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">[</span>
+</span><span id="__span-18-17"><a id="__codelineno-18-17" name="__codelineno-18-17" href="#__codelineno-18-17"></a><span class="w">    </span>azurerm_key_vault.kv,
+</span><span id="__span-18-18"><a id="__codelineno-18-18" name="__codelineno-18-18" href="#__codelineno-18-18"></a><span class="w">    </span>random_password.psql_admin_password,
+</span><span id="__span-18-19"><a id="__codelineno-18-19" name="__codelineno-18-19" href="#__codelineno-18-19"></a><span class="w">  </span><span class="o">]</span>
+</span><span id="__span-18-20"><a id="__codelineno-18-20" name="__codelineno-18-20" href="#__codelineno-18-20"></a><span class="o">}</span>
+</span></code></pre></div>
+<p>run terraform validate &amp; format</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>terraform<span class="w"> </span>validate
+</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>terraform<span class="w"> </span>fmt
+</span></code></pre></div>
+<p>run terraform plan &amp; apply</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>terraform<span class="w"> </span>plan<span class="w"> </span>-out<span class="o">=</span>dev-plan<span class="w"> </span>-var-file<span class="o">=</span><span class="s2">&quot;./environments/dev-variables.tfvars&quot;</span>
+</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>terraform<span class="w"> </span>apply<span class="w"> </span>dev-plan
+</span></code></pre></div>
+<p>Azure PostgreSQL - Flexible Server - PostgreSQL admin password</p>
+<p><a href="../images/image-68.jpg" target="_blank"><img alt="Alt text" src="../images/image-68.jpg" style="border: 1px solid black; border-radius: 10px;" /></a></p>
+<h2 id="task-8-create-azure-postgresql-flexible-server-using-terraform">Task-8: Create Azure PostgreSQL - Flexible Server using Terraform</h2>
+<p>Utilize Terraform to deploy your Azure PostgreSQL Flexible Server. This includes specifying server settings, configuration options, and connection details.</p>
+<p><div class="language-bash highlight"><span class="filename">postgresql.tf</span><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="c1"># Create the Azure PostgreSQL - Flexible Server using terraform</span>
+</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>resource<span class="w"> </span><span class="s2">&quot;azurerm_postgresql_flexible_server&quot;</span><span class="w"> </span><span class="s2">&quot;psql&quot;</span><span class="w"> </span><span class="o">{</span>
+</span><span id="__span-21-3"><a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a><span class="w">  </span><span class="nv">name</span><span class="w">                   </span><span class="o">=</span><span class="w"> </span>lower<span class="o">(</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">var</span><span class="p">.psql_prefix</span><span class="si">}</span><span class="s2">-</span><span class="si">${</span><span class="nv">var</span><span class="p">.psql_name</span><span class="si">}</span><span class="s2">-</span><span class="si">${</span><span class="nv">local</span><span class="p">.environment</span><span class="si">}</span><span class="s2">&quot;</span><span class="o">)</span>
+</span><span id="__span-21-4"><a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a><span class="w">  </span><span class="nv">resource_group_name</span><span class="w">    </span><span class="o">=</span><span class="w"> </span>azurerm_resource_group.rg_psql.name
+</span><span id="__span-21-5"><a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a><span class="w">  </span><span class="nv">location</span><span class="w">               </span><span class="o">=</span><span class="w"> </span>azurerm_resource_group.rg_psql.location
+</span><span id="__span-21-6"><a id="__codelineno-21-6" name="__codelineno-21-6" href="#__codelineno-21-6"></a><span class="w">  </span><span class="nv">version</span><span class="w">                </span><span class="o">=</span><span class="w"> </span>var.psql_version
+</span><span id="__span-21-7"><a id="__codelineno-21-7" name="__codelineno-21-7" href="#__codelineno-21-7"></a><span class="w">  </span><span class="nv">delegated_subnet_id</span><span class="w">    </span><span class="o">=</span><span class="w"> </span>azurerm_subnet.psql.id
+</span><span id="__span-21-8"><a id="__codelineno-21-8" name="__codelineno-21-8" href="#__codelineno-21-8"></a><span class="w">  </span><span class="nv">private_dns_zone_id</span><span class="w">    </span><span class="o">=</span><span class="w"> </span>azurerm_private_dns_zone.psql_dns_zone.id
+</span><span id="__span-21-9"><a id="__codelineno-21-9" name="__codelineno-21-9" href="#__codelineno-21-9"></a><span class="w">  </span><span class="nv">administrator_login</span><span class="w">    </span><span class="o">=</span><span class="w"> </span>var.psql_admin_login
+</span><span id="__span-21-10"><a id="__codelineno-21-10" name="__codelineno-21-10" href="#__codelineno-21-10"></a><span class="w">  </span><span class="nv">administrator_password</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>azurerm_key_vault_secret.psql_admin_password.value
+</span><span id="__span-21-11"><a id="__codelineno-21-11" name="__codelineno-21-11" href="#__codelineno-21-11"></a><span class="w">  </span><span class="c1"># zone                    = &quot;1&quot;</span>
+</span><span id="__span-21-12"><a id="__codelineno-21-12" name="__codelineno-21-12" href="#__codelineno-21-12"></a><span class="w">  </span><span class="nv">storage_mb</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>var.psql_storage_mb
+</span><span id="__span-21-13"><a id="__codelineno-21-13" name="__codelineno-21-13" href="#__codelineno-21-13"></a>
+</span><span id="__span-21-14"><a id="__codelineno-21-14" name="__codelineno-21-14" href="#__codelineno-21-14"></a><span class="w">  </span><span class="c1"># Set the backup retention policy to 7 for non-prod, and 30 for prod</span>
+</span><span id="__span-21-15"><a id="__codelineno-21-15" name="__codelineno-21-15" href="#__codelineno-21-15"></a><span class="w">  </span><span class="nv">backup_retention_days</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">7</span>
+</span><span id="__span-21-16"><a id="__codelineno-21-16" name="__codelineno-21-16" href="#__codelineno-21-16"></a>
+</span><span id="__span-21-17"><a id="__codelineno-21-17" name="__codelineno-21-17" href="#__codelineno-21-17"></a><span class="w">  </span><span class="nv">sku_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>var.psql_sku_name
+</span><span id="__span-21-18"><a id="__codelineno-21-18" name="__codelineno-21-18" href="#__codelineno-21-18"></a><span class="w">  </span><span class="nv">depends_on</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">[</span>
+</span><span id="__span-21-19"><a id="__codelineno-21-19" name="__codelineno-21-19" href="#__codelineno-21-19"></a><span class="w">    </span>azurerm_resource_group.rg_psql,
+</span><span id="__span-21-20"><a id="__codelineno-21-20" name="__codelineno-21-20" href="#__codelineno-21-20"></a><span class="w">    </span>azurerm_subnet.psql,
+</span><span id="__span-21-21"><a id="__codelineno-21-21" name="__codelineno-21-21" href="#__codelineno-21-21"></a><span class="w">    </span>azurerm_private_dns_zone.psql_dns_zone,
+</span><span id="__span-21-22"><a id="__codelineno-21-22" name="__codelineno-21-22" href="#__codelineno-21-22"></a><span class="w">    </span>azurerm_key_vault_secret.psql_admin_password
+</span><span id="__span-21-23"><a id="__codelineno-21-23" name="__codelineno-21-23" href="#__codelineno-21-23"></a><span class="w">  </span><span class="o">]</span>
+</span><span id="__span-21-24"><a id="__codelineno-21-24" name="__codelineno-21-24" href="#__codelineno-21-24"></a><span class="w">  </span><span class="nv">tags</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>merge<span class="o">(</span>local.default_tags,<span class="w"> </span>var.psql_tags<span class="o">)</span>
+</span><span id="__span-21-25"><a id="__codelineno-21-25" name="__codelineno-21-25" href="#__codelineno-21-25"></a><span class="w">  </span>lifecycle<span class="w"> </span><span class="o">{</span>
+</span><span id="__span-21-26"><a id="__codelineno-21-26" name="__codelineno-21-26" href="#__codelineno-21-26"></a><span class="w">    </span><span class="nv">ignore_changes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">[</span>
+</span><span id="__span-21-27"><a id="__codelineno-21-27" name="__codelineno-21-27" href="#__codelineno-21-27"></a><span class="w">      </span><span class="c1"># tags,</span>
+</span><span id="__span-21-28"><a id="__codelineno-21-28" name="__codelineno-21-28" href="#__codelineno-21-28"></a><span class="w">      </span><span class="c1"># private_dns_zone_id</span>
+</span><span id="__span-21-29"><a id="__codelineno-21-29" name="__codelineno-21-29" href="#__codelineno-21-29"></a><span class="w">    </span><span class="o">]</span>
+</span><span id="__span-21-30"><a id="__codelineno-21-30" name="__codelineno-21-30" href="#__codelineno-21-30"></a><span class="w">  </span><span class="o">}</span>
+</span><span id="__span-21-31"><a id="__codelineno-21-31" name="__codelineno-21-31" href="#__codelineno-21-31"></a><span class="o">}</span>
+</span></code></pre></div>
+Run Terraform validation and formatting:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>terraform<span class="w"> </span>validate
+</span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>terraform<span class="w"> </span>fmt
+</span></code></pre></div>
+<p>run terraform plan &amp; apply</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>terraform<span class="w"> </span>plan<span class="w"> </span>-out<span class="o">=</span>dev-plan<span class="w"> </span>-var-file<span class="o">=</span><span class="s2">&quot;./environments/dev-variables.tfvars&quot;</span>
+</span><span id="__span-23-2"><a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a>terraform<span class="w"> </span>apply<span class="w"> </span>dev-plan
+</span></code></pre></div>
+<p>Azure PostgreSQL - Flexible Server - Overview blade </p>
+<p><a href="../images/image-69.jpg" target="_blank"><img alt="Alt text" src="../images/image-69.jpg" style="border: 1px solid black; border-radius: 10px;" /></a></p>
+<p>Azure PostgreSQL - Flexible Server - Private DNS Zone</p>
+<p><a href="../images/image-70.jpg" target="_blank"><img alt="Alt text" src="../images/image-70.jpg" style="border: 1px solid black; border-radius: 10px;" /></a></p>
+<h2 id="task-9-configure-diagnostic-settings-for-azure-postgresql-flexible-server">Task-9: Configure Diagnostic Settings for Azure PostgreSQL - Flexible Server</h2>
+<p>Set up diagnostic settings to collect and store logs and metrics from your PostgreSQL Flexible Server. This is crucial for monitoring and troubleshooting.</p>
+<div class="language-bash highlight"><span class="filename">postgresql.tf</span><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="c1"># Create diagnostic settings for PostgreSQL server</span>
+</span><span id="__span-24-2"><a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a>resource<span class="w"> </span><span class="s2">&quot;azurerm_monitor_diagnostic_setting&quot;</span><span class="w"> </span><span class="s2">&quot;diag_psql&quot;</span><span class="w"> </span><span class="o">{</span>
+</span><span id="__span-24-3"><a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a><span class="w">  </span><span class="nv">name</span><span class="w">                       </span><span class="o">=</span><span class="w"> </span>lower<span class="o">(</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">var</span><span class="p">.diag_prefix</span><span class="si">}</span><span class="s2">-</span><span class="si">${</span><span class="nv">azurerm_postgresql_flexible_server</span><span class="p">.psql.name</span><span class="si">}</span><span class="s2">&quot;</span><span class="o">)</span>
+</span><span id="__span-24-4"><a id="__codelineno-24-4" name="__codelineno-24-4" href="#__codelineno-24-4"></a><span class="w">  </span><span class="nv">target_resource_id</span><span class="w">         </span><span class="o">=</span><span class="w"> </span>azurerm_postgresql_flexible_server.psql.id
+</span><span id="__span-24-5"><a id="__codelineno-24-5" name="__codelineno-24-5" href="#__codelineno-24-5"></a><span class="w">  </span><span class="nv">log_analytics_workspace_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>azurerm_log_analytics_workspace.workspace.id
+</span><span id="__span-24-6"><a id="__codelineno-24-6" name="__codelineno-24-6" href="#__codelineno-24-6"></a><span class="w">  </span>enabled_log<span class="w"> </span><span class="o">{</span>
+</span><span id="__span-24-7"><a id="__codelineno-24-7" name="__codelineno-24-7" href="#__codelineno-24-7"></a><span class="w">    </span><span class="nv">category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;PostgreSQLFlexDatabaseXacts&quot;</span>
+</span><span id="__span-24-8"><a id="__codelineno-24-8" name="__codelineno-24-8" href="#__codelineno-24-8"></a>
+</span><span id="__span-24-9"><a id="__codelineno-24-9" name="__codelineno-24-9" href="#__codelineno-24-9"></a><span class="w">    </span>retention_policy<span class="w"> </span><span class="o">{</span>
+</span><span id="__span-24-10"><a id="__codelineno-24-10" name="__codelineno-24-10" href="#__codelineno-24-10"></a><span class="w">      </span><span class="nv">days</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="m">0</span>
+</span><span id="__span-24-11"><a id="__codelineno-24-11" name="__codelineno-24-11" href="#__codelineno-24-11"></a><span class="w">      </span><span class="nv">enabled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span>
+</span><span id="__span-24-12"><a id="__codelineno-24-12" name="__codelineno-24-12" href="#__codelineno-24-12"></a><span class="w">    </span><span class="o">}</span>
+</span><span id="__span-24-13"><a id="__codelineno-24-13" name="__codelineno-24-13" href="#__codelineno-24-13"></a><span class="w">  </span><span class="o">}</span>
+</span><span id="__span-24-14"><a id="__codelineno-24-14" name="__codelineno-24-14" href="#__codelineno-24-14"></a><span class="w">  </span>enabled_log<span class="w"> </span><span class="o">{</span>
+</span><span id="__span-24-15"><a id="__codelineno-24-15" name="__codelineno-24-15" href="#__codelineno-24-15"></a><span class="w">    </span><span class="nv">category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;PostgreSQLFlexQueryStoreRuntime&quot;</span>
+</span><span id="__span-24-16"><a id="__codelineno-24-16" name="__codelineno-24-16" href="#__codelineno-24-16"></a>
+</span><span id="__span-24-17"><a id="__codelineno-24-17" name="__codelineno-24-17" href="#__codelineno-24-17"></a><span class="w">    </span>retention_policy<span class="w"> </span><span class="o">{</span>
+</span><span id="__span-24-18"><a id="__codelineno-24-18" name="__codelineno-24-18" href="#__codelineno-24-18"></a><span class="w">      </span><span class="nv">days</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="m">0</span>
+</span><span id="__span-24-19"><a id="__codelineno-24-19" name="__codelineno-24-19" href="#__codelineno-24-19"></a><span class="w">      </span><span class="nv">enabled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span>
+</span><span id="__span-24-20"><a id="__codelineno-24-20" name="__codelineno-24-20" href="#__codelineno-24-20"></a><span class="w">    </span><span class="o">}</span>
+</span><span id="__span-24-21"><a id="__codelineno-24-21" name="__codelineno-24-21" href="#__codelineno-24-21"></a><span class="w">  </span><span class="o">}</span>
+</span><span id="__span-24-22"><a id="__codelineno-24-22" name="__codelineno-24-22" href="#__codelineno-24-22"></a><span class="w">  </span>enabled_log<span class="w"> </span><span class="o">{</span>
+</span><span id="__span-24-23"><a id="__codelineno-24-23" name="__codelineno-24-23" href="#__codelineno-24-23"></a><span class="w">    </span><span class="nv">category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;PostgreSQLFlexQueryStoreWaitStats&quot;</span>
+</span><span id="__span-24-24"><a id="__codelineno-24-24" name="__codelineno-24-24" href="#__codelineno-24-24"></a>
+</span><span id="__span-24-25"><a id="__codelineno-24-25" name="__codelineno-24-25" href="#__codelineno-24-25"></a><span class="w">    </span>retention_policy<span class="w"> </span><span class="o">{</span>
+</span><span id="__span-24-26"><a id="__codelineno-24-26" name="__codelineno-24-26" href="#__codelineno-24-26"></a><span class="w">      </span><span class="nv">days</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="m">0</span>
+</span><span id="__span-24-27"><a id="__codelineno-24-27" name="__codelineno-24-27" href="#__codelineno-24-27"></a><span class="w">      </span><span class="nv">enabled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span>
+</span><span id="__span-24-28"><a id="__codelineno-24-28" name="__codelineno-24-28" href="#__codelineno-24-28"></a><span class="w">    </span><span class="o">}</span>
+</span><span id="__span-24-29"><a id="__codelineno-24-29" name="__codelineno-24-29" href="#__codelineno-24-29"></a><span class="w">  </span><span class="o">}</span>
+</span><span id="__span-24-30"><a id="__codelineno-24-30" name="__codelineno-24-30" href="#__codelineno-24-30"></a><span class="w">  </span>enabled_log<span class="w"> </span><span class="o">{</span>
+</span><span id="__span-24-31"><a id="__codelineno-24-31" name="__codelineno-24-31" href="#__codelineno-24-31"></a><span class="w">    </span><span class="nv">category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;PostgreSQLFlexSessions&quot;</span>
+</span><span id="__span-24-32"><a id="__codelineno-24-32" name="__codelineno-24-32" href="#__codelineno-24-32"></a>
+</span><span id="__span-24-33"><a id="__codelineno-24-33" name="__codelineno-24-33" href="#__codelineno-24-33"></a><span class="w">    </span>retention_policy<span class="w"> </span><span class="o">{</span>
+</span><span id="__span-24-34"><a id="__codelineno-24-34" name="__codelineno-24-34" href="#__codelineno-24-34"></a><span class="w">      </span><span class="nv">days</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="m">0</span>
+</span><span id="__span-24-35"><a id="__codelineno-24-35" name="__codelineno-24-35" href="#__codelineno-24-35"></a><span class="w">      </span><span class="nv">enabled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span>
+</span><span id="__span-24-36"><a id="__codelineno-24-36" name="__codelineno-24-36" href="#__codelineno-24-36"></a><span class="w">    </span><span class="o">}</span>
+</span><span id="__span-24-37"><a id="__codelineno-24-37" name="__codelineno-24-37" href="#__codelineno-24-37"></a><span class="w">  </span><span class="o">}</span>
+</span><span id="__span-24-38"><a id="__codelineno-24-38" name="__codelineno-24-38" href="#__codelineno-24-38"></a><span class="w">  </span>enabled_log<span class="w"> </span><span class="o">{</span>
+</span><span id="__span-24-39"><a id="__codelineno-24-39" name="__codelineno-24-39" href="#__codelineno-24-39"></a><span class="w">    </span><span class="nv">category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;PostgreSQLFlexTableStats&quot;</span>
+</span><span id="__span-24-40"><a id="__codelineno-24-40" name="__codelineno-24-40" href="#__codelineno-24-40"></a>
+</span><span id="__span-24-41"><a id="__codelineno-24-41" name="__codelineno-24-41" href="#__codelineno-24-41"></a><span class="w">    </span>retention_policy<span class="w"> </span><span class="o">{</span>
+</span><span id="__span-24-42"><a id="__codelineno-24-42" name="__codelineno-24-42" href="#__codelineno-24-42"></a><span class="w">      </span><span class="nv">days</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="m">0</span>
+</span><span id="__span-24-43"><a id="__codelineno-24-43" name="__codelineno-24-43" href="#__codelineno-24-43"></a><span class="w">      </span><span class="nv">enabled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span>
+</span><span id="__span-24-44"><a id="__codelineno-24-44" name="__codelineno-24-44" href="#__codelineno-24-44"></a><span class="w">    </span><span class="o">}</span>
+</span><span id="__span-24-45"><a id="__codelineno-24-45" name="__codelineno-24-45" href="#__codelineno-24-45"></a><span class="w">  </span><span class="o">}</span>
+</span><span id="__span-24-46"><a id="__codelineno-24-46" name="__codelineno-24-46" href="#__codelineno-24-46"></a><span class="w">  </span>enabled_log<span class="w"> </span><span class="o">{</span>
+</span><span id="__span-24-47"><a id="__codelineno-24-47" name="__codelineno-24-47" href="#__codelineno-24-47"></a><span class="w">    </span><span class="nv">category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;PostgreSQLLogs&quot;</span>
+</span><span id="__span-24-48"><a id="__codelineno-24-48" name="__codelineno-24-48" href="#__codelineno-24-48"></a>
+</span><span id="__span-24-49"><a id="__codelineno-24-49" name="__codelineno-24-49" href="#__codelineno-24-49"></a><span class="w">    </span>retention_policy<span class="w"> </span><span class="o">{</span>
+</span><span id="__span-24-50"><a id="__codelineno-24-50" name="__codelineno-24-50" href="#__codelineno-24-50"></a><span class="w">      </span><span class="nv">days</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="m">0</span>
+</span><span id="__span-24-51"><a id="__codelineno-24-51" name="__codelineno-24-51" href="#__codelineno-24-51"></a><span class="w">      </span><span class="nv">enabled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span>
+</span><span id="__span-24-52"><a id="__codelineno-24-52" name="__codelineno-24-52" href="#__codelineno-24-52"></a><span class="w">    </span><span class="o">}</span>
+</span><span id="__span-24-53"><a id="__codelineno-24-53" name="__codelineno-24-53" href="#__codelineno-24-53"></a><span class="w">  </span><span class="o">}</span>
+</span><span id="__span-24-54"><a id="__codelineno-24-54" name="__codelineno-24-54" href="#__codelineno-24-54"></a><span class="w">  </span>metric<span class="w"> </span><span class="o">{</span>
+</span><span id="__span-24-55"><a id="__codelineno-24-55" name="__codelineno-24-55" href="#__codelineno-24-55"></a><span class="w">    </span><span class="nv">category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;AllMetrics&quot;</span>
+</span><span id="__span-24-56"><a id="__codelineno-24-56" name="__codelineno-24-56" href="#__codelineno-24-56"></a><span class="w">    </span><span class="nv">enabled</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span>
+</span><span id="__span-24-57"><a id="__codelineno-24-57" name="__codelineno-24-57" href="#__codelineno-24-57"></a>
+</span><span id="__span-24-58"><a id="__codelineno-24-58" name="__codelineno-24-58" href="#__codelineno-24-58"></a><span class="w">    </span>retention_policy<span class="w"> </span><span class="o">{</span>
+</span><span id="__span-24-59"><a id="__codelineno-24-59" name="__codelineno-24-59" href="#__codelineno-24-59"></a><span class="w">      </span><span class="nv">days</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="m">0</span>
+</span><span id="__span-24-60"><a id="__codelineno-24-60" name="__codelineno-24-60" href="#__codelineno-24-60"></a><span class="w">      </span><span class="nv">enabled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span>
+</span><span id="__span-24-61"><a id="__codelineno-24-61" name="__codelineno-24-61" href="#__codelineno-24-61"></a><span class="w">    </span><span class="o">}</span>
+</span><span id="__span-24-62"><a id="__codelineno-24-62" name="__codelineno-24-62" href="#__codelineno-24-62"></a><span class="w">  </span><span class="o">}</span>
+</span><span id="__span-24-63"><a id="__codelineno-24-63" name="__codelineno-24-63" href="#__codelineno-24-63"></a><span class="w">  </span>lifecycle<span class="w"> </span><span class="o">{</span>
+</span><span id="__span-24-64"><a id="__codelineno-24-64" name="__codelineno-24-64" href="#__codelineno-24-64"></a><span class="w">    </span><span class="nv">ignore_changes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">[</span>
+</span><span id="__span-24-65"><a id="__codelineno-24-65" name="__codelineno-24-65" href="#__codelineno-24-65"></a><span class="w">      </span><span class="c1"># log</span>
+</span><span id="__span-24-66"><a id="__codelineno-24-66" name="__codelineno-24-66" href="#__codelineno-24-66"></a><span class="w">    </span><span class="o">]</span>
+</span><span id="__span-24-67"><a id="__codelineno-24-67" name="__codelineno-24-67" href="#__codelineno-24-67"></a><span class="w">  </span><span class="o">}</span>
+</span><span id="__span-24-68"><a id="__codelineno-24-68" name="__codelineno-24-68" href="#__codelineno-24-68"></a><span class="w">  </span><span class="nv">depends_on</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">[</span>
+</span><span id="__span-24-69"><a id="__codelineno-24-69" name="__codelineno-24-69" href="#__codelineno-24-69"></a><span class="w">    </span>azurerm_postgresql_flexible_server.psql,
+</span><span id="__span-24-70"><a id="__codelineno-24-70" name="__codelineno-24-70" href="#__codelineno-24-70"></a><span class="w">    </span>azurerm_log_analytics_workspace.workspace
+</span><span id="__span-24-71"><a id="__codelineno-24-71" name="__codelineno-24-71" href="#__codelineno-24-71"></a><span class="w">  </span><span class="o">]</span>
+</span><span id="__span-24-72"><a id="__codelineno-24-72" name="__codelineno-24-72" href="#__codelineno-24-72"></a><span class="o">}</span>
+</span></code></pre></div>
+<p>run terraform validate &amp; format</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>terraform<span class="w"> </span>validate
+</span><span id="__span-25-2"><a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a>terraform<span class="w"> </span>fmt
+</span></code></pre></div>
+<p>run terraform plan &amp; apply</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a>terraform<span class="w"> </span>plan<span class="w"> </span>-out<span class="o">=</span>dev-plan<span class="w"> </span>-var-file<span class="o">=</span><span class="s2">&quot;./environments/dev-variables.tfvars&quot;</span>
+</span><span id="__span-26-2"><a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a>terraform<span class="w"> </span>apply<span class="w"> </span>dev-plan
+</span></code></pre></div>
+<p>Azure PostgreSQL - Flexible Server - Diagnostic Settings from left nav</p>
+<p><a href="../images/image-70.jpg" target="_blank"><img alt="Alt text" src="../images/image-70.jpg" style="border: 1px solid black; border-radius: 10px;" /></a></p>
+<h2 id="task-10-set-a-user-or-group-as-the-ad-administrator-for-a-postgresql-flexible-server">Task-10: Set a user or group as the AD administrator for a PostgreSQL Flexible Server</h2>
+<p>Specify an Azure AD user or group as the administrator for your PostgreSQL Flexible Server, allowing them to manage the server.</p>
+<p><div class="language-bash highlight"><span class="filename">postgresql.tf</span><pre><span></span><code><span id="__span-27-1"><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="c1"># Set a user or group as the AD administrator for a PostgreSQL Flexible Server.</span>
+</span><span id="__span-27-2"><a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a>data<span class="w"> </span><span class="s2">&quot;azuread_group&quot;</span><span class="w"> </span><span class="s2">&quot;azuread_psql_admin_group&quot;</span><span class="w"> </span><span class="o">{</span>
+</span><span id="__span-27-3"><a id="__codelineno-27-3" name="__codelineno-27-3" href="#__codelineno-27-3"></a><span class="w">  </span><span class="nv">display_name</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;psql-admin-group&quot;</span>
+</span><span id="__span-27-4"><a id="__codelineno-27-4" name="__codelineno-27-4" href="#__codelineno-27-4"></a><span class="w">  </span><span class="nv">security_enabled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span>
+</span><span id="__span-27-5"><a id="__codelineno-27-5" name="__codelineno-27-5" href="#__codelineno-27-5"></a><span class="o">}</span>
+</span><span id="__span-27-6"><a id="__codelineno-27-6" name="__codelineno-27-6" href="#__codelineno-27-6"></a>resource<span class="w"> </span><span class="s2">&quot;azurerm_postgresql_flexible_server_active_directory_administrator&quot;</span><span class="w"> </span><span class="s2">&quot;psql&quot;</span><span class="w"> </span><span class="o">{</span>
+</span><span id="__span-27-7"><a id="__codelineno-27-7" name="__codelineno-27-7" href="#__codelineno-27-7"></a><span class="w">  </span><span class="nv">server_name</span><span class="w">         </span><span class="o">=</span><span class="w"> </span>azurerm_postgresql_flexible_server.psql.name
+</span><span id="__span-27-8"><a id="__codelineno-27-8" name="__codelineno-27-8" href="#__codelineno-27-8"></a><span class="w">  </span><span class="nv">resource_group_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>azurerm_resource_group.rg_psql.name
+</span><span id="__span-27-9"><a id="__codelineno-27-9" name="__codelineno-27-9" href="#__codelineno-27-9"></a><span class="w">  </span><span class="nv">tenant_id</span><span class="w">           </span><span class="o">=</span><span class="w"> </span>data.azurerm_client_config.current.tenant_id
+</span><span id="__span-27-10"><a id="__codelineno-27-10" name="__codelineno-27-10" href="#__codelineno-27-10"></a><span class="w">  </span><span class="nv">object_id</span><span class="w">           </span><span class="o">=</span><span class="w"> </span>data.azuread_group.azuread_psql_admin_group.object_id
+</span><span id="__span-27-11"><a id="__codelineno-27-11" name="__codelineno-27-11" href="#__codelineno-27-11"></a><span class="w">  </span><span class="nv">principal_name</span><span class="w">      </span><span class="o">=</span><span class="w"> </span>data.azuread_group.azuread_psql_admin_group.display_name
+</span><span id="__span-27-12"><a id="__codelineno-27-12" name="__codelineno-27-12" href="#__codelineno-27-12"></a><span class="w">  </span><span class="nv">principal_type</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Group&quot;</span>
+</span><span id="__span-27-13"><a id="__codelineno-27-13" name="__codelineno-27-13" href="#__codelineno-27-13"></a><span class="o">}</span>
+</span></code></pre></div>
+run terraform validate &amp; format</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-28-1"><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a>terraform<span class="w"> </span>validate
+</span><span id="__span-28-2"><a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a>terraform<span class="w"> </span>fmt
+</span></code></pre></div>
+<p>run terraform plan &amp; apply</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-29-1"><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a>terraform<span class="w"> </span>plan<span class="w"> </span>-out<span class="o">=</span>dev-plan<span class="w"> </span>-var-file<span class="o">=</span><span class="s2">&quot;./environments/dev-variables.tfvars&quot;</span>
+</span><span id="__span-29-2"><a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a>terraform<span class="w"> </span>apply<span class="w"> </span>dev-plan
+</span></code></pre></div>
+<p>Azure PostgreSQL - Flexible Server - AD administrator </p>
+<p><a href="../images/image-72.jpg" target="_blank"><img alt="Alt text" src="../images/image-72.jpg" style="border: 1px solid black; border-radius: 10px;" /></a></p>
+<h2 id="task-11-create-new-databases-in-postgresql-server">Task-11: Create new Databases in PostgreSQL Server</h2>
+<p>Use Terraform to create new databases within your PostgreSQL Flexible Server, providing segregated spaces for each database</p>
+<p><div class="language-bash highlight"><span class="filename">postgresql.tf</span><pre><span></span><code><span id="__span-30-1"><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a><span class="c1"># create databases in PostgreSQL Server</span>
+</span><span id="__span-30-2"><a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a>variable<span class="w"> </span><span class="s2">&quot;database_names&quot;</span><span class="w"> </span><span class="o">{</span>
+</span><span id="__span-30-3"><a id="__codelineno-30-3" name="__codelineno-30-3" href="#__codelineno-30-3"></a><span class="w">  </span><span class="nb">type</span><span class="w">    </span><span class="o">=</span><span class="w"> </span>list<span class="o">(</span>string<span class="o">)</span>
+</span><span id="__span-30-4"><a id="__codelineno-30-4" name="__codelineno-30-4" href="#__codelineno-30-4"></a><span class="w">  </span><span class="nv">default</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">[</span><span class="s2">&quot;database1&quot;</span>,<span class="w"> </span><span class="s2">&quot;database2&quot;</span>,<span class="w"> </span><span class="s2">&quot;database3&quot;</span><span class="o">]</span>
+</span><span id="__span-30-5"><a id="__codelineno-30-5" name="__codelineno-30-5" href="#__codelineno-30-5"></a><span class="o">}</span>
+</span><span id="__span-30-6"><a id="__codelineno-30-6" name="__codelineno-30-6" href="#__codelineno-30-6"></a>
+</span><span id="__span-30-7"><a id="__codelineno-30-7" name="__codelineno-30-7" href="#__codelineno-30-7"></a>resource<span class="w"> </span><span class="s2">&quot;azurerm_postgresql_flexible_server_database&quot;</span><span class="w"> </span><span class="s2">&quot;psql_db&quot;</span><span class="w"> </span><span class="o">{</span>
+</span><span id="__span-30-8"><a id="__codelineno-30-8" name="__codelineno-30-8" href="#__codelineno-30-8"></a><span class="w">  </span><span class="nv">for_each</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="o">{</span><span class="w"> </span><span class="k">for</span><span class="w"> </span>name<span class="w"> </span><span class="k">in</span><span class="w"> </span>var.database_names<span class="w"> </span>:<span class="w"> </span><span class="nv">name</span><span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span>name<span class="w"> </span><span class="o">}</span>
+</span><span id="__span-30-9"><a id="__codelineno-30-9" name="__codelineno-30-9" href="#__codelineno-30-9"></a><span class="w">  </span><span class="nv">name</span><span class="w">      </span><span class="o">=</span><span class="w"> </span>each.key
+</span><span id="__span-30-10"><a id="__codelineno-30-10" name="__codelineno-30-10" href="#__codelineno-30-10"></a><span class="w">  </span><span class="nv">server_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>azurerm_postgresql_flexible_server.psql.id
+</span><span id="__span-30-11"><a id="__codelineno-30-11" name="__codelineno-30-11" href="#__codelineno-30-11"></a><span class="w">  </span><span class="nv">charset</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;utf8&quot;</span>
+</span><span id="__span-30-12"><a id="__codelineno-30-12" name="__codelineno-30-12" href="#__codelineno-30-12"></a><span class="w">  </span><span class="nv">collation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;en_US.utf8&quot;</span>
+</span><span id="__span-30-13"><a id="__codelineno-30-13" name="__codelineno-30-13" href="#__codelineno-30-13"></a><span class="w">  </span><span class="nv">depends_on</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">[</span>
+</span><span id="__span-30-14"><a id="__codelineno-30-14" name="__codelineno-30-14" href="#__codelineno-30-14"></a><span class="w">    </span>azurerm_postgresql_flexible_server.psql
+</span><span id="__span-30-15"><a id="__codelineno-30-15" name="__codelineno-30-15" href="#__codelineno-30-15"></a><span class="w">  </span><span class="o">]</span>
+</span><span id="__span-30-16"><a id="__codelineno-30-16" name="__codelineno-30-16" href="#__codelineno-30-16"></a><span class="o">}</span>
+</span></code></pre></div>
+run terraform validate &amp; format</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-31-1"><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a>terraform<span class="w"> </span>validate
+</span><span id="__span-31-2"><a id="__codelineno-31-2" name="__codelineno-31-2" href="#__codelineno-31-2"></a>terraform<span class="w"> </span>fmt
+</span></code></pre></div>
+<p>run terraform plan &amp; apply</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-32-1"><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a>terraform<span class="w"> </span>plan<span class="w"> </span>-out<span class="o">=</span>dev-plan<span class="w"> </span>-var-file<span class="o">=</span><span class="s2">&quot;./environments/dev-variables.tfvars&quot;</span>
+</span><span id="__span-32-2"><a id="__codelineno-32-2" name="__codelineno-32-2" href="#__codelineno-32-2"></a>terraform<span class="w"> </span>apply<span class="w"> </span>dev-plan
+</span></code></pre></div>
+<p>Azure PostgreSQL - Flexible Server - Databases</p>
+<p><a href="../images/image-73.jpg" target="_blank"><img alt="Alt text" src="../images/image-73.jpg" style="border: 1px solid black; border-radius: 10px;" /></a></p>
+<h2 id="task-12-create-ad-groups-for-database-access">Task-12: Create AD groups for database access</h2>
+<p>Establish Azure AD groups to manage access to your databases. This enhances security and simplifies permissions management.</p>
+<p><div class="language-bash highlight"><span class="filename">postgresql.tf</span><pre><span></span><code><span id="__span-33-1"><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a><span class="c1"># Create azure ad groups for database access</span>
+</span><span id="__span-33-2"><a id="__codelineno-33-2" name="__codelineno-33-2" href="#__codelineno-33-2"></a>resource<span class="w"> </span><span class="s2">&quot;azuread_group&quot;</span><span class="w"> </span><span class="s2">&quot;psql_ad_group&quot;</span><span class="w"> </span><span class="o">{</span>
+</span><span id="__span-33-3"><a id="__codelineno-33-3" name="__codelineno-33-3" href="#__codelineno-33-3"></a><span class="w">  </span><span class="nv">for_each</span><span class="w">         </span><span class="o">=</span><span class="w"> </span>toset<span class="o">([</span><span class="s2">&quot;readonly&quot;</span>,<span class="w"> </span><span class="s2">&quot;readwrite&quot;</span>,<span class="w"> </span><span class="s2">&quot;administrators&quot;</span><span class="o">])</span>
+</span><span id="__span-33-4"><a id="__codelineno-33-4" name="__codelineno-33-4" href="#__codelineno-33-4"></a><span class="w">  </span><span class="nv">display_name</span><span class="w">     </span><span class="o">=</span><span class="w"> </span>lower<span class="o">(</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">azurerm_postgresql_flexible_server</span><span class="p">.psql.name</span><span class="si">}</span><span class="s2">-</span><span class="si">${</span><span class="nv">each</span><span class="p">.key</span><span class="si">}</span><span class="s2">-</span><span class="si">${</span><span class="nv">local</span><span class="p">.environment</span><span class="si">}</span><span class="s2">&quot;</span><span class="o">)</span>
+</span><span id="__span-33-5"><a id="__codelineno-33-5" name="__codelineno-33-5" href="#__codelineno-33-5"></a><span class="w">  </span><span class="nv">owners</span><span class="w">           </span><span class="o">=</span><span class="w"> </span><span class="o">[</span>data.azurerm_client_config.current.object_id<span class="o">]</span>
+</span><span id="__span-33-6"><a id="__codelineno-33-6" name="__codelineno-33-6" href="#__codelineno-33-6"></a><span class="w">  </span><span class="nv">security_enabled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span>
+</span><span id="__span-33-7"><a id="__codelineno-33-7" name="__codelineno-33-7" href="#__codelineno-33-7"></a>
+</span><span id="__span-33-8"><a id="__codelineno-33-8" name="__codelineno-33-8" href="#__codelineno-33-8"></a><span class="w">  </span>lifecycle<span class="w"> </span><span class="o">{</span>
+</span><span id="__span-33-9"><a id="__codelineno-33-9" name="__codelineno-33-9" href="#__codelineno-33-9"></a><span class="w">    </span><span class="nv">ignore_changes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">[</span>owners<span class="o">]</span>
+</span><span id="__span-33-10"><a id="__codelineno-33-10" name="__codelineno-33-10" href="#__codelineno-33-10"></a><span class="w">  </span><span class="o">}</span>
+</span><span id="__span-33-11"><a id="__codelineno-33-11" name="__codelineno-33-11" href="#__codelineno-33-11"></a><span class="o">}</span>
+</span></code></pre></div>
+run terraform validate &amp; format</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-34-1"><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a>terraform<span class="w"> </span>validate
+</span><span id="__span-34-2"><a id="__codelineno-34-2" name="__codelineno-34-2" href="#__codelineno-34-2"></a>terraform<span class="w"> </span>fmt
+</span></code></pre></div>
+<p>run terraform plan &amp; apply</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-35-1"><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a>terraform<span class="w"> </span>plan<span class="w"> </span>-out<span class="o">=</span>dev-plan<span class="w"> </span>-var-file<span class="o">=</span><span class="s2">&quot;./environments/dev-variables.tfvars&quot;</span>
+</span><span id="__span-35-2"><a id="__codelineno-35-2" name="__codelineno-35-2" href="#__codelineno-35-2"></a>terraform<span class="w"> </span>apply<span class="w"> </span>dev-plan
+</span></code></pre></div>
+<h2 id="reference">Reference</h2>
+<ul>
+<li><a href="https://learn.microsoft.com/en-us/azure/postgresql/" target="_blank">Microsoft MSDN - Azure Database for PostgreSQL documentation</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/aks/concepts-network" target="_blank">Microsoft MSDN - Deploy a PostgreSQL Flexible Server Database using Terraform</a></li>
+<li><a href="https://azure.microsoft.com/en-us/pricing/details/postgresql/flexible-server/" target="_blank">Microsoft MSDN - Azure Database for PostgreSQL pricing</a></li>
+<li><a href="https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/resource_group" target="_blank">Terraform Registry - azurerm_resource_group</a></li>
+<li><a href="https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/virtual_network" target="_blank">Terraform Registry - azurerm_virtual_network</a></li>
+<li><a href="https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/subnet" target="_blank">Terraform Registry - azurerm_subnet</a></li>
+<li><a href="https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/private_dns_zone" target="_blank">Terraform Registry - azurerm_private_dns_zone</a></li>
+<li><a href="https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/private_dns_zone_virtual_network_link" target="_blank">Terraform Registry - azurerm_private_dns_zone_virtual_network_link</a></li>
+<li><a href="https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/password.html" target="_blank">Terraform Registry - random_password </a></li>
+<li><a href="https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/key_vault_secret" target="_blank">Terraform Registry - azurerm_key_vault_secret </a></li>
+<li><a href="https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/postgresql_flexible_server" target="_blank">Terraform Registry - azurerm_postgresql_flexible_server</a></li>
+<li><a href="https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/postgresql_flexible_server_database" target="_blank">Terraform Registry - azurerm_postgresql_flexible_server_database</a></li>
+<li><a href="https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/postgresql_flexible_server_active_directory_administrator" target="_blank">Terraform Registry - azurerm_postgresql_flexible_server_active_directory_administrator</a></li>
+<li><a href="https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/monitor_diagnostic_setting" target="_blank">Terraform Registry - azurerm_monitor_diagnostic_setting</a></li>
+<li><a href="https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/management_lock" target="_blank">Terraform Registry - azurerm_management_lock</a></li>
+<li><a href="https://github.com/Azure/terraform/tree/master/quickstart/201-postgresql-fs-db" target="_blank">Azure Terraform Quickstart/201-postgresql-fs-db</a></li>
+</ul>
+<!-- 
+- https://www.youtube.com/watch?v=fzVROh-xgto
+- https://github.com/claranet/terraform-azurerm-db-postgresql-flexible/blob/master/variables.tf
+ -->
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../11-aks/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Create Azure Kubernetes Service (AKS) using terraform">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Create Azure Kubernetes Service (AKS) using terraform
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../13-key-vault/" class="md-footer__link md-footer__link--next" aria-label="Next: Create Azure Key Vault using Terraform">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Create Azure Key Vault using Terraform
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2024 <a href="https://anjikeesari.com/"  target="_blank" rel="noopener">Anji Keesari</a>
+
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M186.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1M480 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2m-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3m-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://twitter.com" target="_blank" rel="noopener" title="twitter.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://linkedin.com/in" target="_blank" rel="noopener" title="linkedin.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3M135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5m282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://www.instagram.com/" target="_blank" rel="noopener" title="www.instagram.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141m0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7m146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8m76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8M398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.copy", "content.code.annotate", "navigation.indexes", "navigation.footer", "content.tooltips", "navigation.tabs", "navigation.sections", "navigation.expand", "navigation.top", "navigation.instant", "navigation.tracking", "header.autohide", "search.highlight", "search.share", "search.suggest", "toc.follow"], "search": "../../assets/javascripts/workers/search.f8cc74c7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.c8b220af.min.js"></script>
+      
+    
+  </body>
+</html>

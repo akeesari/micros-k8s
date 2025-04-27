@@ -1,0 +1,3676 @@
+<!-- Elements added to main will be displayed on all pages -->
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Build and Deploy Microservices on Kubernetes using ArgoCD & Helm Azure and Azure DevOps Pipelines.">
+      
+      
+        <meta name="author" content="Anji Keesari">
+      
+      
+        <link rel="canonical" href="https://akeesari.github.io/micros-k8s/microservices/0.gettingstarted/">
+      
+      
+        <link rel="prev" href="../../gettingstarted/lab-format/">
+      
+      
+        <link rel="next" href="../0-docker-getting-started/">
+      
+      
+      <link rel="icon" href="../../assets/ak-logo.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.12">
+    
+    
+      
+        <title>Getting Started with Microservices - Microservices with Kubernetes (Developer User Guide)</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.2afb09e1.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function e(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],e("js",new Date),e("config","G-KR7ZFHXJM1"),document.addEventListener("DOMContentLoaded",(function(){document.forms.search&&document.forms.search.query.addEventListener("blur",(function(){this.value&&e("event","search",{search_term:this.value})}));document$.subscribe((function(){var t=document.forms.feedback;if(void 0!==t)for(var a of t.querySelectorAll("[type=submit]"))a.addEventListener("click",(function(a){a.preventDefault();var n=document.location.pathname,d=this.getAttribute("data-md-value");e("event","feedback",{page:n,data:d}),t.firstElementChild.disabled=!0;var r=t.querySelector(".md-feedback__note [data-md-value='"+d+"']");r&&(r.hidden=!1)})),t.hidden=!1})),location$.subscribe((function(t){e("config","G-KR7ZFHXJM1",{page_path:t.pathname})}))}));var t=document.createElement("script");t.async=!0,t.src="https://www.googletagmanager.com/gtag/js?id=G-KR7ZFHXJM1",document.getElementById("__analytics").insertAdjacentElement("afterEnd",t)}</script>
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#getting-started-with-microservices" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Microservices with Kubernetes (Developer User Guide)" class="md-header__button md-logo" aria-label="Microservices with Kubernetes (Developer User Guide)" data-md-component="logo">
+      
+  <img src="../../assets/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Microservices with Kubernetes (Developer User Guide)
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Getting Started with Microservices
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6m0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4M7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../.." class="md-tabs__link">
+          
+  
+  
+    
+  
+  Home
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../gettingstarted/toc/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Getting started
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="./" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Microservices
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../azure/1-iac/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Azure (IaC)
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../kubernetes/0.getting-started/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Kubernetes
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../devops/1-devops-overview/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Azure DevOps
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../argocd/1-argocd-intro/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Argo CD
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../helmchart/1-introduction/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Helm Charts
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Microservices with Kubernetes (Developer User Guide)" class="md-nav__button md-logo" aria-label="Microservices with Kubernetes (Developer User Guide)" data-md-component="logo">
+      
+  <img src="../../assets/logo.png" alt="logo">
+
+    </a>
+    Microservices with Kubernetes (Developer User Guide)
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_1" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../.." class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            Home
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Getting started
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Getting started
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../gettingstarted/toc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Table of Contents
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../gettingstarted/about-author/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    About the Author
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../gettingstarted/acknowledgments/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Acknowledgments
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../gettingstarted/introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Introduction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../gettingstarted/lab-format/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lab Format
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    Microservices
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Microservices
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Getting Started with Microservices
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Getting Started with Microservices
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Overview
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#objective" class="md-nav__link">
+    <span class="md-ellipsis">
+      Objective
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-are-microservices" class="md-nav__link">
+    <span class="md-ellipsis">
+      What are Microservices?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#microservices-vs-monolithic-architectures" class="md-nav__link">
+    <span class="md-ellipsis">
+      Microservices vs Monolithic Architectures
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#advantages-of-microservices" class="md-nav__link">
+    <span class="md-ellipsis">
+      Advantages of Microservices
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#challenges-and-considerations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Challenges and Considerations
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-technologies-and-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Technologies and Tools
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#microservices-communication" class="md-nav__link">
+    <span class="md-ellipsis">
+      Microservices Communication
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#domain-driven-design-ddd" class="md-nav__link">
+    <span class="md-ellipsis">
+      Domain-Driven Design (DDD)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#task-1-identify-microservices-for-the-book" class="md-nav__link">
+    <span class="md-ellipsis">
+      Task-1: Identify Microservices for the book
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#task-2-identify-the-list-of-git-repositories-needed" class="md-nav__link">
+    <span class="md-ellipsis">
+      Task-2: Identify the List of Git Repositories Needed
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#task-3-create-new-azure-devops-organization" class="md-nav__link">
+    <span class="md-ellipsis">
+      Task-3: Create new Azure DevOps Organization
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#task-4-create-new-azure-devops-project" class="md-nav__link">
+    <span class="md-ellipsis">
+      Task-4: Create new Azure DevOps Project
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    <span class="md-ellipsis">
+      References
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../0-docker-getting-started/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Getting Started with Docker
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1.aspnet-api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Containerize a .NET Core Web API
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2.node-api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Containerize a Node.js API
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../3.aspnet-app/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Containerize a .NET Core MVC Application
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../4.react-app/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Containerize a React.js Application
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../6.sqlserver-db/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Create Your First Database with SQL server
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../7.postgresql-db/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Create Your Second Database with PostgreSQL
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../8.keycloak/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Running Keycloak application in a Docker Container
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../9.drupal/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Running Drupal Website in a Docker Container
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Azure (IaC)
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Azure (IaC)
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../azure/1-iac/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Infrastructure as Code (IaC)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../azure/1-microservices-architecture-on-aks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Microservices Architecture on AKS
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../azure/3-azure-account-subscription/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Azure Account & Subscription Management
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../azure/6-tf-foundation-1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Setup Terraform Foundation Part-1
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../azure/6-tf-foundation-2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Setup Terraform Foundation Part-2
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../azure/7-log-analytics-workspace/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Create Log Analytics Workspace using terraform
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../azure/8-vnet/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Create Virtual Network using terraform
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../azure/9-acr/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Create Azure Container Registry (ACR) using terraform
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../azure/10-app-gateway/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Create Azure Application Gateway using terraform
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../azure/11-aks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Create Azure Kubernetes Service (AKS) using terraform
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../azure/12-postgresql/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Create Azure PostgreSQL - Flexible Server using terraform
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../azure/13-key-vault/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Create Azure Key Vault using Terraform
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../azure/14-redis-cache/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Create Azure Cache for Redis using Terraform
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../azure/15-storage-account/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Create Storage Account using Terraform
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../azure/16-event-hubs-part-1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Azure Event Hubs Introduction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../azure/16-event-hubs-part-2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Create Azure Event Hubs using Terraform
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../azure/17-cdn-frontdoor/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Create Front Door and CDN profile using Terraform
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Kubernetes
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Kubernetes
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../kubernetes/0.getting-started/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Getting Started with Docker Container
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../kubernetes/1-prepare-app/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Prepare an application for Azure Kubernetes Service (AKS)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../kubernetes/2-deploy-api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Deploying an .NET Core API to Azure Kubernetes Service (AKS)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../kubernetes/2-deploy-app/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Deploying an ASP.NET Core MVC to Azure Kubernetes Service (AKS)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../kubernetes/3-working-with-aks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Working with AKS cluster using kubectl
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../kubernetes/4-ingress-controller-nginx/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Setup NGINX ingress controller in AKS using Terraform
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../kubernetes/4.1-ingress-controller-agic/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Setup Application Gateway ingress controller (AGIC) in AKS using Terraform
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../kubernetes/5-cert-manager/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Setup Cert-Manager in AKS using Terraform
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../kubernetes/5.1-issue-cert/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Issue the Let's Encrypt SSL Certificate to the Website
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../kubernetes/5.2-cert-troubleshooting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Troubleshooting Problems with Let's Encrypt Certificates
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../kubernetes/6-aks-kv-integration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Integrating Azure Key Vault with AKS using Terraform
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../kubernetes/pod-troubleshooting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Kubernetes Pod troubleshooting
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../kubernetes/aks-create-nodepool/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Create a new user node pool in AKS
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../kubernetes/aks-upgrade-nodepool/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Upgrade or Resize node pools in AKS
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5_15" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_15" id="__nav_5_15_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Monitoring
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_15_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_15">
+            <span class="md-nav__icon md-icon"></span>
+            Monitoring
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../kubernetes/monitoring/introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Monitor AKS Cluster Introduction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../kubernetes/monitoring/monitor-workspace/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Create an Azure Monitoring Workspace Using Terraform
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../kubernetes/monitoring/grafana-workspace/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Create an Azure Managed Grafana workspace Using Terraform
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Azure DevOps
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Azure DevOps
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../devops/1-devops-overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Azure DevOps Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../devops/pipelines/1-service-connections/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Create Your First service connection
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../devops/pipelines/2-pipeline-aspnet-api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Create Pipeline for .NET Core Web API
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../devops/pipelines/3-pipeline-aspnet-app/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Create Pipeline for ASP.NET Core MVC Project
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Argo CD
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            Argo CD
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../argocd/1-argocd-intro/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Introduction to Argo CD
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../argocd/2-install-argocd/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Install Argo CD in Kubernetes
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../argocd/3-install-argocd-cli/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Install & Interact with ArgoCD CLI
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../argocd/register-cluster/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Registering an AKS Cluster with Argo CD
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../argocd/deploy-app/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Deploy Your First application with Argo CD
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../argocd/argocd-project/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Create new ArgoCD Project
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../argocd/argocd-repo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Create new Repository in ArgoCD
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Helm Charts
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            Helm Charts
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../helmchart/1-introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Introduction to Helmcharts
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../helmchart/2-create-helm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Create Your First Helmchart
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../helmchart/3-helm-cmds/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Frequently used Helm commands details
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../helmchart/4-helm-microservices/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Create Helmchart for Microservices
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../helmchart/5-install-pgadmin4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Install pgadmin4 in AKS
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../helmchart/6-install-grafana/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Install Grafana in AKS
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../helmchart/7-install-grafana-loki-stack/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Install Grafana Loki-Stack in AKS
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../helmchart/8-install-redis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Install Redis in AKS
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../helmchart/9-install-minio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Install Minio in AKS
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../helmchart/10-install-adcs-issuer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Install ADCS Issuer in AKS
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../helmchart/11-install-jaeger/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Install Jaeger in AKS
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../helmchart/12-install-otel-operator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Install OpenTelemetry Operator in AKS
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Overview
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#objective" class="md-nav__link">
+    <span class="md-ellipsis">
+      Objective
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-are-microservices" class="md-nav__link">
+    <span class="md-ellipsis">
+      What are Microservices?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#microservices-vs-monolithic-architectures" class="md-nav__link">
+    <span class="md-ellipsis">
+      Microservices vs Monolithic Architectures
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#advantages-of-microservices" class="md-nav__link">
+    <span class="md-ellipsis">
+      Advantages of Microservices
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#challenges-and-considerations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Challenges and Considerations
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-technologies-and-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Technologies and Tools
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#microservices-communication" class="md-nav__link">
+    <span class="md-ellipsis">
+      Microservices Communication
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#domain-driven-design-ddd" class="md-nav__link">
+    <span class="md-ellipsis">
+      Domain-Driven Design (DDD)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#task-1-identify-microservices-for-the-book" class="md-nav__link">
+    <span class="md-ellipsis">
+      Task-1: Identify Microservices for the book
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#task-2-identify-the-list-of-git-repositories-needed" class="md-nav__link">
+    <span class="md-ellipsis">
+      Task-2: Identify the List of Git Repositories Needed
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#task-3-create-new-azure-devops-organization" class="md-nav__link">
+    <span class="md-ellipsis">
+      Task-3: Create new Azure DevOps Organization
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#task-4-create-new-azure-devops-project" class="md-nav__link">
+    <span class="md-ellipsis">
+      Task-4: Create new Azure DevOps Project
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    <span class="md-ellipsis">
+      References
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="getting-started-with-microservices">Getting Started with Microservices</h1>
+<h2 id="overview">Overview</h2>
+<p>Welcome to the first chapter of our book. In this chapter, we will begin our journey by understanding microservices architectures and how they are different comparing with traditional monolithic architectures. We'll also learn the advantages of the microservices architectures, including scalability, flexibility, and easier maintenance. we will also learn challenges with microservices and considerations that need to be carefully addressed, key technologies and communication patterns. Finally we will perform four tasks such as identifying list of microservices, git repos needed, create org and project in azure devops to continue our journey in this book.</p>
+<h2 id="objective">Objective</h2>
+<p>In this exercise, our objective is to accomplish and learn the following tasks:</p>
+<ul>
+<li><a href="#what-are-microservices">What are Microservices?</a></li>
+<li><a href="#microservices-vs-monolithic-architectures">Microservices vs Monolithic Architectures</a></li>
+<li><a href="#advantages-of-microservices">Advantages of Microservices</a></li>
+<li><a href="#challenges-and-considerations">Challenges and Considerations</a></li>
+<li><a href="#key-technologies-and-tools">Key Technologies and Tools</a></li>
+<li><a href="#microservices-communication">Microservices Communication</a></li>
+<li><a href="#domain-driven-design-ddd">Domain-Driven Design (DDD)</a></li>
+<li><a href="#task-1-identify-microservices-for-the-book">Task-1: Identify Microservices for the book</a></li>
+<li><a href="#task-2-identify-the-list-of-git-repositories-needed">Task-2: Identify the List of Git Repositories Needed</a></li>
+<li><a href="#task-3-create-new-azure-devops-organization">Task-3: Create new Azure DevOps Organization</a></li>
+<li><a href="#task-4-create-new-azure-devops-project">Task-4: Create new Azure DevOps Project</a></li>
+</ul>
+<h2 id="what-are-microservices">What are Microservices?</h2>
+<p><code>Microservices</code> are architectural style that structures an application as a collection of small, independent, and loosely coupled services. These services, known as microservices  , are designed to be self-contained and focused on specific functions or features of the application. Unlike monolithic applications, where all components are tightly integrated into a single codebase, microservices allow for the decomposition of an application into smaller, manageable parts.</p>
+<h2 id="microservices-vs-monolithic-architectures">Microservices vs Monolithic Architectures</h2>
+<p><em>Monolithic Architectures:</em></p>
+<ul>
+<li>In a monolithic architecture, the entire application is built as a single, unified codebase.</li>
+<li>All components of the application, including user interfaces, business logic, and data access layers, are tightly coupled.</li>
+<li>Scaling a monolithic application typically involves replicating the entire application, even if only specific parts require additional resources.</li>
+<li>Maintenance and updates often require making changes to the entire codebase, making it challenging to isolate and fix issues.</li>
+</ul>
+<p><em>Microservices:</em></p>
+<ul>
+<li>Microservices architecture promotes breaking down the application into smaller, independent services.</li>
+<li>Each microservice is responsible for a specific application's functionality.</li>
+<li>Microservices can be developed, deployed, and scaled independently.</li>
+<li>Updates and maintenance are easier to manage, as changes to one microservice do not impact the entire system.</li>
+</ul>
+<h2 id="advantages-of-microservices">Advantages of Microservices</h2>
+<p>Microservices architecture offers several advantages, including:</p>
+<ul>
+<li>
+<p><strong>Scalability:</strong> Microservices can be easily scaled horizontally to handle increased traffic, ensuring that the system remains responsive during high-demand periods.</p>
+</li>
+<li>
+<p><strong>Flexibility:</strong> Developers can work on individual microservices without affecting the entire application. This makes it easier to introduce new features, fix bugs, or update a specific service without disrupting the entire system.</p>
+</li>
+<li>
+<p><strong>Easy Maintenance:</strong> Smaller, self-contained services are typically easier to maintain and manage. Updates and changes can be isolated to specific microservices, reducing the risk of unintended consequences.</p>
+</li>
+<li>
+<p><strong>Improved Fault Isolation:</strong> When a microservice fails, it usually doesn't bring down the entire system. Failures are contained within the affected service, minimizing the impact on the overall application.</p>
+</li>
+<li>
+<p><strong>Technology Agnosticism:</strong> Microservices allow you to use different technologies and programming languages for different services, which can be chosen based on the specific requirements of each service.</p>
+</li>
+<li>
+<p><strong>Rapid Development:</strong> Smaller teams can work independently on microservices, enabling faster development cycles and quicker time-to-market for new features or products.</p>
+</li>
+<li>
+<p><strong>Enhanced Testing:</strong> Isolated microservices can be tested more thoroughly, leading to better quality assurance and reduced testing complexity compared to monolithic applications.</p>
+</li>
+<li>
+<p><strong>Easier Deployment:</strong> Smaller, independent services are easier to deploy, reducing the risk of deployment failures and making it possible to implement continuous integration and continuous delivery (CI/CD) practices.</p>
+</li>
+</ul>
+<h2 id="challenges-and-considerations">Challenges and Considerations</h2>
+<p>While microservices offer numerous advantages, they also come with their set of challenges and considerations that need to be carefully addressed. Careful planning and architectural decisions are important for realizing the benefits of microservices while mitigating their challenges.</p>
+<p><em>Challenges of microservices</em></p>
+<ul>
+<li>
+<p><strong>Complexity</strong>: Microservices introduce complexity, as an application is divided into multiple services, each with its own codebase, data store, and dependencies. Managing the interactions between microservices and ensuring the overall system's integrity can be challenging.</p>
+</li>
+<li>
+<p><strong>Data Consistency</strong>: Maintaining data consistency in a distributed microservices architecture can be complex. With each microservice managing its data, ensuring data synchronization and integrity across services is important.</p>
+</li>
+<li>
+<p><strong>Distributed Systems Issues</strong>: Microservices are inherently distributed, which introduces challenges such as network latency, message serialization, and handling communication failures. Implementing robust error handling and resilience mechanisms becomes essential.</p>
+</li>
+<li>
+<p><strong>Operational Complexity</strong>: Managing and monitoring a large number of microservices in a production environment can be operationally complex.  Tools and practices for deployment, monitoring, and scaling need to be in place to ensure smooth operations.</p>
+</li>
+</ul>
+<p><em>Considerations for Microservices Adoption</em></p>
+<ul>
+<li>
+<p><strong>Application Complexity</strong>: Microservices are well-suited for complex, large-scale applications with multiple modules or functionalities. For simpler applications, a monolithic architecture may be more appropriate.</p>
+</li>
+<li>
+<p><strong>Team Structure</strong>: Consider your organization's team structure. Microservices often align with small, cross-functional teams that can own and manage individual microservices. Ensure your teams have the necessary skills for microservices development and operations.</p>
+</li>
+<li>
+<p><strong>Scalability and Performance</strong>: Microservices can provide scalability benefits, particularly for applications with varying workloads. Evaluate whether your application requires the ability to scale individual components independently.</p>
+</li>
+<li>
+<p><strong>Frequent Updates</strong>: If your application requires frequent updates and releases, microservices can support continuous integration and deployment practices. Ensure you have the necessary CI/CD pipelines and infrastructure.</p>
+</li>
+</ul>
+<p><em>Choosing the Right Architecture</em></p>
+<p>The choice between monolithic and microservices architecture depends on various factors, including the complexity of the application, team structure, scalability requirements, and development speed. Monolithic architectures excel in simplicity and are suitable for smaller applications with straightforward requirements. Microservices, on the other hand, offer flexibility and scalability for larger, more complex applications but introduce operational complexities.</p>
+<h2 id="key-technologies-and-tools">Key Technologies and Tools</h2>
+<p>Microservices development relies on a set of essential technologies and tools that facilitate the creation, deployment, and management of individual microservices. </p>
+<ul>
+<li>
+<p><strong>Docker:</strong> Docker is a containerization platform that allows developers to package applications and their dependencies into lightweight containers.  Docker containers provide consistency in deployment across different environments, ensuring that microservices run reliably on any system.</p>
+</li>
+<li>
+<p><strong>DevContainers:</strong> DevContainers streamline the development and testing of microservices locally by providing a controlled, isolated, and consistent environment that enhances collaboration among team members and simplifies the management of complex microservices ecosystems.</p>
+</li>
+<li>
+<p><strong>Kubernetes:</strong> Kubernetes is a container orchestration platform that automates the deployment, scaling, and management of containerized applications, including microservices. Kubernetes simplifies the management of microservices at scale, enabling features like load balancing, auto-scaling, and rolling updates.</p>
+</li>
+</ul>
+<!-- - **Service Mesh:** Service mesh technologies enhance microservices communication, offering features like traffic management, load balancing, security, and observability. Service meshes improve the reliability and resilience of microservices by handling communication between services, implementing policies, and providing insights into traffic. -->
+
+<ul>
+<li>
+<p><strong>API Gateways:</strong> API gateways act as a front-end for microservices, providing a unified entry point for clients and handling tasks such as authentication, rate limiting, and request routing. API gateways simplify client interactions with microservices, centralize security controls, and enable API versioning and documentation.</p>
+</li>
+<li>
+<p><strong>Continuous Integration/Continuous Deployment (CI/CD) Tools:</strong> CI/CD tools such as Azure DevOps, Argocd, Helmcharts automate the building, testing, and deployment of microservices, supporting rapid development and delivery. CI/CD pipelines streamline the development process, allowing for frequent updates and reducing the risk of errors.</p>
+</li>
+<li>
+<p><strong>Monitoring and Observability Tools (e.g., Prometheus, Grafana, Jaeger):</strong> Monitoring and observability tools provide insights into the performance, availability, and behavior of microservices, helping to detect and troubleshoot issues. These tools ensure the reliability of microservices in production by offering real-time monitoring, logging, and tracing capabilities.</p>
+</li>
+</ul>
+<h2 id="microservices-communication">Microservices Communication</h2>
+<p>Microservices can communicate with each other using different communication patterns, both synchronous and asynchronous.</p>
+<p><strong>Synchronous:</strong></p>
+<ul>
+<li>
+<p><em>HTTP/HTTPS</em>: Microservices can communicate over standard HTTP/HTTPS protocols, making it easy to create RESTful APIs or web services.
+   Synchronous communication is suitable for scenarios where immediate responses are required.</p>
+</li>
+<li>
+<p><em>gRPC</em>: gRPC is a high-performance, language-agnostic remote procedure call (RPC) framework that allows microservices to communicate efficiently. It is ideal for scenarios where low-latency, binary-encoded communication is needed.</p>
+</li>
+</ul>
+<p><strong>Asynchronous:</strong></p>
+<ul>
+<li>
+<p><em>Message Queues (e.g., RabbitMQ, Apache Kafka)</em>: Microservices can exchange messages through message queues or publish-subscribe systems.
+Asynchronous communication is useful for decoupling services and handling background tasks or event-driven scenarios.</p>
+</li>
+<li>
+<p><em>Event Sourcing and Event-driven Architecture</em>: In event-driven architecture, microservices issue and consume events to communicate changes or trigger actions. This pattern is beneficial for building scalable, loosely coupled systems that respond to real-time events.</p>
+</li>
+</ul>
+<h2 id="domain-driven-design-ddd">Domain-Driven Design (DDD)</h2>
+<p>Domain-Driven Design (DDD) is a set of principles, patterns, and techniques for designing applicatio with a focus on the domain of the problem being solved. In the context of microservices architecture, DDD plays a importantent role in helping you define the boundaries of your microservices and ensure that they align with your business domain. Here's how DDD techniques can be applied in microservices architecture:</p>
+<ul>
+<li>
+<p><strong>Bounded Contexts</strong>:In DDD, a bounded context is a specific boundary within which a domain model is defined and applicable. In microservices, each microservice typically corresponds to a bounded context. Bounded contexts ensure that each microservice has a well-defined scope and encapsulates a specific aspect of the business domain.</p>
+</li>
+<li>
+<p><strong>Aggregates</strong>: Aggregates in DDD represent a cluster of domain objects treated as a single unit. In microservices, an aggregate can be considered a microservice that manages a set of related entities. Microservices encapsulate aggregates and provide APIs for manipulating them. This helps maintain data consistency and isolation.</p>
+</li>
+<li>
+<p><strong>Entities and Value Objects</strong>: DDD distinguishes between entities (objects with a distinct identity) and value objects (objects with no distinct identity). In microservices, entities and value objects are used to model domain concepts within the microservice's scope, helping to define data structures and behavior.</p>
+</li>
+<li>
+<p><strong>Context Mapping</strong>: Context mapping in DDD deals with defining relationships and interactions between bounded contexts. It helps manage the integration points between different parts of the system.
+ In microservices architecture, context mapping is essential for specifying how microservices interact and communicate with each other, either through APIs or messaging.</p>
+</li>
+</ul>
+<!-- 
+- **Small, Independent, and Loosely Coupled:** Microservices are designed to be small and focused on specific business capabilities. They are independent entities that can be developed, deployed, and scaled individually. This loose coupling allows for greater flexibility and agility.
+
+- **Self-Contained Services:** Each microservice is self-contained and encapsulates a specific functionality or feature. It can be developed and maintained by a small team of developers, promoting autonomy and faster iteration.
+
+- **Bounded Context and Business Capabilities:** Microservices are designed to implement a single business capability within a bounded context. They are responsible for a specific task or function and should strive to be cohesive and aligned with a well-defined domain.
+
+- **Separate Codebases and Teams:** Each microservice has its own separate codebase, enabling independent development and deployment. A small development team can manage and maintain a microservice, fostering ownership and accountability.
+
+- **Data and State Responsibility:** Microservices are responsible for persisting their own data or managing external state relevant to their specific functionality. This allows for better encapsulation and isolation of data within each microservice.
+
+By using microservices architecture, organizations can achieve greater scalability, maintainability, and resilience in their applications. It promotes modularity, enables independent development and deployment, and supports the evolution of complex systems.
+
+In the labs ahead, we will explore the practical implementation of microservices using Kubernetes and related tools. Let's continue our journey and delve deeper into building and deploying microservices in a distributed environment. -->
+
+<h2 id="task-1-identify-microservices-for-the-book">Task-1: Identify Microservices for the book</h2>
+<p>To fully explore the microservices architecture in this book, we will create several containerized microservices and microfrontend applications and couple of databases. These applications will allow us to demonstrate real-world scenarios and provide a practical understanding of microservices implementation. In this case study, we will create the following microservices, which will be developed in the upcoming labs.  we have purposely selected diverse options to ensure a broader learning experience.</p>
+<table>
+<thead>
+<tr>
+<th>Microservice/Website/Database</th>
+<th>Technology Used</th>
+<th>Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>First Microservice</td>
+<td>.NET Core Web API (C#)</td>
+<td>aspnet-api</td>
+</tr>
+<tr>
+<td>Second Microservice</td>
+<td>Node.js (Node)</td>
+<td>nodejs-api</td>
+</tr>
+<tr>
+<td>First Website</td>
+<td>ASP.NET Core MVC (C#)</td>
+<td>aspnet-app</td>
+</tr>
+<tr>
+<td>Second Website</td>
+<td>React.js (Node)</td>
+<td>react-app</td>
+</tr>
+<tr>
+<td>First Database</td>
+<td>SQL Server</td>
+<td>sqlserver-db</td>
+</tr>
+<tr>
+<td>Second Database</td>
+<td>PostgreSQL</td>
+<td>postgresql-db</td>
+</tr>
+<tr>
+<td>Keycloak</td>
+<td>Identity and Access Management</td>
+<td>keycloak-service</td>
+</tr>
+<tr>
+<td>Drupal</td>
+<td>Content Management System</td>
+<td>drupal-service</td>
+</tr>
+</tbody>
+</table>
+<!-- 
+- Create the first containerized microservice with .NET Core Web API with C#
+    - name of the api is called `aspnet-api`
+- Create the second containerized microservice with Node JS (Node)
+    - name of the api is called  `nodejs-api`
+- Create the first containerized website with ASP.NET Core MVC (C#)
+    - name of the app is called `aspnet-app`
+- Create the second containerized website with React JS (Node)
+    - name of the app is called `react-app`
+- Create the third containerized website with Blazor (C#)
+    - name of the app is called `blazor-app`
+- Create first containerized database with SQL server
+    - name of the database app is called `sqlserver-db`
+- Create second containerized database with PostgreSQL
+    - name of the database app is called `postgresql-db` -->
+
+<!-- 
+    - Create the third Microservice with Java 
+    - name of the api is called `java-api` 
+
+-->
+
+<p>for example, here is how the folder structure of our Microservices and MicroFrontend Applications looks like    .</p>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Microservices/
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>├──<span class="w"> </span>aspnet-api/
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>│<span class="w">   </span>├──<span class="w"> </span>Controllers/
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>│<span class="w">   </span>├──<span class="w"> </span>Models/
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>│<span class="w">   </span>├──<span class="w"> </span>appsettings.json
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>│<span class="w">   </span>├──<span class="w"> </span>Program.cs
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>│<span class="w">   </span>├──<span class="w"> </span>Startup.cs
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>│<span class="w">   </span>└──<span class="w"> </span>Dockerfile
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>│<span class="w">   </span>└──<span class="w"> </span>aspnet-api.csproj
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>└──<span class="w"> </span>node-api/
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">    </span>├──<span class="w"> </span>routes/
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">    </span>├──<span class="w"> </span>models/
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w">    </span>├──<span class="w"> </span>package.json
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="w">    </span>├──<span class="w"> </span>app.js
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="w">    </span>└──<span class="w"> </span>Dockerfile
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>Websites/
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>├──<span class="w"> </span>aspnet-app/
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>│<span class="w">   </span>├──<span class="w"> </span>Controllers/
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>│<span class="w">   </span>├──<span class="w"> </span>Models/
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>│<span class="w">   </span>├──<span class="w"> </span>Views/
+</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>│<span class="w">   </span>├──<span class="w"> </span>appsettings.json
+</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>│<span class="w">   </span>├──<span class="w"> </span>Program.cs
+</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>│<span class="w">   </span>├──<span class="w"> </span>Startup.cs
+</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>│<span class="w">   </span>└──<span class="w"> </span>Dockerfile
+</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>│<span class="w">   </span>└──<span class="w"> </span>aspnet-app.csproj
+</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>├──<span class="w"> </span>react-app/
+</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a>│<span class="w">   </span>├──<span class="w"> </span>src/
+</span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a>│<span class="w">   </span>├──<span class="w"> </span>package.json
+</span><span id="__span-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a>│<span class="w">   </span>├──<span class="w"> </span>public/
+</span><span id="__span-0-31"><a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a>│<span class="w">   </span>└──<span class="w"> </span>Dockerfile
+</span><span id="__span-0-32"><a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a>│<span class="w">   </span>├──<span class="w"> </span>node_modules/
+</span><span id="__span-0-33"><a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a>│<span class="w">   </span>└──<span class="w"> </span>README.md
+</span><span id="__span-0-34"><a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a>└──<span class="w"> </span>...
+</span><span id="__span-0-35"><a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a>Databases/
+</span><span id="__span-0-36"><a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a>├──<span class="w"> </span>sqlserver-db/
+</span><span id="__span-0-37"><a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a>│<span class="w">   </span>├──<span class="w"> </span>tables/
+</span><span id="__span-0-38"><a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a>│<span class="w">   </span>├──<span class="w"> </span>procedures/
+</span><span id="__span-0-39"><a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a>│<span class="w">   </span>├──<span class="w"> </span>views/
+</span><span id="__span-0-40"><a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a>│<span class="w">   </span>├──<span class="w"> </span>functions/
+</span><span id="__span-0-41"><a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a>│<span class="w">   </span>└──<span class="w"> </span>triggers/
+</span><span id="__span-0-42"><a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a>│<span class="w">   </span>└──<span class="w"> </span>Dockerfile
+</span><span id="__span-0-43"><a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a><span class="p">|</span>
+</span><span id="__span-0-44"><a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a>└──<span class="w"> </span>postgresql-db/
+</span><span id="__span-0-45"><a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a><span class="w">    </span>├──<span class="w"> </span>tables/
+</span><span id="__span-0-46"><a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a><span class="w">    </span>├──<span class="w"> </span>procedures/
+</span><span id="__span-0-47"><a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a><span class="w">    </span>├──<span class="w"> </span>views/
+</span><span id="__span-0-48"><a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a><span class="w">    </span>├──<span class="w"> </span>functions/
+</span><span id="__span-0-49"><a id="__codelineno-0-49" name="__codelineno-0-49" href="#__codelineno-0-49"></a><span class="w">    </span><span class="p">|</span>──<span class="w"> </span>Dockerfile
+</span><span id="__span-0-50"><a id="__codelineno-0-50" name="__codelineno-0-50" href="#__codelineno-0-50"></a><span class="w">    </span>└──<span class="w"> </span>triggers/
+</span></code></pre></div>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>If you noticed, each project has its own <code>Dockerfile</code>, indicating that all these applications will be containerized and ready for deployment to a Kubernetes cluster.</p>
+</div>
+<p>The following diagram shows the conceptual view of the microservices environment</p>
+<p><img alt="image.jpg" src="../images/image-32.jpg" /></p>
+<p>For example:</p>
+<p><img alt="image.jpg" src="../images/image-33.jpg" /></p>
+<h2 id="task-2-identify-the-list-of-git-repositories-needed">Task-2: Identify the List of Git Repositories Needed</h2>
+<p>Once you have determined the list of domains or microservices required for your project, it's time to analyze how they will be organized within the source control system, such as Git repositories. One important consideration is determining the number of Git repositories you need.</p>
+<p>There are multiple ways to organize source code and pipelines in Azure DevOps Git, and the approach you choose depends on how you want to manage your source code and pipelines for your microservices architecture while ensuring ease of maintenance in the future.</p>
+<p>In my preference, I recommend creating a separate Git repository for each domain or microservice. Within each domain, you may have multiple microservices, MicroFrontends, and databases.</p>
+<p>For example, let's visualize how the Git structure may look:</p>
+<ul>
+<li>Organization1 (Name of your organization)<ul>
+<li>Project1 (Name of the project)<ul>
+<li>Repo-1 (for Domain1)<ul>
+<li>APIs - Create one or more APIs with separate folders</li>
+<li>Websites - Create one or more websites with separate folders</li>
+<li>Databases - Create one or more databases with separate folders</li>
+</ul>
+</li>
+<li>Repo-2 (for Domain2)<ul>
+<li>APIs - Create one or more APIs with separate folders</li>
+<li>Websites - Create one or more websites with separate folders</li>
+<li>Databases - Create one or more databases with separate folders</li>
+</ul>
+</li>
+<li>Repo-3 (for Domain3)<ul>
+<li>APIs - Create one or more APIs with separate folders</li>
+<li>Websites - Create one or more websites with separate folders</li>
+<li>Databases - Create one or more databases with separate folders</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Project2 (Project2)<ul>
+<li>Repo-1 (Name of the repository under Project2)<ul>
+<li>APIs - Create one or more APIs with separate folders</li>
+<li>Websites - Create one or more websites with separate folders</li>
+<li>Databases - Create one or more databases with separate folders</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<!-- 
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>Organization1<span class="w"> </span><span class="o">(</span>Name<span class="w"> </span>of<span class="w"> </span>your<span class="w"> </span>organization<span class="o">)</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>│
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>├──<span class="w"> </span>Project1<span class="w"> </span><span class="o">(</span>Name<span class="w"> </span>of<span class="w"> </span>the<span class="w"> </span>project<span class="o">)</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>│<span class="w">   </span>├──<span class="w"> </span>Repo-1<span class="w"> </span><span class="o">(</span><span class="k">for</span><span class="w"> </span>Domain1<span class="o">)</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span>APIs<span class="w"> </span>-<span class="w"> </span>Create<span class="w"> </span>one<span class="w"> </span>or<span class="w"> </span>more<span class="w"> </span>APIs<span class="w"> </span>with<span class="w"> </span>separate<span class="w"> </span>folders
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span>Websites<span class="w"> </span>-<span class="w"> </span>Create<span class="w"> </span>one<span class="w"> </span>or<span class="w"> </span>more<span class="w"> </span>websites<span class="w"> </span>with<span class="w"> </span>separate<span class="w"> </span>folders
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>│<span class="w">   </span>│<span class="w">   </span>└──<span class="w"> </span>Databases<span class="w"> </span>-<span class="w"> </span>Create<span class="w"> </span>one<span class="w"> </span>or<span class="w"> </span>more<span class="w"> </span>databases<span class="w"> </span>with<span class="w"> </span>separate<span class="w"> </span>folders
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>│<span class="w">   </span>│
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>│<span class="w">   </span>├──<span class="w"> </span>Repo-2<span class="w"> </span><span class="o">(</span><span class="k">for</span><span class="w"> </span>Domain2<span class="o">)</span>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span>APIs<span class="w"> </span>-<span class="w"> </span>Create<span class="w"> </span>one<span class="w"> </span>or<span class="w"> </span>more<span class="w"> </span>APIs<span class="w"> </span>with<span class="w"> </span>separate<span class="w"> </span>folders
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span>Websites<span class="w"> </span>-<span class="w"> </span>Create<span class="w"> </span>one<span class="w"> </span>or<span class="w"> </span>more<span class="w"> </span>websites<span class="w"> </span>with<span class="w"> </span>separate<span class="w"> </span>folders
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>│<span class="w">   </span>│<span class="w">   </span>└──<span class="w"> </span>Databases<span class="w"> </span>-<span class="w"> </span>Create<span class="w"> </span>one<span class="w"> </span>or<span class="w"> </span>more<span class="w"> </span>databases<span class="w"> </span>with<span class="w"> </span>separate<span class="w"> </span>folders
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>│<span class="w">   </span>│
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>│<span class="w">   </span>└──<span class="w"> </span>Repo-3<span class="w"> </span><span class="o">(</span><span class="k">for</span><span class="w"> </span>Domain3<span class="o">)</span>
+</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>│<span class="w">       </span>├──<span class="w"> </span>APIs<span class="w"> </span>-<span class="w"> </span>Create<span class="w"> </span>one<span class="w"> </span>or<span class="w"> </span>more<span class="w"> </span>APIs<span class="w"> </span>with<span class="w"> </span>separate<span class="w"> </span>folders
+</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>│<span class="w">       </span>├──<span class="w"> </span>Websites<span class="w"> </span>-<span class="w"> </span>Create<span class="w"> </span>one<span class="w"> </span>or<span class="w"> </span>more<span class="w"> </span>websites<span class="w"> </span>with<span class="w"> </span>separate<span class="w"> </span>folders
+</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>│<span class="w">       </span>└──<span class="w"> </span>Databases<span class="w"> </span>-<span class="w"> </span>Create<span class="w"> </span>one<span class="w"> </span>or<span class="w"> </span>more<span class="w"> </span>databases<span class="w"> </span>with<span class="w"> </span>separate<span class="w"> </span>folders
+</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>│
+</span><span id="__span-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a>└──<span class="w"> </span>Project2<span class="w"> </span><span class="o">(</span>Project2<span class="o">)</span>
+</span><span id="__span-1-20"><a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a><span class="w">    </span>└──<span class="w"> </span>Repo-1<span class="w"> </span><span class="o">(</span>Name<span class="w"> </span>of<span class="w"> </span>the<span class="w"> </span>repository<span class="w"> </span>under<span class="w"> </span>Project2<span class="o">)</span>
+</span><span id="__span-1-21"><a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a><span class="w">        </span>├──<span class="w"> </span>APIs<span class="w"> </span>-<span class="w"> </span>Create<span class="w"> </span>one<span class="w"> </span>or<span class="w"> </span>more<span class="w"> </span>APIs<span class="w"> </span>with<span class="w"> </span>separate<span class="w"> </span>folders
+</span><span id="__span-1-22"><a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a><span class="w">        </span>├──<span class="w"> </span>Websites<span class="w"> </span>-<span class="w"> </span>Create<span class="w"> </span>one<span class="w"> </span>or<span class="w"> </span>more<span class="w"> </span>websites<span class="w"> </span>with<span class="w"> </span>separate<span class="w"> </span>folders
+</span><span id="__span-1-23"><a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a><span class="w">        </span>└──<span class="w"> </span>Databases<span class="w"> </span>-<span class="w"> </span>Create<span class="w"> </span>one<span class="w"> </span>or<span class="w"> </span>more<span class="w"> </span>databases<span class="w"> </span>with<span class="w"> </span>separate<span class="w"> </span>folders
+</span></code></pre></div>
+-->
+<p>Repeat this structure as the organization grows and new projects or domains are introduced.</p>
+<p>By following this approach, each domain or microservice will have its dedicated Git repository, providing a clear separation and organization of the source code and related artifacts. This structure facilitates easier maintenance, collaboration, and version control.</p>
+<p>Remember, this is just a sample structure, and you can adapt it based on your organization's specific needs and preferences.</p>
+<p>Visual representation of a sample DevOps Git structure:
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>Organization1
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>└──<span class="w"> </span>Project1
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">    </span>├──<span class="w"> </span>Repo-1<span class="w"> </span><span class="o">(</span>Microservice-1<span class="o">)</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">    </span>│<span class="w">   </span>├──<span class="w"> </span>APIs
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">    </span>│<span class="w">   </span>├──<span class="w"> </span>Websites
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">    </span>│<span class="w">   </span>└──<span class="w"> </span>Databases
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">    </span>├──<span class="w"> </span>Repo-2<span class="w"> </span><span class="o">(</span>Microservice-2<span class="o">)</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="w">    </span>│<span class="w">   </span>├──<span class="w"> </span>APIs
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="w">    </span>│<span class="w">   </span>├──<span class="w"> </span>Websites
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="w">    </span>│<span class="w">   </span>└──<span class="w"> </span>Databases
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="w">    </span>├──<span class="w"> </span>Repo-3<span class="w"> </span><span class="o">(</span>Microservice-3<span class="o">)</span>
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="w">    </span>│<span class="w">   </span>├──<span class="w"> </span>APIs
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="w">    </span>│<span class="w">   </span>├──<span class="w"> </span>Websites
+</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="w">    </span>│<span class="w">   </span>└──<span class="w"> </span>Databases
+</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a><span class="w">    </span>Project2
+</span><span id="__span-2-16"><a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a><span class="w">    </span>└──<span class="w"> </span>Repo-1
+</span><span id="__span-2-17"><a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a><span class="w">        </span>├──<span class="w"> </span>APIs
+</span><span id="__span-2-18"><a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a><span class="w">        </span>├──<span class="w"> </span>Websites
+</span><span id="__span-2-19"><a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a><span class="w">        </span>└──<span class="w"> </span>Databases
+</span></code></pre></div></p>
+<p>By adopting this Git structure, you can effectively manage and scale your microservices projects while ensuring a clear and organized source control system.</p>
+<h2 id="task-3-create-new-azure-devops-organization">Task-3: Create new Azure DevOps Organization</h2>
+<p>With the planning and preparation of your Microservices application complete, the next step is to create a DevOps organization where you can manage the lifecycle of your projects.</p>
+<p>To create a new Azure DevOps organization, follow these steps:</p>
+<ol>
+<li>Sign in to Azure DevOps. - <a href="https://dev.azure.com">https://dev.azure.com</a></li>
+<li>Click on <code>New organization</code> in the left nav.
+<img alt="image.jpg" src="../images/image-8.jpg" /></li>
+<li>Enter name of the Organization and create new organization.
+<img alt="image.jpg" src="../images/image-9.jpg" /></li>
+</ol>
+<p>Once you have completed these steps, you will have a new Azure DevOps organization that is ready for use. You can then invite members to join your organization and start creating new projects.</p>
+<h2 id="task-4-create-new-azure-devops-project">Task-4: Create new Azure DevOps Project</h2>
+<p>You need a new project in Azure DevOps to manage your source code and other project related activities.</p>
+<p>Follow these steps to create a new project in Azure DevOps:</p>
+<ol>
+<li>
+<p>Sign in to the Azure DevOps website <a href="https://dev.azure.com/">https://dev.azure.com/</a> with your Azure DevOps account.</p>
+</li>
+<li>
+<p>Click on the <code>Create a project</code> button.</p>
+</li>
+<li>
+<p>Enter a name for your project and select a process template. The process template determines the default work item types, source control repository, and other settings for your project.</p>
+</li>
+<li>
+<p>Click the <code>Create project</code> button to create your new project.</p>
+</li>
+<li>
+<p>Follow the screen to configure your project settings, including source control, work item types, and team members.</p>
+</li>
+<li>
+<p>When you are finished, click the <code>Create</code> button to complete the project creation process.</p>
+</li>
+</ol>
+<p>For example: </p>
+<p>Project Name - <code>Microservices</code></p>
+<p>Description - <code>Microservices project will be used to roll out sample microservices applications for demonstrating microservices architecture.</code></p>
+<p><img alt="image.jpg" src="../images/image-10.jpg" /></p>
+<p>We have created new organization in azure DevOps and created new project so that we can start working on containerized microservices applications in the next labs.</p>
+<h2 id="references">References</h2>
+<ul>
+<li><a href="https://learn.microsoft.com/en-us/azure/architecture/guide/architecture-styles/microservices" target="_blank">Microsoft MSDN - Microservice architecture style</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/devops/organizations/accounts/create-organization?view=azure-devops" target="_blank">Microsoft MSDN - Create an organization</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/devops/organizations/projects/create-project?view=azure-devops&amp;tabs=browser" target="_blank">Microsoft MSDN - Create a project in Azure DevOps</a></li>
+<li><a href="https://microservices.io/patterns/microservices.html" target="_blank">Microservice Architecture</a></li>
+</ul>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../../gettingstarted/lab-format/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Lab Format">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Lab Format
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../0-docker-getting-started/" class="md-footer__link md-footer__link--next" aria-label="Next: Getting Started with Docker">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Getting Started with Docker
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2024 <a href="https://anjikeesari.com/"  target="_blank" rel="noopener">Anji Keesari</a>
+
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M186.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1M480 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2m-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3m-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://twitter.com" target="_blank" rel="noopener" title="twitter.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://linkedin.com/in" target="_blank" rel="noopener" title="linkedin.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3M135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5m282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://www.instagram.com/" target="_blank" rel="noopener" title="www.instagram.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141m0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7m146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8m76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8M398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.copy", "content.code.annotate", "navigation.indexes", "navigation.footer", "content.tooltips", "navigation.tabs", "navigation.sections", "navigation.expand", "navigation.top", "navigation.instant", "navigation.tracking", "header.autohide", "search.highlight", "search.share", "search.suggest", "toc.follow"], "search": "../../assets/javascripts/workers/search.f8cc74c7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.c8b220af.min.js"></script>
+      
+    
+  </body>
+</html>

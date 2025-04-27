@@ -1,0 +1,3684 @@
+<!-- Elements added to main will be displayed on all pages -->
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Build and Deploy Microservices on Kubernetes using ArgoCD & Helm Azure and Azure DevOps Pipelines.">
+      
+      
+        <meta name="author" content="Anji Keesari">
+      
+      
+        <link rel="canonical" href="https://akeesari.github.io/micros-k8s/azure/16-event-hubs-part-1/">
+      
+      
+        <link rel="prev" href="../15-storage-account/">
+      
+      
+        <link rel="next" href="../16-event-hubs-part-2/">
+      
+      
+      <link rel="icon" href="../../assets/ak-logo.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.12">
+    
+    
+      
+        <title>Azure Event Hubs Introduction - Microservices with Kubernetes (Developer User Guide)</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.2afb09e1.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function e(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],e("js",new Date),e("config","G-KR7ZFHXJM1"),document.addEventListener("DOMContentLoaded",(function(){document.forms.search&&document.forms.search.query.addEventListener("blur",(function(){this.value&&e("event","search",{search_term:this.value})}));document$.subscribe((function(){var t=document.forms.feedback;if(void 0!==t)for(var a of t.querySelectorAll("[type=submit]"))a.addEventListener("click",(function(a){a.preventDefault();var n=document.location.pathname,d=this.getAttribute("data-md-value");e("event","feedback",{page:n,data:d}),t.firstElementChild.disabled=!0;var r=t.querySelector(".md-feedback__note [data-md-value='"+d+"']");r&&(r.hidden=!1)})),t.hidden=!1})),location$.subscribe((function(t){e("config","G-KR7ZFHXJM1",{page_path:t.pathname})}))}));var t=document.createElement("script");t.async=!0,t.src="https://www.googletagmanager.com/gtag/js?id=G-KR7ZFHXJM1",document.getElementById("__analytics").insertAdjacentElement("afterEnd",t)}</script>
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#azure-event-hubs-for-apache-kafka-introduction-part-1" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Microservices with Kubernetes (Developer User Guide)" class="md-header__button md-logo" aria-label="Microservices with Kubernetes (Developer User Guide)" data-md-component="logo">
+      
+  <img src="../../assets/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Microservices with Kubernetes (Developer User Guide)
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Azure Event Hubs Introduction
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6m0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4M7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../.." class="md-tabs__link">
+          
+  
+  
+    
+  
+  Home
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../gettingstarted/toc/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Getting started
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../microservices/0.gettingstarted/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Microservices
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../1-iac/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Azure (IaC)
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../kubernetes/0.getting-started/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Kubernetes
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../devops/1-devops-overview/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Azure DevOps
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../argocd/1-argocd-intro/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Argo CD
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../helmchart/1-introduction/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Helm Charts
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Microservices with Kubernetes (Developer User Guide)" class="md-nav__button md-logo" aria-label="Microservices with Kubernetes (Developer User Guide)" data-md-component="logo">
+      
+  <img src="../../assets/logo.png" alt="logo">
+
+    </a>
+    Microservices with Kubernetes (Developer User Guide)
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_1" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../.." class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            Home
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Getting started
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Getting started
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../gettingstarted/toc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Table of Contents
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../gettingstarted/about-author/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    About the Author
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../gettingstarted/acknowledgments/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Acknowledgments
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../gettingstarted/introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Introduction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../gettingstarted/lab-format/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lab Format
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Microservices
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Microservices
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../microservices/0.gettingstarted/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Getting Started with Microservices
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../microservices/0-docker-getting-started/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Getting Started with Docker
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../microservices/1.aspnet-api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Containerize a .NET Core Web API
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../microservices/2.node-api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Containerize a Node.js API
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../microservices/3.aspnet-app/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Containerize a .NET Core MVC Application
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../microservices/4.react-app/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Containerize a React.js Application
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../microservices/6.sqlserver-db/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Create Your First Database with SQL server
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../microservices/7.postgresql-db/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Create Your Second Database with PostgreSQL
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../microservices/8.keycloak/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Running Keycloak application in a Docker Container
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../microservices/9.drupal/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Running Drupal Website in a Docker Container
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    Azure (IaC)
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Azure (IaC)
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1-iac/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Infrastructure as Code (IaC)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1-microservices-architecture-on-aks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Microservices Architecture on AKS
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../3-azure-account-subscription/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Azure Account & Subscription Management
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../6-tf-foundation-1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Setup Terraform Foundation Part-1
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../6-tf-foundation-2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Setup Terraform Foundation Part-2
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../7-log-analytics-workspace/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Create Log Analytics Workspace using terraform
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../8-vnet/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Create Virtual Network using terraform
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../9-acr/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Create Azure Container Registry (ACR) using terraform
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10-app-gateway/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Create Azure Application Gateway using terraform
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../11-aks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Create Azure Kubernetes Service (AKS) using terraform
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../12-postgresql/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Create Azure PostgreSQL - Flexible Server using terraform
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../13-key-vault/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Create Azure Key Vault using Terraform
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../14-redis-cache/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Create Azure Cache for Redis using Terraform
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../15-storage-account/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Create Storage Account using Terraform
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Azure Event Hubs Introduction
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Azure Event Hubs Introduction
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-is-azure-event-hubs" class="md-nav__link">
+    <span class="md-ellipsis">
+      What is Azure Event Hubs?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#components-of-azure-event-hubs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Components of Azure Event Hubs
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#why-azure-event-hubs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Why Azure Event Hubs?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#can-you-explain-apache-kafka-on-azure-event-hubs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Can you explain Apache Kafka on Azure Event Hubs?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#azure-event-hubs-vs-apache-kafka" class="md-nav__link">
+    <span class="md-ellipsis">
+      Azure Event Hubs vs Apache Kafka
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-is-azure-event-hubs-namespace" class="md-nav__link">
+    <span class="md-ellipsis">
+      What is Azure Event Hubs namespace?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-are-partitions" class="md-nav__link">
+    <span class="md-ellipsis">
+      What are Partitions?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-is-shared-access-policies" class="md-nav__link">
+    <span class="md-ellipsis">
+      What is Shared Access Policies?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-is-event-publishers" class="md-nav__link">
+    <span class="md-ellipsis">
+      What is Event publishers?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-is-event-consumers" class="md-nav__link">
+    <span class="md-ellipsis">
+      What is Event consumers?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-is-event-retention" class="md-nav__link">
+    <span class="md-ellipsis">
+      What is Event retention?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#explain-capture-events" class="md-nav__link">
+    <span class="md-ellipsis">
+      Explain Capture events:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#consumer-groups" class="md-nav__link">
+    <span class="md-ellipsis">
+      Consumer groups
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#application-groups" class="md-nav__link">
+    <span class="md-ellipsis">
+      Application groups
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-is-avro-format-in-apache-kafka" class="md-nav__link">
+    <span class="md-ellipsis">
+      What is Avro format in apache kafka?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-is-azure-schema-registry" class="md-nav__link">
+    <span class="md-ellipsis">
+      What is Azure Schema Registry?
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../16-event-hubs-part-2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Create Azure Event Hubs using Terraform
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../17-cdn-frontdoor/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Create Front Door and CDN profile using Terraform
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Kubernetes
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Kubernetes
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../kubernetes/0.getting-started/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Getting Started with Docker Container
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../kubernetes/1-prepare-app/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Prepare an application for Azure Kubernetes Service (AKS)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../kubernetes/2-deploy-api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Deploying an .NET Core API to Azure Kubernetes Service (AKS)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../kubernetes/2-deploy-app/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Deploying an ASP.NET Core MVC to Azure Kubernetes Service (AKS)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../kubernetes/3-working-with-aks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Working with AKS cluster using kubectl
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../kubernetes/4-ingress-controller-nginx/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Setup NGINX ingress controller in AKS using Terraform
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../kubernetes/4.1-ingress-controller-agic/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Setup Application Gateway ingress controller (AGIC) in AKS using Terraform
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../kubernetes/5-cert-manager/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Setup Cert-Manager in AKS using Terraform
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../kubernetes/5.1-issue-cert/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Issue the Let's Encrypt SSL Certificate to the Website
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../kubernetes/5.2-cert-troubleshooting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Troubleshooting Problems with Let's Encrypt Certificates
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../kubernetes/6-aks-kv-integration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Integrating Azure Key Vault with AKS using Terraform
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../kubernetes/pod-troubleshooting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Kubernetes Pod troubleshooting
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../kubernetes/aks-create-nodepool/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Create a new user node pool in AKS
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../kubernetes/aks-upgrade-nodepool/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Upgrade or Resize node pools in AKS
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5_15" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_15" id="__nav_5_15_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Monitoring
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_15_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_15">
+            <span class="md-nav__icon md-icon"></span>
+            Monitoring
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../kubernetes/monitoring/introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Monitor AKS Cluster Introduction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../kubernetes/monitoring/monitor-workspace/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Create an Azure Monitoring Workspace Using Terraform
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../kubernetes/monitoring/grafana-workspace/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Create an Azure Managed Grafana workspace Using Terraform
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Azure DevOps
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Azure DevOps
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../devops/1-devops-overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Azure DevOps Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../devops/pipelines/1-service-connections/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Create Your First service connection
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../devops/pipelines/2-pipeline-aspnet-api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Create Pipeline for .NET Core Web API
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../devops/pipelines/3-pipeline-aspnet-app/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Create Pipeline for ASP.NET Core MVC Project
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Argo CD
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            Argo CD
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../argocd/1-argocd-intro/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Introduction to Argo CD
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../argocd/2-install-argocd/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Install Argo CD in Kubernetes
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../argocd/3-install-argocd-cli/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Install & Interact with ArgoCD CLI
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../argocd/register-cluster/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Registering an AKS Cluster with Argo CD
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../argocd/deploy-app/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Deploy Your First application with Argo CD
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../argocd/argocd-project/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Create new ArgoCD Project
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../argocd/argocd-repo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Create new Repository in ArgoCD
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Helm Charts
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            Helm Charts
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../helmchart/1-introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Introduction to Helmcharts
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../helmchart/2-create-helm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Create Your First Helmchart
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../helmchart/3-helm-cmds/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Frequently used Helm commands details
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../helmchart/4-helm-microservices/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Create Helmchart for Microservices
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../helmchart/5-install-pgadmin4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Install pgadmin4 in AKS
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../helmchart/6-install-grafana/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Install Grafana in AKS
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../helmchart/7-install-grafana-loki-stack/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Install Grafana Loki-Stack in AKS
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../helmchart/8-install-redis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Install Redis in AKS
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../helmchart/9-install-minio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Install Minio in AKS
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../helmchart/10-install-adcs-issuer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Install ADCS Issuer in AKS
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../helmchart/11-install-jaeger/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Install Jaeger in AKS
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../helmchart/12-install-otel-operator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Install OpenTelemetry Operator in AKS
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-is-azure-event-hubs" class="md-nav__link">
+    <span class="md-ellipsis">
+      What is Azure Event Hubs?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#components-of-azure-event-hubs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Components of Azure Event Hubs
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#why-azure-event-hubs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Why Azure Event Hubs?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#can-you-explain-apache-kafka-on-azure-event-hubs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Can you explain Apache Kafka on Azure Event Hubs?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#azure-event-hubs-vs-apache-kafka" class="md-nav__link">
+    <span class="md-ellipsis">
+      Azure Event Hubs vs Apache Kafka
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-is-azure-event-hubs-namespace" class="md-nav__link">
+    <span class="md-ellipsis">
+      What is Azure Event Hubs namespace?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-are-partitions" class="md-nav__link">
+    <span class="md-ellipsis">
+      What are Partitions?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-is-shared-access-policies" class="md-nav__link">
+    <span class="md-ellipsis">
+      What is Shared Access Policies?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-is-event-publishers" class="md-nav__link">
+    <span class="md-ellipsis">
+      What is Event publishers?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-is-event-consumers" class="md-nav__link">
+    <span class="md-ellipsis">
+      What is Event consumers?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-is-event-retention" class="md-nav__link">
+    <span class="md-ellipsis">
+      What is Event retention?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#explain-capture-events" class="md-nav__link">
+    <span class="md-ellipsis">
+      Explain Capture events:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#consumer-groups" class="md-nav__link">
+    <span class="md-ellipsis">
+      Consumer groups
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#application-groups" class="md-nav__link">
+    <span class="md-ellipsis">
+      Application groups
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-is-avro-format-in-apache-kafka" class="md-nav__link">
+    <span class="md-ellipsis">
+      What is Avro format in apache kafka?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-is-azure-schema-registry" class="md-nav__link">
+    <span class="md-ellipsis">
+      What is Azure Schema Registry?
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="azure-event-hubs-for-apache-kafka-introduction-part-1">Azure Event Hubs for Apache Kafka Introduction Part-1</h1>
+<h2 id="what-is-azure-event-hubs">What is Azure Event Hubs?</h2>
+<p>Azure Event Hubs is a cloud-based, scalable data streaming platform provided by Microsoft Azure. It is designed to ingest and process large volumes of streaming data from various sources in real-time. Event Hubs is part of the Azure messaging services and is particularly well-suited for scenarios involving event-driven architectures and big data analytics.</p>
+<h2 id="components-of-azure-event-hubs">Components of Azure Event Hubs</h2>
+<p>Azure Event Hubs consists of several key functional components that collectively enable the ingestion, processing, and analysis of real-time streaming data. Each component plays a specific role in the end-to-end processing of streaming data.</p>
+<p>Here are the key components:</p>
+<ol>
+<li>
+<p><strong>Namespace:</strong>
+   A namespace is a container for Event Hubs, providing a scoping container for the event hubs within it. It is used to create a unique DNS name that applications can use to connect to the event hubs.</p>
+</li>
+<li>
+<p><strong>Event Hubs:</strong>
+   Event Hubs are the main event streaming entities within a namespace. They act as a buffer that stores the streaming data before it is ingested by consuming applications. Each event hub has multiple partitions to allow for parallel processing.</p>
+</li>
+<li>
+<p><strong>Partitions:</strong>
+   Event Hubs use partitions to enable parallel processing of events. Each partition is an ordered sequence of events, and the total throughput of an event hub is the sum of the throughputs of its partitions. Partitions provide horizontal scale and allow multiple consumers to process events concurrently.</p>
+</li>
+<li>
+<p><strong>Producers:</strong>
+   Producers are responsible for publishing or sending events to an event hub. They can be applications, devices, or services that generate the streaming data.</p>
+</li>
+<li>
+<p><strong>Consumers:</strong>
+   Consumers are applications or services that subscribe to event hubs to process and analyze the incoming streaming data. Multiple consumers can independently read from the same partition to achieve parallel processing.</p>
+</li>
+<li>
+<p><strong>Consumer Groups:</strong>
+   Consumer groups provide a way to isolate different streams of events within an event hub. Each consumer group maintains its own cursor or offset in the event stream, allowing consumers in one group to progress independently from consumers in another group.</p>
+</li>
+<li>
+<p><strong>Event Data:</strong>
+   Event data represents the payload or content of an event. It could be in various formats such as JSON, Avro, or plain text, depending on the application's requirements.</p>
+</li>
+<li>
+<p><strong>Capture:</strong>
+    Capture is a feature that allows you to automatically capture and store the streaming data in a designated Azure Blob Storage or Azure Data Lake Storage account. This feature facilitates data retention, further analysis, and long-term storage.</p>
+</li>
+<li>
+<p><strong>Auto-Inflate:</strong>
+    Auto-Inflate is a feature that dynamically adjusts the number of throughput units based on the incoming workload, ensuring that the system can handle varying data volumes without manual intervention.</p>
+</li>
+<li>
+<p><strong>Azure Schema Registry</strong>
+      Azure Schema Registry is a centralized repository for managing schemas in event-driven and messaging-centric applications. </p>
+</li>
+</ol>
+<p>The following diagram illustrates the key components of azure event hubs architecture</p>
+<p><a href="../images/event-hubs/image-1.png" target="_blank"><img alt="Alt text" src="../images/event-hubs/image-1.png" style="border: 1px solid black; border-radius: 10px;" /></a></p>
+<h2 id="why-azure-event-hubs">Why Azure Event Hubs?</h2>
+<p>Here are some key reasons why Azure Event Hubs is a good choice for handling massive streams of events and data:</p>
+<ol>
+<li>
+<p><strong>Real-time Data Streaming:</strong>
+   Azure Event Hubs serves as the  real-time data streaming from the legacy system to our new containerized microservices. This  ensuring that our organization stays responsive and adaptive to dynamic data changes.</p>
+</li>
+<li>
+<p><strong>Event-driven Architecture:</strong>
+   Leveraging Azure Event Hubs enables us to embrace an event-driven architecture. This approach allows us to decouple components, ensuring that each microservice can independently consume data events relevant to its specific business domain.</p>
+</li>
+<li>
+<p><strong>Scalability and Elasticity:</strong>
+   Azure Event Hubs provides the scalability and elasticity needed to handle large volumes of data events efficiently. This is crucial as our organization evolves, ensuring that our architecture can seamlessly grow to accommodate increased workloads.</p>
+</li>
+<li>
+<p><strong>Publisher-Subscriber Model:</strong>
+   The publisher applications in our legacy system publish data events to dedicated event hubs within Azure Event Hubs. This follows a publisher-subscriber model, ensuring a structured and organized migration of data from the legacy system.</p>
+</li>
+<li>
+<p><strong>Schema Consistency:</strong>
+   The utilization of serialization frameworks like Avro, coupled with Azure Schema Registry, guarantees consistency in data representation. This ensures that data maintains a uniform schema throughout its journey from the legacy system to the new microservices environment.</p>
+</li>
+<li>
+<p><strong>Business Domain Relevance:</strong>
+   Consumer applications on the new microservices platform subscribe to specific event hubs, allowing them to receive real-time updates relevant to their designated business domains. This targeted approach enhances the efficiency and relevance of data consumption.</p>
+</li>
+</ol>
+<h2 id="can-you-explain-apache-kafka-on-azure-event-hubs">Can you explain Apache Kafka on Azure Event Hubs?</h2>
+<p>Apache Kafka on Azure Event Hubs is a managed service that combines the capabilities of Apache Kafka, a popular open-source distributed streaming platform, with the scalability and ease of use of Azure Event Hubs. This service is designed to provide a Kafka-compatible interface for developers who are familiar with Kafka, while also taking advantage of the benefits of Azure's fully managed cloud platform.</p>
+<p>Key capabilities</p>
+<ol>
+<li>
+<p><strong>Kafka Protocol Compatibility:</strong> This service supports the Kafka protocol, allowing you to use existing Kafka applications, tools, and libraries with minimal modifications. It provides a familiar Kafka experience for developers who are already familiar working with Kafka clusters.</p>
+</li>
+<li>
+<p><strong>Managed Service:</strong> Unlike traditional self-hosted Kafka clusters, Apache Kafka on Azure Event Hubs is a fully managed service. This means that Microsoft Azure takes care of the infrastructure, maintenance, and operational tasks, allowing you to focus more on your application development and less on managing the underlying Kafka infrastructure.</p>
+</li>
+<li>
+<p><strong>Scalability:</strong> Leveraging the underlying scalability of Azure Event Hubs, this service can handle high-throughput, real-time event streaming. It supports automatic scaling and can handle large volumes of data, making it suitable for scenarios with varying workloads.</p>
+</li>
+<li>
+<p><strong>Integration with Azure Ecosystem:</strong> Apache Kafka on Azure Event Hubs seamlessly integrates with other Azure services. This includes services like Azure Functions, Azure Stream Analytics, Azure Logic Apps, and Azure Databricks, allowing you to build comprehensive and scalable event-driven applications.</p>
+</li>
+<li>
+<p><strong>Azure Security and Compliance:</strong> The service benefits from Azure's security features, including Azure AD-based authentication, encryption in transit and at rest, and compliance with various industry standards and regulations.</p>
+</li>
+<li>
+<p><strong>Multi-Protocol Support:</strong> While it is Kafka-compatible, Azure Event Hubs also supports other protocols, enabling interoperability with various Azure services and simplifying integration into diverse application architectures.</p>
+</li>
+<li>
+<p><strong>Geo-replication:</strong> Azure Event Hubs provides geo-replication capabilities, allowing you to replicate your Kafka-enabled event streams across Azure regions for improved disaster recovery and high availability.</p>
+</li>
+</ol>
+<p>By offering Apache Kafka on Azure Event Hubs, Microsoft aims to provide organizations with the flexibility to use Kafka-based architectures in a managed and scalable environment, taking advantage of the benefits of Azure's cloud platform. This service is particularly useful for scenarios involving real-time data streaming, event-driven architectures, and applications that rely on the Kafka ecosystem.</p>
+<h2 id="azure-event-hubs-vs-apache-kafka">Azure Event Hubs vs Apache Kafka</h2>
+<p>The following table maps concepts between Kafka and Event Hubs.</p>
+<table>
+<thead>
+<tr>
+<th><strong>Kafka Concept</strong></th>
+<th><strong>Event Hubs Concept</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Cluster</td>
+<td>Namespace</td>
+</tr>
+<tr>
+<td>Topic</td>
+<td>An Event Hub</td>
+</tr>
+<tr>
+<td>Partition</td>
+<td>Partition</td>
+</tr>
+<tr>
+<td>Consumer Group</td>
+<td>Consumer Group</td>
+</tr>
+<tr>
+<td>Offset</td>
+<td>Offset</td>
+</tr>
+</tbody>
+</table>
+<p>This table provides a concise overview of the key differences between Azure Event Hubs and Apache Kafka across various features and considerations.</p>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Azure Event Hubs</th>
+<th>Apache Kafka</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Managed Service</strong></td>
+<td>Fully managed by Microsoft Azure</td>
+<td>Can be self-hosted or deployed on various cloud services</td>
+</tr>
+<tr>
+<td><strong>Ecosystem Compatibility</strong></td>
+<td>Kafka-compatible endpoint; not a native Kafka service</td>
+<td>Native Kafka service with a rich ecosystem and community</td>
+</tr>
+<tr>
+<td><strong>Integration with Azure Services</strong></td>
+<td>Seamless integration with Azure services</td>
+<td>Integration may require additional configurations</td>
+</tr>
+<tr>
+<td><strong>Ease of Scaling</strong></td>
+<td>Automatic scaling and dynamic throughput adjustment</td>
+<td>Requires manual intervention for scaling</td>
+</tr>
+<tr>
+<td><strong>Security and Compliance</strong></td>
+<td>Built-in security features; supports compliance</td>
+<td>Security features need manual configuration; compliance may require additional effort</td>
+</tr>
+<tr>
+<td><strong>Deployment Flexibility</strong></td>
+<td>Managed service with limited customization</td>
+<td>Offers more flexibility in deployment</td>
+</tr>
+<tr>
+<td><strong>Pricing Model</strong></td>
+<td>Consumption-based pricing</td>
+<td>Pricing may vary based on deployment model and provider</td>
+</tr>
+<tr>
+<td><strong>Managed Kafka Connect</strong></td>
+<td>Offers managed Apache Kafka Connect</td>
+<td>Requires manual configuration and management</td>
+</tr>
+<tr>
+<td><strong>Global Distribution</strong></td>
+<td>Supports global distribution for multi-region deployment</td>
+<td>Requires manual setup for achieving multi-region deployment</td>
+</tr>
+</tbody>
+</table>
+<!-- [![Alt text](images/event-hubs/image-4.png){:style="border: 1px solid black; border-radius: 10px;"}](images/event-hubs/image-4.png){:target="_blank"} -->
+
+<h2 id="what-is-azure-event-hubs-namespace">What is Azure Event Hubs namespace?</h2>
+<p>An Azure Event Hubs namespace is a comprehensive management container that not only organizes event hubs but also provides essential features for access control, network integration, and security, making it a crucial administrative and operational construct for working with Azure Event Hubs.</p>
+<ol>
+<li>
+<p><strong>Management Container:</strong> An Event Hubs namespace is described as a management container specifically designed for event hubs (or topics, in the context of Kafka). This reinforces the idea that the namespace serves as an organizational unit for grouping and managing related event hubs.</p>
+</li>
+<li>
+<p><strong>DNS-Integrated Network Endpoints:</strong> The namespace provides DNS-integrated network endpoints. This means that each namespace is associated with a unique DNS name, making it accessible via a unique domain name. This DNS name is used for addressing and interacting with the resources within the namespace.</p>
+</li>
+<li>
+<p><strong>Access Control and Network Integration Features:</strong></p>
+<ul>
+<li><strong>IP Filtering:</strong> The namespace supports IP filtering, allowing you to control and restrict access based on IP addresses.</li>
+<li><strong>Virtual Network Service Endpoint:</strong> This feature enables integration with Azure Virtual Networks, providing a more secure and private communication channel between resources within the virtual network and the Event Hubs namespace.</li>
+<li><strong>Private Link:</strong> Private Link allows you to access the Event Hubs namespace over a private, dedicated connection instead of over the public internet. This enhances the security of data transfer.</li>
+</ul>
+</li>
+</ol>
+<h2 id="what-are-partitions">What are Partitions?</h2>
+<p>Event Hubs organizes sequences of events into one or more partitions.
+A partition can be thought of as a commit log that holds event data, including the body of the event, user-defined properties, metadata (such as offset and timestamp), and its position in the stream sequence.</p>
+<p>partitions in Azure Event Hubs play a crucial role in enabling scalable and parallel processing of events. The choice of the number of partitions and the effective use of partition keys impact the system's throughput, scalability, and the ability to process events in an organized manner.</p>
+<p>Advantages of Using Partitions:</p>
+<ul>
+<li><strong>Parallel Processing</strong>: Partitions help with processing large volumes of events by allowing multiple parallel logs to be used for the same event hub. This multiplies the available raw I/O throughput capacity.</li>
+<li><strong>Scalability</strong>: Partitions enable the scaling out of processing capacity. Your applications can handle the volume of events by having multiple processes, and partitions help feed those processes while ensuring each event has a clear processing owner.</li>
+</ul>
+<h2 id="what-is-shared-access-policies">What is Shared Access Policies?</h2>
+<p>Shared Access Policies in Azure Event Hubs are security constructs that allow you to control and manage access to your Event Hubs resources. They provide a way to grant specific permissions to clients, applications, or devices without exposing the primary access key. Each shared access policy defines a set of permissions and is associated with a name, which is used when generating Shared Access Signature (SAS) tokens.</p>
+<p><strong>Access Policy Types:</strong></p>
+<p>The available access policy types include:</p>
+<ul>
+<li><strong>Send:</strong> Allows sending events to an Event Hub.</li>
+<li><strong>Listen:</strong> Allows receiving events from an Event Hub.</li>
+<li><strong>Manage:</strong> Provides management operations such as creating and deleting Event Hubs, and managing consumer groups.</li>
+</ul>
+<p><strong>RootManageSharedAccessKey</strong></p>
+<p>In Azure Event Hubs, the RootManageSharedAccessKey Shared Access Signature (SAS) policy is a predefined access policy that holds the highest level of privileges and is associated with the primary key of the Event Hubs namespace. This policy is automatically created when you create an Event Hubs namespace, and it has full control over all aspects of the namespace, including the ability to manage and revoke access keys, create and delete Event Hubs, and perform administrative tasks.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Security Best Practices: It is recommended to avoid using the RootManageSharedAccessKey directly in applications or services unless absolutely necessary. Instead, best practices involve creating more granular Shared Access Policies with the minimum required permissions for specific scenarios.</p>
+</div>
+<h2 id="what-is-event-publishers">What is Event publishers?</h2>
+<p><code>Event publishers</code> refer to entities that send data to an Azure Event Hub. The term "event publishers" is used synonymously with "event producers." These entities are responsible for generating and transmitting events or messages to an Event Hub, which is a central component of Azure Event Hubs.</p>
+<p>Here are key points about event publishers:</p>
+<ol>
+<li>
+<p><strong>Definition:</strong> An event publisher is any entity that produces and sends data to an Event Hub.</p>
+</li>
+<li>
+<p><strong>Protocols:</strong> Event publishers can use different protocols to publish events to Azure Event Hubs. The supported protocols include HTTPS, AMQP 1.0 (Advanced Message Queuing Protocol), and the Kafka protocol.</p>
+</li>
+<li>
+<p><strong>Authentication and Authorization:</strong> Event publishers need to authenticate and obtain authorization to publish events to an Event Hub. They can use Microsoft Entra ID based authorization with OAuth2-issued JWT tokens or an Event Hub-specific Shared Access Signature (SAS) token to gain publishing access. These mechanisms ensure secure and controlled access to the Event Hub.</p>
+</li>
+<li>
+<p><strong>Token-based Authentication:</strong> The use of OAuth2-issued JWT tokens or Event Hub-specific Shared Access Signature (SAS) tokens implies a token-based authentication approach. This means that event publishers must present a valid token as part of the authentication process to establish their identity and permissions.</p>
+</li>
+</ol>
+<h2 id="what-is-event-consumers">What is Event consumers?</h2>
+<p><code>Event consumers</code> in the context of Azure Event Hubs are entities or applications that receive and process events from an Event Hub. These consumers subscribe to specific topic within an Event Hub namespace and are responsible for handling the incoming stream of events in real-time. Event consumers play a crucial role in event-driven architectures by enabling downstream processing, analysis, or storage of the streaming data.</p>
+<p>Here are key points about event consumers in Azure Event Hubs:</p>
+<ol>
+<li>
+<p><strong>Subscription to Topic:</strong>
+   Event consumers subscribe to one or more Topics within an Event Hub namespace. Each topic in cluster acts as an independent stream of events, and consumers can read from multiple topics concurrently to achieve parallel processing.</p>
+</li>
+<li>
+<p><strong>Parallel Processing:</strong>
+    By having multiple consumers reading from different topic, parallel processing is achieved. This allows for horizontal scaling of event processing, enhancing the overall throughput of the system.</p>
+</li>
+<li>
+<p><strong>Offset Management:</strong>
+   Event consumers maintain an offset, which is a pointer to the last successfully processed event in a topic. The offset is used to keep track of the position in the event stream. It ensures that events are processed in order and that no events are missed.</p>
+</li>
+<li>
+<p><strong>Consumer Groups:</strong>
+   Event consumers are organized into consumer groups, each identified by a unique name. Consumer groups enable multiple independent streams of processing within an Event Hub namespace. Each consumer group maintains its offset per topic, allowing for independent and parallel processing by different groups.</p>
+</li>
+<li>
+<p><strong>Integration with Downstream Services:</strong>
+   Event consumers often integrate with downstream services, such as databases, analytics platforms, or other event-driven components. This integration allows for further processing, analysis, or storage of the event data.</p>
+</li>
+<li>
+<p><strong>Fault Tolerance:</strong>
+   Event consumers need to be designed for fault tolerance. This includes handling transient failures, implementing retries, and ensuring that the processing logic can recover gracefully in case of disruptions.</p>
+</li>
+</ol>
+<h2 id="what-is-event-retention">What is Event retention?</h2>
+<p>Event retention refers to the duration for which events or messages are stored within the system. It represents the period during which the system retains the event data, making it available for consumers to retrieve. Event retention is a crucial aspect of event-driven architectures, allowing organizations to balance the need for historical data analysis with storage considerations.</p>
+<p>Here are key points about event retention:</p>
+<ol>
+<li>
+<p><strong>Configurability:</strong> Event retention is typically a configurable setting that allows the user to specify how long events should be retained in the event streaming system. </p>
+</li>
+<li>
+<p><strong>Retention Period:</strong> The retention period is the amount of time that events are kept in the system. </p>
+</li>
+<li>
+<p><strong>Maximum Retention Period:</strong> Event streaming platforms often have a maximum retention period beyond which events are automatically purged. This maximum retention period is determined by the platform's design and storage capabilities.</p>
+</li>
+<li>
+<p><strong>Automatic Removal:</strong> Events are automatically removed from the system when the retention period for each event expires. Once an event is older than the specified retention period, it is no longer available for retrieval by consumers.</p>
+</li>
+<li>
+<p><strong>Impact on Storage:</strong> The configured event retention period has an impact on the storage requirements for the event streaming system. Longer retention periods require more storage space to retain historical events.</p>
+</li>
+<li>
+<p><strong>Archival Strategies:</strong> In scenarios where organizations need to retain events beyond the configured retention period, they may employ archival strategies. This could involve storing events in long-term storage solutions, such as Azure Storage or Azure Data Lake.</p>
+</li>
+</ol>
+<h2 id="explain-capture-events">Explain Capture events:</h2>
+<p>In Azure Event Hubs, the capture feature allows you to automatically capture and store the streaming data (events) sent to an Event Hub into a designated Azure Blob Storage or Azure Data Lake Storage account. This feature is known as "Event Hubs Capture." It is particularly useful for scenarios where you need to retain, analyze, or process historical data for compliance, auditing, or analytics purposes.</p>
+<p>Here are the key aspects of capturing events in Azure Event Hubs:</p>
+<ol>
+<li>
+<p><strong>Configuration:</strong>
+   To enable event capture, you need to configure Event Hubs Capture settings for your Event Hub. This includes specifying the Azure Storage account (either Blob Storage or Data Lake Storage) where the captured data will be stored.</p>
+</li>
+<li>
+<p><strong>Storage Path and Container:</strong>
+   When configuring Event Hubs Capture, you define a storage path pattern that determines the organization of the captured data within the specified storage account. You also specify the storage container where the captured data will be stored.</p>
+</li>
+<li>
+<p><strong>File Naming:</strong>
+   Event Hubs Capture allows you to define a naming pattern for the captured files. This pattern can include placeholders such as <code>{Namespace}</code>, <code>{EventHub}</code>, <code>{PartitionId}</code>, and <code>{Year}</code>, enabling dynamic naming based on the content and source of the events.</p>
+</li>
+<li>
+<p><strong>File Formats:</strong>
+   The captured events are stored in files, and you can choose between two common file formats: Avro and Apache Parquet. Avro is a compact binary format, while Parquet is a columnar storage format that provides efficient compression and query performance.</p>
+</li>
+<li>
+<p><strong>Retention Policy:</strong>
+   Event Hubs Capture allows you to set a retention policy for the captured data. This defines how long the captured data should be retained in the storage account before it is automatically deleted.</p>
+</li>
+<li>
+<p><strong>Data Accessibility:</strong>
+   Once events are captured, they become accessible in the specified storage account. You can then use various tools and services to analyze, process, or visualize the captured data. For example, you might use Azure Databricks, Azure Synapse Analytics, or other analytics tools to gain insights from the captured events.</p>
+</li>
+<li>
+<p><strong>Use Cases:</strong>
+   Event Hubs Capture is valuable for scenarios where historical data analysis is required. It can be used for compliance auditing, tracking changes over time, debugging, and troubleshooting. The captured data can also be used for reprocessing events or replaying them into a different system.</p>
+</li>
+<li>
+<p><strong>Capture Status Monitoring:</strong>
+   Azure provides monitoring capabilities for Event Hubs Capture through Azure Monitor. You can monitor the status of capture, track successful and failed captures, and set up alerts based on specific criteria.</p>
+</li>
+<li>
+<p><strong>Integration with Other Azure Services:</strong>
+    The captured events can be seamlessly integrated with other Azure services for further processing or analysis. For example, you might integrate the captured data with Azure Stream Analytics, Azure Databricks, or Azure Data Factory for advanced analytics and insights.</p>
+</li>
+</ol>
+<h2 id="consumer-groups">Consumer groups</h2>
+<p>Consumer groups provide a logical grouping of consumers that read data from an event hub or Kafka topic.</p>
+<p>Consumer groups enable multiple consuming applications to read the same streaming data independently at their own pace with their offsets.</p>
+<p>This parallelization allows distributing the workload among multiple consumers while maintaining the order of messages within each partition.</p>
+<p>It is recommended to have only one active receiver on a partition within a consumer group to avoid processing duplicate events.</p>
+<p>consumer groups in Azure Event Hubs provide a flexible and scalable mechanism for parallelizing the consumption of streaming data, accommodating various downstream applications, and managing the details of event processing. The recommendation for having one active receiver per partition in a consumer group helps maintain order and avoid duplicate event processing.</p>
+<h2 id="application-groups">Application groups</h2>
+<p>An application group is a collection of one or more client applications that interact with the Event Hubs data plane. Each application group can be scoped to a single Event Hubs namespace or event hubs (entity) within a namespace.</p>
+<p>Application groups are logical entities that are created at the namespace level. Therefore, client applications interacting with event hubs don't need to be aware of the existence of an application group. Event Hubs can associate any client application to an application group by using the identifying condition.</p>
+<h2 id="what-is-avro-format-in-apache-kafka">What is Avro format in apache kafka?</h2>
+<p>In Apache Kafka, Avro is a binary serialization format that is often used in combination with the Confluent Schema Registry or  Azure Schema Registry. Avro provides a compact, fast, and schema-based serialization approach, making it well-suited for efficient data representation and compatibility in Kafka. Here are key aspects of Avro format in Apache Kafka:</p>
+<ol>
+<li>
+<p><strong>Schema-Driven Serialization:</strong>
+   Avro is schema-driven, meaning that data is serialized in accordance with a schema that describes the structure of the data. The schema is often defined using JSON, and it is included with the serialized data.</p>
+</li>
+<li>
+<p><strong>Compact Binary Format:</strong>
+   Avro uses a compact binary format for serialization, resulting in smaller payload sizes compared to other serialization formats like JSON or XML. This compactness is beneficial for reducing network bandwidth and storage requirements in Kafka.</p>
+</li>
+<li>
+<p><strong>Schema Evolution:</strong>
+   Avro supports schema evolution, allowing changes to the schema over time without breaking compatibility with existing data. This is crucial in Kafka scenarios where producers and consumers may evolve independently.</p>
+</li>
+<li>
+<p><strong>Interoperability:</strong>
+   Avro is designed for interoperability, enabling data to be exchanged between systems implemented in different programming languages. This flexibility aligns with the distributed nature of Kafka, where producers and consumers may be written in diverse languages.</p>
+</li>
+<li>
+<p><strong>Apache Avro Project:</strong>
+   Avro is an open-source project that is part of the Apache Software Foundation. It is widely used in the big data ecosystem and is supported by various programming languages and frameworks.</p>
+</li>
+<li>
+<p><strong>Confluent Schema Registry:</strong>
+   The Confluent Schema Registry is often used in conjunction with Avro in Kafka. The Schema Registry serves as a centralized repository for storing and managing Avro schemas. It allows producers and consumers to register, retrieve, and evolve schemas dynamically.</p>
+</li>
+<li>
+<p><strong>Schema Compatibility:</strong>
+   The Schema Registry ensures schema compatibility between producers and consumers. When data is produced or consumed, the Schema Registry validates that the schema aligns with the expected format, preventing data mismatches and enhancing data quality.</p>
+</li>
+<li>
+<p><strong>Code Generation:</strong>
+   Avro often involves code generation based on the schema. Code can be generated in different programming languages to facilitate the serialization and deserialization processes, improving performance and ensuring compatibility.</p>
+</li>
+<li>
+<p><strong>Avro Serialization in Kafka Producers:</strong>
+   Kafka producers can use Avro for serialization when sending messages to Kafka topics. The Avro serialization ensures that the data conforms to a predefined schema and is compatible with consumers that expect the same schema.</p>
+</li>
+<li>
+<p><strong>Avro Deserialization in Kafka Consumers:</strong>
+    Kafka consumers, on the other hand, can deserialize Avro-encoded messages using the associated schema. This allows consumers to interpret the structure of the data correctly.</p>
+</li>
+<li>
+<p><strong>Performance Considerations:</strong>
+    Avro's compact binary format and schema-based approach contribute to efficient serialization and deserialization, making it a performant choice for handling large volumes of data in Kafka.</p>
+</li>
+</ol>
+<h2 id="what-is-azure-schema-registry">What is Azure Schema Registry?</h2>
+<p>Azure Schema Registry is a feature of Azure Event Hubs that offers a centralized repository for managing schemas in event-driven and messaging-centric applications. Here are key points to understand about Azure Schema Registry:</p>
+<ol>
+<li>
+<p><strong>Centralized Schema Repository:</strong> Azure Schema Registry serves as a central location to store and manage schemas for the data exchanged between producer and consumer applications within the Azure Event Hubs ecosystem.</p>
+</li>
+<li>
+<p><strong>Flexibility in Data Exchange:</strong> The registry provides flexibility for producer and consumer applications, allowing them to exchange data without the need to manage and share the schema explicitly. This simplifies the communication process between different components of an application.</p>
+</li>
+<li>
+<p><strong>Governance Framework:</strong> Azure Schema Registry includes a governance framework that facilitates the management of reusable schemas. This framework defines relationships between schemas through a grouping construct known as schema groups.</p>
+</li>
+<li>
+<p><strong>Schema-Driven Serialization Frameworks:</strong> The registry supports schema-driven serialization frameworks, such as Apache Avro. This approach involves moving serialization metadata into shared schemas, which can help reduce the per-message overhead. Unlike tagged formats such as JSON, each message doesn't need to carry metadata, as the schema provides the necessary type information and field names.</p>
+</li>
+</ol>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../15-storage-account/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Create Storage Account using Terraform">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Create Storage Account using Terraform
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../16-event-hubs-part-2/" class="md-footer__link md-footer__link--next" aria-label="Next: Create Azure Event Hubs using Terraform">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Create Azure Event Hubs using Terraform
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2024 <a href="https://anjikeesari.com/"  target="_blank" rel="noopener">Anji Keesari</a>
+
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M186.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1M480 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2m-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3m-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://twitter.com" target="_blank" rel="noopener" title="twitter.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://linkedin.com/in" target="_blank" rel="noopener" title="linkedin.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3M135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5m282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://www.instagram.com/" target="_blank" rel="noopener" title="www.instagram.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141m0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7m146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8m76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8M398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.copy", "content.code.annotate", "navigation.indexes", "navigation.footer", "content.tooltips", "navigation.tabs", "navigation.sections", "navigation.expand", "navigation.top", "navigation.instant", "navigation.tracking", "header.autohide", "search.highlight", "search.share", "search.suggest", "toc.follow"], "search": "../../assets/javascripts/workers/search.f8cc74c7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.c8b220af.min.js"></script>
+      
+    
+  </body>
+</html>
